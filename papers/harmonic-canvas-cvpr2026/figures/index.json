@@ -1,0 +1,114 @@
+[
+ {
+  "kind": "figure",
+  "num": "1",
+  "page": 1,
+  "caption": "Figure 1. Overview of our Music Style Transfer workflow. Our model transforms a source clip (e.g., classical) into a target style (e.g., rock) via multimodal guidance. While the framework na- tively supports textual captions (strikethrough in figure to empha- size independence), it could leverages visual cues for non-verbal style and melodic guidance for pitch preservation.",
+  "file": "figures/fig-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.52,
+   0.306,
+   0.907,
+   0.515
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "2",
+  "page": 4,
+  "caption": "Figure 2. Overview of the proposed multimodal music style transfer framework. (Left) We build upon the Make-An-Audio 3 backbone and perform inversion-free flow editing in latent space. (Middle) Visual Conditioning: text and image features are encoded separately and injected into each DiT block via a cross-adapter attention mechanism, enabling the model to interpret non-verbal aesthetics such as ambience, color tone, and scene mood. (Right) Melodic Guidance: a normalized chroma loss constrains pitch-class structure, and its gradient corrects the flow trajectory, ensuring that stylistic transformation preserves melodic identity.",
+  "file": "figures/fig-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.131,
+   0.087,
+   0.869,
+   0.363
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "3",
+  "page": 7,
+  "caption": "Figure 3. (Left) Visualization of music style transfer results across three multimodal prompts. For each prompt, source/target images are shown on the left, followed by Mel-spectrograms of the Source, MeLFusion, and Ours outputs. (Right) Counterfactual test: changing only the image while keeping text fixed leads to different outputs, demonstrating the influence of visual cues on generated musical style.",
+  "file": "figures/fig-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.103,
+   0.087,
+   0.897,
+   0.257
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "4",
+  "page": 8,
+  "caption": "Figure 4. Comparison of normalized chroma energy curves across four settings: (a) source audio, (b) target style reference, (c) transfer without melody constraint, and (d) our chroma-guided method. The chroma distributions clearly illustrate how our approach maintains melodic consistency while achieving stylistic transformation.",
+  "file": "figures/fig-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.091,
+   0.087,
+   0.909,
+   0.201
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "1",
+  "page": 6,
+  "caption": "Table 1. Objective and subjective evaluation results. Two modality indicators (Text/Image) are shown for each method. Bold number denotes the best metric value.",
+  "file": "figures/tab-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.095,
+   0.128,
+   0.909,
+   0.332
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "2",
+  "page": 8,
+  "caption": "Table 2. Ablation on modality conditioning. Checkmarks indicate which modalities are provided; Caption denotes a BLIP-generated caption from the image.",
+  "file": "figures/tab-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.094,
+   0.327,
+   0.487,
+   0.424
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "3",
+  "page": 8,
+  "caption": "Table 3. Comparison of Inversion Strategies. Lower is better for FAD/FD; higher is better for others.",
+  "file": "figures/tab-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.094,
+   0.474,
+   0.487,
+   0.573
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "4",
+  "page": 8,
+  "caption": "Table 4. Sensitivity analysis of the guidance rate (GR) and the number of chroma-guided correction steps.",
+  "file": "figures/tab-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.517,
+   0.314,
+   0.909,
+   0.433
+  ]
+ }
+]

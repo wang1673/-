@@ -1,0 +1,37 @@
+{
+  "title": "Harmonic Canvas: Inversion-Free Editing for Visually-Guided Music Style Transfer",
+  "pdf_pages": 11,
+  "has_latex": false,
+  "main_tex": null,
+  "links": {
+    "project": [
+      {
+        "url": "https://yesq11.github.io/Harmoni-Canvas",
+        "score": 4,
+        "from": [
+          "首页链接"
+        ]
+      }
+    ]
+  },
+  "official_code": null,
+  "official_code_from": null,
+  "code_dir": null,
+  "fetched": "2026-10-08",
+  "authors": [
+    "Yue Lei",
+    "Siqi Yang",
+    "Ting Zhong",
+    "Fan Zhou"
+  ],
+  "conference": "CVPR 2026",
+  "pages": "29727-29737",
+  "supplement_pages": 13,
+  "source_pdf": "User supplied CVF accepted version",
+  "supplement_url": "https://openaccess.thecvf.com/content/CVPR2026/supplemental/Lei_Harmonic_Canvas_Inversion-Free_CVPR_2026_supplemental.pdf",
+  "official_code_status": "Only demonstration website found; no model training/inference implementation or checkpoints discovered",
+  "project_repository": "https://github.com/YesQ11/Harmoni-Canvas",
+  "project_commit": "00ac13a5a6c5f33796fe856e17f9483f1bab5542",
+  "destination_repository": "https://github.com/wang1673/-",
+  "destination_path": "papers/harmonic-canvas-cvpr2026"
+}

@@ -1,0 +1,1369 @@
+
+===== 第 1 页 =====
+Harmonic Canvas: Inversion-Free Editing for Visually-Guided Music Style
+Transfer
+Yue Lei1, Siqi Yang1, Ting Zhong1, Fan Zhou1,2*
+1SISE, University of Electronic Science and Technology of China
+2Key Laboratory of Intelligent Digital Media Technology of Sichuan Province
+{leiyue828, siqiyang11}@std.uestc.edu.cn, {zhongting, fan.zhou}@uestc.edu.cn
+Abstract
+Music style transfer (MST) aims to reinterpret existing
+musical pieces in new stylistic forms while maintaining
+their melodic coherence. Conventional approaches condi-
+tioned on text or audio overlook the profoundly multimodal
+character of musical style.
+Visual ambience – reflected
+in color, lighting, and composition – encodes affective at-
+tributes that parallel timbre, rhythm, and harmony, which,
+however, remain underexplored in MST context. We intro-
+duce a flow-based, inversion-free framework for multimodal
+music style transfer that unifies textual and visual guidance.
+Our approach tackles two challenges: (1) capturing cross-
+modal semantics beyond language through a dual-encoder
+fusion module that merges CLIP- and ViT-derived embed-
+dings, and (2) preserving melodic identity using a differ-
+entiable normalized chroma constraint that regulates pitch-
+class consistency along the generative flow. We reorganize
+and extend the MeLBench and MusicCaps collections into a
+genre-structured multimodal dataset to support style-aware
+analysis. Quantitative and perceptual evaluations demon-
+strate that our approach achieves superior control, struc-
+tural fidelity, and cross-modal expressiveness, underscoring
+the role of visual perception in music generation. Our demo
+is available online.
+1. Introduction
+Music stands at the convergence of art, technology, and
+culture, underpinning modern creative industries that span
+short-form social media, film scoring, and interactive enter-
+tainment. It functions not only as an expressive medium but
+also as a cultural bridge that connects people through shared
+emotion and rhythm. With the rapid progress of generative
+modeling, music creation has become one of the most dy-
+namic areas of computational creativity [54]. Deep genera-
+*This work was supported by the National Natural Science Foundation
+of China (Grant No.62572097).
+Inversion-
+Free Editing
+Image caption: A dynamic 
+rock guitarist ... an 
+energetic shout and ... in a 
+classic rock gesture ... live 
+rock performance.
+Visual Conditioning
+Source Music (Classical)
+Transferred Music (Rock)
+Melodic Guidance
+Rock
+Classical
+Preserve
+Melody
+Music Style Transfer
+Figure 1. Overview of our Music Style Transfer workflow. Our
+model transforms a source clip (e.g., classical) into a target style
+(e.g., rock) via multimodal guidance. While the framework na-
+tively supports textual captions (strikethrough in figure to empha-
+size independence), it could leverages visual cues for non-verbal
+style and melodic guidance for pitch preservation.
+tive approaches such as autoregressive models [55], gener-
+ative adversarial network-based models [12] and diffusion
+models [15] have achieved remarkable success in music
+composition [8, 29, 32], enabling the creation of coherent
+melodies, realistic timbres, and stylistically rich arrange-
+ments from scratch.
+While music generation from scratch constitutes a “zero-
+to-one” creative breakthrough, music style transfer (MST) –
+the transformation of existing compositions into new stylis-
+tic forms – represents the “one-to-one-hundred” stage, em-
+phasizing scalability and creative accessibility. MST en-
+ables users to reinterpret familiar pieces through novel aes-
+thetic perspectives without requiring expert compositional
+skills. Recent studies have approached this problem using
+diverse architectures, including spectrogram-based transla-
+tion [59], diffusion-based editing frameworks [27] and ex-
+tended to latent diffusion [33]. However, these methods pre-
+This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
+Except for this watermark, it is identical to the accepted version;
+the final published version of the proceedings is available on IEEE Xplore.
+29727
+
+===== 第 2 页 =====
+dominantly depend on textual prompts or reference audio,
+leaving the multimodal nature of musical style – its inter-
+play with visual and contextual cues – largely unexplored.
+In particular, the visual modality remains a largely un-
+tapped resource for guiding musical style, despite its strong
+psychological and aesthetic connections to sound [42, 64].
+Visual imagery, much like music, tells an affective story –
+it conveys atmosphere, mood, and emotional tone beyond
+the limits of language, embodying the very essence of what
+we perceive as style [3]. Visual cues such as color and
+lighting often map intuitively to musical attributes like tim-
+bre, rhythm, and harmony, suggesting that style perception
+is not purely auditory but intrinsically multimodal. Com-
+posers and producers frequently describe mood or intent
+through both visual references (e.g., impressionist paint-
+ings, retro album covers) and textual guidance (e.g., “make
+it more melancholic, like a rainy afternoon”), reflecting this
+cross-modal interplay between imagery and sound.
+Despite these cross-modal correspondences, current mu-
+sic style transfer (MST) systems seldom exploit visual cues
+explicitly. Most rely on textual prompts or reference au-
+dio [27, 34], with text functioning as a compact – but inher-
+ently lossy – surrogate for visual ambience. While captions
+can approximate moods (e.g., “bright and cheerful jazz”),
+they fail to capture finer stylistic nuances such as color tone,
+spatial composition, or emotional texture – qualities that are
+more naturally expressed through visual media. This limi-
+tation motivates our first research challenge: how can vi-
+sual semantics that transcend linguistic description be ef-
+fectively represented and utilized for style transfer?
+Meanwhile, advances in inversion-free editing [23,
+60] offer a promising complementary direction.
+Un-
+like diffusion-based inversion, which introduces stochas-
+tic noise during reconstruction, inversion-free flow models
+establish deterministic transport paths between source and
+target distributions. These continuous mappings preserve
+global coherence while allowing localized stylistic variation
+– an essential property for music, where melodic and rhyth-
+mic integrity should be maintained. However, even within
+this structure-preserving formulation, abrupt stylistic shifts
+may still distort melodic patterns. This exposes our second
+challenge: how to preserve pitch and rhythmic identity un-
+der large stylistic transformations within an inversion-free
+generative framework?
+To address these challenges, we propose a unified mul-
+timodal MST framework grounded in inversion-free flow
+editing [23], as illustrated in Fig. 1. First, we introduce
+a cross-modal fusion module that directly integrates vi-
+sual embeddings with textual semantics, enabling percep-
+tion and translation of non-verbal stylistic cues – such as
+ambience, tone, and spatial mood – into coherent musical
+expression. Second, to stabilize melodic structure, we in-
+corporate a normalized chroma-based constraint that pre-
+serves pitch-class consistency during generation, ensuring
+structural fidelity while allowing flexible stylistic adapta-
+tion. In addition, we construct a new multimodal dataset
+of aligned triplets (music, text, and image) to facilitate sys-
+tematic studies of cross-modal conditioning in music style
+transfer. In summary, our main contributions are threefold:
+• A multimodal MST task.
+We introduce the multi-
+modal music style transfer (MST) task, which promotes
+a cross-modal cognitive perspective by aligning musical,
+visual, and linguistic modalities within a coherent repre-
+sentational paradigm for MST.
+• Non-verbal stylistic representation.
+We propose a
+cross-modal fusion module that integrates visual em-
+beddings with textual semantics, effectively capturing
+non-verbal ambience cues, such as color, tone, and spa-
+tial mood, that are critical to stylistic perception.
+• Inversion-free flow with melodic regularization. We
+develop an inversion-free flow-based editing approach
+equipped with a normalized chroma constraint, achieving
+structure-preserving and melody-consistent style trans-
+formations.
+• A new MST benchmark.
+We reorganize and extend
+MeLBench and MusicCaps into a more structured mul-
+timodal corpus with refined captions and 16-genre anno-
+tations, establishing a new benchmark for style-aware and
+multimodal MST evaluation.
+2. Related Work
+Generative-Music Creation. Music, as a uniquely expres-
+sive art form, has long attracted research interest in its com-
+putational creation methods. Early attempts at music gen-
+eration relied on symbolic rules and probabilistic models
+such as Markov chains and HMMs [16, 47, 58] could cap-
+ture simple melodic patterns but lacked expressive control
+and scalability. With the advent of deep learning, gener-
+ative models based on VAEs and GANs greatly advanced
+the field. MusicVAE [48] introduced a hierarchical struc-
+ture to model long-term dependencies; MuseGAN [8] and
+MidiNet [62] demonstrated GAN-based multi-track gener-
+ation.
+More recently, diffusion models [18, 29, 32, 35]
+have achieved state-of-the-art fidelity by iteratively refining
+noise under semantic or textual guidance, offering strong
+controllability and realism.
+Beyond text-only condition-
+ing, multimodal approaches such as MelFusion [3], Mus-
+Flow [53], and Diff-BGM [26] incorporate visual or cross-
+modal cues to enhance stylistic expressiveness in music
+generation. However, these models primarily focus on un-
+conditional or from-scratch synthesis and lack mechanisms
+to preserve melodic and rhythmic content – key to effective
+music style transfer.
+Music Style Transfer.
+Music style transfer (MST) has
+gradually evolved into an important branch of genera-
+tive music research, aiming to re-render existing pieces
+29728
+
+===== 第 3 页 =====
+in new stylistic forms while retaining their musical iden-
+tity. While earlier studies explored various generative deep
+learning paradigms for this task [20, 39], recent progress in
+diffusion-based generation [44, 61] has opened new possi-
+bilities for high-fidelity and controllable music stylization.
+Recent progress in text-conditioned music generation has
+further advanced controllable stylization. MuLan [17] in-
+troduces a joint audio–text embedding that supports text-
+guided re-rendering of a given excerpt. Noise2Music [18]
+extends this idea by using a cascade of text-conditioned dif-
+fusion models that can be applied to modify an input clip
+at high fidelity.
+Meanwhile, large-scale language–audio
+models such as MusicGen [5] and MusicLM [1] further ex-
+tend style music generation by conditioning the process on
+both textual prompts and optional melodic inputs. In paral-
+lel, diffusion-based instruction-driven frameworks [14, 57]
+have been explored for general audio or music editing,
+where operations such as Add, Remove, or Replace are
+learned from supervised (prompt, input, output) triplets.
+Inversion-based Editing Methods.
+Beyond generative
+music models trained from scratch using text or instruc-
+tions, recent studies have explored leveraging pretrained
+diffusion priors for unsupervised style transfer and zero-
+shot editing.
+This direction was first established in the
+image domain, where methods such as SDEdit [36] and
+Pix2Pix-Zero [43] demonstrated that perturbations in noise
+space can enable semantic edits while preserving structural
+fidelity. These methods rely on diffusion inversion [19, 37]
+to reconstruct latent noise trajectories from real samples and
+enable semantic manipulation.
+Building on these developments, diffusion inversion has
+been adapted to the audio domain for tasks such as tim-
+bre conversion and music resynthesis [27, 30, 34], show-
+ing that pretrained diffusion priors can support zero-shot
+or text-driven music editing.
+However, inversion re-
+quires stochastic multi-step reconstruction, making it com-
+putationally expensive and susceptible to accumulated er-
+rors [25] that cause temporal drift in long-form audio. To
+alleviate these limitations, inversion-free flow-based frame-
+works [23, 60] learn source-to-target transformations di-
+rectly in latent space, offering a more stable and efficient
+alternative.
+While such formulations have shown strong
+performance in visual domains, their potential for struc-
+tured musical transformation remains underexplored.
+In
+this work, we extend the inversion-free flow paradigm to
+music style transfer, introducing melody-preserving con-
+straints and multimodal conditioning for rhythm-consistent
+and visually guided musical editing.
+3. Preliminary
+Music Style Transfer. Music style transfer (MST) aims
+to generate a stylized audio xsty from a source clip xsrc,
+preserving melody and rhythm while altering stylistic char-
+acteristics [13]. Traditional MST relies on a single refer-
+ence or domain target, whereas our extended formulation
+introduces multimodal style conditions (T, I), where text T
+provides explicit intent and image I conveys complemen-
+tary visual ambience. This multimodal conditioning enables
+finer control and more expressive style reinterpretation.
+Inversion-Free Flow Editing. Flow-based generative mod-
+els [28, 31] define data synthesis as a continuous transfor-
+mation between distributions:
+dzt
+dt = vθ(zt, t),
+z0 ∼p0, z1 ∼p1,
+(1)
+where vθ is a learnable velocity field driving the flow from
+the base distribution p0 (e.g., Gaussian noise) to the data
+distribution p1. Unlike diffusion models that approximate a
+stochastic reverse process, flow matching defines a learning
+objective that aligns the model-predicted velocity with the
+target flow:
+Lflow = Et,zt
+
+∥vθ(zt, t) −vt∥2
+2
+
+,
+(2)
+where vt represents the target flow velocity derived from
+interpolated data pairs. This formulation encourages path
+consistency and smooth transitions in latent space, allow-
+ing each intermediate state zt to correspond to a continu-
+ous transformation of the data distribution. To enable effi-
+cient editing, inversion-free flow methods [23] bypass ex-
+plicit noise reconstruction by directly constructing a map-
+ping between source and target trajectories:
+zedit
+t
+= zsrc
+t
++ ∆vt;
+∆vt = vθ(ztar
+t , t) −vθ(zsrc
+t , t),
+(3)
+thus realizing semantic transformation without diffusion in-
+version. This design eliminates stochastic noise accumula-
+tion and multi-step inversion, providing a stable and direc-
+tionally consistent mapping ideal for structure-preserving
+tasks such as music style transfer. In our framework, we
+build upon this inversion-free flow formulation to achieve
+efficient and multimodally guided music editing.
+4. Methodology
+In this section, we introduce a multimodal fusion module
+that integrates visual and textual cues into the audio back-
+bone (Section 4.1), followed by an inversion-free editing
+framework with chroma guidance (Section 4.2) to preserve
+melodic and rhythmic structure. Together, they form a uni-
+fied pipeline for multimodal music style transfer (Fig. 2).
+4.1. Cross-Adapter for Visual-Textual Conditioning
+Style information in music is often conveyed not only by
+sound but also by visual ambience – color palettes, light-
+ing, composition, and texture – that language alone cannot
+fully describe. This raises a natural question: how can im-
+age information be effectively integrated into the model?
+29729
+
+===== 第 4 页 =====
+Figure 2. Overview of the proposed multimodal music style transfer framework. (Left) We build upon the Make-An-Audio 3 backbone
+and perform inversion-free flow editing in latent space. (Middle) Visual Conditioning: text and image features are encoded separately
+and injected into each DiT block via a cross-adapter attention mechanism, enabling the model to interpret non-verbal aesthetics such as
+ambience, color tone, and scene mood. (Right) Melodic Guidance: a normalized chroma loss constrains pitch-class structure, and its
+gradient corrects the flow trajectory, ensuring that stylistic transformation preserves melodic identity.
+A straightforward solution is to use existing text-to-audio
+models by converting image descriptions into text. How-
+ever, from an information-theoretic standpoint [52], this in-
+troduces information loss. Let I be the reference image,
+C = g(I) its caption, and Z the generated audio. Since
+I →C →Z is a Markov chain, the data-processing in-
+equality gives I(I; Z) ≤I(I; C), meaning that the cap-
+tion C can only lose, not gain, stylistic information from I.
+Hence, conditioning on visual features provides richer style
+cues than using image captions alone. Empirically, our ex-
+periments indicate that captioning an image often fails to
+capture fine-grained aesthetic cues relevant to musical style.
+Motivated by this, we incorporate visual features alongside
+textual prompts, allowing the model to perceive and trans-
+late musical style in a more holistic and expressive manner.
+To support such multimodal conditioning, a flexible and
+efficient generative backbone is essential. We adopt Make-
+An-Audio 3 (MAA3) [65], an enhanced transformer-based
+diffusion architecture that extends DiT with improved nor-
+malization, frequency-aware attention, and adaptive modu-
+lation for stronger conditional control. Unlike convolutional
+backbones, MAA3 tokenizes latent features, enabling effi-
+cient modeling of long-range temporal dependencies—an
+essential property for music. In the music generation setup,
+audio waveforms are first converted into Mel-spectrograms
+via STFT and encoded by a lightweight audio VAE into la-
+tent tokens. A pretrained Flan-T5 text encoder [4] provides
+semantic conditioning through adaptive layer normalization
+(AdaLN) in each transformer block, while rotary positional
+embeddings (RoPE) capture temporal structure and main-
+tain cross-layer alignment. This token-based backbone of-
+fers a flexible foundation for incorporating additional con-
+ditional streams, making it particularly suitable for our pro-
+posed cross-adapter integration of visual information.
+Building upon this foundation, we introduce a cross-
+adapter mechanizm to integrate visual features into the
+transformer without disrupting its pretrained structure.
+Specifically, we employ two complementary visual en-
+coders – CLIP [45] and ViT [9] – to capture distinct aspects
+of visual style. CLIP excels at learning high-level seman-
+tic correspondences between vision and language, provid-
+ing conceptually aligned embeddings, whereas ViT focuses
+on global information [46]. The resulting embeddings are
+pooled, linearly projected, and injected into the transformer
+via a cross-attention mechanism, enabling the generator to
+translate rich non-verbal cues – such as color tone, light-
+ing, and mood – into coherent musical expression. For each
+transformer block, the main stream and control stream share
+the query projection but maintain distinct key and value pro-
+jections, formulated as:
+
+
+
+
+
+
+
+Qm = Wq Norm(H)
+Kctl = W (x)
+k
+Φx(Xctl) + W (y)
+k
+Φy(Yctl)
+Vctl = W (x)
+v
+Φx(Xctl) + W (y)
+v
+Φy(Yctl)
+(4)
+where H is the hidden representation of the main stream,
+Xctl and Yctl denote control-side textual and visual features,
+29730
+
+===== 第 5 页 =====
+Algorithm 1 Inversion-free flow editing with chroma-
+guided correction
+1: Input:
+Source latent xsrc, noise xnoise
+0
+, timesteps
+{ti}T −1
+i=0 , decoder G, chroma extractor Φchroma, inner
+steps S, guidance rate η, weight λchr
+2: Output: Final edited latent zedit
+tT −1
+3: Init: zedit
+t0 = xsrc
+4: for i = 0 to T −2 do
+5:
+dt = ti+1 −ti
+6:
+zsrc
+ti = (1 −(1 −σmin)ti)xsrc + tixnoise
+0
+7:
+∆v = fθ(ztar
+ti , ytar) −fθ(zsrc
+ti , ysrc)
+8:
+zedit
+ti
+= zedit
+ti + dt v∆
+9:
+for s = 1 to S do
+10:
+Cti, Cref = Φchroma(G(zedit
+ti )), Φchroma(G(zsrc
+ti ))
+11:
+Lchr = ∥Cti −Cref∥1
+12:
+g = ∇zedit
+ti Lchr
+13:
+zedit
+ti
+= zedit
+ti −ηλchrg
+14:
+end for
+15:
+zedit
+ti+1 = zedit
+ti
+16: end for
+17: return zedit
+tT −1
+Wq, Wk, Wv are the projection matrices for query, key, and
+value, and Φx(·), Φy(·) are linear transformations applied
+to each modality before fusion. The cross-adapter attention
+output is then computed as:
+Acrs = softmax
+(Qm⊙Rq)(Kctl⊙Rk)⊤
+√
+d
+
+,
+(5)
+Ocrs = Acrs Vctl Wo,
+(6)
+where d represents the head dimension, Φx,Φy are pre-
+normalization mappings, and Rq,Rk denote segmented
+RoPE factors with separate time grids for main and con-
+trol streams. We share Wq and Wo across both streams
+to keep their representation spaces aligned, while keeping
+W (x)
+k
+, W (x)
+v
+, W (y)
+k
+, W (y)
+v
+distinct for the control path. Key
+normalization is applied for numerical stability. Then the
+adapter output is added to the main stream.
+During training, most control-stream parameters that do
+not contribute to the main loss – such as feed-forward and
+normalization layers on the control side – are kept frozen
+to avoid unused-parameter issues and ensure stable con-
+vergence. This cross-adapter architecture allows the main
+stream to query the visual branch at each layer, injecting
+ambience and mood cues while preserving temporal and
+melodic structure. Together, these components enable di-
+rect control of musical style from textual and visual inputs,
+forming the foundation of our multimodal MST framework.
+4.2. Melody Preservation via Melodic Guidance
+While multimodal conditioning enriches stylistic expres-
+siveness, it may also disrupt melodic stability. In practice,
+we observe that when the model relies solely on seman-
+tic cues from text or images, the generated audio can ex-
+hibit pitch drift or rhythmic distortion – altering the mu-
+sical identity of the source. To mitigate this issue, we in-
+troduce a melody guidance mechanism that explicitly con-
+strains the pitch-class distribution of the generated signal
+into the inversion-free flow framework. We illustrate the
+algorithmic details in Algorithm 1.
+Our approach leverages the normalized chroma repre-
+sentation [2], a compact descriptor of melody that cap-
+tures the relative energy distribution across the twelve pitch
+classes within an octave. Compared to raw fundamental
+frequency (F0) curves, normalized chroma is amplitude-
+invariant, timbre-robust, and polyphony-tolerant, providing
+a more stable basis for constraining melodic consistency.
+Specifically, given the current waveform reconstruction
+ˆxt = G(zedit
+t
+) decoded from the edited latent state zedit
+t
+, we
+extract its chroma features as Ct = Φchroma(ˆxt), and com-
+pare them against a reference chroma Cref = Φchroma(xref)
+computed from the instrumental stem of the source audio.
+The melodic deviation is measured via an L1 loss:
+Lchr = ∥Ct −Cref∥1,
+(7)
+which penalizes deviations in pitch-class activation while
+tolerating small timing shifts. The gradient of this loss with
+respect to the latent state is
+g = ∇zedit
+t Lchr(zedit
+t
+),
+(8)
+where g is the chroma-guidance direction in latent space.
+The latent is then refined through a proximal update:
+zedit
+t
+←zedit
+t
+−η λchr g,
+(9)
+where η > 0 is the inner-step learning rate and λchr > 0
+controls the strength of melodic guidance. This update is
+repeated for S inner iterations at each flow step t, so that
+the outer inversion-free flow provides semantic style trans-
+formation, while the inner chroma-guided corrections pull
+the trajectory back toward the source pitch-class structure.
+In practice, we employ a cosine-decayed schedule for λchr
+— strong in early steps to “lock” melody, and weaker in
+later steps to release stylistic flexibility. The chroma ex-
+tractor Φchroma is implemented with a differentiable Short-
+Time Fourier Transform followed by a 12-bin triangular fil-
+ter bank and per-frame L1 normalization, ensuring full gra-
+dient flow to the latent variables.
+By integrating this normalized chroma constraint, the
+model maintains coherent pitch and rhythm while still per-
+forming expressive multimodal edits. This melody-guided
+29731
+
+===== 第 6 页 =====
+Table 1. Objective and subjective evaluation results. Two modality indicators (Text/Image) are shown for each method. Bold number
+denotes the best metric value.
+Method
+Modality
+Objective Metrics
+Subjective Metrics
+Text
+Image
+FAD↓
+FD↓
+IMSM↑
+F0-PCC↑
+CCS↑
+OVL↑
+REL↑
+MOScon↑
+MusicLM [1]
+✓
+✗
+5.26
+36.55
+-
+-
+-
+80.73
+79.60
+80.33
+MusicGen [5]
+✓
+✗
+4.89
+34.81
+-
+-
+-
+81.60
+80.40
+81.13
+TANGO [32]
+✓
+✗
+4.59
+29.96
+-
+-
+-
+83.27
+82.33
+82.93
+MAA3 [65]
+✓
+✗
+4.23
+29.77
+-
+-
+-
+86.93
+85.93
+86.47
+MeLFusion [3]
+✓
+✓
+3.24
+25.73
+0.783
+-
+-
+87.40
+86.27
+86.93
+MusicTI [27]
+✓
+✗
+3.78
+26.09
+-
+0.367
+0.820
+86.80
+85.47
+86.13
+ZETA [34]
+✓
+✗
+4.23
+27.75
+-
+0.322
+0.764
+84.53
+83.27
+83.93
+Ours
+✓
+✓
+2.43
+24.06
+0.828
+0.416
+0.878
+89.27
+88.13
+89.20
+mechanism thus enforces a meaningful regularization on the
+generative flow, achieving style transfer that preserves mu-
+sical identity without sacrificing stylistic diversity.
+5. Experiments and Results
+5.1. Experiments Setup
+Datasets. We construct a unified multimodal dataset by
+merging extended versions of MeLBench [3] and Music-
+Caps [1], both normalized into triplets ⟨I, T, M⟩represent-
+ing image, text, and music. Each triplet contains a visu-
+ally descriptive image I, a caption T describing the musi-
+cal intent, and an audio clip M aligned in style and emo-
+tion. To enhance stylistic consistency, we apply the stem-
+separation model Demucs [6] to remove vocals and re-
+tain purely instrumental tracks across both datasets. The
+MusicCaps subset is further extended with visually rele-
+vant images and enriched using an LLM-assisted annota-
+tion pipeline, which classifies each clip into one of 16 mu-
+sical genres (e.g., ambient, jazz-fusion, electronic, retro-
+pop) and standardizes captions for stylistic coherence, ad-
+ditional details are provided in the Appendix. The final cor-
+pus provides genre-aware, visually grounded triplets with
+richer metadata, enabling fine-grained multimodal condi-
+tioning and style-transfer evaluation.
+Evaluation Metrics.
+We evaluate our framework using
+both objective and subjective metrics, with detailed pro-
+cedures and rating criteria provided in the Appendix. We
+evaluate the transferred music in terms of content preserva-
+tion and style similarity. The main metrics include Fr´echet
+Audio Distance (FAD) [21], Fr´echet Distance (FD) [22],
+Image–Music Similarity Metric (IMSM) [3], Fundamen-
+tal Frequency Correlation (F0-PCC) [41], and Chroma-CQT
+Similarity (CCS) [51]. FAD and FD measure distributional
+alignment between generated and target-style audio in per-
+ceptual embedding spaces, while IMSM assesses cross-
+modal consistency with visual–textual prompts.
+F0-PCC
+and CCS capture melodic and harmonic preservation, re-
+flecting how well pitch and tonal progression are main-
+tained. Lower FAD/FD and higher IMSM, F0-PCC, and
+CCS indicate better style transfer quality.
+We conduct a user study to evaluate the perceptual qual-
+ity of the transferred music. Following prior works in text-
+to-audio generation [3, 11, 29], three subjective measures
+are adopted: overall audio quality (OVL), prompt relevance
+(REL), and melodic consistency (MOScon). Fifteen partic-
+ipants rated each sample on a 0–100 scale, where higher
+scores indicate better perceptual performance in terms of
+realism, stylistic relevance, and melody preservation.
+Implementation Details. For fair comparison, we adopt
+MAA3 [65] as our backbone. The model is trained on L40S
+GPUs using the 1.5B backbone with an additional 46.2M
+adapter parameters. All baselines are evaluated under iden-
+tical settings. The cross-adapter is trained with a learning
+rate of 1 × 10−5 and a batch size of 16.
+The melody-
+guided rate η is set to 1 × 10−4 with a step size of 2 and
+a weight λchr of 1. The inference step count is set to 25
+following [65].
+5.2. Baseline Models
+We evaluate our method against representative baselines
+across both text-to-music generation and style-transfer set-
+tings. To the best of our knowledge, there is currently no
+diffusion-based music style transfer framework conditioned
+on both visual and textual modalities, making direct multi-
+modal comparison unavailable. Therefore, we select state-
+of-the-art models according to their relevance in either text-
+conditioned generation or audio-based style transfer.
+Generation-based Style Transfer.
+We include Musi-
+cLM [1], MusicGen [5], MAA3 [65], Tango [32], and Mel-
+Fusion [3], which represent recent advances in controllable
+music generation.
+While numerous generation systems
+29732
+
+===== 第 7 页 =====
+Figure 3. (Left) Visualization of music style transfer results across three multimodal prompts. For each prompt, source/target images are
+shown on the left, followed by Mel-spectrograms of the Source, MeLFusion, and Ours outputs. (Right) Counterfactual test: changing only
+the image while keeping text fixed leads to different outputs, demonstrating the influence of visual cues on generated musical style.
+exist, such as Riffusion [10], Mubert [38], Moˆusai [50],
+Noise2Music [18],
+MeLoDy [24],
+DiffRhythm [40],
+YuE [63], and SongComposer [7], they do not support the
+direct transformation of input audio or rely on specialized
+pipelines that hinder fair comparison. We thus report results
+for publicly available and widely adopted open-source mod-
+els that reflect prevailing architectural trends. These base-
+lines serve as upper-bound references for text-conditioned
+generation quality and style controllability.
+Inversion-based Style Transfer.
+To assess content-
+preserving
+transformation,
+we
+further
+compare
+with
+ZETA [34] and MusicTI [27], two representative inversion-
+based frameworks explicitly designed for music style trans-
+fer. These systems aim to modify musical timbre or mood
+while maintaining melodic and rhythmic identity, aligning
+closely with our task formulation.
+5.3. Overall Performance
+We provide both objective and perceptual comparisons
+against representative baselines in Table 1. Compared with
+text-to-music generation systems such as MusicLM [1],
+MusicGen [5], and TANGO [32], our method performs a
+direct transformation rather than synthesis from scratch.
+These generative models produce coherent audio but lack
+access to source material, making structure-based met-
+rics (e.g., F0-PCC, CCS) inapplicable; In contrast, our
+inversion-free flow editing preserves temporal and har-
+monic structures while enabling fine-grained style adap-
+tation under multimodal control.
+Compared with Mu-
+sicTI [27] and ZETA [34], our method achieves higher
+F0-PCC and CCS scores, possibly due to the chroma-
+based constraint, which helps maintain pitch stability and
+tonal coherence. Among multimodal approaches, only our
+method and MelFusion [3] incorporate visual guidance.
+While MelFusion benefits from image features, our cross-
+adapter fusion achieves stronger alignment between visual
+ambience and musical expression, as reflected in the higher
+IMSM score.
+Additionally, the left panel of Fig. 3 compares Mel-
+spectrograms across multimodal prompts. A ideal music
+style transfer method should keep the source’s structural
+patterns (melodic contours, rhythmic events) while modi-
+fying only style-related energy distributions. Our method
+achieves this behavior, whereas MeLFusion exhibits notice-
+able structural deformation.
+5.4. Ablation Study
+Effect of the Image Modality. We assess the contribution
+of visual information through modality ablation and a coun-
+terfactual test. As shown in Table 2, text-only condition-
+ing yields coherent transfers but lacks fine-grained stylis-
+tic cues.
+BLIP-generated captions slightly improve per-
+formance but remain inferior to direct visual embeddings,
+while image-only conditioning performs the worst, indicat-
+ing that visual cues require textual grounding. Combining
+text and image achieves the best performance – especially in
+IMSM – showing that visual features provide complemen-
+tary style information beyond text alone. We further ob-
+serve that adding BLIP captions to text+image can degrade
+performance, likely due to low-quality or verbose captions
+introducing noise into the conditioning space. Furthermore,
+the counterfactual test (Fig. 3, right) shows that altering
+only the image while keeping the text fixed leads to clearly
+different outputs, demonstrating that visual cues indepen-
+dently affect the generated style.
+Comparison of Inversion Strategies. Since our method
+is built upon an inversion-free flow formulation, we first
+compare it with FlowEdit [23], which also learns determin-
+istic source–target mappings without reconstructing noise
+trajectories.
+For completeness, we further include RF
+Edit [56] and RF Inversion [49], both relying on explicit
+inversion in flow-based formulation. As shown in Tab. 3,
+our method achieves competitive overall performance and
+substantially higher F0-PCC and CCS. This comparison
+29733
+
+===== 第 8 页 =====
+Figure 4. Comparison of normalized chroma energy curves across four settings: (a) source audio, (b) target style reference, (c) transfer
+without melody constraint, and (d) our chroma-guided method. The chroma distributions clearly illustrate how our approach maintains
+melodic consistency while achieving stylistic transformation.
+Table 2. Ablation on modality conditioning. Checkmarks indicate
+which modalities are provided; Caption denotes a BLIP-generated
+caption from the image.
+Setting
+Modality
+Metrics
+Text
+Image
+Caption
+FAD↓
+FD↓
+IMSM↑
+Text only
+✓
+✗
+✗
+3.15
+25.38
+-
+Image only
+✗
+✓
+✗
+4.06
+34.13
+-
+Text + Image (Caption)
+✓
+✗
+✓
+3.49
+31.24
+-
+Text + Image + Caption
+✓
+✓
+✓
+2.86
+24.57
+0.811
+Text + Image
+✓
+✓
+✗
+2.43
+24.06
+0.828
+Table 3. Comparison of Inversion Strategies. Lower is better for
+FAD/FD; higher is better for others.
+Method
+Melodic Consistency
+Stylistic Consistency
+F0-PCC↑
+CCS ↑
+FAD↓
+FD↓
+IMSM↑
+RF Inversion [49]
+0.323
+0.830
+2.57
+26.86
+0.812
+RF Edit [56]
+0.343
+0.842
+2.52
+26.18
+0.805
+FlowEdit [23]
+0.368
+0.852
+2.41
+24.45
+0.829
+Ours
+0.416
+0.878
+2.43
+24.06
+0.828
+highlights the advantage of inversion-free flow formulations
+over inversion-based schemes in preserving structural fi-
+delity during style transfer.
+Impact of Melodic Guidance.
+To isolate the effect of
+melodic guidance itself, we visualize the chroma maps
+shown in Fig. 4.
+In the transfer from Dance to New
+Age, guided editing preserves key melodic trajectories
+(red regions), whereas unguided editing exhibits noticeable
+chroma drift. This demonstrates that the chroma constraint
+stabilizes harmonic progression and helps maintain musical
+identity during style transfer. Moreover, the last two rows
+of Tab. 3 show that although introducing melodic guidance
+substantially improves the F0-PCC and CCS scores, stylis-
+tic consistency decreases slightly. We attribute this to the in-
+herent trade-off between preserving source-domain melodic
+structure and fully aligning with the target distribution.
+Sensitivity Analysis. We analyze the sensitivity of chroma-
+guided flow editing to the guidance rate (GR) and the num-
+ber of correction steps. Since each correction step operates
+purely through gradient updates on the latent state – without
+Table 4. Sensitivity analysis of the guidance rate (GR) and the
+number of chroma-guided correction steps.
+Varying Steps
+Varying Guidance Rates
+GR
+Steps
+CCS↑
+IMSM↑
+Steps
+GR
+CCS↑
+IMSM↑
+1e−4
+0
+0.852
+0.829
+2
+1e−5
+0.869
+0.828
+1
+0.871
+0.828
+2e−5
+0.873
+0.828
+2
+0.878
+0.828
+5e−5
+0.875
+0.828
+5
+0.878
+0.824
+1e−4
+0.878
+0.828
+10
+0.878
+0.822
+2e−4
+0.877
+0.827
+20
+0.880
+0.815
+5e−4
+0.876
+0.825
+additional neural network evaluations – the computational
+overhead is negligible; therefore, allowing us to focus ex-
+clusively on performance. As shown in Table 4, chroma
+guidance enhances melodic fidelity, yielding higher CCS
+scores, but slightly reduces IMSM due to stronger melodic
+anchoring. Increasing the number of correction steps leads
+to diminishing CCS gains while further lowering IMSM,
+suggesting that excessive correction limits stylistic flexibil-
+ity. Similarly, larger guidance rates improve melody preser-
+vation up to a point, after which the constraint begins to
+dominate the latent flow and weaken style adaptation.
+6. Conclusion
+In this work, we introduced a multimodal, inversion-free
+flow framework for music style transfer that unifies vi-
+sual and textual semantics within a coherent editing pro-
+cess. By combining a dual-encoder fusion module for cross-
+modal stylistic cues with a differentiable chroma-based con-
+straint for melodic preservation, the model achieves style
+transformation while maintaining pitch-class structure and
+musical identity. Comprehensive objective and perceptual
+evaluations demonstrate consistent improvements in struc-
+tural fidelity, stylistic controllability, and multimodal align-
+ment.
+We further reorganized and extended MeLBench
+and MusicCaps into a genre-aware multimodal corpus, en-
+abling more rigorous style-aware evaluation. Future direc-
+tions include developing lighter flow architectures to pursue
+broader multimodal pretraining for more adaptive and inter-
+active creative applications.
+29734
+
+===== 第 9 页 =====
+References
+[1] Andrea Agostinelli, Timo I Denk, Zal´an Borsos, Jesse En-
+gel, Mauro Verzetti, Antoine Caillon, Qingqing Huang,
+Aren Jansen, Adam Roberts, Marco Tagliasacchi, et al.
+Musiclm:
+Generating music from text.
+arXiv preprint
+arXiv:2301.11325, 2023. 3, 6, 7
+[2] Mark A Bartsch and Gregory H Wakefield. Audio thumb-
+nailing of popular music using chroma-based representa-
+tions. IEEE Transactions on Multimedia, 7(1):96–104, 2005.
+5
+[3] Sanjoy Chowdhury, Sayan Nag, KJ Joseph, Balaji Vasan
+Srinivasan, and Dinesh Manocha. Melfusion: Synthesizing
+music from image and language cues using diffusion models.
+In Proceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition, pages 26826–26835, 2024.
+2, 6, 7
+[4] Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph,
+Yi Tay, William Fedus, Yunxuan Li, Xuezhi Wang, Mostafa
+Dehghani, Siddhartha Brahma, et al.
+Scaling instruction-
+finetuned language models. Journal of Machine Learning
+Research, 25(70):1–53, 2024. 4
+[5] Jade Copet, Felix Kreuk, Itai Gat, Tal Remez, David Kant,
+Gabriel Synnaeve, Yossi Adi, and Alexandre D´efossez. Sim-
+ple and controllable music generation. Advances in Neural
+Information Processing Systems, 36:47704–47720, 2023. 3,
+6, 7
+[6] Alexandre D´efossez, Nicolas Usunier, L´eon Bottou, and
+Francis Bach.
+Demucs:
+Deep extractor for music
+sources with extra unlabeled data remixed. arXiv preprint
+arXiv:1909.01174, 2019. 6
+[7] Shuangrui Ding, Zihan Liu, Xiaoyi Dong, Pan Zhang, Rui
+Qian, Junhao Huang, Conghui He, Dahua Lin, and Jiaqi
+Wang.
+Songcomposer: A large language model for lyric
+and melody generation in song composition. In Proceedings
+of the 63rd Annual Meeting of the Association for Compu-
+tational Linguistics (Volume 1: Long Papers), pages 7108–
+7127, 2025. 7
+[8] Hao-Wen Dong, Wen-Yi Hsiao, Li-Chia Yang, and Yi-Hsuan
+Yang. Musegan: Multi-track sequential generative adversar-
+ial networks for symbolic music generation and accompani-
+ment. In Proceedings of the AAAI Conference on Artificial
+Intelligence, 2018. 1, 2
+[9] Alexey Dosovitskiy.
+An image is worth 16x16 words:
+Transformers for image recognition at scale. arXiv preprint
+arXiv:2010.11929, 2020. 4
+[10] S. Forsgren and H. Martiros. Riffusion - stable diffusion for
+real-time music generation, 2022. 7
+[11] Deepanway Ghosal, Navonil Majumder, Ambuj Mehrish,
+and Soujanya Poria. Text-to-audio generation using instruc-
+tion guided latent diffusion model. In Proceedings of the 31st
+ACM International Conference on Multimedia, pages 3590–
+3598, 2023. 6
+[12] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing
+Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and
+Yoshua Bengio. Generative adversarial networks. Commu-
+nications of the ACM, 63(11):139–144, 2020. 1
+[13] Eric Grinstein, Ngoc QK Duong, Alexey Ozerov, and Patrick
+P´erez. Audio style transfer. In IEEE International Confer-
+ence on Acoustics, Speech and Signal Processing (ICASSP),
+pages 586–590. IEEE, 2018. 3
+[14] Bing Han, Junyu Dai, Weituo Hao, Xinyan He, Dong Guo,
+Jitong Chen, Yuxuan Wang, Yanmin Qian, and Xuchen
+Song. Instructme: an instruction guided music edit frame-
+work with latent diffusion models.
+In Proceedings of the
+33rd International Joint Conference on Artificial Intelli-
+gence, pages 5835–5843, 2024. 3
+[15] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffu-
+sion probabilistic models. Advances in Neural Information
+Processing Systems, 33:6840–6851, 2020. 1
+[16] Chih-Fang Huang, Yu-Shian Lian, Wei-Po Nien, and Wei-
+Hua Chieng. Analyzing the perception of chinese melodic
+imagery and its application to automated composition. Mul-
+timedia Tools and Applications, 75(13):7631–7654, 2016. 2
+[17] Qingqing Huang, Aren Jansen, Joonseok Lee, Ravi Ganti,
+Judith Yue Li, and Daniel PW Ellis. Mulan: A joint em-
+bedding of music audio and natural language. arXiv preprint
+arXiv:2208.12415, 2022. 3
+[18] Qingqing Huang, Daniel S Park, Tao Wang, Timo I Denk,
+Andy Ly, Nanxin Chen, Zhengdong Zhang, Zhishuai Zhang,
+Jiahui Yu, Christian Frank, et al.
+Noise2music:
+Text-
+conditioned music generation with diffusion models. arXiv
+preprint arXiv:2302.03917, 2023. 2, 3, 7
+[19] Inbar Huberman-Spiegelglas, Vladimir Kulikov, and Tomer
+Michaeli. An edit friendly ddpm noise space: Inversion and
+manipulations. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 12469–
+12478, 2024. 3
+[20] Junyan Jiang, Gus G Xia, Dave B Carlton, Chris N Ander-
+son, and Ryan H Miyakawa. Transformer vae: A hierarchi-
+cal model for structure-aware and interpretable music rep-
+resentation learning. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+516–520. IEEE, 2020. 3
+[21] Kevin Kilgour, Mauricio Zuluaga, Dominik Roblek, and
+Matthew Sharifi. Fr´echet audio distance: A reference-free
+metric for evaluating music enhancement algorithms.
+In
+Proc. Interspeech, pages 2350–2354, 2019. 6
+[22] Qiuqiang Kong, Yin Cao, Turab Iqbal, Yuxuan Wang,
+Wenwu Wang, and Mark D Plumbley. Panns: Large-scale
+pretrained audio neural networks for audio pattern recogni-
+tion. IEEE/ACM Transactions on Audio, Speech, and Lan-
+guage Processing, 28:2880–2894, 2020. 6
+[23] Vladimir
+Kulikov,
+Matan
+Kleiner,
+Inbar
+Huberman-
+Spiegelglas, and Tomer Michaeli.
+Flowedit:
+Inversion-
+free text-based editing using pre-trained flow models.
+In
+Proceedings of the IEEE/CVF International Conference on
+Computer Vision, pages 19721–19730, 2025. 2, 3, 7, 8
+[24] Max WY Lam, Qiao Tian, Tang Li, Zongyu Yin, Siyuan
+Feng, Ming Tu, Yuliang Ji, Rui Xia, Mingbo Ma, Xuchen
+Song, et al. Efficient neural music generation. Advances
+in Neural Information Processing Systems, 36:17450–17463,
+2023. 7
+[25] Ruibin Li, Ruihuang Li, Song Guo, and Lei Zhang. Source
+prompt disentangled inversion for boosting image editability
+29735
+
+===== 第 10 页 =====
+with diffusion models. In European Conference on Com-
+puter Vision, pages 404–421. Springer, 2024. 3
+[26] Sizhe Li, Yiming Qin, Minghang Zheng, Xin Jin, and Yang
+Liu. Diff-bgm: A diffusion model for video background mu-
+sic generation. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 27348–
+27357, 2024. 2
+[27] Sifei Li, Yuxin Zhang, Fan Tang, Chongyang Ma, Weiming
+Dong, and Changsheng Xu. Music style transfer with time-
+varying inversion of diffusion models. In Proceedings of the
+AAAI Conference on Artificial Intelligence, pages 547–555,
+2024. 1, 2, 3, 6, 7
+[28] Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximil-
+ian Nickel, and Matthew Le. Flow matching for generative
+modeling. In International Conference on Learning Repre-
+sentations, 2023. 3
+[29] Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu,
+Danilo Mandic, Wenwu Wang, and Mark D Plumbley. Au-
+dioldm: Text-to-audio generation with latent diffusion mod-
+els. In International Conference on Machine Learning, pages
+21450–21474. PMLR, 2023. 1, 2, 6
+[30] Huadai Liu, Jialei Wang, Xiangtai Li, Rongjie Huang, Yang
+Liu, Jiayang Xu, and Zhou Zhao. Medic: Zero-shot music
+editing with disentangled inversion control. arXiv preprint
+arXiv:2407.13220, 2024. 3
+[31] Xingchao Liu, Chengyue Gong, et al. Flow straight and fast:
+Learning to generate and transfer data with rectified flow.
+In International Conference on Learning Representations,
+2023. 3
+[32] Navonil Majumder, Chia-Yu Hung, Deepanway Ghosal,
+Wei-Ning Hsu,
+Rada Mihalcea,
+and Soujanya Poria.
+Tango 2: Aligning diffusion-based text-to-audio generations
+through direct preference optimization. In Proceedings of the
+32nd ACM International Conference on Multimedia, pages
+564–572, 2024. 1, 2, 6, 7
+[33] Michele Mancusi, Yurii Halychanskyi, Kin Wai Cheuk, Eloi
+Moliner, Chieh-Hsin Lai, Stefan Uhlich, Junghyun Koo,
+Marco A Mart´ınez-Ram´ırez, Wei-Hsiang Liao, Giorgio Fab-
+bro, et al. Latent diffusion bridges for unsupervised musical
+audio timbre transfer. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+1–5. IEEE, 2025. 1
+[34] Hila Manor and Tomer Michaeli.
+Zero-shot unsupervised
+and text-based audio editing using ddpm inversion. In In-
+ternational Conference on Machine Learning, pages 34603–
+34629, 2024. 2, 3, 6, 7
+[35] Giorgio Mariani, Irene Tallini, Emilian Postolache, Michele
+Mancusi, Luca Cosmo, and Emanuele Rodol`a. Multi-source
+diffusion models for simultaneous music generation and sep-
+aration. In International Conference on Learning Represen-
+tations, 2024. 2
+[36] Chenlin Meng, Yutong He, Yang Song, Jiaming Song, Jia-
+jun Wu, Jun-Yan Zhu, and Stefano Ermon. Sdedit: Guided
+image synthesis and editing with stochastic differential equa-
+tions. In International Conference on Learning Representa-
+tions, 2022. 3
+[37] Ron Mokady, Amir Hertz, Kfir Aberman, Yael Pritch, and
+Daniel Cohen-Or.
+Null-text inversion for editing real im-
+ages using guided diffusion models.
+In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, pages 6038–6047, 2023. 3
+[38] Mubert-Inc. Mubert ai music generator — royalty free mu-
+sic, 2023. 7
+[39] Aashiq Muhamed, Liang Li, Xingjian Shi, Suri Yaddana-
+pudi, Wayne Chi, Dylan Jackson, Rahul Suresh, Zachary C
+Lipton, and Alex J Smola. Symbolic music generation with
+transformer-gans. In Proceedings of the AAAI Conference on
+Artificial Intelligence, pages 408–417, 2021. 3
+[40] Ziqian Ning, Huakang Chen, Yuepeng Jiang, Chunbo
+Hao, Guobin Ma, Shuai Wang, Jixun Yao, and Lei Xie.
+Diffrhythm: Blazingly fast and embarrassingly simple end-
+to-end full-length song generation with latent diffusion.
+arXiv preprint arXiv:2503.01183, 2025. 7
+[41] Xinlei Niu, Jing Zhang, and Charles Patrick Martin. Hy-
+bridvc: Efficient voice style conversion with text and audio
+prompts. In Proc. Interspeech, pages 4368–4372, 2024. 6
+[42] Stephen E Palmer, Karen B Schloss, Zoe Xu, and Lilia R
+Prado-Le´on. Music–color associations are mediated by emo-
+tion. Proceedings of the National Academy of Sciences, 110
+(22):8836–8841, 2013. 2
+[43] Gaurav Parmar, Krishna Kumar Singh, Richard Zhang, Yijun
+Li, Jingwan Lu, and Jun-Yan Zhu. Zero-shot image-to-image
+translation. In ACM SIGGRAPH 2023 Conference Proceed-
+ings, pages 1–11, 2023. 3
+[44] Vadim Popov, Ivan Vovk, Vladimir Gogoryan, Tasnima
+Sadekova, and Mikhail Kudinov. Grad-tts: A diffusion prob-
+abilistic model for text-to-speech. In International Confer-
+ence on Machine Learning, pages 8599–8608. PMLR, 2021.
+3
+[45] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya
+Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,
+Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learn-
+ing transferable visual models from natural language super-
+vision. In International Conference on Machine Learning,
+pages 8748–8763. PMLR, 2021. 4
+[46] Maithra Raghu, Thomas Unterthiner, Simon Kornblith,
+Chiyuan Zhang, and Alexey Dosovitskiy. Do vision trans-
+formers see like convolutional neural networks? Advances
+in Neural Information Processing Systems, 34:12116–12128,
+2021. 4
+[47] Adhika Sigit Ramanto and Nur Ulfa Maulidevi.
+Markov
+chain based procedural music generator with user chosen
+mood compatibility. International Journal of Asia Digital
+Art and Design, 21(1):19–24, 2017. 2
+[48] Adam Roberts, Jesse Engel, Colin Raffel, Curtis Hawthorne,
+and Douglas Eck.
+A hierarchical latent vector model for
+learning long-term structure in music. In International Con-
+ference on Machine Learning, pages 4364–4373. PMLR,
+2018. 2
+[49] Litu Rout, Yujia Chen, Nataniel Ruiz, Constantine Carama-
+nis, Sanjay Shakkottai, and Wen-Sheng Chu. Semantic im-
+age inversion and editing using rectified stochastic differen-
+tial equations. In International Conference on Learning Rep-
+resentations, 2025. 7, 8
+29736
+
+===== 第 11 页 =====
+[50] Flavio Schneider, Ojasv Kamal, Zhijing Jin, and Bernhard
+Sch¨olkopf. Moˆusai: Efficient text-to-music diffusion mod-
+els. In Proceedings of the 62nd Annual Meeting of the Asso-
+ciation for Computational Linguistics (Volume 1: Long Pa-
+pers), pages 8050–8068, 2024. 7
+[51] Christian Sch¨orkhuber and Anssi Klapuri. Constant-q trans-
+form toolbox for music processing. In 7th sound and music
+computing conference, Barcelona, Spain, pages 3–64. SMC,
+2010. 6
+[52] Claude E Shannon.
+A mathematical theory of communi-
+cation. The Bell system technical journal, 27(3):379–423,
+1948. 4
+[53] Jiahao Song and Yu-Zhao Wang. Musflow: Multimodal mu-
+sic generation via conditional flow matching. In Proceedings
+of the 33rd ACM International Conference on Multimedia,
+pages 10200–10209, 2025. 2
+[54] Inc. Suno. Suno, 2023. AI music generation platform. 1
+[55] A¨aron Van Den Oord,
+Nal Kalchbrenner,
+and Koray
+Kavukcuoglu. Pixel recurrent neural networks. In Interna-
+tional Conference on Machine Learning, pages 1747–1756.
+PMLR, 2016. 1
+[56] Jiangshan Wang, Junfu Pu, Zhongang Qi, Jiayi Guo, Yue Ma,
+Nisha Huang, Yuxin Chen, Xiu Li, and Ying Shan. Taming
+rectified flow for inversion and editing. In International Con-
+ference on Machine Learning, 2025. 7, 8
+[57] Yuancheng Wang, Zeqian Ju, Xu Tan, Lei He, Zhizheng Wu,
+Jiang Bian, et al. Audit: Audio editing by following instruc-
+tions with latent diffusion models. Advances in Neural In-
+formation Processing Systems, 36:71340–71357, 2023. 3
+[58] Duncan Williams, Victoria J Hodge, Lina Gega, Damian
+Murphy, Peter I Cowling, and Anders Drachen. Ai and au-
+tomatic music generation for mindfulness. In 2019 AES In-
+ternational Conference on Immersive and Interactive Audio:
+Creating the Next Dimension of Sound Experience. York,
+2019. 2
+[59] Yuxuan Wu, Yifan He, Xinlu Liu, Yi Wang, and Roger B
+Dannenberg. Transplayer: Timbre style transfer with flex-
+ible timbre control. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+1–5. IEEE, 2023. 1
+[60] Sihan Xu, Yidong Huang, Jiayi Pan, Ziqiao Ma, and Joyce
+Chai. Inversion-free image editing with language-guided dif-
+fusion models. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 9452–
+9461, 2024. 2, 3
+[61] Dongchao Yang, Jianwei Yu, Helin Wang, Wen Wang, Chao
+Weng, Yuexian Zou, and Dong Yu.
+Diffsound: Discrete
+diffusion model for text-to-sound generation.
+IEEE/ACM
+Transactions on Audio, Speech, and Language Processing,
+31:1720–1733, 2023. 3
+[62] Li-Chia Yang, Szu-Yu Chou, and Yi-Hsuan Yang. Midinet:
+A
+convolutional
+generative
+adversarial
+network
+for
+symbolic-domain
+music
+generation.
+arXiv
+preprint
+arXiv:1703.10847, 2017. 2
+[63] Ruibin Yuan, Hanfeng Lin, Shuyue Guo, Ge Zhang, Jia-
+hao Pan, Yongyi Zang, Haohe Liu, Yiming Liang, Wenye
+Ma, Xingjian Du, et al.
+Yue: Scaling open foundation
+models for long-form music generation.
+arXiv preprint
+arXiv:2503.08638, 2025. 7
+[64] Sicheng Zhao, Yaxian Li, Xingxu Yao, Weizhi Nie, Pengfei
+Xu, Jufeng Yang, and Kurt Keutzer. Emotion-based end-to-
+end matching between image and music in valence-arousal
+space. In Proceedings of the 28th ACM International Con-
+ference on Multimedia, pages 2945–2954, 2020. 2
+[65] Le Zhuo, Ruoyi Du, Han Xiao, Yangguang Li, Dongyang
+Liu, Rongjie Huang, Wenze Liu, Xiangyang Zhu, Fu-Yun
+Wang, Zhanyu Ma, et al. Lumina-next: Making lumina-t2x
+stronger and faster with next-dit. Advances in Neural Infor-
+mation Processing Systems, 37:131278–131315, 2024. 4, 6
+29737

@@ -1,0 +1,184 @@
+[
+ {
+  "kind": "figure",
+  "num": "5",
+  "page": 2,
+  "caption": "Figure 5. Chroma visualizations under different tmax and tmin conﬁgurations. Varying tmax produces minimal change, while changes in tmin strongly affect harmonic structure and melodic preservation.",
+  "file": "figures/fig-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.091,
+   0.087,
+   0.909,
+   0.24
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "6",
+  "page": 3,
+  "caption": "Figure 6. Distribution of the 16 annotated musical genres in our multimodal dataset ( about 15k samples). The corpus is relatively balanced, with Folk, Electronic, and Classical containing slightly more samples and the remaining categories distributed evenly.",
+  "file": "figures/fig-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.192,
+   0.087,
+   0.808,
+   0.3
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "7",
+  "page": 4,
+  "caption": "Figure 7. Effect of text length on multimodal conditioning. The orange curve (“txt cap + img cap”) uses the full textual input, meaning the model is conditioned on both the music-description caption and the image-description caption, while the gray dashed line corresponds to conditioning on the music prompt together with the image.",
+  "file": "figures/fig-07.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.172,
+   0.087,
+   0.828,
+   0.245
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "8",
+  "page": 6,
+  "caption": "Figure 8. Participants are presented with the conditioning prompts (image, text, or both), along with the source audio and the generated audio. They rate each sample along three dimensions – Overall Audio Quality (OVL), Style Relevance (REL), and Melodic Consistency – using 0–10 sliders. A participant ID dropdown ensures proper tracking before submission.",
+  "file": "figures/fig-08.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.252,
+   0.087,
+   0.748,
+   0.429
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "9",
+  "page": 7,
+  "caption": "Figure 9. The Classical to Jazz style transfer. The ﬁgure shows the visual–text prompt with the source classical mel-spectrogram, followed by the same prompt paired with the generated jazz mel-spectrogram.",
+  "file": "figures/fig-09.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.113,
+   0.889,
+   0.434
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "10",
+  "page": 7,
+  "caption": "Figure 10. The Traditional to Blues style transfer.",
+  "file": "figures/fig-10.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.529,
+   0.889,
+   0.849
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "11",
+  "page": 8,
+  "caption": "Figure 11. The Blues to Classical style transfer.",
+  "file": "figures/fig-11.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.117,
+   0.889,
+   0.437
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "12",
+  "page": 8,
+  "caption": "Figure 12. The Rock to Classical style transfer.",
+  "file": "figures/fig-12.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.525,
+   0.889,
+   0.845
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "13",
+  "page": 9,
+  "caption": "Figure 13. The Folk to Latin style transfer.",
+  "file": "figures/fig-13.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.117,
+   0.889,
+   0.437
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "14",
+  "page": 9,
+  "caption": "Figure 14. The Jazz to Blues style transfer.",
+  "file": "figures/fig-14.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.525,
+   0.889,
+   0.845
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "15",
+  "page": 10,
+  "caption": "Figure 15. The Folk to New Age style transfer.",
+  "file": "figures/fig-15.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.111,
+   0.321,
+   0.889,
+   0.641
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "5",
+  "page": 5,
+  "caption": "Table 5. Comparison of different encoder conﬁgurations.",
+  "file": "figures/tab-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.225,
+   0.114,
+   0.775,
+   0.205
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "6",
+  "page": 5,
+  "caption": "Table 6. Variability across genre-to-genre transfers. Embedding similarity indicates stylistic similarity; lower values suggest closer styles and easier transfer.",
+  "file": "figures/tab-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.108,
+   0.253,
+   0.888,
+   0.386
+  ]
+ }
+]

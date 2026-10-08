@@ -1,0 +1,958 @@
+PAGE 1
+Supplementary Material
+Appendix
+In this supplemental document, we provide additional tech-
+nical details, expanded analyses, and extended results that
+complement the main paper:
+• A.1: We present a detailed derivation of ﬂow matching,
+including its ODE formulation, connections to diffusion
+models, training objectives, and theoretical properties rel-
+evant to deterministic generative ﬂows.
+• A.2: We detail the truncated inversion-free editing pro-
+cedure, analyze the role of temporal parameters tmin and
+tmax, and discuss how different regions of the ﬂow tra-
+jectory contribute to structure–detail trade-offs in music
+style transfer.
+• A.3: We detail hyperparameters, preprocessing, dataset
+statistics, and evaluation pipeline conﬁgurations for re-
+producibility.
+• A.4: We report further empirical studies, including text-
+length sensitivity, genre-speciﬁc transfer difﬁculty, and
+visual-encoder ablations, providing deeper insights into
+the behavior of multimodal style conditioning.
+• A.5: We describe the subjective evaluation process, in-
+cluding interface design, rating criteria, and instructions
+provided to participants.
+• A.6: We showcase additional visualizations, spectrogram
+comparisons, and audio examples illustrating multimodal
+control, melody preservation, and stylistic diversity.
+A.1 Flow Matching
+Flow matching provides a deterministic alternative to
+diffusion-based generative modeling by directly learning a
+time-dependent velocity ﬁeld that transports a simple base
+distribution to the data distribution. This section summa-
+rizes the formulation and clariﬁes its theoretical connection
+to diffusion models.
+Diffusion models and the probability ﬂow ODE deﬁne a
+forward noising process as an Itˆo SDE:
+dxt = f(xt, t) dt + g(t) dwt,
+t →[0, 1],
+(10)
+where xt →Rd denotes the latent at time t, f(·, t) is a drift
+term, g(t) is a scalar (or diagonal) diffusion coefﬁcient, and
+wt is a standard Wiener process. This process gradually
+perturbs clean data x1 ↑p1 into a simple prior x0 ↑p0.
+The corresponding reverse-time SDE is
+dxt =
+!
+f(xt, t) ↓g(t)2↔x log pt(xt)
+"
+dt + g(t) d ¯wt,
+(11)
+where ¯wt is a reverse-time Wiener process, pt is the
+marginal density and ↔x log pt is the score function.
+Song et al. [58] showed that this reverse SDE shares
+the same marginal densities as the deterministic probabil-
+ity ﬂow ODE:
+dxt
+dt = f(xt, t) ↓1
+2g(t)2↔x log pt(xt),
+(12)
+where the right-hand side can be interpreted as a velocity
+ﬁeld that transports p0 to p1. Thus, diffusion sampling can
+be viewed as integrating an ODE governed by an unknown
+velocity ﬁeld involving the score.
+Deterministic ﬂows and ﬂow matching [32, 35] avoid
+score estimation by directly learning a velocity ﬁeld vω(x, t)
+such that the ODE:
+dzt
+dt = vω(zt, t),
+z0 ↑p0,
+(13)
+where zt →Rd is the ﬂow state at time t, and p0 is a simple
+base distribution (e.g., Gaussian). The goal is push forward
+the distribution p0 to the data distribution p1. Instead of es-
+timating ↔x log pt, the key idea is to synthesize reference
+trajectories for which the true velocity can be computed an-
+alytically. Given a coupling ω(x0, x1) between p0 and p1,
+deﬁne an interpolation path zt = εt(x0, x1), for example
+the linear interpolation:
+εt(x0, x1) = (1 ↓t)x0 + tx1.
+(14)
+Along this path, the target (supervisory) velocity is:
+vε(zt, t) = d
+dtεt(x0, x1) = x1 ↓x0.
+(15)
+The ﬂow matching loss trains vω to match this velocity:
+L = Ex0,x1,t
+#$$vω
+!
+εt(x0, x1), t
+"
+↓vε!
+εt(x0, x1), t
+"$$2
+2
+%
+,
+(16)
+where x0, x1 ↑ω and t ↑U(0, 1). Once trained, sam-
+pling reduces to integrating the deterministic ODE above,
+yielding a noise-free and typically more stable generation
+process. Rectiﬁed ﬂows [35] extend this idea by choosing a
+nonlinear interpolation:
+ε(ϑ)
+t
+(x0, x1) = (1 ↓tϑ)x0 + tϑx1,
+ϑ > 1,
+(17)
+whose derivative vε
+ϑ(zt, t) = ϑtϑ→1(x1 ↓x0) “straightens”
+trajectories and improves sample quality at few integration
+steps. Conceptually, ﬂow matching can be viewed as di-
+rectly learning the velocity of a probability ﬂow ODE, while
+diffusion learns scores that implicitly deﬁne that ODE. This
+links the two paradigms: diffusion models solve generative
+modeling through stochastic processes and score estima-
+tion, whereas ﬂow matching solves it through supervised
+velocity learning and deterministic transport.
+
+
+PAGE 2
+Figure 5. Chroma visualizations under different tmax and tmin conﬁgurations. Varying tmax produces minimal change, while changes in
+tmin strongly affect harmonic structure and melodic preservation.
+A.2 Truncated Inversion-Free Editing
+A distinguishing aspect of FlowEdit [26] is its use of tem-
+poral truncation to control where semantic editing occurs
+along the rectiﬁed ﬂow trajectory. Although this mecha-
+nism is not the conceptual core of rectiﬁed ﬂow, it plays a
+practical and inﬂuential role in how editing strength is dis-
+tributed across different noise levels. In this appendix, we
+explore the behavior of the two associated hyperparameters
+– tmax and tmin – and analyze how they shape the outcome
+of inversion-free music style transfer.
+This design arises from the well-established observation
+in ﬂow and diffusion models that different time regions
+encode different semantic granularities: high-noise (early)
+states capture global structure, while low-noise (late) states
+encode ﬁne-grained details such as texture, timbre, and lo-
+cal harmonic variations. Prior analyses of rectiﬁed ﬂows
+[32, 35] establish that the ﬂow trajectory is not semantically
+uniform. FlowEdit operationalizes this property by allow-
+ing users to truncate editing to a subinterval [tmin, tmax],
+thereby deciding how much global structure and how much
+ﬁne-scale detail should be rewritten.
+To clarify how this mechanism functions, we provide a
+more detailed description of FlowEdit’s editing dynamics.
+During the semantic editing phase (t →[tmin, tmax]), the
+noisy source state is reconstructed by:
+Zsrc
+ti
+= (1 ↓ti)Xsrc + tiNti,
+(18)
+where Xsrc is the clean source latent, Nti is the noise sam-
+ple associated with time ti, and Zsrc
+ti
+denotes the recon-
+structed source trajectory at step ti. A target-aligned per-
+turbation is then constructed by:
+Ztar
+ti
+= ZFE
+ti
++ Zsrc
+ti ↓Xsrc,
+(19)
+where ZFE
+ti
+is the current edited latent at time ti and Ztar
+ti
+inherits target semantics (through ZFE
+ti ) while maintaining
+the structural offset between the reconstructed and clean
+source. This construction injects target semantics while pre-
+serving the structural offset from the reconstructed source.
+Semantic deviation between target and source ﬂows is cap-
+tured by the velocity difference:
+V !
+ti = V tar(Ztar
+ti , ti) ↓V src(Zsrc
+ti , ti),
+(20)
+where V tar and V src denote the velocity ﬁelds (i.e., ﬂow
+derivatives) for the target and source conditions, respec-
+tively. And V !
+ti measures the semantic shift required to
+steer the source trajectory toward the target style.
+This
+equation can be integrated into the edited state via:
+ZFE
+ti→1 = ZFE
+ti
++ (ti→1 ↓ti) V !
+ti .
+(21)
+This step is the only part of the trajectory where the model
+is allowed to modify semantic content; therefore the inter-
+val [tmin, tmax] fully determines the region where editing
+occurs.
+Once the trajectory reaches tmin, FlowEdit enters a sec-
+ond deterministic reﬁnement pass. Here, no further seman-
+tic differences are applied; instead, the edited state is trans-
+ported purely under the target ﬂow so that it remains con-
+sistent with the target distribution while avoiding unneces-
+sary perturbation of low-level details. This reﬁnement is
+expressed by:
+Ztar
+ti→1 = Ztar
+ti + (ti→1 ↓ti) V tar(Ztar
+ti , ti),
+(22)
+for all ti ↗tmin. Unlike the editing phase, this step pre-
+serves the ﬁne-scale structure already established, effec-
+tively “locking in” the edited content as it approaches t = 0.
+When adapting this mechanism to audio-based style
+transfer, we observe clear domain-speciﬁc behavior.
+As
+shown in Fig. 5, varying tmax has little audible effect,
+consistent with the fact that early-time ﬂow states encode
+coarse structural cues that typically do not require modiﬁ-
+cation. In contrast, changes to tmin produce pronounced
+differences in melodic and stylistic outcomes. Since states
+near t = 0 contain ﬁne-grained harmonic and temporal de-
+tails, deeper editing in this region directly inﬂuences musi-
+cally salient structure. The chroma visualizations conﬁrm
+this: smaller tmin values increase editing depth but risk
+
+
+PAGE 3
+Figure 6. Distribution of the 16 annotated musical genres in our multimodal dataset ( about 15k samples). The corpus is relatively balanced,
+with Folk, Electronic, and Classical containing slightly more samples and the remaining categories distributed evenly.
+melody drift, whereas larger values better preserve pitch-
+class identity.
+These ﬁndings support the broader theoretical consensus
+that temporal coordinates in rectiﬁed ﬂows exhibit seman-
+tic non-uniformity: early steps correspond to global struc-
+ture, and late steps encode local detail. For music, where
+ﬁne-scale harmonic and melodic structure is crucial, tmin
+emerges as the dominant control parameter. Our truncated
+inversion-free editing therefore places primary emphasis on
+tuning tmin, which provides a principled mechanism for
+balancing musical ﬁdelity against stylistic transformation.
+In practice, we perform hyperparameter search on the vali-
+dation set and select tmax = 23 and tmin = 15 as the opti-
+mal conﬁguration.
+A.3 Experiments Setup
+Train Conﬁguration. For our method, we adopt Make An
+Audio 3 (MAA3) [70] as the backbone given its strong ﬂow-
+based performance and efﬁcient inference. The backbone is
+frozen, and only the cross-adapter is trained. Training is
+performed for 20 epochs with a learning rate of 1 ↘10→5
+and a batch size of 16. The melody-guided rate ϖ is set to
+1 ↘10→4 with a step size of 2 and a weight ϱchr of 1. The
+dataset is split into training, validation, and test sets with an
+8:1:1 ratio, with identical data splits and prompt settings for
+fair comparison. All models are implemented in PyTorch
+and trained on L40S GPUs.
+Dataset. We construct a uniﬁed multimodal corpus by reor-
+ganizing and extending samples from MeLBench and Mu-
+sicCaps into coherent triplets ≃I, T, M⇐, where each triplet
+contains a visually descriptive image, a text prompt, and an
+audio clip. Because the original music captions from these
+datasets are often noisy, stylistically inconsistent, or overly
+literal, we apply an LLM-assisted reﬁnement procedure to
+obtain clean genre annotations and structured semantic de-
+scriptions in two stages.
+In the ﬁrst stage, GPT-4 is prompted to classify each
+sample into one of sixteen predeﬁned musical genres.
+Given a raw caption such as “This song is a pop tune with
+a medium tempo, featuring an electric guitar,” the model
+selects the most suitable genre from a ﬁxed list, ensuring
+consistency by repeating the classiﬁcation twice indepen-
+dently and accepting only samples with matching predic-
+tions. This procedure yields a reasonably balanced genre
+distribution: folk, electronic, and classical contain moder-
+ately more samples, followed by pop, while the remain-
+ing genres have roughly comparable counts (visualized in
+Fig. 6).
+In the second stage, we convert every free-form cap-
+tion into a structured representation that minimizes linguis-
+tic noise and improves conditioning stability. For instance,
+the caption above is rewritten as “{clean e-guitar playing
+& all}, {live performance ambiance & all}”, which dis-
+entangles instrumentation, ambience, and stylistic factors
+into a compact semantic form. This structured normaliza-
+tion helps the model align text, image, and music more re-
+liably during style transfer. Finally, to focus on melodic
+and harmonic content, we apply Demucs to remove vocals
+from all audio tracks, keeping purely instrumental stems
+across the corpus.
+The resulting dataset provides mul-
+timodally aligned, genre-aware, and stylistically coherent
+samples suitable for ﬁne-grained music style transfer.
+Evaluation Metrics.
+To comprehensively assess the ef-
+fectiveness of our multimodal music style transfer frame-
+work, we evaluate both objective and subjective aspects of
+the generated audio. Objective metrics quantify structural
+ﬁdelity, stylistic alignment, and multimodal consistency,
+while subjective ratings capture human perception of audio
+quality, prompt relevance, and melodic similarity. Together,
+these metrics provide a holistic view of how well a model
+
+
+PAGE 4
+Figure 7. Effect of text length on multimodal conditioning. The orange curve (“txt cap + img cap”) uses the full textual input, meaning
+the model is conditioned on both the music-description caption and the image-description caption, while the gray dashed line corresponds
+to conditioning on the music prompt together with the image.
+preserves musical identity while adapting to the target style.
+1) Objective Evaluation. Our objective evaluation focuses
+on two key dimensions of music style transfer: (1) structural
+preservation – melody, harmony, and tonal integrity with re-
+spect to the source, and (2) stylistic consistency – alignment
+with the target domain and multimodal prompts. To this
+end, we employ ﬁve complementary metrics: FAD and FD
+for distributional style similarity, IMSM for cross-modal
+coherence, and F0-PCC and Chroma-CQT for melody and
+harmonic preservation. Below, we brieﬂy summarize each
+metric and its relevance to MST performance.
+• Fr´echet Audio Distance (FAD). FAD [24] extends the
+Fr´echet Inception Distance (FID) [17] from images to au-
+dio by comparing the mean and covariance of embed-
+dings extracted from a pretrained VGGish network [16]
+between generated and reference (target-style) audio sets.
+It quantiﬁes overall perceptual distributional distance and
+correlates well with human judgments of quality.
+• Fr´echet Distance (FD). FD adopts the same Gaussian-
+assumption formulation as FAD but employs PANNs [25]
+as the embedding extractor, offering a complementary
+measure of distributional alignment between generated
+and target-style music.
+• Image–Music Similarity Metric (IMSM). IMSM [4]
+measures multimodal consistency between generated mu-
+sic and its textual–visual prompts by combining CLIP-
+based image–text and CLAP-based audio–text similari-
+ties. The similarity matrix AIMSM = ACLIPA↑
+CLAP cap-
+tures joint semantic alignment across modalities.
+• Fundamental Frequency Correlation (F0-PCC).
+To
+evaluate melody preservation, we compute the Pearson
+correlation coefﬁcient [3] between the F0 contours of
+source and transferred audio.
+This metric emphasizes
+pitch-contour consistency while being robust to timbral
+variation [28, 45].
+• Chroma-CQT Similarity. Chroma features summarize
+energy across the 12 pitch classes (C–B) independent of
+octave, capturing harmonic and tonal information while
+being largely invariant to timbre. We extract chroma fea-
+tures using the Constant-Q Transform (CQT) [55] and
+compute the cosine similarity between source and trans-
+ferred chromagrams. Higher Chroma-CQT values indi-
+cate better preservation of harmonic and tonal structure.
+2) Subjective Evaluation.
+We employ three subjective
+metrics to assess perceptual quality: Overall Audio Quality
+(OVL), Relevance to Prompt (REL), and Melodic Consis-
+tency (MOScon). All ratings are collected on a 0–100 scale,
+with 15 participants evaluating randomized samples to min-
+imize bias.
+• Overall Audio Quality (OVL). OVL measures the per-
+ceived realism and clarity of the generated music. Partici-
+pants are asked to rate how natural, coherent, and artifact-
+free each audio clip sounds, following the MOS protocol.
+• Relevance to Prompt (REL). REL quantiﬁes how well
+the generated audio aligns semantically and stylistically
+with the conditioning inputs (image and/or text). Listen-
+ers examine the provided prompt and evaluate thematic,
+emotional, and stylistic correspondence.
+• Melodic Consistency (MOScon). MOScon assesses the
+preservation of melodic structure between source and
+transferred audio.
+Raters listen to paired samples and
+score the perceptual similarity of their melodic contours,
+ignoring timbral or instrumentation differences.
+A.4 Additional Experiments
+Effect of Text Length.
+To examine how textual length
+inﬂuences multimodal conditioning, we analyze caption
+length under two settings: (1) a text-only conﬁguration,
+where the model receives a concatenation of the music
+description and the image caption, and (2) a combined
+text–image conﬁguration, where the raw image serves as
+an additional conditioning modality. As shown in Fig. 7,
+increasing caption length in the text-only setting generally
+improves performance, since richer descriptions provide
+stronger semantic grounding. However, excessively long
+
+
+PAGE 5
+Table 5. Comparison of different encoder conﬁgurations.
+Encoder(s)
+FAD⇒
+FD⇒
+IMSM⇑
+OVL⇑
+REL⇑
+MOScon⇑
+CLIP + ViT
+2.43
+24.06
+0.828
+89.27
+88.13
+89.20
+CLIP
+2.68
+25.33
+0.807
+87.93
+86.47
+88.27
+ViT
+3.12
+26.47
+0.792
+86.67
+85.73
+87.07
+Table 6. Variability across genre-to-genre transfers. Embedding similarity indicates stylistic similarity; lower values suggest closer styles
+and easier transfer.
+Source →Target
+Similarity
+FAD⇒
+FD⇒
+IMSM⇑
+F0-PCC⇑
+CCS⇑
+OVL⇑
+REL⇑
+MOScon⇑
+Blues →Metal
+0.57
+2.87
+25.18
+0.794
+0.425
+0.880
+87.60
+87.27
+87.67
+Blues →Jazz
+0.69
+2.38
+23.25
+0.836
+0.408
+0.872
+89.53
+88.20
+89.40
+Blues →Classical
+0.62
+2.61
+24.10
+0.812
+0.417
+0.876
+88.40
+87.73
+88.53
+Rock →Metal
+0.71
+2.20
+22.85
+0.848
+0.402
+0.870
+90.13
+89.13
+90.33
+Rock →Jazz
+0.59
+2.78
+24.95
+0.803
+0.430
+0.884
+87.07
+86.47
+87.80
+Rock →Classical
+0.60
+2.73
+24.40
+0.815
+0.423
+0.879
+87.67
+86.93
+88.07
+captions introduce redundant or noisy information, leading
+to a slight degradation in performance. In contrast, the com-
+bined text–image conﬁguration, evaluated using the optimal
+caption length selected via hyperparameter search, achieves
+consistently superior performance compared to all text-only
+variants, indicating that the visual modality supplies concise
+and unambiguous stylistic cues, and the model relies less on
+highly verbose text.
+Effect of Visual Encoders. To examine the role of different
+visual encoders in our multimodal conditioning pipeline,
+we evaluate three conﬁgurations, as shown in Tab. 5, the
+system that uses both CLIP and ViT, the system that uses
+only CLIP, and a system that uses only ViT. The conﬁgura-
+tion employing both encoders achieves the strongest over-
+all performance. We conjecture that this advantage arises
+from the complementary nature of the two architectures.
+CLIP tends to capture higher-level semantic and stylistic at-
+tributes, whereas ViT is more attuned to global spatial com-
+position and visual structure. When combined, these dis-
+tinct forms of information appear to provide richer visual
+conditioning signals, which in turn lead to more stable style
+transfer.
+Variability Across Genre-to-Genre Transfers. We eval-
+uate multiple source–target genre pairs to investigate how
+stylistic similarity inﬂuences transfer quality. As summa-
+rized in Tab. 6, genre pairs with higher similarity generally
+achieve better objective and subjective scores, while pairs
+with lower similarity exhibit moderate declines, particularly
+in target-oriented metrics such as FAD, FD, IMSM, OVL,
+and MOScon. Despite these variations, the overall differ-
+ences remain modest, indicating that the model maintains
+stable performance across diverse genre transitions.
+A.5 User Study
+To assess perceptual quality and multimodal alignment,
+we conducted a controlled subjective evaluation with ﬁf-
+teen volunteers from our institution, each compensated
+$10 USD. Participants rated three perceptual dimensions
+of the generated audio – overall quality, stylistic relevance,
+and melodic consistency. Each participant completed two
+evaluation sessions corresponding to our two conditioning
+modes: a text-only session, where only the caption was pro-
+vided, and a text+image session, where both the visual ref-
+erence and caption were shown. This setup enables a di-
+rect measurement of how visual cues inﬂuence human judg-
+ments of stylistic alignment. Each participant evaluated 20
+samples per condition (40 total), presented in randomized
+order and freely replayable, with an average study duration
+of about 18 minutes.
+The evaluation interface (Fig. 8) was implemented as a
+web-based tool. For each sample, the interface displayed
+the conditioning prompt(s) alongside two audio players:
+one for the source clip and one for the generated output.
+Participants assigned 0–10 scores for Overall Audio Qual-
+ity (OVL), Style Relevance (REL), and Melodic Consis-
+tency using slider controls, and selected their participant
+ID prior to submission. All responses were automatically
+logged with timestamps and associated metadata.
+A.6 Additional Cases
+We present additional qualitative examples in Figs. 9–15 to
+illustrate how our model responds to different text–image
+prompts.
+Each case shows the input conditions and the
+resulting Mel-spectrograms, enabling visual inspection of
+
+
+PAGE 6
+Figure 8. Participants are presented with the conditioning prompts (image, text, or both), along with the source audio and the generated
+audio. They rate each sample along three dimensions – Overall Audio Quality (OVL), Style Relevance (REL), and Melodic Consistency –
+using 0–10 sliders. A participant ID dropdown ensures proper tracking before submission.
+stylistic changes and the preservation of melodic structure.
+These examples complement the main results and offer a
+clearer view of the model’s multimodal editing behavior.
+For completeness, we also include the corresponding audio
+samples in the supplementary materials.
+
+
+PAGE 7
+Figure 9. The Classical to Jazz style transfer. The ﬁgure shows the visual–text prompt with the source classical mel-spectrogram, followed
+by the same prompt paired with the generated jazz mel-spectrogram.
+Figure 10. The Traditional to Blues style transfer.
+
+
+PAGE 8
+Figure 11. The Blues to Classical style transfer.
+Figure 12. The Rock to Classical style transfer.
+
+
+PAGE 9
+Figure 13. The Folk to Latin style transfer.
+Figure 14. The Jazz to Blues style transfer.
+
+
+PAGE 10
+Figure 15. The Folk to New Age style transfer.
+
+
+PAGE 11
+References
+[1] Andrea Agostinelli, Timo I Denk, Zal´an Borsos, Jesse En-
+gel, Mauro Verzetti, Antoine Caillon, Qingqing Huang,
+Aren Jansen, Adam Roberts, Marco Tagliasacchi, et al.
+Musiclm:
+Generating music from text.
+arXiv preprint
+arXiv:2301.11325, 2023. 3, 6, 7
+[2] Mark A Bartsch and Gregory H Wakeﬁeld. Audio thumb-
+nailing of popular music using chroma-based representa-
+tions. IEEE Transactions on Multimedia, 7(1):96–104, 2005.
+5
+[3] Jacob Benesty, Jingdong Chen, Yiteng Huang, and Israel Co-
+hen. Pearson correlation coefﬁcient. In Noise reduction in
+speech processing, pages 1–4. Springer, 2009. 12
+[4] Sanjoy Chowdhury, Sayan Nag, KJ Joseph, Balaji Vasan
+Srinivasan, and Dinesh Manocha. Melfusion: Synthesizing
+music from image and language cues using diffusion models.
+In Proceedings of the IEEE/CVF Conference on Computer
+Vision and Pattern Recognition, pages 26826–26835, 2024.
+2, 6, 7, 12
+[5] Hyung Won Chung, Le Hou, Shayne Longpre, Barret Zoph,
+Yi Tay, William Fedus, Yunxuan Li, Xuezhi Wang, Mostafa
+Dehghani, Siddhartha Brahma, et al.
+Scaling instruction-
+ﬁnetuned language models. Journal of Machine Learning
+Research, 25(70):1–53, 2024. 4
+[6] Jade Copet, Felix Kreuk, Itai Gat, Tal Remez, David Kant,
+Gabriel Synnaeve, Yossi Adi, and Alexandre D´efossez. Sim-
+ple and controllable music generation. Advances in Neural
+Information Processing Systems, 36:47704–47720, 2023. 3,
+6, 7
+[7] Alexandre D´efossez, Nicolas Usunier, L´eon Bottou, and
+Francis Bach.
+Demucs:
+Deep extractor for music
+sources with extra unlabeled data remixed. arXiv preprint
+arXiv:1909.01174, 2019. 6
+[8] Shuangrui Ding, Zihan Liu, Xiaoyi Dong, Pan Zhang, Rui
+Qian, Junhao Huang, Conghui He, Dahua Lin, and Jiaqi
+Wang.
+Songcomposer: A large language model for lyric
+and melody generation in song composition. In Proceedings
+of the 63rd Annual Meeting of the Association for Compu-
+tational Linguistics (Volume 1: Long Papers), pages 7108–
+7127, 2025. 7
+[9] Hao-Wen Dong, Wen-Yi Hsiao, Li-Chia Yang, and Yi-Hsuan
+Yang. Musegan: Multi-track sequential generative adversar-
+ial networks for symbolic music generation and accompani-
+ment. In Proceedings of the AAAI Conference on Artiﬁcial
+Intelligence, 2018. 1, 2
+[10] Alexey Dosovitskiy.
+An image is worth 16x16 words:
+Transformers for image recognition at scale. arXiv preprint
+arXiv:2010.11929, 2020. 4
+[11] S. Forsgren and H. Martiros. Riffusion - stable diffusion for
+real-time music generation, 2022. 7
+[12] Deepanway Ghosal, Navonil Majumder, Ambuj Mehrish,
+and Soujanya Poria. Text-to-audio generation using instruc-
+tion guided latent diffusion model. In Proceedings of the 31st
+ACM International Conference on Multimedia, pages 3590–
+3598, 2023. 6
+[13] Ian Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing
+Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and
+Yoshua Bengio. Generative adversarial networks. Commu-
+nications of the ACM, 63(11):139–144, 2020. 1
+[14] Eric Grinstein, Ngoc QK Duong, Alexey Ozerov, and Patrick
+P´erez. Audio style transfer. In IEEE International Confer-
+ence on Acoustics, Speech and Signal Processing (ICASSP),
+pages 586–590. IEEE, 2018. 3
+[15] Bing Han, Junyu Dai, Weituo Hao, Xinyan He, Dong Guo,
+Jitong Chen, Yuxuan Wang, Yanmin Qian, and Xuchen
+Song. Instructme: an instruction guided music edit frame-
+work with latent diffusion models.
+In Proceedings of the
+33rd International Joint Conference on Artiﬁcial Intelli-
+gence, pages 5835–5843, 2024. 3
+[16] Shawn Hershey, Sourish Chaudhuri, Daniel PW Ellis, Jort F
+Gemmeke, Aren Jansen, R Channing Moore, Manoj Plakal,
+Devin Platt, Rif A Saurous, Bryan Seybold, et al. Cnn archi-
+tectures for large-scale audio classiﬁcation. In IEEE Interna-
+tional Conference on Acoustics, Speech and Signal Process-
+ing (ICASSP), pages 131–135. IEEE, 2017. 12
+[17] Martin Heusel, Hubert Ramsauer, Thomas Unterthiner,
+Bernhard Nessler, and Sepp Hochreiter. Gans trained by a
+two time-scale update rule converge to a local nash equilib-
+rium. Advances in Neural Information Processing Systems,
+30, 2017. 12
+[18] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffu-
+sion probabilistic models. Advances in Neural Information
+Processing Systems, 33:6840–6851, 2020. 1
+[19] Chih-Fang Huang, Yu-Shian Lian, Wei-Po Nien, and Wei-
+Hua Chieng. Analyzing the perception of chinese melodic
+imagery and its application to automated composition. Mul-
+timedia Tools and Applications, 75(13):7631–7654, 2016. 2
+[20] Qingqing Huang, Aren Jansen, Joonseok Lee, Ravi Ganti,
+Judith Yue Li, and Daniel PW Ellis. Mulan: A joint em-
+bedding of music audio and natural language. arXiv preprint
+arXiv:2208.12415, 2022. 3
+[21] Qingqing Huang, Daniel S Park, Tao Wang, Timo I Denk,
+Andy Ly, Nanxin Chen, Zhengdong Zhang, Zhishuai Zhang,
+Jiahui Yu, Christian Frank, et al.
+Noise2music:
+Text-
+conditioned music generation with diffusion models. arXiv
+preprint arXiv:2302.03917, 2023. 2, 3, 7
+[22] Inbar Huberman-Spiegelglas, Vladimir Kulikov, and Tomer
+Michaeli. An edit friendly ddpm noise space: Inversion and
+manipulations. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 12469–
+12478, 2024. 3
+[23] Junyan Jiang, Gus G Xia, Dave B Carlton, Chris N Ander-
+son, and Ryan H Miyakawa. Transformer vae: A hierarchi-
+cal model for structure-aware and interpretable music rep-
+resentation learning. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+516–520. IEEE, 2020. 3
+[24] Kevin Kilgour, Mauricio Zuluaga, Dominik Roblek, and
+Matthew Shariﬁ. Fr´echet audio distance: A reference-free
+metric for evaluating music enhancement algorithms.
+In
+Proc. Interspeech, pages 2350–2354, 2019. 6, 12
+[25] Qiuqiang Kong, Yin Cao, Turab Iqbal, Yuxuan Wang,
+Wenwu Wang, and Mark D Plumbley. Panns: Large-scale
+pretrained audio neural networks for audio pattern recogni-
+
+
+PAGE 12
+tion. IEEE/ACM Transactions on Audio, Speech, and Lan-
+guage Processing, 28:2880–2894, 2020. 6, 12
+[26] Vladimir
+Kulikov,
+Matan
+Kleiner,
+Inbar
+Huberman-
+Spiegelglas, and Tomer Michaeli.
+Flowedit:
+Inversion-
+free text-based editing using pre-trained ﬂow models.
+In
+Proceedings of the IEEE/CVF International Conference on
+Computer Vision, pages 19721–19730, 2025. 2, 3, 7, 8, 10
+[27] Max WY Lam, Qiao Tian, Tang Li, Zongyu Yin, Siyuan
+Feng, Ming Tu, Yuliang Ji, Rui Xia, Mingbo Ma, Xuchen
+Song, et al. Efﬁcient neural music generation. Advances
+in Neural Information Processing Systems, 36:17450–17463,
+2023. 7
+[28] Jingyi Li, Weiping Tu, and Li Xiao. Freevc: Towards high-
+quality text-free one-shot voice conversion. In IEEE Interna-
+tional Conference on Acoustics, Speech and Signal Process-
+ing (ICASSP), pages 1–5. IEEE, 2023. 12
+[29] Ruibin Li, Ruihuang Li, Song Guo, and Lei Zhang. Source
+prompt disentangled inversion for boosting image editability
+with diffusion models. In European Conference on Com-
+puter Vision, pages 404–421. Springer, 2024. 3
+[30] Sizhe Li, Yiming Qin, Minghang Zheng, Xin Jin, and Yang
+Liu. Diff-bgm: A diffusion model for video background mu-
+sic generation. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 27348–
+27357, 2024. 2
+[31] Sifei Li, Yuxin Zhang, Fan Tang, Chongyang Ma, Weiming
+Dong, and Changsheng Xu. Music style transfer with time-
+varying inversion of diffusion models. In Proceedings of the
+AAAI Conference on Artiﬁcial Intelligence, pages 547–555,
+2024. 1, 2, 3, 6, 7
+[32] Yaron Lipman, Ricky TQ Chen, Heli Ben-Hamu, Maximil-
+ian Nickel, and Matthew Le. Flow matching for generative
+modeling. In International Conference on Learning Repre-
+sentations, 2023. 3, 9, 10
+[33] Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu,
+Danilo Mandic, Wenwu Wang, and Mark D Plumbley. Au-
+dioldm: Text-to-audio generation with latent diffusion mod-
+els. In International Conference on Machine Learning, pages
+21450–21474. PMLR, 2023. 1, 2, 6
+[34] Huadai Liu, Jialei Wang, Xiangtai Li, Rongjie Huang, Yang
+Liu, Jiayang Xu, and Zhou Zhao. Medic: Zero-shot music
+editing with disentangled inversion control. arXiv preprint
+arXiv:2407.13220, 2024. 3
+[35] Xingchao Liu, Chengyue Gong, et al. Flow straight and fast:
+Learning to generate and transfer data with rectiﬁed ﬂow.
+In International Conference on Learning Representations,
+2023. 3, 9, 10
+[36] Navonil Majumder, Chia-Yu Hung, Deepanway Ghosal,
+Wei-Ning Hsu,
+Rada Mihalcea,
+and Soujanya Poria.
+Tango 2: Aligning diffusion-based text-to-audio generations
+through direct preference optimization. In Proceedings of the
+32nd ACM International Conference on Multimedia, pages
+564–572, 2024. 1, 2, 6, 7
+[37] Michele Mancusi, Yurii Halychanskyi, Kin Wai Cheuk, Eloi
+Moliner, Chieh-Hsin Lai, Stefan Uhlich, Junghyun Koo,
+Marco A Mart´ınez-Ram´ırez, Wei-Hsiang Liao, Giorgio Fab-
+bro, et al. Latent diffusion bridges for unsupervised musical
+audio timbre transfer. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+1–5. IEEE, 2025. 1
+[38] Hila Manor and Tomer Michaeli.
+Zero-shot unsupervised
+and text-based audio editing using ddpm inversion. In In-
+ternational Conference on Machine Learning, pages 34603–
+34629, 2024. 2, 3, 6, 7
+[39] Giorgio Mariani, Irene Tallini, Emilian Postolache, Michele
+Mancusi, Luca Cosmo, and Emanuele Rodol`a. Multi-source
+diffusion models for simultaneous music generation and sep-
+aration. In International Conference on Learning Represen-
+tations, 2024. 2
+[40] Chenlin Meng, Yutong He, Yang Song, Jiaming Song, Jia-
+jun Wu, Jun-Yan Zhu, and Stefano Ermon. Sdedit: Guided
+image synthesis and editing with stochastic differential equa-
+tions. In International Conference on Learning Representa-
+tions, 2022. 3
+[41] Ron Mokady, Amir Hertz, Kﬁr Aberman, Yael Pritch, and
+Daniel Cohen-Or.
+Null-text inversion for editing real im-
+ages using guided diffusion models.
+In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, pages 6038–6047, 2023. 3
+[42] Mubert-Inc. Mubert ai music generator — royalty free mu-
+sic, 2023. 7
+[43] Aashiq Muhamed, Liang Li, Xingjian Shi, Suri Yaddana-
+pudi, Wayne Chi, Dylan Jackson, Rahul Suresh, Zachary C
+Lipton, and Alex J Smola. Symbolic music generation with
+transformer-gans. In Proceedings of the AAAI Conference on
+Artiﬁcial Intelligence, pages 408–417, 2021. 3
+[44] Ziqian Ning, Huakang Chen, Yuepeng Jiang, Chunbo
+Hao, Guobin Ma, Shuai Wang, Jixun Yao, and Lei Xie.
+Diffrhythm: Blazingly fast and embarrassingly simple end-
+to-end full-length song generation with latent diffusion.
+arXiv preprint arXiv:2503.01183, 2025. 7
+[45] Xinlei Niu, Jing Zhang, and Charles Patrick Martin. Hy-
+bridvc: Efﬁcient voice style conversion with text and audio
+prompts. In Proc. Interspeech, pages 4368–4372, 2024. 6,
+12
+[46] Stephen E Palmer, Karen B Schloss, Zoe Xu, and Lilia R
+Prado-Le´on. Music–color associations are mediated by emo-
+tion. Proceedings of the National Academy of Sciences, 110
+(22):8836–8841, 2013. 2
+[47] Gaurav Parmar, Krishna Kumar Singh, Richard Zhang, Yijun
+Li, Jingwan Lu, and Jun-Yan Zhu. Zero-shot image-to-image
+translation. In ACM SIGGRAPH 2023 Conference Proceed-
+ings, pages 1–11, 2023. 3
+[48] Vadim Popov, Ivan Vovk, Vladimir Gogoryan, Tasnima
+Sadekova, and Mikhail Kudinov. Grad-tts: A diffusion prob-
+abilistic model for text-to-speech. In International Confer-
+ence on Machine Learning, pages 8599–8608. PMLR, 2021.
+3
+[49] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya
+Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,
+Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learn-
+ing transferable visual models from natural language super-
+vision. In International Conference on Machine Learning,
+pages 8748–8763. PMLR, 2021. 4
+
+
+PAGE 13
+[50] Maithra Raghu, Thomas Unterthiner, Simon Kornblith,
+Chiyuan Zhang, and Alexey Dosovitskiy. Do vision trans-
+formers see like convolutional neural networks? Advances
+in Neural Information Processing Systems, 34:12116–12128,
+2021. 4
+[51] Adhika Sigit Ramanto and Nur Ulfa Maulidevi.
+Markov
+chain based procedural music generator with user chosen
+mood compatibility. International Journal of Asia Digital
+Art and Design, 21(1):19–24, 2017. 2
+[52] Adam Roberts, Jesse Engel, Colin Raffel, Curtis Hawthorne,
+and Douglas Eck.
+A hierarchical latent vector model for
+learning long-term structure in music. In International Con-
+ference on Machine Learning, pages 4364–4373. PMLR,
+2018. 2
+[53] Litu Rout, Yujia Chen, Nataniel Ruiz, Constantine Carama-
+nis, Sanjay Shakkottai, and Wen-Sheng Chu. Semantic im-
+age inversion and editing using rectiﬁed stochastic differen-
+tial equations. In International Conference on Learning Rep-
+resentations, 2025. 7, 8
+[54] Flavio Schneider, Ojasv Kamal, Zhijing Jin, and Bernhard
+Sch¨olkopf. Moˆusai: Efﬁcient text-to-music diffusion mod-
+els. In Proceedings of the 62nd Annual Meeting of the Asso-
+ciation for Computational Linguistics (Volume 1: Long Pa-
+pers), pages 8050–8068, 2024. 7
+[55] Christian Sch¨orkhuber and Anssi Klapuri. Constant-q trans-
+form toolbox for music processing. In 7th sound and music
+computing conference, Barcelona, Spain, pages 3–64. SMC,
+2010. 6, 12
+[56] Claude E Shannon.
+A mathematical theory of communi-
+cation. The Bell system technical journal, 27(3):379–423,
+1948. 4
+[57] Jiahao Song and Yu-Zhao Wang. Musﬂow: Multimodal mu-
+sic generation via conditional ﬂow matching. In Proceedings
+of the 33rd ACM International Conference on Multimedia,
+pages 10200–10209, 2025. 2
+[58] Yang Song, Jascha Sohl-Dickstein, Diederik P Kingma, Ab-
+hishek Kumar, Stefano Ermon, and Ben Poole. Score-based
+generative modeling through stochastic differential equa-
+tions. In International Conference on Learning Represen-
+tations, 2021. 9
+[59] Inc. Suno. Suno, 2023. AI music generation platform. 1
+[60] A¨aron Van Den Oord,
+Nal Kalchbrenner,
+and Koray
+Kavukcuoglu. Pixel recurrent neural networks. In Interna-
+tional Conference on Machine Learning, pages 1747–1756.
+PMLR, 2016. 1
+[61] Jiangshan Wang, Junfu Pu, Zhongang Qi, Jiayi Guo, Yue Ma,
+Nisha Huang, Yuxin Chen, Xiu Li, and Ying Shan. Taming
+rectiﬁed ﬂow for inversion and editing. In International Con-
+ference on Machine Learning, 2025. 7, 8
+[62] Yuancheng Wang, Zeqian Ju, Xu Tan, Lei He, Zhizheng Wu,
+Jiang Bian, et al. Audit: Audio editing by following instruc-
+tions with latent diffusion models. Advances in Neural In-
+formation Processing Systems, 36:71340–71357, 2023. 3
+[63] Duncan Williams, Victoria J Hodge, Lina Gega, Damian
+Murphy, Peter I Cowling, and Anders Drachen. Ai and au-
+tomatic music generation for mindfulness. In 2019 AES In-
+ternational Conference on Immersive and Interactive Audio:
+Creating the Next Dimension of Sound Experience. York,
+2019. 2
+[64] Yuxuan Wu, Yifan He, Xinlu Liu, Yi Wang, and Roger B
+Dannenberg. Transplayer: Timbre style transfer with ﬂex-
+ible timbre control. In IEEE International Conference on
+Acoustics, Speech and Signal Processing (ICASSP), pages
+1–5. IEEE, 2023. 1
+[65] Sihan Xu, Yidong Huang, Jiayi Pan, Ziqiao Ma, and Joyce
+Chai. Inversion-free image editing with language-guided dif-
+fusion models. In Proceedings of the IEEE/CVF Conference
+on Computer Vision and Pattern Recognition, pages 9452–
+9461, 2024. 2, 3
+[66] Dongchao Yang, Jianwei Yu, Helin Wang, Wen Wang, Chao
+Weng, Yuexian Zou, and Dong Yu.
+Diffsound: Discrete
+diffusion model for text-to-sound generation.
+IEEE/ACM
+Transactions on Audio, Speech, and Language Processing,
+31:1720–1733, 2023. 3
+[67] Li-Chia Yang, Szu-Yu Chou, and Yi-Hsuan Yang. Midinet:
+A
+convolutional
+generative
+adversarial
+network
+for
+symbolic-domain
+music
+generation.
+arXiv
+preprint
+arXiv:1703.10847, 2017. 2
+[68] Ruibin Yuan, Hanfeng Lin, Shuyue Guo, Ge Zhang, Jia-
+hao Pan, Yongyi Zang, Haohe Liu, Yiming Liang, Wenye
+Ma, Xingjian Du, et al.
+Yue: Scaling open foundation
+models for long-form music generation.
+arXiv preprint
+arXiv:2503.08638, 2025. 7
+[69] Sicheng Zhao, Yaxian Li, Xingxu Yao, Weizhi Nie, Pengfei
+Xu, Jufeng Yang, and Kurt Keutzer. Emotion-based end-to-
+end matching between image and music in valence-arousal
+space. In Proceedings of the 28th ACM International Con-
+ference on Multimedia, pages 2945–2954, 2020. 2
+[70] Le Zhuo, Ruoyi Du, Han Xiao, Yangguang Li, Dongyang
+Liu, Rongjie Huang, Wenze Liu, Xiangyang Zhu, Fu-Yun
+Wang, Zhanyu Ma, et al. Lumina-next: Making lumina-t2x
+stronger and faster with next-dit. Advances in Neural Infor-
+mation Processing Systems, 37:131278–131315, 2024. 4, 6,
+11
