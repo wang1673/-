@@ -1,0 +1,169 @@
+[
+ {
+  "kind": "figure",
+  "num": "1",
+  "page": 2,
+  "caption": "Fig. 1. An overview of (a) training and (b) inference of the audio model of EmoCtrl-TTS.",
+  "file": "figures/fig-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.084,
+   0.087,
+   0.918,
+   0.261
+  ],
+  "label": "fig:overview",
+  "source_files": [
+   "figures/Overview-v3.png"
+  ],
+  "tex_line": 36,
+  "refs": [
+   "§3.1.1 Model training (L150)",
+   "§3.1.2 Inference (L164)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "1",
+  "page": 1,
+  "caption": "Table 1. Comparison of TTS models based on emotion capabilities.",
+  "file": "figures/tab-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.513,
+   0.29,
+   0.916,
+   0.452
+  ],
+  "label": "tab:tts_comparison",
+  "source_files": [],
+  "tex_line": 53,
+  "refs": [
+   "§2.1 Controlling emotion in TTS (L90)",
+   "§2.1 Controlling emotion in TTS (L92)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "2",
+  "page": 4,
+  "caption": "Table 2. Summary of evaluation datasets. S2ST: Speech-to-speech translation.",
+  "file": "figures/tab-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.088,
+   0.122,
+   0.488,
+   0.186
+  ],
+  "label": "table:eval_datasets",
+  "source_files": [],
+  "tex_line": 266,
+  "refs": [
+   "§4.1.2 Evaluation data (L264)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "3",
+  "page": 5,
+  "caption": "Table 3. Objective evaluation results for various models on JVNV S2ST and EMO-change test sets. A model with (+) was fine-tuned with 200k steps with more exposure to the IH-EMO. LL: Libri-light.",
+  "file": "figures/tab-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.085,
+   0.128,
+   0.917,
+   0.346
+  ],
+  "label": "tab:jvnv_results",
+  "source_files": [],
+  "tex_line": 354,
+  "refs": [
+   "§4.3 Model configuration (L443)",
+   "§4.5.1 Objective evaluation (L553)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "4",
+  "page": 5,
+  "caption": "Table 4. Subjective evaluation results on the JVNV S2ST test set are presented. The group with the top score (scores within the 95% confidence interval of the highest score) is displayed in bold font.",
+  "file": "figures/tab-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.084,
+   0.398,
+   0.49,
+   0.552
+  ],
+  "label": "tab:subj_results_jvnv",
+  "source_files": [],
+  "tex_line": 408,
+  "refs": [
+   "§4.5.2 Subjective evaluation (L587)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "5",
+  "page": 6,
+  "caption": "Table 5. Impact of training configurations on the EmoCtrl-TTS on JVNV S2ST test set.",
+  "file": "figures/tab-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.088,
+   0.112,
+   0.915,
+   0.278
+  ],
+  "label": "tab:ablation_study",
+  "source_files": [],
+  "tex_line": 464,
+  "refs": [
+   "§4.5.1 Objective evaluation (L577)",
+   "§4.5.3 Impact of training configurations (L610)",
+   "§4.5.3 Impact of training configurations (L618)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "6",
+  "page": 6,
+  "caption": "Table 6. Results of Laughter-test dataset.",
+  "file": "figures/tab-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.088,
+   0.293,
+   0.489,
+   0.37
+  ],
+  "label": "tab:laughter_test_results",
+  "source_files": [],
+  "tex_line": 498,
+  "refs": [
+   "§4.5.4 Results on real laughter and crying data (L630)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "7",
+  "page": 6,
+  "caption": "Table 7. Results of Crying-test dataset.",
+  "file": "figures/tab-07.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.088,
+   0.386,
+   0.489,
+   0.463
+  ],
+  "label": "tab:crying_test_results",
+  "source_files": [],
+  "tex_line": 522,
+  "refs": [
+   "§4.5.4 Results on real laughter and crying data (L630)"
+  ]
+ }
+]

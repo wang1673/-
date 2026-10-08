@@ -1,0 +1,266 @@
+[
+  {
+    "path": "papers/emoctrl-tts/code-used/evaluation.py",
+    "size": 3468,
+    "sha256": "b84c6b33378800a79adcf01dbdd0b74882e0fe6afb4cc66bca91a2944c8ebbc1",
+    "git_blob_sha": "63a3cf5efcc156c05cfd9be8f1d93b15c3ca1dfe"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/LICENSE.txt",
+    "size": 1181,
+    "sha256": "2ae04e4007cc499a6738755fa3a91bfd75668cff9203a08fcdc97ffb3f2e091a",
+    "git_blob_sha": "098ab7730ddc82406641671547225ed6dc14b239"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/README.md",
+    "size": 2517,
+    "sha256": "52095700980ac5f41b17418a1f19face76bc649474ffd50598d4edac335690a3",
+    "git_blob_sha": "59263a4f20451468c87727c97f803a0471cb3756"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/SOURCE.md",
+    "size": 267,
+    "sha256": "c37cc13d5ac0238ef45ecbc09553bc9c2fed76257303f22c54d690a9fa4db057",
+    "git_blob_sha": "bca5fd55b3952edb53f253a8c36bc13b37591ba4"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/utils/arousal_valance.py",
+    "size": 4771,
+    "sha256": "2f44ef6075b79030d798e19028590270b95151d5bc8cd804c1ae09f9a56e0e31",
+    "git_blob_sha": "d3280c8688b2fdc1ca340526b3e98f1a90e3b4a7"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/utils/emo2vec.py",
+    "size": 1353,
+    "sha256": "7fb61701d6485daf606d5d53e1185819de35f1e439629cfec79d62d7ca19fb9a",
+    "git_blob_sha": "3c651e04cb4691c30bfe2e7813052dbc5b4a1d53"
+  },
+  {
+    "path": "papers/emoctrl-tts/code-used/utils/utils.py",
+    "size": 1291,
+    "sha256": "8b4a975cf155fce6f5b07a5ad480c98443b4a9cd2f5ca60ee28267eaedc02136",
+    "git_blob_sha": "fe7b45cf47d3ee8ee673d70a845d55c84d05411f"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/.kelip-paper-reading",
+    "size": 107,
+    "sha256": "4cc097e0aa8af6b6146a132e4f711f7a9714703f384fa81c871b736957f0c18c",
+    "git_blob_sha": "925c1353d376783fdba83fe2947c1619b3ca3bda"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/_contact.png",
+    "size": 28847,
+    "sha256": "2a7f1fd932b700e9ca86e29b2cab4d6d7a241a0b583663bf8b6118a536b2d24e",
+    "git_blob_sha": "7f021f4067aec7cb1e1b3ae227948cbd379e0b2a"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/fig-01.png",
+    "size": 27261,
+    "sha256": "275d3053defb26b56f344b25ddbe50e0d22e687a480070f8d3b2cffa1c091cd1",
+    "git_blob_sha": "58e6c0ab2658a70dafbfbd2547b51c1a7735346c"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/index.json",
+    "size": 3724,
+    "sha256": "2b42a4b47dca535ae5000e7932b7735d0a5eba3384659475bdf0c4695b3e5438",
+    "git_blob_sha": "a2927faac5a46e39c805b3365271224f579c9e0e"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/index.md",
+    "size": 2868,
+    "sha256": "e6d843d41286970ceb6e25288370278b5f78bd8cdb43b32b947f9101bc7fda89",
+    "git_blob_sha": "e5f502a019a8c365cd081c5db306575c996e19a3"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-01.png",
+    "size": 21932,
+    "sha256": "51cff527467a00e206732ba80609e37d2be3161d84622e63f97caa3ecd9d0715",
+    "git_blob_sha": "8f1a6ebe96ba6039313ad1d48163f716e4e82ba8"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-02.png",
+    "size": 12302,
+    "sha256": "032b09a33fb0dc00c0afb8f952f881dc25d0606e5b881fbd2fd1faa6688d4a30",
+    "git_blob_sha": "09d38b427ce5990e5a742f380db10b0cb2b752e5"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-03.png",
+    "size": 26928,
+    "sha256": "d40a0c9ae0e42488e078b972e961969f43dbfac8b979f302152d53a6bef3e3a2",
+    "git_blob_sha": "649afa46be2429cb9fe1906200c20a1fcc1d2723"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-04.png",
+    "size": 24505,
+    "sha256": "1a2923c340da859b255c3fe3c640047d5be141feced0d1a88cabca114a6382e8",
+    "git_blob_sha": "b74b16228177c3d24c6643196e0d038bff8f725d"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-05.png",
+    "size": 27456,
+    "sha256": "27f812b10cc4a5d2ea97159edf84b05d8cf7e927379cf42064b0e772133c4111",
+    "git_blob_sha": "429645ea55c6673a46a0b12686fc1612dd0d9faa"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-06.png",
+    "size": 15171,
+    "sha256": "7c5b755cd508f4c0c9815f1c8be8194c775d289fce989d35a78db6e01f3cb54d",
+    "git_blob_sha": "5e8f2252076b29914aa971635bd407757cd69a36"
+  },
+  {
+    "path": "papers/emoctrl-tts/figures/tab-07.png",
+    "size": 14925,
+    "sha256": "b5f18285a5f61055f8cc0d85414cf63fef65f7e06eb47c2ff754d5b265326f90",
+    "git_blob_sha": "e9c9bec38d372ace67bb78ffacc1457bf8c85d37"
+  },
+  {
+    "path": "papers/emoctrl-tts/meta.json",
+    "size": 3828,
+    "sha256": "03aff2519b00f0aff64a1fe2d5bbd35af52f06b8bfbb99a544888ad7c0ff825d",
+    "git_blob_sha": "62ef3ed6fdbed52dd98edee1afc1d5c2033e9a93"
+  },
+  {
+    "path": "papers/emoctrl-tts/outline.md",
+    "size": 1711,
+    "sha256": "e27c1bd4e8cb64011f761dbdd894baf1553addf888e265e005a38da55432061a",
+    "git_blob_sha": "ae467504a2328e7f9d02db8b739014a25e454c85"
+  },
+  {
+    "path": "papers/emoctrl-tts/paper.tex",
+    "size": 49193,
+    "sha256": "3d46f6e7d84161b032095a347ff4adcfa12983393f766c064ac044a7dad0bd8f",
+    "git_blob_sha": "3fcf037ce0a9d2be5f8bf35c998be63a2a14cde5"
+  },
+  {
+    "path": "papers/emoctrl-tts/paper.txt",
+    "size": 48267,
+    "sha256": "c231e73507b99648687b1190fcf3a8836ba68a7ecbb66a10cae94fc19d2aee57",
+    "git_blob_sha": "35e639089425e5f27769211f8ef3add7b7968e91"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/IEEEbib.bst",
+    "size": 17903,
+    "sha256": "7e6ca0c8b72158d504a12bb091f817c07032a021ba41ca783cca4c2dd80d570b",
+    "git_blob_sha": "f9bf3cca18df5226892678df3d5c5d01cdb23bc8"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/main_camera_ready.bbl",
+    "size": 11494,
+    "sha256": "2bc773ddf15833ede1ee0a322cb0a115b50fc674d33f92b148a7bb657497c015",
+    "git_blob_sha": "ce7aeb4f4562754be00fe920abb362a38f7f9535"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/main_camera_ready.tex",
+    "size": 3390,
+    "sha256": "83ef0fda37efb411921fcda25033488b360185db4b1b15ca4d4fa272d6c34e8e",
+    "git_blob_sha": "8002a245a8be77b0dda21330b87e7465590cd8cb"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/refs.bib",
+    "size": 14840,
+    "sha256": "6fe82f709b7ca311fa600e0722bd72d1baa7fc3f5c05236bc9fbb6210db47bfc",
+    "git_blob_sha": "5bbf31cbcaff5ea9032bcef38f39f1b83826172c"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/conclusion.tex",
+    "size": 549,
+    "sha256": "87d2cd49a6fd32b142e1595012cf50391eedf574a8cde932f49c6e30b0e397ee",
+    "git_blob_sha": "f64cf036da8f3287ef71961240812cc8966d8ae6"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/exp-1.tex",
+    "size": 10043,
+    "sha256": "08de5dfac00c3a0fda40397a97de56f1fa0ae1f071383605aefdb1a077f84709",
+    "git_blob_sha": "ef53d7c18f90df324f2843b596d79b9eecfe02f9"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/exp-4-result.tex",
+    "size": 6927,
+    "sha256": "8fb975613a906e215b4d63f3fd9a3e81a99c853b5e6c7c83f02f2ced7610790f",
+    "git_blob_sha": "79ffc9fae9a069bb031ae9e527d357ef89a2be1b"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/exp.tex",
+    "size": 196,
+    "sha256": "e01a84e5a153f4efe40e8fe4a5d97fe328c08022f5806126520bb809438e4e7d",
+    "git_blob_sha": "9f4ad3ce7fa3c8a195c6869dc6de7b98e8daf29c"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/intro.tex",
+    "size": 3106,
+    "sha256": "4552729a2e152269f876413e0d16235e86252dc58ef02808ad6a4781c7a933ee",
+    "git_blob_sha": "6b27570e9f85677c77f5d632200af7d65b2cd613"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/method.tex",
+    "size": 8983,
+    "sha256": "99331d19c313cf545159a74d5df3a53c8d327d5974146db7c423c33349e2f4ce",
+    "git_blob_sha": "c37a4c4522a5b967eaccb31b64bc471c94d4d831"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/sections/related.tex",
+    "size": 6114,
+    "sha256": "5fe1a7317ca9e6ce62461ce9c034ff4c9a7ea376706af5a0092b1984a8d64d30",
+    "git_blob_sha": "462fcc2f890e70e57f41eeffff4435a4b4a2996c"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/spconf.sty",
+    "size": 8895,
+    "sha256": "e776514e4098685aee317ffb66427f347f8bab5559b18e082b082cb7f469c545",
+    "git_blob_sha": "6dc35981503669c0b843a36c7349adae805585b3"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/strings.bib",
+    "size": 226,
+    "sha256": "7ade424df9da7de7c75d710c231e00e5de21e0e434fee6efc46d662a8dea4328",
+    "git_blob_sha": "05a2f299571545fbbab6aeb2a59fb29b05c2486f"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/ablation_table.tex",
+    "size": 2532,
+    "sha256": "df60c79e89c9640d1980f67d90559900f24ca425a258020ac9b4bab4d628c6dd",
+    "git_blob_sha": "8a0ededaf8012468e4867a5f787f3cb98b739e60"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/evaluation_data.tex",
+    "size": 988,
+    "sha256": "feed8b2a171feb08afc366b8c344576324302f25bff1fbdce892ba53433dc9a2",
+    "git_blob_sha": "5d9193be633fc8ba96f28ae889ac013142dbc77e"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/jvnv_ravdess_table.tex",
+    "size": 2988,
+    "sha256": "95c62b70379b1b18905ff516444b4338af39594fa9e5930c4af906e332c9350e",
+    "git_blob_sha": "b348251cd00875f0a2425ca466ad286cf1cb6d12"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/real_data_table.tex",
+    "size": 2170,
+    "sha256": "7d38836c28e66ff7b55ab4d0bab4adeb334aea34ca71617283b5b03f7e888cc3",
+    "git_blob_sha": "acc9c5af7ef2f01677eae1d3c135fd195644d8d0"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/subj_eval_table.tex",
+    "size": 2019,
+    "sha256": "4d85df5816d9272899246d2337e757ac55cd98dd58b427b38f7827ca42e18cd9",
+    "git_blob_sha": "6dec3c253c4d0eddb3a47881df9de97e12a3a8d3"
+  },
+  {
+    "path": "papers/emoctrl-tts/source/tables/tts_comparison.tex",
+    "size": 1997,
+    "sha256": "797297adf8cee6f6e4e9b57869a374fe90c2758f8e0f3f4970cd4b8d51c53bc6",
+    "git_blob_sha": "6ab016886a93e61505b3ea8b09c5a1c76e8ceb3d"
+  },
+  {
+    "path": "papers/emoctrl-tts/精读笔记.md",
+    "size": 8038,
+    "sha256": "2ac30257b00d649bd9f6949e856354ad520fc3f9afb19c028999fcf821039cea",
+    "git_blob_sha": "fc77c7c5e85c66fbfcccc4dc3344f6d429051861"
+  },
+  {
+    "path": "papers/emoctrl-tts/upload-status.md",
+    "size": 1002,
+    "sha256": "aabe7292a3e1fee31c554b9c6bbda1c0e92d1df08861075e97ee1034eef01935",
+    "git_blob_sha": "81b9a41939892b3df889282e73a78993842639d7"
+  }
+]

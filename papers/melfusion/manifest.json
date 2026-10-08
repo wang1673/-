@@ -1,0 +1,314 @@
+[
+  {
+    "path": "papers/melfusion/code-used/diffusers/src/diffusers/models/attention_processor.py",
+    "size": 34094,
+    "sha256": "defddd57d0c904b5b6401cc59f8bd0d06d602f18a3de3a6fd534884687a7d59c",
+    "git_blob_sha": "e1d644e830a8250b4f24d9459c53d3fc71648038"
+  },
+  {
+    "path": "papers/melfusion/code-used/diffusers-LICENSE",
+    "size": 11558,
+    "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+    "git_blob_sha": "29f81d812f3e768fa89638d1f72920dbfd1413a8"
+  },
+  {
+    "path": "papers/melfusion/code-used/inference.py",
+    "size": 12521,
+    "sha256": "95d1215ab95dcf99176db6b56c8f2a5029cb8b5db3e36a0bf8bba8e995e628b1",
+    "git_blob_sha": "8fae1e8d1194672daa3e9d56167b00ab64aa8729"
+  },
+  {
+    "path": "papers/melfusion/code-used/inference_mmgen.sh",
+    "size": 492,
+    "sha256": "0a1e2099b54a7fc843d321934e49530b2389fe9f68ba314710701475ea6b8cd1",
+    "git_blob_sha": "7bf7f49d37d5626071281b13664a0d6f831d6d81"
+  },
+  {
+    "path": "papers/melfusion/code-used/models.py",
+    "size": 25505,
+    "sha256": "496ec68c505ef365d029a609307dc2b059cd8342f88e1451103aa395aa7714b1",
+    "git_blob_sha": "943afff90aa97f512c273d0d381e1fcab4c7b74f"
+  },
+  {
+    "path": "papers/melfusion/code-used/README.md",
+    "size": 2347,
+    "sha256": "c80c0abf8cf8c5bf2c849cf308c7b88cc1c21eed2ed9831c14019e4fdef1718d",
+    "git_blob_sha": "4649ee919dd0f623cafb0555f9e5996fa8235b82"
+  },
+  {
+    "path": "papers/melfusion/code-used/SOURCE.md",
+    "size": 266,
+    "sha256": "84a5fd2314525ad16cec28b242b9ba0b56035de46c75731332f93bcfb604b080",
+    "git_blob_sha": "0e1d2c7e498c97276c6de15a79ecc2f2f700b9ee"
+  },
+  {
+    "path": "papers/melfusion/code-used/tango.py",
+    "size": 3872,
+    "sha256": "e22346f4e64cb1eb4c0993fddacc8321d9dd49998085d2e4352f298cfa42db28",
+    "git_blob_sha": "ae337ae5e436c61a54d1c3eac06cdb59e388abe2"
+  },
+  {
+    "path": "papers/melfusion/code-used/train_combined.py",
+    "size": 30665,
+    "sha256": "e0ff08fe816b661eba14c25c51e9b3c597ed53a0fe36d47b0dad813c3eb790c5",
+    "git_blob_sha": "a453cbd29796756fed8db46d45d7a7459ffb3b40"
+  },
+  {
+    "path": "papers/melfusion/code-used/train_mmgen.sh",
+    "size": 649,
+    "sha256": "b3326ac2df87a3a75b7674ba18a4bf721c7f3b12135cfd4fb64edaec00361e7e",
+    "git_blob_sha": "2fc9ba9d858449577c67ff82604f0660168f7271"
+  },
+  {
+    "path": "papers/melfusion/figures/.kelip-paper-reading",
+    "size": 107,
+    "sha256": "4cc097e0aa8af6b6146a132e4f711f7a9714703f384fa81c871b736957f0c18c",
+    "git_blob_sha": "925c1353d376783fdba83fe2947c1619b3ca3bda"
+  },
+  {
+    "path": "papers/melfusion/figures/_contact.png",
+    "size": 27558,
+    "sha256": "def22fd6074a528e670c656fab4f041cd6a77cf3057ce3cc363208ef5df4d591",
+    "git_blob_sha": "190333fd03c6edee76b273ef97cdf5054421e099"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-01.png",
+    "size": 27057,
+    "sha256": "de7d6a9c4ec60d3c35c93900d4bcbfb0ce0d765b869c76cd792747cd5a8c467a",
+    "git_blob_sha": "9ae4544058dc9acf93efce50c11bc7720a798bb0"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-02.png",
+    "size": 29667,
+    "sha256": "22662a8caf78c530b16af214f766b402e175a71d6f6e18a9b68553c0b102385d",
+    "git_blob_sha": "d113d75d097b0d16757c12a31bc415e9f863d333"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-03.png",
+    "size": 21030,
+    "sha256": "3b412196a80180be6f503ac7d9dd6f740e663058688dfd87b264b5fe465a0aa5",
+    "git_blob_sha": "9b4dafed4d3eb70f1b20796c7c8fae034a3260a8"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-04.png",
+    "size": 29361,
+    "sha256": "6fe425f6245911d2502fad664fa97d7f080c6bdcdb40ed30bf1a679194780b9b",
+    "git_blob_sha": "5eabd137e94a3dd3bc8a75b76b1c4a8ea72d94c1"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-05.png",
+    "size": 28442,
+    "sha256": "f3878ea9e68f362caeaeb978dccffb4edbd868d74e8224e66f331053e70c6156",
+    "git_blob_sha": "fbfbc86052a354f9a8ae5d43f84c1e8ad46d3125"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-06.png",
+    "size": 27277,
+    "sha256": "cc328bf199817e5cd765bcbe11b3e8f4e47dffd0644f06baa3f788249d6eeee1",
+    "git_blob_sha": "a33b8ebd577c3bacd74b984c1948410bfd3cdf93"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-07.png",
+    "size": 29959,
+    "sha256": "e399b6063c64601c0acb9c952e4955017fcac47cfc1c9baebe5fbb8b8e5bf87d",
+    "git_blob_sha": "8abfab3dea608d1a7db711664824bed4dfa8d69a"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-08.png",
+    "size": 29850,
+    "sha256": "77007f5e0d1ae5bbad0394c91302f5997bdbc9c2697318a84603ce034484c6fe",
+    "git_blob_sha": "8c63203d0450ea83fc4683d6ca1e01d069c78606"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-09.png",
+    "size": 22041,
+    "sha256": "0df9b5422aeb1399209ed2181c703b477426f1a3574c13cf71e927ae74500c33",
+    "git_blob_sha": "801807e3fcf8e30869a4309431e3d117d68080ff"
+  },
+  {
+    "path": "papers/melfusion/figures/fig-10.png",
+    "size": 25839,
+    "sha256": "a93c73117854d81787cd1b5756597ff6347a42e4c809e7feb6ee402be01c9811",
+    "git_blob_sha": "b42999bb8b8b8b96067fd4b5cb90a2dc2bd55afa"
+  },
+  {
+    "path": "papers/melfusion/figures/index.json",
+    "size": 12891,
+    "sha256": "32435e02b5bf630e48a406f0a5bdc576fe72aa2aa6ff3eaf33c60e49d4ca61e6",
+    "git_blob_sha": "c7185dd41689c8a8c3d883355a12c58e07063947"
+  },
+  {
+    "path": "papers/melfusion/figures/index.md",
+    "size": 9216,
+    "sha256": "dba89d299a51351e50f04523432fd0e1bac038365c66ae57e2662f2c1c5a721c",
+    "git_blob_sha": "f7c6d1e241d8acb829bc03aad95db0f4aa11f53d"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-01.png",
+    "size": 29860,
+    "sha256": "b0c1c7364170e31c309117b0f85ba210eb241cc46c247480054fff2eb6833911",
+    "git_blob_sha": "127bb0e0aab8676872e0308c874a18c40f512bfa"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-02.png",
+    "size": 17435,
+    "sha256": "c2438022180b1aa653ce07605b82ea4da7976989d5a364ead71f10cbf92f6745",
+    "git_blob_sha": "57a1a03d9e0247af5ab1785137b89ef6b59346ba"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-03.png",
+    "size": 12002,
+    "sha256": "361ccd476da947d69e74314666e44cc84e596659f341c0838b4af3abe94959ad",
+    "git_blob_sha": "bfdf674e36b423ff01da5e1ee0384c8d917d6506"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-04.png",
+    "size": 9159,
+    "sha256": "e51a438155797e00b1fbf9eb2d6771d84ed545c3e091f7cbe632504b0598f716",
+    "git_blob_sha": "e45704d28832fc65dab1b332492116bc934ba44a"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-05.png",
+    "size": 11372,
+    "sha256": "03ddf46c268bfaaf2f7da7cd8426ff7fbfec7ef7ff4c2afd55995cf595c3979c",
+    "git_blob_sha": "bc79fec8261d296e1a051aa449a083d06417043c"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-06.png",
+    "size": 11267,
+    "sha256": "3bc6d56a402cf4b4d41991ceb15a6f53855125948d3bfc867394e095cc4db0a7",
+    "git_blob_sha": "df89e54d2b1433229e62e6c498f10ccb9ab63f1a"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-07.png",
+    "size": 10708,
+    "sha256": "e108251de76465b4127554d88b1d2950ddf2af3faa75a4e9eb5d027e139724e6",
+    "git_blob_sha": "7522067d43d3a9b6d5739e1ba12b087da29f4233"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-08.png",
+    "size": 12710,
+    "sha256": "c3c121bc40ab9391c2f692a64e901dca1ea4f8bc98f379b600709967a4cc53f7",
+    "git_blob_sha": "fecc22aebb00b4a202bd596cda0c135d17ccad33"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-09.png",
+    "size": 15919,
+    "sha256": "64258d75d1dd5340b45fd38246745d3682f15d751ba05f50d081bd2660047a64",
+    "git_blob_sha": "f3de06dff13469a253cf445e65a86adf91b11892"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-10.png",
+    "size": 13996,
+    "sha256": "c3c0e46b24f8cdfb8d2168227699390ed895a7cf10baeead3a3b3f9051f24fc7",
+    "git_blob_sha": "17ff230ab3bbc84b5f9e14aef224419b41c09aae"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-11.png",
+    "size": 9698,
+    "sha256": "2e6124c8cf72f34fce0f068084dd284c76377b4c02b7216d180e350bb6607f85",
+    "git_blob_sha": "9c7021cf50c5d21beb585a59608d09efaf57183c"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-12.png",
+    "size": 13515,
+    "sha256": "28f27f2e78ed15390c65ed95414de4dfce77046d457b31cf857aefc793b6fdd9",
+    "git_blob_sha": "ee937db7914b21f4ef7c2bc44e46110f48e5fa2a"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-13.png",
+    "size": 19753,
+    "sha256": "3472c1fa5365e3aabdd209eba09071c0a79e1b57cc35c5ecffd3c7378c20a545",
+    "git_blob_sha": "ac9812fa828c54176372068a4bfa2fd4c692010f"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-14.png",
+    "size": 14261,
+    "sha256": "8f06cb6cbc43b51e1d0bba59067074a09954c44bf234014d8990115808239b0c",
+    "git_blob_sha": "c7646bafba90e6fce63f35b805763a074601dd62"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-15.png",
+    "size": 25730,
+    "sha256": "40cfb83c67d15d98fe1ef591ab8399c268e1a9499b8a95fe511d03093aaa5de0",
+    "git_blob_sha": "6f6520cceccd052a4e6ff6e8da66d3fdbe852340"
+  },
+  {
+    "path": "papers/melfusion/figures/tab-16.png",
+    "size": 10530,
+    "sha256": "ae3d57ee02c020c8259fed082cb2365482c50b66316095e13fea965c374bfd36",
+    "git_blob_sha": "ab37bfa960e483c80a02006c9a85241e55f31124"
+  },
+  {
+    "path": "papers/melfusion/meta.json",
+    "size": 2744,
+    "sha256": "d7c199909a5b9355c4f4bdd475cadc8e2a12c44d790fa19b59d1089127aa7edc",
+    "git_blob_sha": "450d1ac1e031d49b5d40e831867ca7a7f0996d10"
+  },
+  {
+    "path": "papers/melfusion/outline.md",
+    "size": 3001,
+    "sha256": "d1c43308b1da6d1951f42ba3893625270eebbf2d7d00b5c451b7e5a9d6c98314",
+    "git_blob_sha": "196d671caacd4098f34ca28b506e62f236e1e699"
+  },
+  {
+    "path": "papers/melfusion/paper.tex",
+    "size": 87374,
+    "sha256": "cd3a6e8773279ea474cc270bea7b809d4fe212b23dd2b18c6e456f412d7658d0",
+    "git_blob_sha": "c66aa0c8e25b217ced47c9de06bb492f6330a06e"
+  },
+  {
+    "path": "papers/melfusion/paper.txt",
+    "size": 90171,
+    "sha256": "b013fe0061b95565335f40b1b37c2c767b209133a85ddc41ffa8e39620870d37",
+    "git_blob_sha": "bef9f73dc277b71a20500ef7587b2d1d8fe38e39"
+  },
+  {
+    "path": "papers/melfusion/source/arxiv.bbl",
+    "size": 31909,
+    "sha256": "d23388cf15ddc2bc5dbc15b15d9b0f219491f830232e5f7d3b830d88123008a4",
+    "git_blob_sha": "6e4d9fe1f50283b5e57e1d0339751d33fafc2d07"
+  },
+  {
+    "path": "papers/melfusion/source/cvpr.sty",
+    "size": 21928,
+    "sha256": "2fc9a2d7f2beb8ac988b43a4d802ec75470de67092ae02f15ed8b322677b7cc6",
+    "git_blob_sha": "de56c2c267e510d3a72c3e9f4b443d9ecbd11e8b"
+  },
+  {
+    "path": "papers/melfusion/source/ieeenat_fullname.bst",
+    "size": 26900,
+    "sha256": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc",
+    "git_blob_sha": "261b8c3ccb3fd5c07a88ffc4945c40909bdcf535"
+  },
+  {
+    "path": "papers/melfusion/source/main.bib",
+    "size": 36670,
+    "sha256": "836b41206a616074f4e15ecbd96a911fb66ed48ea08fc3ba4fa4a91469cee021",
+    "git_blob_sha": "dd94cb9ba037a479ea94248f9593120eb60e1b6d"
+  },
+  {
+    "path": "papers/melfusion/source/preamble.tex",
+    "size": 283,
+    "sha256": "ee28998974caf71411898ad1cd8a1dc6d95d58fcf7659d525f4ea1b7dc8c62b4",
+    "git_blob_sha": "0f5cb13abb6ce2c89227911c2147bcdf94788b17"
+  },
+  {
+    "path": "papers/melfusion/source/README.md",
+    "size": 812,
+    "sha256": "def2313c24b53ab00071bc71705b765a128cfe51e55513d67e0deea54d7b88f9",
+    "git_blob_sha": "2aaa296a90aeb662872b7c8bd99b25538d72ceec"
+  },
+  {
+    "path": "papers/melfusion/精读笔记.md",
+    "size": 9751,
+    "sha256": "6e4c94269b08e0e2201eaa992e1caff85effea9d8fc81d1b6e37ba50d573541b",
+    "git_blob_sha": "273d2beb889c0ef3e2e23c9059efa612d69f8f16"
+  },
+  {
+    "path": "papers/melfusion/upload-status.md",
+    "size": 2808,
+    "sha256": "0793e7973ae8e382e8e3442af2ae478807bbba90f8c933543ada9466cf7395b9",
+    "git_blob_sha": "f676bcac79341d4a6f2639b70fc9491c9e6f181f"
+  }
+]

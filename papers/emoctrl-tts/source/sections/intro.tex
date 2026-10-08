@@ -1,0 +1,22 @@
+
+\section{Introduction}
+\label{sec:intro}
+\vspace{-.5em}
+
+Humans express a wide range of emotions by changing their tone of voice, often accompanied by nonverbal vocalizations (NVs) such as laughter and crying. While current emotional text-to-speech (TTS) systems have made significant advancements~\cite{zhao2023emotion,tang2024ed,guo2023emodiff,tang2023emomix,zhou2022speech,tang2023qi,lei2022msemotts,shin2022text,lee2017emotional,li2021controllable,cai2021emotion,cho2024emosphere},
+% (comparison is shown in Table~\ref{tab:tts_comparison}), 
+they still 
+% can't 
+lack the ability to 
+generate emotional speech with fine-grained control (e.g. changing the emotion states within a single generated utterance) and with various types of NVs like laughter and crying. 
+In addition, current emotional TTS systems~\cite{zhao2023emotion,tang2024ed,guo2023emodiff,tang2023emomix,zhou2022speech,tang2023qi,lei2022msemotts,shin2022text,lee2017emotional,li2021controllable,cai2021emotion,cho2024emosphere} are typically trained on staged datasets with a limited number of speakers; in extreme cases, some are trained on only one speaker. 
+These TTS models often lack the ability to generate emotional speech for any speaker, a feature critical for applications like speech-to-speech translation, that needs to retain both the emotion and speaker characteristics of the source audio when generating the translated speech.
+
+% Our contributions include the proposal of a framework that integrates flow-matching-based zero-shot TTS with NV and emotion embeddings, as well as comprehensive experiments to evaluate it, including the introduced new emotion-control evaluation metrics.
+In this paper, we propose EmoCtrl-TTS, an emotion-controllable zero-shot TTS system that can generate highly emotional speech with NVs for any speaker. EmoCtrl-TTS generates the speech by mimicking the voice characteristics and emotion presented by an audio sample, referred to as an audio prompt.
+EmoCtrl-TTS is based on the flow-matching-based zero-shot TTS~\cite{le2024voicebox} and utilizes valence and arousal values to mimic the time-varying characteristics of emotions.
+In addition, it also utilizes laughter embeddings \cite{kanda2024making}, which we find to be effective for generating not only laughter but also other NVs, including crying. 
+Furthermore, by leveraging over 27k hours of highly expressive real-world data through careful data mining, EmoCtrl-TTS achieves significant enhancements in robustness.
+Comprehensive evaluations demonstrate that EmoCtrl-TTS excels in reproducing the emotions of audio prompts across multiple languages in speech-to-speech translation scenarios. 
+We also show that EmoCtrl-TTS can capture emotion changes, express strong emotions, and generate various types of NVs in zero-shot TTS.
+Our contributions are summarized as follows: (1) we propose a framework integrating flow-matching-based zero-shot TTS with NV and emotion embeddings; and (2) we conduct comprehensive experiments to evaluate the emotion-controllable zero-shot TTS, demonstrating the superiority of the proposed method.

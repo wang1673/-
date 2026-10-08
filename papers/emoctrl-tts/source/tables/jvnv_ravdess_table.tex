@@ -1,0 +1,62 @@
+
+
+
+
+\begin{table*}[!t]
+\caption{Objective evaluation results for various models on JVNV S2ST and EMO-change test sets.
+A model with $^{(+)}$ was fine-tuned with 200k steps with more exposure to the IH-EMO. 
+LL: Libri-light.}
+\label{tab:jvnv_results}
+\ra{0.9}
+\centering
+%\resizebox{\textwidth}{!}
+{
+\footnotesize
+\tabcolsep = 0.7mm
+%\centering
+\begin{tabular}{@{}llccccccccc@{}}
+    \toprule
+    \multirow{1}{*}{\textbf{ID}} &
+    \multirow{1}{*}{\textbf{Model}}  &
+    \multirow{1}{*}{\textbf{Init.}} &
+    $h$ &
+    $e$ &
+    \multirow{1}{*}{\textbf{Training Data (hours)}}  &
+    \textbf{SIM-o$\uparrow$} & 
+    \textbf{WER (\%)$\downarrow$} & 
+    \textbf{AutoPCP$\uparrow$} & 
+    \textbf{Emo SIM$\uparrow$} & 
+    \textbf{Aro-Val SIM$\uparrow$} \\
+    
+    \midrule
+    \multicolumn{11}{c}{\textbf{JVNV S2ST}} \\
+    \midrule
+    \textbf{(B1)} & SeamlessExpressive~\cite{barrault2023seamless} & - &- &- & -   & 0.268  & {\bf 1.2}  & 2.91 & 0.653 & 0.494  \\
+    \textbf{(B2)} & Voicebox (reproduction)~\cite{le2024voicebox}  & - &- &-& LL (60k) & 0.347  & 2.1  & 2.96 & 0.655 & 0.443 \\
+    \textbf{(B3)} & ELaTE~\cite{kanda2024making} & B2 &\checkmark &-& LL (60k) + LAUGH (460) & 0.441  & 3.8  & 3.36 & 0.671 & 0.548  \\
+    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    \textbf{(B4)} & Voicebox (fine-tuned) & B2 &- &-& LL (60k) + LAUGH (460) & 0.410  & 2.5  & 3.07 & 0.645 & 0.438  \\
+    \textbf{(B5)} & Voicebox (fine-tuned)       & B2&- &- & LL (60k) + IH-EMO (27k) & 0.479 & 2.2 & 2.96 & 0.641 & 0.397   \\
+    \textbf{(B6)} & Voicebox (fine-tuned)      & B2&- &- & LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.455 & 3.0 & 3.17 & 0.659 & 0.470  \\
+    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    \textbf{(P1)} & EmoCtrl-TTS              & B2&\checkmark &\checkmark & LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.448 & 4.4 & 3.38 & 0.693 & {\bf 0.647} \\
+    \textbf{(P2)} & EmoCtrl-TTS$^{(+)}$ & B2&\checkmark &\checkmark & LL (60k) + IH-EMO (27k) + LAUGH (460) & {\bf 0.497} & 3.2 & {\bf 3.50} & {\bf 0.697} & 0.643 \\
+    \midrule
+    \multicolumn{11}{c}{\textbf{EMO-change}} \\
+    \midrule
+    \textbf{(B2)} & VoiceBox (reproduction)~\cite{le2024voicebox} & - &- &- & LL (60k) & 0.600 & 1.2 & 3.31 & 0.685 & 0.663 \\
+    \textbf{(B3)} & ELaTE~\cite{kanda2024making}  & B2 &\checkmark &- & LL (60k) + LAUGH (460)    & 0.643 & 0.2 & {\bf 3.52} & {\bf 0.700} & 0.761 \\
+
+    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    \textbf{(B6)} & Voicebox (fine-tuned)        & B2 &- &-& LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.622 & 1.1 & 3.31 & 0.678 & 0.655  \\
+    \textcolor{black}{\textbf{(P1)}} & \textcolor{black}{EmoCtrl-TTS}                  & B2 & \checkmark &\checkmark & LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.671 & {\bf 0.0}  & 3.45 & 0.685 & {\bf 0.822}  \\
+    \textbf{(P2)} & EmoCtrl-TTS$^{(+)}$ & B2 &\checkmark &\checkmark& LL (60k) + IH-EMO (27k) + LAUGH (460) & {\bf 0.684} & 0.9 & 3.44 & 0.679 & 0.811  \\
+
+    \bottomrule
+\end{tabular}
+}
+\vspace{-5mm}
+\end{table*}
+
+
+

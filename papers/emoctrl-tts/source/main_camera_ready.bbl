@@ -1,0 +1,213 @@
+\begin{thebibliography}{10}
+
+\bibitem{zhao2023emotion}
+Wei Zhao and Zheng Yang,
+\newblock ``An emotion speech synthesis method based on {VITS},''
+\newblock {\em Applied Sciences}, vol. 13, no. 4, pp. 2225, 2023.
+
+\bibitem{tang2024ed}
+Haobin Tang, Xulong Zhang, Ning Cheng, Jing Xiao, and Jianzong Wang,
+\newblock ``{ED-TTS}: Multi-scale emotion modeling using cross-domain emotion diarization for emotional speech synthesis,''
+\newblock {\em arXiv preprint arXiv:2401.08166}, 2024.
+
+\bibitem{guo2023emodiff}
+Yiwei Guo, Chenpeng Du, Xie Chen, and Kai Yu,
+\newblock ``{EmoDiff}: Intensity controllable emotional text-to-speech with soft-label guidance,''
+\newblock in {\em ICASSP 2023}. IEEE, 2023, pp. 1--5.
+
+\bibitem{tang2023emomix}
+Haobin Tang, Xulong Zhang, Jianzong Wang, Ning Cheng, and Jing Xiao,
+\newblock ``{EmoMix}: Emotion mixing via diffusion models for emotional speech synthesis,''
+\newblock {\em arXiv preprint arXiv:2306.00648}, 2023.
+
+\bibitem{zhou2022speech}
+Kun Zhou, Berrak Sisman, Rajib Rana, Bj{\"o}rn~W Schuller, and Haizhou Li,
+\newblock ``Speech synthesis with mixed emotions,''
+\newblock {\em IEEE Transactions on Affective Computing}, 2022.
+
+\bibitem{tang2023qi}
+Haobin Tang, Xulong Zhang, Jianzong Wang, Ning Cheng, and Jing Xiao,
+\newblock ``{QI-TTS}: Questioning intonation control for emotional speech synthesis,''
+\newblock in {\em ICASSP 2023}. IEEE, 2023, pp. 1--5.
+
+\bibitem{lei2022msemotts}
+Yi~Lei, Shan Yang, Xinsheng Wang, and Lei Xie,
+\newblock ``{MsEmoTTS}: Multi-scale emotion transfer, prediction, and control for emotional speech synthesis,''
+\newblock {\em IEEE/ACM Transactions on Audio, Speech, and Language Processing}, vol. 30, pp. 853--864, 2022.
+
+\bibitem{shin2022text}
+Yookyung Shin, Younggun Lee, Suhee Jo, Yeongtae Hwang, and Taesu Kim,
+\newblock ``Text-driven emotional style control and cross-speaker style transfer in neural tts,''
+\newblock {\em arXiv preprint arXiv:2207.06000}, 2022.
+
+\bibitem{lee2017emotional}
+Younggun Lee, Azam Rabiee, and Soo-Young Lee,
+\newblock ``Emotional end-to-end neural speech synthesizer,''
+\newblock {\em arXiv preprint arXiv:1711.05447}, 2017.
+
+\bibitem{li2021controllable}
+Tao Li, Shan Yang, Liumeng Xue, and Lei Xie,
+\newblock ``Controllable emotion transfer for end-to-end speech synthesis,''
+\newblock in {\em ISCSLP 2021}. IEEE, 2021, pp. 1--5.
+
+\bibitem{cai2021emotion}
+Xiong Cai, Dongyang Dai, Zhiyong Wu, Xiang Li, Jingbei Li, and Helen Meng,
+\newblock ``Emotion controllable speech synthesis using emotion-unlabeled dataset with the assistance of cross-domain speech emotion recognition,''
+\newblock in {\em ICASSP 2021}. IEEE, 2021, pp. 5734--5738.
+
+\bibitem{cho2024emosphere}
+Deok-Hyeon Cho, Hyung-Seok Oh, Seung-Bin Kim, Sang-Hoon Lee, and Seong-Whan Lee,
+\newblock ``{EmoSphere-TTS}: Emotional style and intensity modeling via spherical emotion vector for controllable emotional text-to-speech,''
+\newblock {\em arXiv e-prints}, pp. arXiv--2406, 2024.
+
+\bibitem{le2024voicebox}
+Matthew Le, Apoorv Vyas, Bowen Shi, Brian Karrer, Leda Sari, Rashel Moritz, Mary Williamson, Vimal Manohar, Yossi Adi, Jay Mahadeokar, et~al.,
+\newblock ``{VoiceBox}: Text-guided multilingual universal speech generation at scale,''
+\newblock {\em Advances in neural information processing systems}, vol. 36, 2024.
+
+\bibitem{kanda2024making}
+Naoyuki Kanda, Xiaofei Wang, Sefik~Emre Eskimez, Manthan Thakker, Hemin Yang, Zirun Zhu, Min Tang, Canrun Li, Steven Tsai, Zhen Xiao, et~al.,
+\newblock ``Making flow-matching-based zero-shot text-to-speech laugh as you like,''
+\newblock {\em arXiv preprint arXiv:2402.07383}, 2024.
+
+\bibitem{lipman2023flow}
+Yaron Lipman, Ricky T.~Q. Chen, Heli Ben-Hamu, Maximilian Nickel, and Matthew Le,
+\newblock ``Flow matching for generative modeling,''
+\newblock in {\em ICLR 2023}, 2023.
+
+\bibitem{chen2018neural}
+Ricky~TQ Chen, Yulia Rubanova, Jesse Bettencourt, and David~K Duvenaud,
+\newblock ``Neural ordinary differential equations,''
+\newblock {\em Advances in neural information processing systems}, vol. 31, 2018.
+
+\bibitem{ryokai2018capturing}
+Kimiko Ryokai, Elena Durán~López, Noura Howell, Jon Gillick, and David Bamman,
+\newblock ``Capturing, representing, and interacting with laughter,''
+\newblock in {\em CHI 2018}, 2018, pp. 1--12.
+
+\bibitem{gillick2021robust}
+Jon Gillick, Wesley Deng, Kimiko Ryokai, and David Bamman,
+\newblock ``Robust laughter detection in noisy environments.,''
+\newblock in {\em Interspeech}, 2021, vol.~8, p. 2021.
+
+\bibitem{russell1980circumplex}
+James~A Russell,
+\newblock ``A circumplex model of affect.,''
+\newblock {\em Journal of personality and social psychology}, vol. 39, no. 6, pp. 1161, 1980.
+
+\bibitem{lotfian2017building}
+Reza Lotfian and Carlos Busso,
+\newblock ``Building naturalistic emotionally balanced speech corpus by retrieving emotional speech from existing podcast recordings,''
+\newblock {\em IEEE Transactions on Affective Computing}, vol. 10, no. 4, pp. 471--483, 2017.
+
+\bibitem{ju2024naturalspeech}
+Zeqian Ju, Yuancheng Wang, Kai Shen, Xu~Tan, Detai Xin, Dongchao Yang, Yanqing Liu, Yichong Leng, Kaitao Song, Siliang Tang, et~al.,
+\newblock ``{NaturalSpeech 3}: Zero-shot speech synthesis with factorized codec and diffusion models,''
+\newblock {\em arXiv preprint arXiv:2403.03100}, 2024.
+
+\bibitem{wagner2023dawn}
+Johannes Wagner, Andreas Triantafyllopoulos, Hagen Wierstorf, Maximilian Schmitt, Felix Burkhardt, Florian Eyben, and Bj{\"o}rn~W Schuller,
+\newblock ``Dawn of the transformer era in speech emotion recognition: Closing the valence gap,''
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence}, pp. 1--13, 2023.
+
+\bibitem{baevski2020wav2vec}
+Alexei Baevski, Yuhao Zhou, Abdelrahman Mohamed, and Michael Auli,
+\newblock ``wav2vec 2.0: A framework for self-supervised learning of speech representations,''
+\newblock {\em Advances in neural information processing systems}, vol. 33, pp. 12449--12460, 2020.
+
+\bibitem{wang2024investigation}
+Xiaofei Wang, Sefik~Emre Eskimez, Manthan Thakker, Hemin Yang, Zirun Zhu, Min Tang, Yufei Xia, Jinzhu Li, Sheng Zhao, Jinyu Li, et~al.,
+\newblock ``An investigation of noise robustness for flow-matching-based zero-shot tts,''
+\newblock in {\em Interspeech}, 2024.
+
+\bibitem{ma2023emotion2vec}
+Ziyang Ma, Zhisheng Zheng, Jiaxin Ye, Jinchao Li, Zhifu Gao, Shiliang Zhang, and Xie Chen,
+\newblock ``emotion2vec: Self-supervised pre-training for speech emotion representation,''
+\newblock {\em arXiv preprint arXiv:2312.15185}, 2023.
+
+\bibitem{reddy2022dnsmos}
+Chandan~KA Reddy, Vishak Gopal, and Ross Cutler,
+\newblock ``{DNSMOS P.835}: A non-intrusive perceptual objective speech quality metric to evaluate noise suppressors,''
+\newblock in {\em ICASSP 2022}. IEEE, 2022, pp. 886--890.
+
+\bibitem{kahn2020libri}
+Jacob Kahn, Morgane Riviere, Weiyi Zheng, Evgeny Kharitonov, Qiantong Xu, Pierre-Emmanuel Mazar{\'e}, Julien Karadayi, Vitaliy Liptchinsky, Ronan Collobert, Christian Fuegen, et~al.,
+\newblock ``{Libri-Light}: A benchmark for {ASR} with limited or no supervision,''
+\newblock in {\em ICASSP 2020}. IEEE, 2020, pp. 7669--7673.
+
+\bibitem{panayotov2015librispeech}
+Vassil Panayotov, Guoguo Chen, Daniel Povey, and Sanjeev Khudanpur,
+\newblock ``{LibriSpeech}: an {ASR} corpus based on public domain audio books,''
+\newblock in {\em ICASSP 2015}. IEEE, 2015, pp. 5206--5210.
+
+\bibitem{carletta2005ami}
+Jean Carletta, Simone Ashby, Sebastien Bourban, Mike Flynn, Mael Guillemot, Thomas Hain, Jaroslav Kadlec, Vasilis Karaiskos, Wessel Kraaij, Melissa Kronenthal, et~al.,
+\newblock ``The {AMI} meeting corpus: A pre-announcement,''
+\newblock in {\em ICMI 2005}. Springer, 2005, pp. 28--39.
+
+\bibitem{godfrey1992switchboard}
+John~J Godfrey, Edward~C Holliman, and Jane McDaniel,
+\newblock ``{SWITCHBOARD}: Telephone speech corpus for research and development,''
+\newblock in {\em ICASSP 1992}. IEEE Computer Society, 1992, vol.~1, pp. 517--520.
+
+\bibitem{cieri2004fisher}
+Christopher Cieri, David Miller, and Kevin Walker,
+\newblock ``The {Fisher} corpus: A resource for the next generations of speech-to-text.,''
+\newblock in {\em LREC}, 2004, vol.~4, pp. 69--71.
+
+\bibitem{xin2024jvnv}
+Detai Xin, Junfeng Jiang, Shinnosuke Takamichi, Yuki Saito, Akiko Aizawa, and Hiroshi Saruwatari,
+\newblock ``{JVNV}: A corpus of {Japanese} emotional speech with verbal content and nonverbal expressions,''
+\newblock {\em IEEE Access}, 2024.
+
+\bibitem{livingstone2018ryerson}
+Steven~R Livingstone and Frank~A Russo,
+\newblock ``The ryerson audio-visual database of emotional speech and song ({RAVDESS}): A dynamic, multimodal set of facial and vocal expressions in north american english,''
+\newblock {\em PloS one}, vol. 13, no. 5, pp. e0196391, 2018.
+
+\bibitem{yang2024diarist}
+Mu~Yang, Naoyuki Kanda, Xiaofei Wang, Junkun Chen, Peidong Wang, Jian Xue, Jinyu Li, and Takuya Yoshioka,
+\newblock ``{DiariST}: Streaming speech translation with speaker diarization,''
+\newblock in {\em ICASSP 2024}. IEEE, 2024, pp. 10866--10870.
+
+\bibitem{radford2023robust}
+Alec Radford, Jong~Wook Kim, Tao Xu, Greg Brockman, Christine McLeavey, and Ilya Sutskever,
+\newblock ``Robust speech recognition via large-scale weak supervision,''
+\newblock in {\em ICML 2023}. PMLR, 2023, pp. 28492--28518.
+
+\bibitem{chen2022wavlm}
+Sanyuan Chen, Chengyi Wang, Zhengyang Chen, Yu~Wu, Shujie Liu, Zhuo Chen, Jinyu Li, Naoyuki Kanda, Takuya Yoshioka, Xiong Xiao, et~al.,
+\newblock ``{WavLM}: Large-scale self-supervised pre-training for full stack speech processing,''
+\newblock {\em IEEE Journal of Selected Topics in Signal Processing}, vol. 16, no. 6, pp. 1505--1518, 2022.
+
+\bibitem{wang2023neural}
+Chengyi Wang, Sanyuan Chen, Yu~Wu, Ziqiang Zhang, Long Zhou, Shujie Liu, Zhuo Chen, Yanqing Liu, Huaming Wang, Jinyu Li, et~al.,
+\newblock ``Neural codec language models are zero-shot text-to-speech synthesizers,''
+\newblock {\em arXiv preprint arXiv:2301.02111}, 2023.
+
+\bibitem{barrault2023seamless}
+Lo{\"\i}c Barrault, Yu-An Chung, Mariano~Coria Meglioli, David Dale, Ning Dong, Mark Duppenthaler, Paul-Ambroise Duquenne, Brian Ellis, Hady Elsahar, Justin Haaheim, et~al.,
+\newblock ``Seamless: Multilingual expressive and streaming speech translation,''
+\newblock {\em arXiv preprint arXiv:2312.05187}, 2023.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin,
+\newblock ``Attention is all you need,''
+\newblock {\em Advances in neural information processing systems}, vol. 30, 2017.
+
+\bibitem{kumar2019melgan}
+Kundan Kumar, Rithesh Kumar, Thibault De~Boissiere, Lucas Gestin, Wei~Zhen Teoh, Jose Sotelo, Alexandre De~Brebisson, Yoshua Bengio, and Aaron~C Courville,
+\newblock ``{MelGAN}: Generative adversarial networks for conditional waveform synthesis,''
+\newblock {\em Advances in neural information processing systems}, vol. 32, 2019.
+
+\bibitem{achiam2023gpt}
+Josh Achiam, Steven Adler, Sandhini Agarwal, Lama Ahmad, Ilge Akkaya, Florencia~Leoni Aleman, Diogo Almeida, Janko Altenschmidt, Sam Altman, Shyamal Anadkat, et~al.,
+\newblock ``{GPT-4} technical report,''
+\newblock {\em arXiv preprint arXiv:2303.08774}, 2023.
+
+\bibitem{eskimez2024total}
+Sefik~Emre Eskimez, Xiaofei Wang, Manthan Thakker, Chung-Hsien Tsai, Canrun Li, Zhen Xiao, Hemin Yang, Zirun Zhu, Min Tang, Jinyu Li, et~al.,
+\newblock ``Total-duration-aware duration modeling for text-to-speech systems,''
+\newblock {\em arXiv e-prints}, pp. arXiv--2406, 2024.
+
+\end{thebibliography}

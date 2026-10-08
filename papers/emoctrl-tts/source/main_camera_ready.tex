@@ -1,0 +1,92 @@
+% Template for Blind SLT-2024 paper; to be used with:
+%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
+%          IEEEbib.bst - IEEE bibliography style file.
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{spconf,amsmath,graphicx}
+\usepackage{arydshln}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{pifont}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{cite}
+\usepackage{scrextend}
+
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+% Example definitions.
+% --------------------
+\def\x{{\mathbf x}}
+\def\L{{\cal L}}
+\DeclareUnicodeCharacter{0301}{\'}
+
+% Title.
+% ------
+% \title{EmoCtrl-TTS: Emotion-Controllable Zero-Shot Text-to-Speech \\ Using Conditional Flow-Matching}
+\title{Laugh Now Cry Later: Controlling Time-Varying Emotional States of Flow-Matching-Based Zero-Shot Text-to-Speech}
+
+%
+% Single address.
+% ---------------
+% \name{BLIND}
+% \address{BLIND}
+%
+% For example:
+% ------------
+%\address{School\\
+%	Department\\
+%	Address}
+%
+% Two addresses (uncomment and modify for two-address case).
+% ----------------------------------------------------------
+% \twoauthors
+
+\name{\begin{tabular}{c}
+    Haibin Wu$^{1\dagger}$, Xiaofei Wang$^2$, Sefik Emre Eskimez$^2$, Manthan Thakker$^2$, Daniel Tompkins$^2$,\\
+ Chung-Hsien Tsai$^2$, Canrun Li$^2$, Zhen Xiao$^2$, Sheng Zhao$^2$, Jinyu Li$^2$, Naoyuki Kanda$^2$
+\end{tabular}\thanks{$^\dagger$Work performed during an internship at Microsoft.}}
+\address{$^1$National Taiwan University, $^2$Microsoft Corporation, USA}
+
+%
+\begin{document}
+\ninept
+%
+\maketitle
+%
+\begin{abstract}
+
+
+People change their tones of voice, often accompanied by nonverbal vocalizations (NVs) such as laughter and cries, to convey rich emotions. However, most text-to-speech (TTS) systems lack the capability to generate speech with rich emotions, including NVs. This paper introduces EmoCtrl-TTS, an emotion-controllable zero-shot TTS that can generate highly emotional speech with NVs for any speaker. EmoCtrl-TTS leverages arousal and valence values, as well as laughter embeddings, to condition the flow-matching-based zero-shot TTS. To achieve high-quality emotional speech generation, EmoCtrl-TTS is trained using more than 27,000 hours of expressive data curated based on pseudo-labeling.  Comprehensive evaluations demonstrate that EmoCtrl-TTS excels in mimicking the emotions of audio prompts in speech-to-speech translation scenarios. We also show that EmoCtrl-TTS can capture emotion changes, express strong emotions, and generate various NVs in zero-shot TTS. See \url{https://aka.ms/emoctrl-tts} for demo samples.
+
+\end{abstract}
+%
+\begin{keywords}
+zero-shot text-to-speech, emotion control, flow matching, speech-to-speech translation
+\end{keywords}
+
+% \pagebreak
+
+\input{sections/intro}
+
+\input{sections/related}
+
+\input{sections/method}
+
+\input{sections/exp}
+
+\input{sections/conclusion}
+
+% \pagebreak
+% References should be produced using the bibtex program from suitable
+% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
+% style file from IEEE produces unsorted bibliography list.
+% -------------------------------------------------------------------------
+\bibliographystyle{IEEEbib}
+\bibliography{strings,refs}
+
+\end{document}

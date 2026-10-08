@@ -1,0 +1,134 @@
+[
+  {
+    "path": "papers/audio-to-audio/figures/.kelip-paper-reading",
+    "size": 107,
+    "sha256": "4cc097e0aa8af6b6146a132e4f711f7a9714703f384fa81c871b736957f0c18c",
+    "git_blob_sha": "925c1353d376783fdba83fe2947c1619b3ca3bda"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/_contact.png",
+    "size": 26663,
+    "sha256": "2c27cab1e451f3430a79ee40d3d8c811bd50341898cdafa3cab8061589681bd1",
+    "git_blob_sha": "18f713d5ac8465e688385d10103ba5076d1d089d"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-01.png",
+    "size": 29240,
+    "sha256": "c830710995f4c7962faf094086888d213790189913e1923e2500baf94bd112ce",
+    "git_blob_sha": "f67498317a5a4bde5aab4329e396f9502e7784d8"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-02.png",
+    "size": 26613,
+    "sha256": "8685eb3ff807bda9d36d7706b015532e0c251f3d22d52141996153ffddac7f43",
+    "git_blob_sha": "643f1ff25c1632de47e3e5795a9d10a0ecdc6bf5"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-03.png",
+    "size": 11131,
+    "sha256": "6f6b65df770f6cce473adf40457a8544a91f91d26e9d479dbcae904662b66790",
+    "git_blob_sha": "587c87332eda6ab567de1cee2283c3896e63ac77"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-04.png",
+    "size": 9879,
+    "sha256": "bd86dd58959d4bbe60623c06f3cd0e6133b882fb18d29734d0a542457efbaee6",
+    "git_blob_sha": "cff593be9ae3b99aae0be7211556847d565f40fa"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-05.png",
+    "size": 29736,
+    "sha256": "a9cd68f226a8fbde8b6506f880c63aa3c83de113f77cfa33fccd9caced64ca98",
+    "git_blob_sha": "f0d995406550d58ac3e2599599488e1ced3e29ab"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-06.png",
+    "size": 10777,
+    "sha256": "12ee58367fe0951863dfd08f2b22dc5f632c351c82c1da1367e8825f292245fd",
+    "git_blob_sha": "47f8bece04afeb3bd968f9eae195984c3213ef04"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/fig-07.png",
+    "size": 10053,
+    "sha256": "51b52598581ba9349d825c6a7c10aa6e2f65d34f63ec3315f86e6e12c8298bf2",
+    "git_blob_sha": "7dc09c6789c72963f781fe39cf56821eb84a1cd5"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/index.json",
+    "size": 4659,
+    "sha256": "f11b8a1ada7b421ab3c4dd705302b0835d9079733c54051c2d1a97d64144d847",
+    "git_blob_sha": "557faf9bdd6170f0ccea6e76077fb64b86454658"
+  },
+  {
+    "path": "papers/audio-to-audio/figures/index.md",
+    "size": 3995,
+    "sha256": "43e9f42df7ac366516c5a908453e3c6ba378dc126bdf29f1ab04398f1634a641",
+    "git_blob_sha": "82b57910781d00455cca5665ad442ad4cc8643e2"
+  },
+  {
+    "path": "papers/audio-to-audio/meta.json",
+    "size": 2846,
+    "sha256": "33a3953ad35848d342f1f2e9ebb8dd425d60442d356f49e0e7d717664225da25",
+    "git_blob_sha": "73889eef6ff16c18c2433d101eb55751c4cd0ebe"
+  },
+  {
+    "path": "papers/audio-to-audio/outline.md",
+    "size": 1361,
+    "sha256": "a04a05772bd519befd98822f75182bfd07edf72cbe5b53ac81fd928adc1e5608",
+    "git_blob_sha": "77bde27ac4490fb42bb0c441b044d4659288cc03"
+  },
+  {
+    "path": "papers/audio-to-audio/paper.tex",
+    "size": 39203,
+    "sha256": "357aafba6d9ae91f44bdeee366cad616d0c6828c325298953d7d7a27d0457740",
+    "git_blob_sha": "6598bca51a6c579af09c1b7997600f03b4128fb3"
+  },
+  {
+    "path": "papers/audio-to-audio/paper.txt",
+    "size": 44681,
+    "sha256": "e7aba47629dce4c854633a2ec5fb5c500b93188a536a523544856c62a67b45a4",
+    "git_blob_sha": "88f46af5ddf2dab39911e5daec3dee54f401ae0f"
+  },
+  {
+    "path": "papers/audio-to-audio/source/00README.json",
+    "size": 223,
+    "sha256": "e319c05d925a619dd2ff24961683a2ccbd060cb04b176ea9754426f9fd509d42",
+    "git_blob_sha": "0566274a58768b6e77dfc7917355fd910a1c1912"
+  },
+  {
+    "path": "papers/audio-to-audio/source/DAFx26_tmpl.bib",
+    "size": 22402,
+    "sha256": "2e3995083d7f94ffd8bfb36a7673efcc898dfbe9bccfbb96e90cf26abcbd46d8",
+    "git_blob_sha": "74a8bba322f855b0f42eb235f989468cbaaed728"
+  },
+  {
+    "path": "papers/audio-to-audio/source/DAFx26_tmpl_v2.tex",
+    "size": 54936,
+    "sha256": "ada196251f6759f3a1f2c3f74e5300eb5ff18e51f280eeb22979488c10250d1b",
+    "git_blob_sha": "3e26717367f9e2ecd09adc5e481c5bf74c261656"
+  },
+  {
+    "path": "papers/audio-to-audio/source/dafx26v3.sty",
+    "size": 17492,
+    "sha256": "cc2c13a4bb97cd1294ef1623608ee685fa3ba97760ff72e8c847a84ccbd614a0",
+    "git_blob_sha": "3dcb04f6c956ea2f33e80ff3b141ab62d9b099b2"
+  },
+  {
+    "path": "papers/audio-to-audio/source/IEEEtranDAFx.bst",
+    "size": 58333,
+    "sha256": "be50dc93c3df2357bc57e46a408e975b15828110f4286f8b9214d3cb1f56c04f",
+    "git_blob_sha": "58969f61c95af29ed703eb1ca3cbb98a3389477f"
+  },
+  {
+    "path": "papers/audio-to-audio/精读笔记.md",
+    "size": 6917,
+    "sha256": "5dcec0ca5bda18329c19282b64ee9fe7ec443950f5dd1156c78ee4cb581234fc",
+    "git_blob_sha": "fd09d6815e8e1b0a153e4f0ec252ebb265802d53"
+  },
+  {
+    "path": "papers/audio-to-audio/upload-status.md",
+    "size": 1301,
+    "sha256": "52b7a3818614b1b098fd85455264f7e7dba2712fef4357af5bd6b0f31c79bbd7",
+    "git_blob_sha": "738b46391fb12bc36c03331d4cdfb5bcd2b450ce"
+  }
+]

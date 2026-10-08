@@ -1,0 +1,38 @@
+
+\begin{table}[t]
+\caption{Comparison of TTS models based on emotion capabilities. 
+}
+\label{tab:tts_comparison}
+\ra{0.9}
+\centering
+ \resizebox{\columnwidth}{!}{
+    \footnotesize
+     \tabcolsep = 0.4mm
+    \begin{tabular}{@{}lccccc@{}}
+    \toprule
+
+    \multirow{2}{*}{\textbf{Model}} & \multirow{2}{*}{\textbf{\parbox[c]{1cm}{\centering Emotion\\change}}} & \multirow{2}{*}{\textbf{NVs}} & \multirow{2}{*}{\textbf{\parbox[c]{1.5cm}{\centering Emotion\\data size}}} & \multirow{2}{*}{\textbf{\parbox[c]{1cm}{\centering Speaker\\number}}} & \multirow{2}{*}{\textbf{\parbox[c]{2.0cm}{\centering Emotion\\data type}}} \\ 
+    \\
+    \midrule
+
+    Emo-VITS~\cite{zhao2023emotion} & \ding{55} & \ding{55} & N/A & N/A & Staged \\ 
+    ED-TTS~\cite{tang2024ed} & \ding{55} & \ding{55} & 70 hours & 1 & Staged \\ 
+    EmoDiff~\cite{guo2023emodiff} & \ding{55} & \ding{55} & 12 hours & 10 & Staged \\
+    EmoMix~\cite{tang2023emomix} & \ding{55} & \ding{55} & $\sim$15 hours & 10 & Staged \\
+    Zhou et al.~\cite{zhou2022speech} & \ding{55} & \ding{55} & $\sim$30 hours & $\sim$100 & Staged \\ 
+    QI-TTS~\cite{tang2023qi} & \ding{55} & \ding{55} & $\sim$15 hours & 10 & Staged \\
+    MsEmoTTS~\cite{lei2022msemotts} & intensity & \ding{55} & 22 hours & 1 & Staged \\
+    Shin et al.~\cite{shin2022text} & \ding{55} & \ding{55} & 57 hours & 38 & Staged \\
+    Lee et al.~\cite{lee2017emotional} & \ding{55} & \ding{55} & 21 hours & 1 & Staged \\
+    Li et al.~\cite{li2021controllable} & \ding{55} & \ding{55} & 14 hours & 1 & Staged \\
+    Cai et al.~\cite{cai2021emotion} & \ding{55} & \ding{55} & 73 hours & 1 & Staged \\ % \midrule
+    EmoSphere-TTS~\cite{cho2024emosphere} & \ding{55} & \ding{55} & $\sim$29 hours & 20 & Staged \\ 
+    ELaTE~\cite{kanda2024making} & happy$\leftrightarrow$neutral & laugh & 460 hours & N/A & Real\\ \midrule
+
+    EmoCtrl-TTS & arbitrary & arbitrary & $\sim$27k hours & N/A & Real \\ 
+    \bottomrule
+    \end{tabular}
+}
+% \vspace{-.5em}
+\vspace{-5mm}
+\end{table}

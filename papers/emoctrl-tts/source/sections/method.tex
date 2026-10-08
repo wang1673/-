@@ -1,0 +1,105 @@
+
+\vspace{-.5em}
+\section{EmoCtrl-TTS}
+\label{sec:method}
+
+\vspace{-.5em}
+\subsection{Overview}
+\label{ssec: method overview}
+\vspace{-.5em}
+
+\subsubsection{Model training}
+Figure~\ref{fig:overview} (a) illustrates the training procedure of EmoCtrl-TTS.
+Given a training audio sample $s$ with transcription $y$, we extract its mel-filterbank features $\hat{s}\in\mathbb{R}^{F\times T}$, where $F$ denotes the feature dimension and $T$ represents the sequence length. 
+Additionally, we employ force alignment and a phoneme embedding layer to obtain a frame-wise phoneme embedding $a \in\mathbb{R}^{D^{phn}\times T}$, where $D^{phn}$ is the phoneme embedding dimension. 
+The phoneme embedding layer is a part of the audio model and is jointly trained.
+Furthermore, we extract frame-wise embeddings that represent
+NV  $h \in\mathbb{R}^{D^{NV}\times T}$ and emotion $e \in\mathbb{R}^{D^{emo}\times T}$,
+where $D^{NV}$ and $D^{emo}$ denote the dimensions of NV and emotion embeddings respectively.
+The embeddings $h$ and $e$ are extracted by using pre-trained NV and emotion detector,
+respectively, which are discussed in Section \ref{ssec:nv_feature} and \ref{ssec:feature}.
+We leverage the speech infilling task introduced in~\cite{le2024voicebox} to train the audio model, focusing on training a conditional flow-matching model to estimate the distribution $P(m\odot\hat{s}|(1-m)\odot\hat{s},a,h,e)$,
+where $m\in\{0,1\}^{F\times T}$ represents a binary temporal mask, and $\odot$ 
+is the Hadamard product.
+
+\subsubsection{Inference}
+Figure~\ref{fig:overview} (b) illustrates the inference procedure 
+of EmoCtrl-TTS.
+During inference, the model takes four inputs: 
+text prompt $y^{text}$,
+speaker prompt audio $s^{spk}$,
+NV prompt audio $s^{NV}$, 
+and emotion prompt audio $s^{emo}$.
+The text prompt represents the content of the generated speech. Meanwhile, the speaker, 
+NV, and emotion prompts control the characteristics of the speaker, NV, and emotion in the generated speech, respectively.
+In speech-to-speech translation scenario, we use the source audio 
+for $s^{spk}$, $s^{NV}$ and $s^{emo}$, and
+translated text as $y^{text}$.
+This results in the translated speech maintaining the source speaker’s voice and emotional characteristics.
+
+The speaker prompt $s^{spk}$ is first converted to the mel-filterbank features $\hat{s}^{spk}$. It is also converted to phoneme embeddings $a^{spk}$ by applying automatic speech recognition (ASR) and then the phoneme embedding layer. The speaker prompt is further converted to NV embeddings $h^{spk}$ and emotion embeddings $e^{spk}$ based on the NV detector and emotion detector, respectively.
+
+Meanwhile, the text prompt $y^{text}$ is converted to text prompt embeddings $a^{text}$ based on the phone duration model~\cite{le2024voicebox} followed by the phoneme embedding layer. The NV prompt embedding $h^{NV}$ and the emotion prompt embedding $e^{emo}$ are extracted from the NV detector and emotion detector, respectively. 
+Note if the lengths of $h^{NV}$ and $h^{emo}$ are different from that of $a^{text}$, we apply linear interpolation to $h^{NV}$ and $h^{emo}$ to match their lengths to that of $a^{text}$.
+
+The flow-matching-based audio model will then generate mel-filterbank features $\tilde{s}$ based on the learned distribution of $P(\tilde{s}|[\hat{s}^{spk}; z^{text}], [a^{spk}; a^{text}], [h^{spk}; h^{NV}], [e^{spk}; e^{emo}])$, where $z^{text}$ 
+is an all-zero matrix with a shape of ${F\times T^{\rm text}}$,
+and $[;]$ denotes concatenation operation in the time dimension. The generated part of $\tilde{s}$ is then converted to the speech signal using a vocoder.
+
+
+\vspace{-.5em}
+\subsection{NV embeddings}
+\label{ssec:nv_feature}
+
+For our proposed framework, it is essential to figure out a suitable embedding that can represent the characteristics of various NVs. In ELaTE~\cite{kanda2024making}, an embedding obtained from an off-the-shelf laughter detection model~\cite{ryokai2018capturing, gillick2021robust}\footref{fn:laugh} was used to control laughter in zero-shot TTS.
+
+One of our findings in this work is that this laughter detector-based embedding actually captures a broader range of NV types than just laughter. By appropriately using the laughter-detector-based embedding, we have successfully generated various NVs such as crying and moaning.
+Therefore, throughout this paper, we use a 32-dimensional embedding from the laughter detection model as the NV embedding.
+
+
+
+\vspace{-.5em}
+\subsection{Emotion embeddings}
+\label{ssec:feature}
+\vspace{-.5em}
+Based on the Russell's circumplex model of emotion,
+emotions can be represented in two major ways \cite{russell1980circumplex}:
+Firstly, emotions can be categorized into different emotion classes, such as happiness or sadness, reflecting distinct emotional states. 
+Secondly, emotions can be described using two attributes, arousal, and valence, sometimes with the third attribute of dominance. 
+% Arousal refers to the intensity of the emotion, whether calm or highly stimulated. 
+Arousal refers to the level of intensity or activation of the emotion, ranging from calm to highly stimulated.
+% Valence indicates whether the emotion is positive or negative. 
+Valence refers to how pleasant or unpleasant an emotion is, ranging from very positive to very negative.
+Dominance relates to how much control one feels over the situation.
+
+Finding an effective emotion embedding is crucial for our framework. 
+In our preliminary experiment,
+we used the eight emotion categories determined in \cite{lotfian2017building}
+where each emotion category was represented by a learnable embedding,
+which is then used as $e^{spk}$.
+However, we found the TTS model struggled to generate emotionally expressive speech with this approach. % when provided with different emotion classes as inputs.
+We also explored using the prosody encoder of the FACodec \cite{ju2024naturalspeech}. However, we found that the output of the prosody encoder contains phonetic information, resulting in the speech generation following the contents of the emotion prompt audio rather than the text prompt.
+%the reduced intelligibility of the generated speech.
+
+Ultimately, we identify a promising representation: arousal and valence values
+predicted by a pre-trained arousal-valence-dominance extractor \cite{wagner2023dawn}\footnote{\label{fn:aro-val}\url{https://github.com/audeering/w2v2-how-to}}. 
+This extractor is initialized with a wav2vec 2 model \cite{baevski2020wav2vec} and fine-tuned on MSP-PODCAST data \cite{lotfian2017building} to predict arousal, valence, and dominance values. 
+Chunk-wise arousal-valence values ($D^{emo}=2$) are extracted using a sliding window with a window size of 0.5 seconds and a hop size of 0.25 seconds. 
+Because the extractor outputs each value in the range of 0.0 to 1.0, we subtract 0.5 from the estimated value to adjust the range from -0.5 to 0.5.
+We align the length of the extracted values with the phoneme embedding through linear interpolation.
+This representation allows for capturing more nuanced emotional variations within each utterance.
+Note that 
+our preliminary investigations revealed that the additional use of the dominance value hurt the audio quality; therefore, we omitted the dominance value.
+
+
+\vspace{-.5em}
+\subsection{Collecting large-scale emotional data with pseudo-labeling}
+\label{ssec:data}
+\vspace{-.5em}
+
+The quantity and quality of training data is a crucial factor for achieving high-quality TTS. 
+However, either the recording of emotional speech or manual annotation of the recording is costly, making it difficult to scale the data size to more than 100 hours.
+
+In this work, we curate 27k hours of highly emotional data, referred to as In-house Emotion Data (IH-EMO) in this paper, from 200k hours of in-house unlabeled anonymized English audio~\cite{wang2024investigation}. The data curation procedure is as follows. We first employ the emotion2vec model \cite{ma2023emotion2vec}\footnote{\label{fn:emo2vec}\url{https://github.com/ddlBoJack/emotion2vec}} to obtain predicted emotion confidence scores. We retain the samples if the predicted emotion is \{angry, disgusted, fearful, sad, surprised\} or the predicted emotion is \{neutral, happy\} with a confidence score of 1.0.\footnote{The dominant predictions were neutral or happy. To balance the emotion category, we decided to exclude the samples with low confidence scores for these two emotion classes. Even after this procedure, these two emotion classes were still the top-2 categories in the collected data.} We further apply DNSMOS~\cite{reddy2022dnsmos} and retain only samples whose OVLR score is greater than 3.0. Finally, we also apply an in-house speaker change detection model and discard the sample whenever a speaker change is detected. As a result, 27k hours of emotional audio are collected.
+We use an off-the-shelf speech recognition model\footnote{\label{fn:kaldi}\url{https://kaldi-asr.org/models/m13}} to obtain the transcription.
+

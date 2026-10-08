@@ -1,0 +1,473 @@
+\begin{thebibliography}{93}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agostinelli et~al.(2023)Agostinelli, Denk, Borsos, Engel, Verzetti, Caillon, Huang, Jansen, Roberts, Tagliasacchi, et~al.]{musiclm}
+Andrea Agostinelli, Timo~I Denk, Zal{\'a}n Borsos, Jesse Engel, Mauro Verzetti, Antoine Caillon, Qingqing Huang, Aren Jansen, Adam Roberts, Marco Tagliasacchi, et~al.
+\newblock Musiclm: Generating music from text.
+\newblock \emph{arXiv preprint arXiv:2301.11325}, 2023.
+
+\bibitem[Arik et~al.(2018)Arik, Chen, Peng, Ping, and Zhou]{arik2018neural}
+Sercan Arik, Jitong Chen, Kainan Peng, Wei Ping, and Yanqi Zhou.
+\newblock Neural voice cloning with a few samples.
+\newblock \emph{Advances in neural information processing systems}, 31, 2018.
+
+\bibitem[Bando et~al.(2020)Bando, Sekiguchi, and Yoshii]{bando2020adaptive}
+Yoshiaki Bando, Kouhei Sekiguchi, and Kazuyoshi Yoshii.
+\newblock Adaptive neural speech enhancement with a denoising variational autoencoder.
+\newblock In \emph{Interspeech}, pages 2437--2441, 2020.
+
+\bibitem[Bassan et~al.(2022)Bassan, Adi, and Rosenschein]{bassan}
+Shahaf Bassan, Yossi Adi, and Jeffrey~S Rosenschein.
+\newblock Unsupervised symbolic music segmentation using ensemble temporal prediction errors.
+\newblock \emph{arXiv preprint arXiv:2207.00760}, 2022.
+
+\bibitem[Caillon and Esling(2021)]{caillon2021rave}
+Antoine Caillon and Philippe Esling.
+\newblock Rave: A variational autoencoder for fast and high-quality neural audio synthesis.
+\newblock \emph{arXiv preprint arXiv:2111.05011}, 2021.
+
+\bibitem[Chowdhury et~al.(2023)Chowdhury, Ghosh, Dasgupta, Ratnarajah, Tyagi, and Manocha]{adverb}
+Sanjoy Chowdhury, Sreyan Ghosh, Subhrajyoti Dasgupta, Anton Ratnarajah, Utkarsh Tyagi, and Dinesh Manocha.
+\newblock Adverb: Visually guided audio dereverberation.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 7884--7896, 2023.
+
+\bibitem[Chuang et~al.(2022)Chuang, Wang, and Tsao]{chuang2022improved}
+Shang-Yi Chuang, Hsin-Min Wang, and Yu Tsao.
+\newblock Improved lite audio-visual speech enhancement.
+\newblock \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 30:\penalty0 1345--1359, 2022.
+
+\bibitem[Chung et~al.(2022)Chung, Hou, Longpre, Zoph, Tay, Fedus, Li, Wang, Dehghani, Brahma, et~al.]{flant5}
+Hyung~Won Chung, Le Hou, Shayne Longpre, Barret Zoph, Yi Tay, William Fedus, Eric Li, Xuezhi Wang, Mostafa Dehghani, Siddhartha Brahma, et~al.
+\newblock Scaling instruction-finetuned language models.
+\newblock \emph{arXiv preprint arXiv:2210.11416}, 2022.
+
+\bibitem[Copet et~al.(2023)Copet, Kreuk, Gat, Remez, Kant, Synnaeve, Adi, and D{\'e}fossez]{musicgen}
+Jade Copet, Felix Kreuk, Itai Gat, Tal Remez, David Kant, Gabriel Synnaeve, Yossi Adi, and Alexandre D{\'e}fossez.
+\newblock Simple and controllable music generation.
+\newblock \emph{arXiv preprint arXiv:2306.05284}, 2023.
+
+\bibitem[Dai et~al.(2023)Dai, Li, Li, Tiong, Zhao, Wang, Li, Fung, and Hoi]{instructBLIP}
+Wenliang Dai, Junnan Li, Dongxu Li, Anthony Meng~Huat Tiong, Junqi Zhao, Weisheng Wang, Boyang Li, Pascale Fung, and Steven Hoi.
+\newblock Instructblip: Towards general-purpose vision-language models with instruction tuning.
+\newblock 2023.
+
+\bibitem[Das et~al.(2020)Das, Gupta, and Neogi]{das2020measurement}
+Paromita Das, Somsubhra Gupta, and Biswarup Neogi.
+\newblock Measurement of effect of music on human brain and consequent impact on attentiveness and concentration during reading.
+\newblock \emph{Procedia computer science}, 172:\penalty0 1033--1038, 2020.
+
+\bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{bert}
+Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova.
+\newblock Bert: Pre-training of deep bidirectional transformers for language understanding.
+\newblock \emph{arXiv preprint arXiv:1810.04805}, 2018.
+
+\bibitem[Dhariwal et~al.(2020)Dhariwal, Jun, Payne, Kim, Radford, and Sutskever]{dhariwal2020jukebox}
+Prafulla Dhariwal, Heewoo Jun, Christine Payne, Jong~Wook Kim, Alec Radford, and Ilya Sutskever.
+\newblock Jukebox: A generative model for music.
+\newblock \emph{arXiv preprint arXiv:2005.00341}, 2020.
+
+\bibitem[Dong et~al.(2018)Dong, Hsiao, Yang, and Yang]{dong2018musegan}
+Hao-Wen Dong, Wen-Yi Hsiao, Li-Chia Yang, and Yi-Hsuan Yang.
+\newblock Musegan: Multi-track sequential generative adversarial networks for symbolic music generation and accompaniment.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial Intelligence}, 2018.
+
+\bibitem[Dosovitskiy et~al.(2020)Dosovitskiy, Beyer, Kolesnikov, Weissenborn, Zhai, Unterthiner, Dehghani, Minderer, Heigold, Gelly, et~al.]{vit}
+Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, Matthias Minderer, Georg Heigold, Sylvain Gelly, et~al.
+\newblock An image is worth 16x16 words: Transformers for image recognition at scale.
+\newblock \emph{arXiv preprint arXiv:2010.11929}, 2020.
+
+\bibitem[Elizalde et~al.(2023)Elizalde, Deshmukh, Al~Ismail, and Wang]{clap}
+Benjamin Elizalde, Soham Deshmukh, Mahmoud Al~Ismail, and Huaming Wang.
+\newblock Clap learning audio concepts from natural language supervision.
+\newblock In \emph{ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 1--5. IEEE, 2023.
+
+\bibitem[Fedorenko et~al.(2012)Fedorenko, McDermott, Norman-Haignere, and Kanwisher]{fedorenko2012sensitivity}
+Evelina Fedorenko, Josh~H McDermott, Sam Norman-Haignere, and Nancy Kanwisher.
+\newblock Sensitivity to musical structure in the human brain.
+\newblock \emph{Journal of neurophysiology}, 108\penalty0 (12):\penalty0 3289--3300, 2012.
+
+\bibitem[Forsgren and Martiros()]{riffusion}
+Seth Forsgren and Hayk Martiros.
+\newblock Riffusion-stable diffusion for real-time music generation, 2022.
+\newblock \emph{URL https://riffusion. com/about}, 6.
+
+\bibitem[Gabbay et~al.(2021)Gabbay, Cohen, and Hoshen]{imageisworththousand}
+Aviv Gabbay, Niv Cohen, and Yedid Hoshen.
+\newblock An image is worth more than a thousand words: Towards disentanglement in the wild.
+\newblock \emph{Advances in Neural Information Processing Systems}, 34:\penalty0 9216--9228, 2021.
+
+\bibitem[Gan et~al.(2020)Gan, Huang, Chen, Tenenbaum, and Torralba]{gan2020foley}
+Chuang Gan, Deng Huang, Peihao Chen, Joshua~B Tenenbaum, and Antonio Torralba.
+\newblock Foley music: Learning to generate music from videos.
+\newblock In \emph{Computer Vision--ECCV 2020: 16th European Conference, Glasgow, UK, August 23--28, 2020, Proceedings, Part XI 16}, pages 758--775. Springer, 2020.
+
+\bibitem[Garcia et~al.(2023)Garcia, Seetharaman, Kumar, and Pardo]{garcia2023vampnet}
+Hugo~Flores Garcia, Prem Seetharaman, Rithesh Kumar, and Bryan Pardo.
+\newblock Vampnet: Music generation via masked acoustic token modeling.
+\newblock \emph{arXiv preprint arXiv:2307.04686}, 2023.
+
+\bibitem[Gemmeke et~al.(2017)Gemmeke, Ellis, Freedman, Jansen, Lawrence, Moore, Plakal, and Ritter]{gemmeke2017audio}
+Jort~F Gemmeke, Daniel~PW Ellis, Dylan Freedman, Aren Jansen, Wade Lawrence, R~Channing Moore, Manoj Plakal, and Marvin Ritter.
+\newblock Audio set: An ontology and human-labeled dataset for audio events.
+\newblock In \emph{2017 IEEE international conference on acoustics, speech and signal processing (ICASSP)}, pages 776--780. IEEE, 2017.
+
+\bibitem[Ghosal et~al.(2023)Ghosal, Majumder, Mehrish, and Poria]{tango}
+Deepanway Ghosal, Navonil Majumder, Ambuj Mehrish, and Soujanya Poria.
+\newblock Text-to-audio generation using instruction-tuned llm and latent diffusion model.
+\newblock \emph{arXiv preprint arXiv:2304.13731}, 2023.
+
+\bibitem[Habibi and Damasio(2014)]{habibi2014music}
+Assal Habibi and Antonio Damasio.
+\newblock Music, feelings, and the human brain.
+\newblock \emph{Psychomusicology: Music, Mind, and Brain}, 24\penalty0 (1):\penalty0 92, 2014.
+
+\bibitem[Hershey et~al.(2017)Hershey, Chaudhuri, Ellis, Gemmeke, Jansen, Moore, Plakal, Platt, Saurous, Seybold, et~al.]{hershey2017cnn}
+Shawn Hershey, Sourish Chaudhuri, Daniel~PW Ellis, Jort~F Gemmeke, Aren Jansen, R~Channing Moore, Manoj Plakal, Devin Platt, Rif~A Saurous, Bryan Seybold, et~al.
+\newblock Cnn architectures for large-scale audio classification.
+\newblock In \emph{2017 ieee international conference on acoustics, speech and signal processing (icassp)}, pages 131--135. IEEE, 2017.
+
+\bibitem[Ho and Salimans(2022)]{classifierfree}
+Jonathan Ho and Tim Salimans.
+\newblock Classifier-free diffusion guidance.
+\newblock \emph{arXiv preprint arXiv:2207.12598}, 2022.
+
+\bibitem[Ho et~al.(2022)Ho, Chan, Saharia, Whang, Gao, Gritsenko, Kingma, Poole, Norouzi, Fleet, et~al.]{ho2022imagen}
+Jonathan Ho, William Chan, Chitwan Saharia, Jay Whang, Ruiqi Gao, Alexey Gritsenko, Diederik~P Kingma, Ben Poole, Mohammad Norouzi, David~J Fleet, et~al.
+\newblock Imagen video: High definition video generation with diffusion models.
+\newblock \emph{arXiv preprint arXiv:2210.02303}, 2022.
+
+\bibitem[https://primesound.org/popular-music genres/(2023)]{genre_popularity}
+https://primesound.org/popular-music genres/.
+\newblock https://primesound.org/popular-music-genres/.
+\newblock \url{https://primesound.org/popular-music-genres/}, 2023.
+
+\bibitem[Huang et~al.(2022{\natexlab{a}})Huang, Jansen, Lee, Ganti, Li, and Ellis]{mulan}
+Qingqing Huang, Aren Jansen, Joonseok Lee, Ravi Ganti, Judith~Yue Li, and Daniel~PW Ellis.
+\newblock Mulan: A joint embedding of music audio and natural language.
+\newblock \emph{arXiv preprint arXiv:2208.12415}, 2022{\natexlab{a}}.
+
+\bibitem[Huang et~al.(2023{\natexlab{a}})Huang, Park, Wang, Denk, Ly, Chen, Zhang, Zhang, Yu, Frank, et~al.]{huang2023noise2music}
+Qingqing Huang, Daniel~S Park, Tao Wang, Timo~I Denk, Andy Ly, Nanxin Chen, Zhengdong Zhang, Zhishuai Zhang, Jiahui Yu, Christian Frank, et~al.
+\newblock Noise2music: Text-conditioned music generation with diffusion models.
+\newblock \emph{arXiv preprint arXiv:2302.03917}, 2023{\natexlab{a}}.
+
+\bibitem[Huang et~al.(2023{\natexlab{b}})Huang, Park, Wang, Denk, Ly, Chen, Zhang, Zhang, Yu, Frank, et~al.]{noise2music}
+Qingqing Huang, Daniel~S Park, Tao Wang, Timo~I Denk, Andy Ly, Nanxin Chen, Zhengdong Zhang, Zhishuai Zhang, Jiahui Yu, Christian Frank, et~al.
+\newblock Noise2music: Text-conditioned music generation with diffusion models.
+\newblock \emph{arXiv preprint arXiv:2302.03917}, 2023{\natexlab{b}}.
+
+\bibitem[Huang et~al.(2022{\natexlab{b}})Huang, Lam, Wang, Su, Yu, Ren, and Zhao]{huang2022fastdiff}
+Rongjie Huang, Max~WY Lam, Jun Wang, Dan Su, Dong Yu, Yi Ren, and Zhou Zhao.
+\newblock Fastdiff: A fast conditional diffusion model for high-quality speech synthesis.
+\newblock \emph{arXiv preprint arXiv:2204.09934}, 2022{\natexlab{b}}.
+
+\bibitem[Huang et~al.(2022{\natexlab{c}})Huang, Ren, Liu, Cui, and Zhao]{huang2022generspeech}
+Rongjie Huang, Yi Ren, Jinglin Liu, Chenye Cui, and Zhou Zhao.
+\newblock Generspeech: Towards style transfer for generalizable out-of-domain text-to-speech synthesis.
+\newblock \emph{arXiv preprint arXiv:2205.07211}, 2022{\natexlab{c}}.
+
+\bibitem[Huang et~al.(2022{\natexlab{d}})Huang, Zhao, Liu, Liu, Cui, and Ren]{huang2022prodiff}
+Rongjie Huang, Zhou Zhao, Huadai Liu, Jinglin Liu, Chenye Cui, and Yi Ren.
+\newblock Prodiff: Progressive fast diffusion model for high-quality text-to-speech.
+\newblock In \emph{Proceedings of the 30th ACM International Conference on Multimedia}, pages 2595--2605, 2022{\natexlab{d}}.
+
+\bibitem[Huang et~al.(2023{\natexlab{c}})Huang, Huang, Yang, Ren, Liu, Li, Ye, Liu, Yin, and Zhao]{makeanaudio}
+Rongjie Huang, Jiawei Huang, Dongchao Yang, Yi Ren, Luping Liu, Mingze Li, Zhenhui Ye, Jinglin Liu, Xiang Yin, and Zhou Zhao.
+\newblock Make-an-audio: Text-to-audio generation with prompt-enhanced diffusion models.
+\newblock In \emph{International Conference on Machine Learning}, pages 13916--13932. PMLR, 2023{\natexlab{c}}.
+
+\bibitem[Jia et~al.(1904)Jia, Weiss, Biadsy, Macherey, Johnson, Chen, and Wu]{jia1904direct}
+Ye Jia, Ron~J Weiss, Fadi Biadsy, Wolfgang Macherey, Melvin Johnson, Zhifeng Chen, and Yonghui Wu.
+\newblock Direct speech-to-speech translation with a sequence-to-sequence model (2019).
+\newblock \emph{arXiv preprint arXiv:1904.06037}, 1904.
+
+\bibitem[Jia et~al.(2018)Jia, Zhang, Weiss, Wang, Shen, Ren, Nguyen, Pang, Lopez~Moreno, Wu, et~al.]{jia2018transfer}
+Ye Jia, Yu Zhang, Ron Weiss, Quan Wang, Jonathan Shen, Fei Ren, Patrick Nguyen, Ruoming Pang, Ignacio Lopez~Moreno, Yonghui Wu, et~al.
+\newblock Transfer learning from speaker verification to multispeaker text-to-speech synthesis.
+\newblock \emph{Advances in neural information processing systems}, 31, 2018.
+
+\bibitem[Jiang et~al.(2020)Jiang, Xia, Carlton, Anderson, and Miyakawa]{jiang2020transformer}
+Junyan Jiang, Gus~G Xia, Dave~B Carlton, Chris~N Anderson, and Ryan~H Miyakawa.
+\newblock Transformer vae: A hierarchical model for structure-aware and interpretable music representation learning.
+\newblock In \emph{ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 516--520. IEEE, 2020.
+
+\bibitem[Jiao et~al.(2021)Jiao, Gabry{\'s}, Tinchev, Putrycz, Korzekwa, and Klimkov]{jiao2021universal}
+Yunlong Jiao, Adam Gabry{\'s}, Georgi Tinchev, Bartosz Putrycz, Daniel Korzekwa, and Viacheslav Klimkov.
+\newblock Universal neural vocoding with parallel wavenet.
+\newblock In \emph{ICASSP 2021-2021 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 6044--6048. IEEE, 2021.
+
+\bibitem[Kalchbrenner et~al.(2018)Kalchbrenner, Elsen, Simonyan, Noury, Casagrande, Lockhart, Stimberg, Oord, Dieleman, and Kavukcuoglu]{kalchbrenner2018efficient}
+Nal Kalchbrenner, Erich Elsen, Karen Simonyan, Seb Noury, Norman Casagrande, Edward Lockhart, Florian Stimberg, Aaron Oord, Sander Dieleman, and Koray Kavukcuoglu.
+\newblock Efficient neural audio synthesis.
+\newblock In \emph{International Conference on Machine Learning}, pages 2410--2419. PMLR, 2018.
+
+\bibitem[Kong et~al.(2020{\natexlab{a}})Kong, Kim, and Bae]{hifigan}
+Jungil Kong, Jaehyeon Kim, and Jaekyoung Bae.
+\newblock Hifi-gan: Generative adversarial networks for efficient and high fidelity speech synthesis.
+\newblock \emph{Advances in Neural Information Processing Systems}, 33:\penalty0 17022--17033, 2020{\natexlab{a}}.
+
+\bibitem[Kong et~al.(2020{\natexlab{b}})Kong, Kim, and Bae]{kong2020hifi}
+Jungil Kong, Jaehyeon Kim, and Jaekyoung Bae.
+\newblock Hifi-gan: Generative adversarial networks for efficient and high fidelity speech synthesis.
+\newblock \emph{Advances in neural information processing systems}, 33:\penalty0 17022--17033, 2020{\natexlab{b}}.
+
+\bibitem[Kong et~al.(2020{\natexlab{c}})Kong, Cao, Iqbal, Wang, Wang, and Plumbley]{kong2020panns}
+Qiuqiang Kong, Yin Cao, Turab Iqbal, Yuxuan Wang, Wenwu Wang, and Mark~D Plumbley.
+\newblock Panns: Large-scale pretrained audio neural networks for audio pattern recognition.
+\newblock \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 28:\penalty0 2880--2894, 2020{\natexlab{c}}.
+
+\bibitem[Kreuk et~al.(2022)Kreuk, Synnaeve, Polyak, Singer, D{\'e}fossez, Copet, Parikh, Taigman, and Adi]{audiogen}
+Felix Kreuk, Gabriel Synnaeve, Adam Polyak, Uriel Singer, Alexandre D{\'e}fossez, Jade Copet, Devi Parikh, Yaniv Taigman, and Yossi Adi.
+\newblock Audiogen: Textually guided audio generation.
+\newblock \emph{arXiv preprint arXiv:2209.15352}, 2022.
+
+\bibitem[Lam et~al.(2022)Lam, Wang, Su, and Yu]{lam2022bddm}
+Max~WY Lam, Jun Wang, Dan Su, and Dong Yu.
+\newblock Bddm: Bilateral denoising diffusion models for fast and high-quality speech synthesis.
+\newblock \emph{arXiv preprint arXiv:2203.13508}, 2022.
+
+\bibitem[Lam et~al.(2023)Lam, Tian, Li, Yin, Feng, Tu, Ji, Xia, Ma, Song, et~al.]{melody}
+Max~WY Lam, Qiao Tian, Tang Li, Zongyu Yin, Siyuan Feng, Ming Tu, Yuliang Ji, Rui Xia, Mingbo Ma, Xuchen Song, et~al.
+\newblock Efficient neural music generation.
+\newblock \emph{arXiv preprint arXiv:2305.15719}, 2023.
+
+\bibitem[Lee et~al.(2021)Lee, Kim, Shin, Tan, Liu, Meng, Qin, Chen, Yoon, and Liu]{lee2021priorgrad}
+Sang-gil Lee, Heeseung Kim, Chaehun Shin, Xu Tan, Chang Liu, Qi Meng, Tao Qin, Wei Chen, Sungroh Yoon, and Tie-Yan Liu.
+\newblock Priorgrad: Improving conditional denoising diffusion models with data-dependent adaptive prior.
+\newblock \emph{arXiv preprint arXiv:2106.06406}, 2021.
+
+\bibitem[Liu et~al.(2023{\natexlab{a}})Liu, Chen, Yuan, Mei, Liu, Mandic, Wang, and Plumbley]{audioldm}
+Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo Liu, Danilo Mandic, Wenwu Wang, and Mark~D Plumbley.
+\newblock Audioldm: Text-to-audio generation with latent diffusion models.
+\newblock \emph{arXiv preprint arXiv:2301.12503}, 2023{\natexlab{a}}.
+
+\bibitem[Liu et~al.(2023{\natexlab{b}})Liu, Tian, Yuan, Liu, Mei, Kong, Wang, Wang, Wang, and Plumbley]{audioldm2}
+Haohe Liu, Qiao Tian, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang Kong, Yuping Wang, Wenwu Wang, Yuxuan Wang, and Mark~D Plumbley.
+\newblock Audioldm 2: Learning holistic audio generation with self-supervised pretraining.
+\newblock \emph{arXiv preprint arXiv:2308.05734}, 2023{\natexlab{b}}.
+
+\bibitem[Liu et~al.(2018)Liu, Ling, Jiang, Zhou, and Dai]{liu2018wavenet}
+Li-Juan Liu, Zhen-Hua Ling, Yuan Jiang, Ming Zhou, and Li-Rong Dai.
+\newblock Wavenet vocoder with limited training data for voice conversion.
+\newblock In \emph{Interspeech}, pages 1983--1987, 2018.
+
+\bibitem[Liu et~al.(2021)Liu, Cao, Liu, Hu, Li, Weng, and Su]{liu2021vara}
+Peng Liu, Yuewen Cao, Songxiang Liu, Na Hu, Guangzhi Li, Chao Weng, and Dan Su.
+\newblock Vara-tts: Non-autoregressive text-to-speech synthesis based on very deep vae with residual attention.
+\newblock \emph{arXiv preprint arXiv:2102.06431}, 2021.
+
+\bibitem[Liu et~al.(2019)Liu, Ott, Goyal, Du, Joshi, Chen, Levy, Lewis, Zettlemoyer, and Stoyanov]{roberta}
+Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov.
+\newblock Roberta: A robustly optimized bert pretraining approach.
+\newblock \emph{arXiv preprint arXiv:1907.11692}, 2019.
+
+\bibitem[Lorenzo-Trueba et~al.(2018)Lorenzo-Trueba, Drugman, Latorre, Merritt, Putrycz, Barra-Chicote, Moinet, and Aggarwal]{lorenzo2018towards}
+Jaime Lorenzo-Trueba, Thomas Drugman, Javier Latorre, Thomas Merritt, Bartosz Putrycz, Roberto Barra-Chicote, Alexis Moinet, and Vatsal Aggarwal.
+\newblock Towards achieving robust universal neural vocoding.
+\newblock \emph{arXiv preprint arXiv:1811.06292}, 2018.
+
+\bibitem[Loshchilov and Hutter(2017)]{adamw}
+Ilya Loshchilov and Frank Hutter.
+\newblock Decoupled weight decay regularization.
+\newblock \emph{arXiv preprint arXiv:1711.05101}, 2017.
+
+\bibitem[Manco et~al.(2022)Manco, Benetos, Quinton, and Fazekas]{manco2022contrastive}
+Ilaria Manco, Emmanouil Benetos, Elio Quinton, and Gy{\"o}rgy Fazekas.
+\newblock Contrastive audio-language learning for music.
+\newblock \emph{arXiv preprint arXiv:2208.12208}, 2022.
+
+\bibitem[Michelsanti et~al.(2021)Michelsanti, Tan, Zhang, Xu, Yu, Yu, and Jensen]{michelsanti2021overview}
+Daniel Michelsanti, Zheng-Hua Tan, Shi-Xiong Zhang, Yong Xu, Meng Yu, Dong Yu, and Jesper Jensen.
+\newblock An overview of deep-learning-based audio-visual speech enhancement and separation.
+\newblock \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 29:\penalty0 1368--1396, 2021.
+
+\bibitem[Mubert Inc. Mubert. URL~https://mubert.com/(2023)]{mubert}
+2023 Mubert Inc. Mubert. URL~https://mubert.com/.
+\newblock Mubert inc. mubert. url https://mubert.com/, 2023.
+\newblock \emph{Mubert Inc. Mubert. URL https://mubert.com/, 2023}, 2023.
+
+\bibitem[Muhamed et~al.(2021)Muhamed, Li, Shi, Yaddanapudi, Chi, Jackson, Suresh, Lipton, and Smola]{muhamed2021symbolic}
+Aashiq Muhamed, Liang Li, Xingjian Shi, Suri Yaddanapudi, Wayne Chi, Dylan Jackson, Rahul Suresh, Zachary~C Lipton, and Alex~J Smola.
+\newblock Symbolic music generation with transformer-gans.
+\newblock In \emph{Proceedings of the AAAI conference on artificial intelligence}, pages 408--417, 2021.
+
+\bibitem[Nichol et~al.(2021)Nichol, Dhariwal, Ramesh, Shyam, Mishkin, McGrew, Sutskever, and Chen]{nichol2021glide}
+Alex Nichol, Prafulla Dhariwal, Aditya Ramesh, Pranav Shyam, Pamela Mishkin, Bob McGrew, Ilya Sutskever, and Mark Chen.
+\newblock Glide: Towards photorealistic image generation and editing with text-guided diffusion models.
+\newblock \emph{arXiv preprint arXiv:2112.10741}, 2021.
+
+\bibitem[Norman-Haignere et~al.(2019)Norman-Haignere, Kanwisher, McDermott, and Conway]{norman2019divergence}
+Sam~V Norman-Haignere, Nancy Kanwisher, Josh~H McDermott, and Bevil~R Conway.
+\newblock Divergence in the functional organization of human and macaque auditory cortex revealed by fmri responses to harmonic tones.
+\newblock \emph{Nature neuroscience}, 22\penalty0 (7):\penalty0 1057--1060, 2019.
+
+\bibitem[Park et~al.(2024)Park, Senocak, and Chung]{park2024can}
+Sooyoung Park, Arda Senocak, and Joon~Son Chung.
+\newblock Can clip help sound source localization?
+\newblock In \emph{Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision}, pages 5711--5720, 2024.
+
+\bibitem[Paul et~al.(2020)Paul, Pantazis, and Stylianou]{paul2020speaker}
+Dipjyoti Paul, Yannis Pantazis, and Yannis Stylianou.
+\newblock Speaker conditional wavernn: Towards universal neural vocoder for unseen speaker and recording conditions.
+\newblock \emph{arXiv preprint arXiv:2008.05289}, 2020.
+
+\bibitem[Popov et~al.(2021)Popov, Vovk, Gogoryan, Sadekova, and Kudinov]{popov2021grad}
+Vadim Popov, Ivan Vovk, Vladimir Gogoryan, Tasnima Sadekova, and Mikhail Kudinov.
+\newblock Grad-tts: A diffusion probabilistic model for text-to-speech.
+\newblock In \emph{International Conference on Machine Learning}, pages 8599--8608. PMLR, 2021.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, et~al.]{clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et~al.
+\newblock Learning transferable visual models from natural language supervision.
+\newblock In \emph{International conference on machine learning}, pages 8748--8763. PMLR, 2021.
+
+\bibitem[Raffel et~al.(2020)Raffel, Shazeer, Roberts, Lee, Narang, Matena, Zhou, Li, and Liu]{t5}
+Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, and Peter~J Liu.
+\newblock Exploring the limits of transfer learning with a unified text-to-text transformer.
+\newblock \emph{The Journal of Machine Learning Research}, 21\penalty0 (1):\penalty0 5485--5551, 2020.
+
+\bibitem[Ramesh et~al.(2021)Ramesh, Pavlov, Goh, Gray, Voss, Radford, Chen, and Sutskever]{ramesh2021zero}
+Aditya Ramesh, Mikhail Pavlov, Gabriel Goh, Scott Gray, Chelsea Voss, Alec Radford, Mark Chen, and Ilya Sutskever.
+\newblock Zero-shot text-to-image generation.
+\newblock In \emph{International Conference on Machine Learning}, pages 8821--8831. PMLR, 2021.
+
+\bibitem[Rombach et~al.(2022)Rombach, Blattmann, Lorenz, Esser, and Ommer]{rombach2022high}
+Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bj{\"o}rn Ommer.
+\newblock High-resolution image synthesis with latent diffusion models.
+\newblock In \emph{Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, pages 10684--10695, 2022.
+
+\bibitem[Ronneberger et~al.(2015)Ronneberger, Fischer, and Brox]{unet}
+Olaf Ronneberger, Philipp Fischer, and Thomas Brox.
+\newblock U-net: Convolutional networks for biomedical image segmentation.
+\newblock In \emph{Medical Image Computing and Computer-Assisted Intervention--MICCAI 2015: 18th International Conference, Munich, Germany, October 5-9, 2015, Proceedings, Part III 18}, pages 234--241. Springer, 2015.
+
+\bibitem[Sadeghi et~al.(2020)Sadeghi, Leglaive, Alameda-Pineda, Girin, and Horaud]{sadeghi2020audio}
+Mostafa Sadeghi, Simon Leglaive, Xavier Alameda-Pineda, Laurent Girin, and Radu Horaud.
+\newblock Audio-visual speech enhancement using conditional variational auto-encoders.
+\newblock \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 28:\penalty0 1788--1800, 2020.
+
+\bibitem[Saharia et~al.(2022)Saharia, Chan, Saxena, Li, Whang, Denton, Ghasemipour, Gontijo~Lopes, Karagol~Ayan, Salimans, et~al.]{saharia2022photorealistic}
+Chitwan Saharia, William Chan, Saurabh Saxena, Lala Li, Jay Whang, Emily~L Denton, Kamyar Ghasemipour, Raphael Gontijo~Lopes, Burcu Karagol~Ayan, Tim Salimans, et~al.
+\newblock Photorealistic text-to-image diffusion models with deep language understanding.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 36479--36494, 2022.
+
+\bibitem[Sanh et~al.(2021)Sanh, Webson, Raffel, Bach, Sutawika, Alyafeai, Chaffin, Stiegler, Scao, Raja, et~al.]{t0}
+Victor Sanh, Albert Webson, Colin Raffel, Stephen~H Bach, Lintang Sutawika, Zaid Alyafeai, Antoine Chaffin, Arnaud Stiegler, Teven~Le Scao, Arun Raja, et~al.
+\newblock Multitask prompted training enables zero-shot task generalization.
+\newblock \emph{arXiv preprint arXiv:2110.08207}, 2021.
+
+\bibitem[Schmidt-Jones(2012)]{schmidt2012basic}
+Catherine Schmidt-Jones.
+\newblock \emph{The basic elements of music}.
+\newblock Connexions, 2012.
+
+\bibitem[Schneider et~al.(2023)Schneider, Jin, and Sch{\"o}lkopf]{mousai}
+Flavio Schneider, Zhijing Jin, and Bernhard Sch{\"o}lkopf.
+\newblock Mo$\backslash$\^{} usai: Text-to-music generation with long-context latent diffusion.
+\newblock \emph{arXiv preprint arXiv:2301.11757}, 2023.
+
+\bibitem[Seo et~al.(2023)Seo, Nagrani, and Schmid]{seo2023avformer}
+Paul~Hongsuck Seo, Arsha Nagrani, and Cordelia Schmid.
+\newblock Avformer: Injecting vision into frozen speech models for zero-shot av-asr.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 22922--22931, 2023.
+
+\bibitem[Sheffer and Adi(2023)]{ihearyourturecolors}
+Roy Sheffer and Yossi Adi.
+\newblock I hear your true colors: Image guided audio generation.
+\newblock In \emph{ICASSP 2023-2023 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 1--5. IEEE, 2023.
+
+\bibitem[Singer et~al.(2022)Singer, Polyak, Hayes, Yin, An, Zhang, Hu, Yang, Ashual, Gafni, et~al.]{singer2022make}
+Uriel Singer, Adam Polyak, Thomas Hayes, Xi Yin, Jie An, Songyang Zhang, Qiyuan Hu, Harry Yang, Oron Ashual, Oran Gafni, et~al.
+\newblock Make-a-video: Text-to-video generation without text-video data.
+\newblock \emph{arXiv preprint arXiv:2209.14792}, 2022.
+
+\bibitem[Song et~al.(2020)Song, Meng, and Ermon]{song2020denoising}
+Jiaming Song, Chenlin Meng, and Stefano Ermon.
+\newblock Denoising diffusion implicit models.
+\newblock \emph{arXiv preprint arXiv:2010.02502}, 2020.
+
+\bibitem[Sung-Bin et~al.(2023)Sung-Bin, Senocak, Ha, Owens, and Oh]{sung2023sound}
+Kim Sung-Bin, Arda Senocak, Hyunwoo Ha, Andrew Owens, and Tae-Hyun Oh.
+\newblock Sound to visual scene generation by audio-to-visual latent alignment.
+\newblock In \emph{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}, pages 6430--6440, 2023.
+
+\bibitem[Tan et~al.(2024)Tan, Chen, Liu, Cong, Zhang, Liu, Wang, Leng, Yi, He, et~al.]{tan2024naturalspeech}
+Xu Tan, Jiawei Chen, Haohe Liu, Jian Cong, Chen Zhang, Yanqing Liu, Xi Wang, Yichong Leng, Yuanhao Yi, Lei He, et~al.
+\newblock Naturalspeech: End-to-end text-to-speech synthesis with human-level quality.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2024.
+
+\bibitem[Temperley and Clercq(2013)]{temperley2013statistical}
+David Temperley and Trevor~de Clercq.
+\newblock Statistical analysis of harmony and melody in rock music.
+\newblock \emph{Journal of New Music Research}, 42\penalty0 (3):\penalty0 187--204, 2013.
+
+\bibitem[Van Den~Oord et~al.(2017)Van Den~Oord, Vinyals, et~al.]{van2017neural}
+Aaron Van Den~Oord, Oriol Vinyals, et~al.
+\newblock Neural discrete representation learning.
+\newblock \emph{Advances in neural information processing systems}, 30, 2017.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin]{attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock \emph{Advances in neural information processing systems}, 30, 2017.
+
+\bibitem[Wang et~al.(2024)Wang, Ju, Tan, He, Wu, Bian, et~al.]{audit}
+Yuancheng Wang, Zeqian Ju, Xu Tan, Lei He, Zhizheng Wu, Jiang Bian, et~al.
+\newblock Audit: Audio editing by following instructions with latent diffusion models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem[Wu et~al.(2013)Wu, Zhang, Ding, Li, and Zhou]{wu2013effects}
+Junjie Wu, Junsong Zhang, Xiaojun Ding, Rui Li, and Changle Zhou.
+\newblock The effects of music on brain functional networks: a network analysis.
+\newblock \emph{Neuroscience}, 250:\penalty0 49--59, 2013.
+
+\bibitem[Wu et~al.(2023)Wu, Ge, Wang, Lei, Gu, Shi, Hsu, Shan, Qie, and Shou]{wu2023tune}
+Jay~Zhangjie Wu, Yixiao Ge, Xintao Wang, Stan~Weixian Lei, Yuchao Gu, Yufei Shi, Wynne Hsu, Ying Shan, Xiaohu Qie, and Mike~Zheng Shou.
+\newblock Tune-a-video: One-shot tuning of image diffusion models for text-to-video generation.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 7623--7633, 2023.
+
+\bibitem[Yang et~al.(2023)Yang, Yu, Wang, Wang, Weng, Zou, and Yu]{yang2023diffsound}
+Dongchao Yang, Jianwei Yu, Helin Wang, Wen Wang, Chao Weng, Yuexian Zou, and Dong Yu.
+\newblock Diffsound: Discrete diffusion model for text-to-sound generation.
+\newblock \emph{IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 2023.
+
+\bibitem[Yang et~al.(2017)Yang, Chou, and Yang]{yang2017midinet}
+Li-Chia Yang, Szu-Yu Chou, and Yi-Hsuan Yang.
+\newblock Midinet: A convolutional generative adversarial network for symbolic-domain music generation.
+\newblock \emph{arXiv preprint arXiv:1703.10847}, 2017.
+
+\bibitem[Yang and Wang(2023)]{yang2023diffusion}
+Xingyi Yang and Xinchao Wang.
+\newblock Diffusion model as representation learner.
+\newblock In \emph{ICCV}, 2023.
+
+\bibitem[Ycart et~al.(2017)Ycart, Benetos, et~al.]{ycart2017study}
+Adrien Ycart, Emmanouil Benetos, et~al.
+\newblock A study on lstm networks for polyphonic music sequence modelling.
+\newblock ISMIR, 2017.
+
+\bibitem[Yu et~al.(2022)Yu, Xu, Koh, Luong, Baid, Wang, Vasudevan, Ku, Yang, Ayan, et~al.]{yu2022scaling}
+Jiahui Yu, Yuanzhong Xu, Jing~Yu Koh, Thang Luong, Gunjan Baid, Zirui Wang, Vijay Vasudevan, Alexander Ku, Yinfei Yang, Burcu~Karagol Ayan, et~al.
+\newblock Scaling autoregressive models for content-rich text-to-image generation.
+\newblock \emph{arXiv preprint arXiv:2206.10789}, 2\penalty0 (3):\penalty0 5, 2022.
+
+\bibitem[Zatorre(2003)]{zatorre2003music}
+Robert~J Zatorre.
+\newblock Music and the brain.
+\newblock \emph{Annals of the New York Academy of Sciences}, 999\penalty0 (1):\penalty0 4--14, 2003.
+
+\bibitem[Zhang et~al.(2023)Zhang, Rao, and Agrawala]{controlnet}
+Lvmin Zhang, Anyi Rao, and Maneesh Agrawala.
+\newblock Adding conditional control to text-to-image diffusion models.
+\newblock In \emph{Proceedings of the IEEE/CVF International Conference on Computer Vision}, pages 3836--3847, 2023.
+
+\bibitem[Zhang et~al.(2019)Zhang, Pan, He, and Ling]{zhang2019learning}
+Ya-Jie Zhang, Shifeng Pan, Lei He, and Zhen-Hua Ling.
+\newblock Learning latent representations for style control and transfer in end-to-end speech synthesis.
+\newblock In \emph{ICASSP 2019-2019 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)}, pages 6945--6949. IEEE, 2019.
+
+\end{thebibliography}

@@ -1,0 +1,92 @@
+[
+  {
+    "path": "papers/eftts/figures/.kelip-paper-reading",
+    "size": 107,
+    "sha256": "4cc097e0aa8af6b6146a132e4f711f7a9714703f384fa81c871b736957f0c18c",
+    "git_blob_sha": "925c1353d376783fdba83fe2947c1619b3ca3bda"
+  },
+  {
+    "path": "papers/eftts/figures/fig-01.png",
+    "size": 27364,
+    "sha256": "9b961bfb7afd6cc33de0c8b51b6cc624722fe20701bb018155f489ec5e26c8d5",
+    "git_blob_sha": "08d1c0145e8b2415fff0b27f71be57ed2b6bc437"
+  },
+  {
+    "path": "papers/eftts/figures/fig-02.png",
+    "size": 24284,
+    "sha256": "fcf7e2d0b10fcfb171ca84707c2d81d835d70200fbbd65d36b2192bedb6887d6",
+    "git_blob_sha": "80c868e7d54fa5d0cd4afb72d78317a07b70a4e9"
+  },
+  {
+    "path": "papers/eftts/figures/fig-03.png",
+    "size": 14617,
+    "sha256": "522cd7818344ddbf56fa39fd55ea827d9849440ca8f6e483bb4a0ca23ba39ef4",
+    "git_blob_sha": "9d063d1a8c67a274d990b0a659fff325e3d2a405"
+  },
+  {
+    "path": "papers/eftts/figures/index.json",
+    "size": 2203,
+    "sha256": "14631300b6e123502a65fc4523b3e5d80b5f5192e5d14921790e5266965800ce",
+    "git_blob_sha": "d3e831e0c9a9ffcc29e255d3743883d5a47ab8a5"
+  },
+  {
+    "path": "papers/eftts/figures/index.md",
+    "size": 1110,
+    "sha256": "d806ce2eab9d0bca332cddabdcbbe7098b75295a610f71a02a5f489a94804e99",
+    "git_blob_sha": "9b873bf0c3ea19b13b6716f8845a6febdbdc14c4"
+  },
+  {
+    "path": "papers/eftts/figures/tab-I.png",
+    "size": 10389,
+    "sha256": "3a80cb11f1669238d3ea2ca91af6bcf77e415b9835bdbe4f155c94e1385e89da",
+    "git_blob_sha": "f920cbbde9863f13fc60b76915ba404a86aff5e6"
+  },
+  {
+    "path": "papers/eftts/figures/tab-II.png",
+    "size": 9619,
+    "sha256": "2d7c7389539b20d168a3d7d009def3ca92e9e62ec7afc575dcc72b72f35c0494",
+    "git_blob_sha": "6df4c1ed825aa3d3f90d1eb9b3e426463256d2ac"
+  },
+  {
+    "path": "papers/eftts/figures/tab-III.png",
+    "size": 12752,
+    "sha256": "e981b6437fdf7758758278b736e005795e1c05a05e904b2658459f81326ae7e8",
+    "git_blob_sha": "5f11fd7b59175852421e049738ef9337bc0aeb90"
+  },
+  {
+    "path": "papers/eftts/figures/tab-IV.png",
+    "size": 7023,
+    "sha256": "09f97b63f8206c341cd19070a738fb9371f0cf0a4efc4706210868bff3fd3314",
+    "git_blob_sha": "0da3e03f9aeb2698932cfa279263271187f1ecda"
+  },
+  {
+    "path": "papers/eftts/meta.json",
+    "size": 677,
+    "sha256": "37375f8bcf7581e6c9b93318d49e92b153969bc128cd58f6ce1cd8d2d7999ab3",
+    "git_blob_sha": "5b1ce21a372433345de1281309145af505784739"
+  },
+  {
+    "path": "papers/eftts/outline.md",
+    "size": 430,
+    "sha256": "0d7d39569a0694af6063db002ba88cd45764b7de12d8428ae52638fcee01327a",
+    "git_blob_sha": "4256b4bffcab63e2ed054e1a82c2db671706279c"
+  },
+  {
+    "path": "papers/eftts/paper.txt",
+    "size": 32355,
+    "sha256": "759fa1ee12366b9e0bd725f750da2d7f99e6bb8264d6332db888188f4cfbf013",
+    "git_blob_sha": "27014bd1460d04e71329a71ae1b5a895d3e8efff"
+  },
+  {
+    "path": "papers/eftts/精读笔记.md",
+    "size": 7347,
+    "sha256": "9d6110656694519102eba86e5daa2b47d9f920a392dfbbdbf929e2f49d0a8f58",
+    "git_blob_sha": "0333f3565a489a49a8e15be9af67877df15a8017"
+  },
+  {
+    "path": "papers/eftts/upload-status.md",
+    "size": 962,
+    "sha256": "6740f45191ada499ed7a0ad3e86f87a2dfccd9d4a64d300c7a332a57579b913b",
+    "git_blob_sha": "7e80640fed38765b398fa00261406b9393475baf"
+  }
+]

@@ -1,0 +1,49 @@
+\begin{table}[t]
+\vspace{-3mm}
+\caption{Results of Laughter-test dataset. }
+\label{tab:laughter_test_results}
+\centering
+\resizebox{\columnwidth}{!}
+{
+\scriptsize
+\tabcolsep = 0.5mm
+\begin{tabular}{@{}llccccc@{}}
+    \toprule
+    \multirow{1}{*}{\textbf{ID}} & \multirow{1}{*}{\textbf{Model}} & \textbf{SIM-o$\uparrow$} & \textbf{WER$\downarrow$} & \textbf{AutoPCP$\uparrow$} & \textbf{Emo SIM$\uparrow$} & \textbf{Aro-Val SIM$\uparrow$} \\
+    \midrule
+    \textbf{(B1)} & SeamlessExpressive~\cite{barrault2023seamless}   & 0.210  & 11.4 & 2.31 & 0.587 & 0.248  \\
+    \textbf{(B2)} & Voicebox (repro.)~\cite{le2024voicebox}$^\dagger$  & 0.328  & 7.8  & 2.46 & 0.634 & 0.410   \\
+    \textbf{(B3)} & ELaTE~\cite{kanda2024making}              & {\bf 0.399}  & 7.8  & {\bf 3.44} & 0.806 & 0.700   \\
+    \textbf{(B6)} & Voicebox (fine-tuned)                         & 0.383  & {\bf 6.6}  & 2.47 & 0.689 & 0.410   \\
+    \textbf{(P2)} & EmoCtrl-TTS                               & 0.392  & 9.9  & 3.38 & {\bf 0.848} & {\bf 0.795}   \\   
+    \bottomrule
+\end{tabular}
+}
+\vspace{-5mm}
+\end{table}
+
+\begin{table}[t]
+\caption{Results of Crying-test dataset. }
+\label{tab:crying_test_results}
+\centering
+\resizebox{\columnwidth}{!}
+{
+\scriptsize
+\tabcolsep = 0.5mm
+\begin{tabular}{@{}llccccc@{}}
+    \toprule
+    \multirow{1}{*}{\textbf{ID}} & \multirow{1}{*}{\textbf{Model}} & \textbf{SIM-o$\uparrow$} & \textbf{WER$\downarrow$} & \textbf{AutoPCP$\uparrow$} & \textbf{Emo SIM$\uparrow$} & \textbf{Aro-Val SIM$\uparrow$} \\
+    \midrule
+    \textbf{(B1)} & SeamlessExpressive~\cite{barrault2023seamless}   & 0.258  & 8.9  & 2.77 & 0.576 & 0.378  \\
+    \textbf{(B2)} & Voicebox (repro.)~\cite{le2024voicebox}$^\dagger$  & 0.294  & 5.5  & 2.71 & 0.569 & 0.367  \\
+    \textbf{(B3)} & ELaTE~\cite{kanda2024making}              & 0.384  & 5.6  & 3.14 & 0.642 & 0.471  \\
+    \textbf{(B6)} & Voicebox (fine-tuned)                         & 0.383  & {\bf 5.1}  & 2.81 & 0.589 & 0.413  \\
+    \textbf{(P2)} & EmoCtrl-TTS                               & {\bf 0.408}  & 7.5  & {\bf 3.21} & {\bf 0.662} & {\bf 0.597}  \\   
+    \bottomrule
+\end{tabular}
+}
+\vspace{-5mm}
+\end{table}
+
+
+

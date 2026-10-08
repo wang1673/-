@@ -1,0 +1,23 @@
+{
+  "title": "EFTTS: Zero-Shot Emotional Speech Synthesis via Conditional Flow Matching and Self-Supervised Representations",
+  "pdf_pages": 6,
+  "has_latex": false,
+  "main_tex": null,
+  "links": {
+    "project": [
+      {
+        "url": "https://bigbroes.github.io/EFTTS",
+        "score": 3,
+        "from": [
+          "首页文字"
+        ]
+      }
+    ]
+  },
+  "official_code": null,
+  "official_code_from": null,
+  "code_dir": null,
+  "fetched": "2026-10-08",
+  "reading_date": "2026-10-08",
+  "image_note": "PDF crops converted to compact indexed PNGs for readable low-bandwidth GitHub upload; original high-resolution figures may be omitted."
+}

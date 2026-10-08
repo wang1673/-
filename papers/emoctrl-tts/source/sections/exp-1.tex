@@ -1,0 +1,128 @@
+\vspace{-.5em}
+\subsection{Data}
+
+\vspace{-.5em}
+\subsubsection{Training data}
+
+\vspace{-.5em}
+
+We used three training datasets: Libri-light, LAUGH, and IH-EMO. Libri-light was used for pre-training the audio model without NV and emotion embeddings. On the other hand, LAUGH and IH-EMO were used for fine-tuning the audio model with NV and emotion embeddings. During fine-tuning, we also used the Libri-light data with a certain probability as suggested in \cite{kanda2024making}. The overview of each dataset is as follows.
+
+\textbf{Libri-light~\cite{kahn2020libri}}: 60k hours of untranscribed English audiobooks from over 7,000 speakers. 
+We transcribed the data by using a pre-trained Kaldi ASR model\footref{fn:kaldi}, 
+which was trained on the 960-hour LibriSpeech dataset \cite{panayotov2015librispeech}.
+
+\textbf{LAUGH}: 460 hours of laughing speech collected from the AMI meeting corpus \cite{carletta2005ami}, Switchboard corpus \cite{godfrey1992switchboard}, and Fisher corpus \cite{cieri2004fisher}. We gather all the utterances marked with laughter from the transcriptions of each corpus.  Note that the dataset still contains a substantial amount of neutral speech, as laughter tends to occur at certain parts of the speech.
+
+\textbf{IH-EMO}: 27k hours of collected emotional speech as described in Section \ref{ssec:data}.
+
+
+\vspace{-.5em}
+\subsubsection{Evaluation data}
+\vspace{-.5em}
+
+We used four evaluation datasets as presented in Table~\ref{table:eval_datasets}.
+
+\input{tables/evaluation_data}
+
+\textbf{JVNV speech-to-speech translation (S2ST)}: To evaluate the emotion transferability of zero-shot TTS models, we established an experimental setting based on the Japanese-to-English S2ST scenario. In the evaluation, we used a Japanese speech from the JVNV corpus~\cite{xin2024jvnv}.
+The JVNV corpus includes 
+speeches from four speakers (two males and two females) with 
+six emotions: anger, disgust, fear, happiness, sadness, and surprise with various NVs.
+%, including not only laugher and crying, but also moaning. 
+With its intense emotional expressions and various NVs, the JVNV dataset offers comprehensive coverage of expressive emotions, making it ideal for our emotion transfer testing. 
+In the evaluation process,
+we first applied speech-to-text translation to the Japanese speech to obtain the English translations. We then used a zero-shot TTS model, using the English translations as a text prompt and the Japanese speech as an audio prompt, from which we extracted both NV and emotion embeddings. The generated speech is expected to be English-translated speech with the original speaker's voice and emotional characteristics.
+We assessed the similarity of the speaker and emotion between the source Japanese speech and the translated English speech using various metrics described in the next section.
+
+\textbf{EMO-change}: To test the model's capacity for fine-grained emotional speech generation, we created the EMO-change dataset based on the RAVDESS dataset \cite{livingstone2018ryerson}, which contains English emotional speech data with emotions such as calm, happy, sad, angry, fearful, surprised, and disgusted. The RAVDESS dataset includes two transcriptions: ``kids are talking by the door" and ``dogs are sitting by the door" with intense emotional expressions. 
+To generate the EMO-change dataset, we randomly select two utterances with different emotions with the transcription ``kids are talking by the door," remove the silence from each, and concatenate them to create the audio prompts. During testing, the concatenated emotion change sample serves as the audio prompt, and a repeated sentence ``dogs are sitting by the door dogs are sitting by the door" serves as the text prompt for the zero-shot TTS model. This setup evaluates the model's ability to generate speech that mimics the emotional transitions in the audio prompt while following the given text prompt, and speaker characteristics.
+
+\textbf{Laughter-test}: To evaluate the zero-shot TTS capability in generating laughing speech, we employed a Chinese-to-English S2ST experiment
+by following the protocol presented in~\cite{kanda2024making}.
+Specifically, 
+we used 154 Chinese utterances containing laughter\footnote{Data can be found at \url{https://aka.ms/elate}.}
+from the evaluation subset of the DiariST-AliMeeting test set \cite{yang2024diarist}.
+We applied zero-shot TTS, where
+we used the ground-truth English transcription as the text prompt and 
+the Chinese speech as the audio prompt to extract both 
+NV and emotion embeddings. 
+The generated speech is expected to be English speech with the original speaker's voice and laughter characteristics.
+
+\textbf{Crying-test}: 
+To
+evaluate the zero-shot TTS capability in generating crying speech, 
+we further conducted a Chinese-to-English S2ST experiment
+using 33 Chinese crying speech samples collected from publicly available data sources.
+We followed the same procedure with the Laughter-test,
+and the generated speech is expected to be English speech with the original speaker's voice and crying characteristics. 
+
+
+\vspace{-.5em}
+\subsection{Evaluation metrics}
+\vspace{-.5em}
+
+\subsubsection{Objective evaluation metrics}
+\vspace{-.5em}
+
+We utilized the following objective metrics. Among them, AutoPCP, EMO SIM, and Aro-Val SIM are closely related to the emotion controllability.\footnote{\textcolor{black}{\url{https://github.com/hbwu-ntu/EmoCtrlTTS-Eval}}}
+
+\textbf{Word error rate (WER):} To evaluate the intelligibility of the generated audio, 
+we applied a Whisper-Large~\cite{radford2023robust} to the generated audio and computed the WER. 
+In all our tables, we express the WER in percentage.
+
+\textbf{Speaker SIM-o:} To evaluate the speaker similarity between the generated audio and the audio prompt, we computed a cosine similarity between speaker embeddings of the two audios. We used a WavLM-large-based 
+speaker verification model~\cite{chen2022wavlm}\footnote{\url{https://github.com/microsoft/UniSpeech/tree/main/downstreams/speaker\_verification}}, following previous works \cite{wang2023neural,le2024voicebox}.
+
+\textbf{AutoPCP:} AutoPCP \cite{barrault2023seamless} is an utterance-level estimator to quantify the prosody similarity between two speech samples.
+We computed the score between the generated audio and the audio prompt.
+We leveraged AutoPCP\_multilingual\_v2\footnote{\url{https://github.com/facebookresearch/seamless\_communication}}.
+
+\textbf{Emo SIM}: To evaluate the similarity of time-varying emotion states, we applied the emotion2vec model~\cite{ma2023emotion2vec}\footref{fn:emo2vec} to extract the emotion embeddings. 
+We performed interpolation to ensure the embeddings of the audio prompt and the generated audio have the same length. We then computed the cosine similarity between these two embedding sequences for each frame and took the average to obtain the EMO SIM score.
+ 
+\textbf{Aro-Val SIM}: As another metric for the similarity of time-varying emotion states, we computed the arousal-valence values based on \cite{wagner2023dawn}\footref{fn:aro-val} using a sliding window with a window size of 0.5 sec and a hop size of 0.25 sec. Similar to EMO SIM, we computed the cosine similarity between the audio prompt and the generated audio for every frame and took the average as the Aro-Val SIM.
+
+\vspace{-.5em}
+\subsubsection{Subjective evaluation metrics}
+\vspace{-.5em}
+We used the following subjective evaluation metrics.
+
+\textbf{SMOS}: Speaker similarity mean opinion score, which is the similarity between the speaker prompt and the generated speech from 1 (not at all similar) to 5 (extremely similar).
+    
+\textbf{NMOS}: Naturalness MOS, which is the naturalness of the generated speech from 1 (bad) to 5 (excellent).
+    
+\textbf{EMOS}: Emotion MOS, which measures the similarity of emotion between the audio prompt and the generated speech from 1 (not at all similar) to 5 (extremely similar).
+
+\input{tables/jvnv_ravdess_table}
+
+\input{tables/subj_eval_table}
+
+\vspace{-.5em}
+\subsection{Model configuration}
+\vspace{-.5em}
+
+The architecture of the EmoCtrl-TTS audio model closely followed the configurations of the Voicebox \cite{le2024voicebox}. Specifically, we used a Transformer~\cite{vaswani2017attention} with 24 layers, featuring 16 attention heads, a 1024-dimensional embedding, and a feed-forward layer with a dimension of 4096.
+
+The model was pre-trained using Libri-light data, without NV or emotion embedding. This resulted in the reproduction of the Voicebox model (B2 in Table~\ref{tab:jvnv_results}). The model was trained for 390K steps with an effective mini-batch size of 307,200 audio frames.
+A linear-decay learning rate scheduler with a peak learning rate at 7.5e-5 was used, along with 20K steps of linear warmup.
+After the pre-training, we further fine-tuned the model by combining Libri-light, LAUGH, and IH-EMO.
+During fine-tuning, 
+the effective mini-batch size was set to 307,200 audio frames. 
+A linear-decay learning rate scheduler was used with a peak learning rate of 7.5e-5.
+Unless otherwise stated, we fine-tuned the model with 40k steps.
+
+
+During the inference, we used classifier-free guidance with a guidance strength of 1.0, and the number of function evaluations was set to 32. 
+A MelGAN-based vocoder~\cite{kumar2019melgan} was used to convert the mel spectrogram into waveforms.
+
+
+\vspace{-.5em}
+\subsection{S2ST pipeline} % for JVNV S2ST, Laughter-test and Crying-test}
+\vspace{-.5em}
+
+For the JVNV S2ST evaluation data, we leveraged the Whisper large-v3 model~\cite{radford2023robust} to transcribe the Japanese utterances with time stamps. We then employed GPT-4~\cite{achiam2023gpt} to translate the time-stamped Japanese text into English by keeping the time stamps.
+We then used a total-duration-aware (TDA) duration model~\cite{eskimez2024total} to obtain a frame-wise phoneme alignment.
+For the Laughter-test and Crying-test, we used the ground-truth English text translation,
+and the same TDA duration model
+to obtain the frame-wise phoneme alignment.

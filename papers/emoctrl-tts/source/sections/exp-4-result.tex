@@ -1,0 +1,100 @@
+
+\vspace{-.5em}
+\subsection{Results and discussion}
+\label{sec:results}
+\vspace{-.5em}
+
+\subsubsection{Objective evaluation}
+\vspace{-.5em}
+
+Table ~\ref{tab:jvnv_results} presents the objective evaluation results on the JVNV and EMO-change datasets. During the evaluation, we generated speech
+with three different random seeds, and the average of the scores was taken to report.
+
+{\bf Baseline analysis:} 
+For the JVNV S2ST test set, we first observed that the ELaTE (B3), trained with LL and LAUGH data, achieved superior performance over the SeamlessExpressive model~\cite{barrault2023seamless}\footnote{Our experiment is based on SeamlessExpressive, supported by the Seamless Licensing Agreement. Copyright © Meta Platforms, Inc. All Rights Reserved.} (B1) and the reproduced VoiceBox model (B2) across all the metrics, except for WER.
+The comparison between B2 and B4  highlights the effect of LAUGH data, showing that the latter improved performance in SIM-o and AutoPCP while maintaining WER, EMO SIM, and Aro-Val SIM.
+By replacing LAUGH with the IH-EMO data (B4 vs. B5), SIM-o and WER were improved from 0.410 to 0.479, and from 2.5\% to 2.2\%, respectively. However, this came at the cost of a slight degradation of AutoPCP (3.07$\rightarrow$2.96),  Emo SIM (0.645$\rightarrow$0.641), and Aro-Val SIM (0.438$\rightarrow$0.397). 
+Combining all training data (B6) gave us a balanced result.
+However, even after these trials, no Voicebox model achieved better AutoPCP, EmoSIM, 
+and Aro-Val SIM compared to ELaTE.
+The same trends were also observed for the EMO-change test set.
+These results suggest that simply adding emotional data does not improve the
+emotion transferability of the zero-shot TTS models.
+
+
+{\bf Results of EmoCtrl-TTS:}
+From JVNV S2ST results, we first observed (P1) showed a significant improvement in AutoPCP, Emo SIM, and Aro-Val SIM compared to the baselines.
+By executing a longer fine-tuning (P2), EmoCtrl-TTS 
+achieved further better SIM-o, WER, AutoPCP, and Emo SIM while almost preserving the high Aro-Val SIM.
+For the EMO-change test set, 
+EmoCtro-TTS achieved the best SIM-o and Aro-Val SIM 
+and the second-best AutoPCP.
+It is also noteworthy that SIM-o score was significantly improved 
+from (B6) to (P1), which suggests the effectiveness of the use of NV and emotion embeddings not only for the emotion-related metrics but also for the speaker similarity.
+Note that we have trained more variants of EmoCtrl-TTS to analyze the impact of
+each data and each embedding, which will be discussed in Section \ref{ssec:train-config} with Table \ref{tab:ablation_study}.
+
+
+\vspace{-.5em}
+\subsubsection{Subjective evaluation}
+\vspace{-.5em}
+
+We performed the subjective evaluation for selected models.
+We randomly picked 24 samples from JVNV S2ST data and 28 samples from EMO-change data, and asked native English testers to rate SMOS, NMOS and EMOS.
+For JVNV S2ST test set, each sample was judged by 9, 11, and 10 testers for SMOS, NMOS, and EMOS, respectively. For EMO-change test set, each sample was judged by 12 testers for all metrics. 
+
+The results are presented in Table ~\ref{tab:subj_results_jvnv}. 
+From the JVNV S2ST result, the Voicebox model (B6), leveraging the IH-EMO data, demonstrated significant improvements of SMOS and EMOS from the vanilla Voicebox model (B2), which illustrates the importance of the training data. Meanwhile, ELaTE (B3) excelled in NMOS, suggesting that the integration of NV features significantly boosts the naturalness of the audio by generating an appropriate NV.
+Finally, EmoCtrl-TTS (P2) achieved even better NMOS while keeping the high SMOS and EMOS scores.
+%the best NMOS and comparable SMOS and EMOS to other top baselines, showcasing the superiority of our proposed approach.
+
+In the EMO-change dataset, 
+Voicebox (B6) showed significantly worse EMOS
+compared to ELaTE (B3) and EmoCtlr-TTS (P2).
+This result demonstrated that 
+the conventional zero-shot TTS 
+cannot mimic the time-varying
+emotional states presented in the 
+audio prompt.
+The proposed EmoCtrl-TTS (P2) 
+achieved best SMOS and
+comparable NMOS and EMOS to other top 
+baselines, again showcasing the
+efficacy of the proposed approach.
+
+
+
+\vspace{-.5em}
+\subsubsection{Impact of training configurations}
+\label{ssec:train-config}
+\vspace{-.5em}
+
+
+Table \ref{tab:ablation_study} presents the results of the JVNV S2ST test set with various training data configurations. 
+
+The first four rows compare the performance of models trained by Libri-light and LAUGH data with a 0.5:0.5 ratio. By comparing the first two rows, we observe that the NV embedding $h$  significantly improved SIM-o, AutoPCP, Emo SIM, and Aro-Val SIM with the expense of degradation of WER. By introducing emotion embedding $e$, AutoPCP, EmoSIM, and Aro-Val SIM were further improved. However, it came with a cost of further degradation of WER as well as a significant drop in SIM-o.
+    
+In the 5th to 9th rows, we trained models using the Libri-light and IH-EMO data. Similar to the case with LAUGH data, we observed that the emotion embedding $e$ improved all the emotion-related metrics while keeping SIM-o and WER nearly intact. However, in contrast to the results with the LAUGH data, we observed a severe degradation in WER when the NV embedding $h$ was introduced. Upon examination, we found that the NV embedding often resulted in unwanted NV generation, such as laughter from multiple speakers.
+
+Both observations suggest that including both NV and emotion embeddings in model training is not always beneficial. Based on these findings, we opted to use only emotion embeddings for IH-EMO and only NV embeddings for LAUGH when combining all training data.
+
+
+The last four rows in Table \ref{tab:ablation_study} show the impact of data ratio and training steps on model performance with the combination of all training data.
+We first observed that
+the data ratio of 0.5:0.4:0.1 for Libri-light, IH-EMO, and LAUGH provided
+us with a better SIM-o and WER than the ratio of 0.5:0.25:0.25
+while keeping the emotion-related metrics similar. 
+By fine-tuning the model longer,
+further marginal improvement was obtained for all evaluation metrics.
+
+
+
+\vspace{-.5em}
+\subsubsection{Results on real laughter and crying data}
+\vspace{-.5em}
+
+Table ~\ref{tab:laughter_test_results} and ~\ref{tab:crying_test_results} present a comparison between the EmoCtrl-TTS model and selected baselines on the Laughter-test and Crying-test datasets, both of which are composed of real data. Compared to the baselines, the EmoCtrl-TTS consistently achieved
+the best performance for Emo SIM and Aro-Val SIM while achieving either the best or the second-best Auto PCP and SIM-o.
+It demonstrated EmoCtrl-TTS's robustness for the real data. 
+On the other hand, we observe a moderate degradation of WERs. 
+% We speculate the degradation would be attributed to the ASR model's limited ability to accurately recognize highly emotional speech.

@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{Summary of evaluation datasets. S2ST: Speech-to-speech translation.}
+\label{table:eval_datasets}
+\resizebox{0.48\textwidth}{!}
+{
+%\tiny
+\centering
+ \tabcolsep = 0.5mm
+    \begin{tabular}{@{}ccccc@{}}
+    \toprule
+    \textbf{Dataset} & \textbf{Source Language} & \textbf{Utterances} & \textbf{Type} & \textbf{Task} \\ 
+    \midrule
+%    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    JVNV S2ST & Japanese (ja) & 1615 & Staged & S2ST (ja$\rightarrow$en) with various emotions \\ 
+    %\hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    EMO-change & English (en) & 84 & Simulated & Zero-shot TTS with emotion change \\ %within the utterance \\ 
+    %\hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    Laughter-test & Chinese (zh) & 154 & Real & S2ST (zh$\rightarrow$en) with laughter\\ 
+    %\hdashline[1pt/2pt]\hdashline[0pt/1pt]
+    Crying-test & Chinese (zh) & 33 & Real & S2ST (zh$\rightarrow$en) with crying \\ \bottomrule
+    \end{tabular}
+}
+\vspace{-3mm}
+\end{table}

@@ -1,0 +1,115 @@
+[
+ {
+  "kind": "figure",
+  "num": "1",
+  "page": 2,
+  "caption": "Fig. 1. Overview of the proposed Emo-DPO approach: (a) instruction tuning, (b) Emo-DPO training, and (c) the inference process.",
+  "file": "figures/fig-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.122,
+   0.053,
+   0.876,
+   0.318
+  ],
+  "label": "overall",
+  "source_files": [
+   "icassp2.pdf"
+  ],
+  "tex_line": 57,
+  "refs": [
+   "§2 Methodology (L76)",
+   "§2.1 Emo-DPO Overview (L81)",
+   "§2.2 Instruction Tuning (L87)",
+   "§2.3.1 Beyond One Emotion - DPO Training (L104)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "2",
+  "page": 4,
+  "caption": "Fig. 2. Comparison of subjective evaluation results for MOS and Emotion MOS tests across cosyvoice, emospeech, and the proposed Emo-DPO models.",
+  "file": "figures/fig-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.108,
+   0.173,
+   0.456,
+   0.338
+  ],
+  "label": "mos",
+  "source_files": [
+   "mos.png"
+  ],
+  "tex_line": 183,
+  "refs": [
+   "§4 Results and Discussion (L177)",
+   "§4.1 Effectiveness of Emo-DPO training on LLM (L180)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "3",
+  "page": 4,
+  "caption": "Fig. 3. Comparison of subjective evaluation results from AB preference tests: 1) left: cosyvoice vs. Emo-DPO and 2) right: emospeech vs. Emo-DPO. TABLE II ABLATION STUDY ON THE PROPOSED EMO-DPO WITH DIFFERENT COMPONENTS REMOVED W.R.T SPEECH SYNTHESIS PERFORMANCES. SYMBOL ”−” IS REMOVAL OPERATION.",
+  "file": "figures/fig-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.505,
+   0.17,
+   0.927,
+   0.342
+  ],
+  "label": "AB",
+  "source_files": [
+   "AB.png"
+  ],
+  "tex_line": 197,
+  "refs": [
+   "§4 Results and Discussion (L177)",
+   "§4.1 Effectiveness of Emo-DPO training on LLM (L182)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "I",
+  "page": 4,
+  "caption": "TABLE I OBJECTIVE EVALUATION RESULTS COMPARISON OF THE PROPOSED EMO-DPO WITH BASELINES ON EMOTION SIMILARITY, PROSODY SIMILARITY, INTELLIGIBILITY AND SPEECH EMOTION RECOGNITION ACCURACY.",
+  "file": "figures/tab-I.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.146,
+   0.096,
+   0.849,
+   0.175
+  ],
+  "label": "objective",
+  "source_files": [],
+  "tex_line": 140,
+  "refs": [
+   "§4 Results and Discussion (L177)",
+   "§4.1 Effectiveness of Emo-DPO training on LLM (L180)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "II",
+  "page": 4,
+  "caption": "TABLE II ABLATION STUDY ON THE PROPOSED EMO-DPO WITH DIFFERENT COMPONENTS REMOVED W.R.T SPEECH SYNTHESIS PERFORMANCES. SYMBOL ”−” IS REMOVAL OPERATION.",
+  "file": "figures/tab-II.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.505,
+   0.423,
+   0.944,
+   0.531
+  ],
+  "label": "ablation",
+  "source_files": [],
+  "tex_line": 207,
+  "refs": [
+   "§4 Results and Discussion (L177)",
+   "§4.2 Ablation Study (L194)"
+  ]
+ }
+]

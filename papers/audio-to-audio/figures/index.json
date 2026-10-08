@@ -1,0 +1,159 @@
+[
+ {
+  "kind": "figure",
+  "num": "1",
+  "page": 4,
+  "caption": "Figure 1: Diffusion generation compared with warm initialization. Dashed arrows indicate reverse diffusion steps. Top: Standard genera- tion from Gaussian noise gradually produces piano audio. Bottom: Warm initialization from x(g) (Oboe) preserves the melody while the diffusion process shifts the timbre toward the piano distribution.",
+  "file": "figures/fig-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.078,
+   0.101,
+   0.922,
+   0.304
+  ],
+  "label": "fig:warm_init_vs_generation",
+  "source_files": [
+   "Figures/denoising_spectrograms.pdf"
+  ],
+  "tex_line": 92,
+  "refs": [
+   "§3.1 Framework (L87)",
+   "§3.1 Framework (L89)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "2",
+  "page": 4,
+  "caption": "Figure 2: Spectrograms of oboe-to-piano timbre transfer for dif- ferent initialization times tinit. A diffusion schedule with T = 100 steps is used, with reverse diffusion starting at tinit. Smaller tinit leads to stronger deviation from the input, while larger values pre- serve more of the original melodic structure.",
+  "file": "figures/fig-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.078,
+   0.369,
+   0.486,
+   0.529
+  ],
+  "label": "fig:init_time_spectrograms",
+  "source_files": [
+   "Figures/example_spectrograms.pdf"
+  ],
+  "tex_line": 102,
+  "refs": [
+   "§3.1 Framework (L100)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "3",
+  "page": 4,
+  "caption": "Figure 3: JD as a function of τinit for oboe-to-piano timbre transfer for λ = 0 and λ = 1. τinit = 0 denotes that the model performs all reverse steps, while τinit = 1 denotes that no reverse steps are performed. Lower values indicate greater melodic similarity to the guide signal x(g).",
+  "file": "figures/fig-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.514,
+   0.462,
+   0.922,
+   0.643
+  ],
+  "label": "fig:jaccard_vs_t_Oboe2Piano",
+  "source_files": [
+   "Figures/jaccard_vs_t_mono_melody_Oboe2Piano.pdf"
+  ],
+  "tex_line": 152,
+  "refs": [
+   "§4.1 Timbre Transfer (L150)",
+   "§4.1 Timbre Transfer (L165)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "4",
+  "page": 5,
+  "caption": "Figure 4: FAD as a function of τinit for oboe-to-piano timbre trans- fer for λ = 0 and λ = 1. τinit = 0 denotes that the model performs all reverse steps, while τinit = 1 denotes that no reverse steps are performed. Lower values indicate closer alignment with the piano reference distribution.",
+  "file": "figures/fig-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.078,
+   0.101,
+   0.486,
+   0.282
+  ],
+  "label": "fig:fad_vs_t_Oboe2Piano",
+  "source_files": [
+   "Figures/fad_vs_t_Oboe2Piano.pdf"
+  ],
+  "tex_line": 158,
+  "refs": [
+   "§4.1 Timbre Transfer (L150)",
+   "§4.1 Timbre Transfer (L165)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "5",
+  "page": 5,
+  "caption": "Figure 5: Spectrograms of enhanced audio signals. Left: de- graded guide signals x(g). Right: corresponding outputs obtained via warm initialization.",
+  "file": "figures/fig-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.513,
+   0.098,
+   0.922,
+   0.339
+  ],
+  "label": "fig:enhancemnet_spectrograms",
+  "source_files": [
+   "Figures/enhancemnet_spectrograms.pdf"
+  ],
+  "tex_line": 186,
+  "refs": [
+   "§4.3 Audio Enhancement (L184)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "6",
+  "page": 8,
+  "caption": "Figure 6: JD as a function of τinit for string-to-clarinet timbre transfer for λ = 0 and λ = 1. τinit = 0 denotes that the model performs all reverse steps, while τinit = 1 denotes that no reverse steps are performed.",
+  "file": "figures/fig-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.078,
+   0.476,
+   0.486,
+   0.657
+  ],
+  "label": "fig:jaccard_vs_t_mono_melody_String2Clarinet",
+  "source_files": [
+   "Figures/jaccard_vs_t_mono_melody_String2Clarinet.pdf"
+  ],
+  "tex_line": 218,
+  "refs": [
+   "§7 Appendix: String-to-Clarinet Timbre Tran (L216)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "7",
+  "page": 8,
+  "caption": "Figure 7: FAD as a function of τinit for string-to-clarinet timbre transfer for λ = 0 and λ = 1. τinit = 0 denotes that the model performs all reverse steps, while τinit = 1 denotes that no reverse steps are performed.",
+  "file": "figures/fig-07.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.514,
+   0.364,
+   0.922,
+   0.545
+  ],
+  "label": "fig:fad_vs_t_String2Clarinet",
+  "source_files": [
+   "Figures/fad_vs_t_String2Clarinet.pdf"
+  ],
+  "tex_line": 225,
+  "refs": [
+   "§7 Appendix: String-to-Clarinet Timbre Tran (L216)"
+  ]
+ }
+]

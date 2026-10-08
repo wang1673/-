@@ -1,0 +1,543 @@
+[
+ {
+  "kind": "figure",
+  "num": "1",
+  "page": 1,
+  "caption": "Figure 1. We present MELFUSION, a music diffusion model equipped with a novel “visual synapse”, that can effectively in- fuse image semantics into a text-to-music diffusion model. This task indeed requires a detailed understanding of the concepts in the image. An alternate approach like using a caption generator to convert image to text space to be further used with existing text-to- music methods leads to a sub-optimal overall audio quality (OVL) score. Our approach can knit together complementary information from both modalities to synthesize high-quality music.",
+  "file": "figures/fig-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.501,
+   0.339,
+   0.897,
+   0.508
+  ],
+  "label": "fig:teaser",
+  "source_files": [
+   "Figures/mainfig.pdf"
+  ],
+  "tex_line": 31,
+  "refs": [
+   "§1 Introduction (L47)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "2",
+  "page": 4,
+  "caption": "Figure 2. Our approach MELFUSION generates music waveform w conditioned on an image I and a given textual instruction Y . Visual semantics from I is instilled into a text-to-music diffusion model (bottom green box) using a pre-trained and frozen text-to-image diffusion model (top blue box). The image I is first DDIM inverted into a noisy latent zI the text-to-image LDM that consumes zI T is infused into the cross-attention features of text-to-music LDM decoder layers, modulated by",
+  "file": "figures/fig-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.07,
+   0.09,
+   0.898,
+   0.356
+  ],
+  "label": "fig:main-figure",
+  "source_files": [
+   "Figures/MelFusion_Mainfig_Updated.pdf"
+  ],
+  "tex_line": 95,
+  "refs": [
+   "§3 Synthesizing Music from Image and Text (L107)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "3",
+  "page": 5,
+  "caption": "Figure 3. The distribution of different genres in MeLBench.",
+  "file": "figures/fig-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.531,
+   0.087,
+   0.864,
+   0.269
+  ],
+  "label": "fig:dataset_pie_chart",
+  "source_files": [
+   "Figures/Dataset_pie_chart.png"
+  ],
+  "tex_line": 230,
+  "refs": [
+   "§4.1 Datasets (L228)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "4",
+  "page": 5,
+  "caption": "Figure 4. Some image and text pairs from MeLBench. We include more examples in the Appendix.",
+  "file": "figures/fig-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.304,
+   0.896,
+   0.478
+  ],
+  "label": "fig:dataset_main_paper",
+  "source_files": [
+   "Figures/Dataset_examples.png"
+  ],
+  "tex_line": 236,
+  "refs": [
+   "§4.1 Datasets (L228)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "5",
+  "page": 13,
+  "caption": "Figure 5. A mock-up of a social media post that contains an image and associated textual content. Our approach MELFUSION, can consume such image-textual pairs as input and synthesize music that can go well with them.",
+  "file": "figures/fig-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.576,
+   0.125,
+   0.82,
+   0.477
+  ],
+  "label": "fig:problem-motivation",
+  "source_files": [
+   "Figures/problem-motivation.jpg"
+  ],
+  "tex_line": 537,
+  "refs": [
+   "§B Problem Motivation Revisited (L544)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "6",
+  "page": 16,
+  "caption": "Figure 6. Frequency of top 90 words from MeLBench",
+  "file": "figures/fig-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.088,
+   0.896,
+   0.875
+  ],
+  "label": "fig:dataset_word_frequency",
+  "source_files": [
+   "Figures/MelBench_dataset_word_frequency_50.png"
+  ],
+  "tex_line": 731,
+  "refs": [
+   "§F.1 MeLBench Statistics (L915)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "7",
+  "page": 18,
+  "caption": "Figure 7. Samples from MeLBench.",
+  "file": "figures/fig-07.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.087,
+   0.896,
+   0.882
+  ],
+  "label": "fig:dataset_examples_supp",
+  "source_files": [
+   "Figures/Sanjoy_MMGEN_dataset_Supplementary_part_2_compressed.png"
+  ],
+  "tex_line": 886,
+  "refs": [
+   "§F.2 Dataset Hierarchy and Samples (L920)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "8",
+  "page": 20,
+  "caption": "Figure 8. User study interface to collect OVL and REL scores.",
+  "file": "figures/fig-08.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.08,
+   0.087,
+   0.47,
+   0.448
+  ],
+  "label": "fig:user-study_ovl_rel",
+  "source_files": [
+   "Figures/Sanjoy_MMGEN_dataset_Supplementary_OVL_REL.png"
+  ],
+  "tex_line": 925,
+  "refs": [
+   "§G User Study Details (L949)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "9",
+  "page": 20,
+  "caption": "Figure 9. User study interface for comparison against prior text- to-music methods",
+  "file": "figures/fig-09.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.503,
+   0.087,
+   0.893,
+   0.448
+  ],
+  "label": "fig:user-study-comparison",
+  "source_files": [
+   "Figures/Sanjoy_MMGEN_dataset_Supplementary_user_study_3.png"
+  ],
+  "tex_line": 932,
+  "refs": [
+   "§G User Study Details (L951)"
+  ]
+ },
+ {
+  "kind": "figure",
+  "num": "10",
+  "page": 20,
+  "caption": "Figure 10. User study interface to obtain IMSM scores",
+  "file": "figures/fig-10.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.503,
+   0.495,
+   0.893,
+   0.856
+  ],
+  "label": "fig:user-study_imsm",
+  "source_files": [
+   "Figures/Sanjoy_MMGEN_dataset_Supplementary_IMSM.png"
+  ],
+  "tex_line": 939,
+  "refs": [
+   "§G User Study Details (L953)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "1",
+  "page": 7,
+  "caption": "Table 1. Our proposed approach MELFUSION offers significant gains over state-of-the-art text-to-music methods (first section), and our adapted text-and-image conditioned baselines (second section) across multiple objective and subjective metrics on two datasets. IMSM is applicable only when the model is conditioned on visual modality. We skip comparison with MuBERT, Noise2Music, and MeLoDy on MeLBench dataset as their codebases are not public. Please refer to Sec. 4.4 for more details.",
+  "file": "figures/tab-01.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.087,
+   0.896,
+   0.249
+  ],
+  "label": "tab:main_table",
+  "source_files": [],
+  "tex_line": 246,
+  "refs": [
+   "§4.4 Results (L318)",
+   "§4.4 Results (L322)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "2",
+  "page": 7,
+  "caption": "Table 2. We systematically analyze our design choice of learnable α parameters. We vary the position of the synapse: encoder or decoder and also study whether we need the same or different α parameters for each block within them.",
+  "file": "figures/tab-02.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.334,
+   0.896,
+   0.482
+  ],
+  "label": "tab:role_of_alpha",
+  "source_files": [],
+  "tex_line": 331,
+  "refs": [
+   "§5 Discussions and Analysis (L327)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "3",
+  "page": 7,
+  "caption": "Table 3. Sensitivity analysis on the learning rate for α parameters.",
+  "file": "figures/tab-03.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.509,
+   0.559,
+   0.886,
+   0.651
+  ],
+  "label": "tab:alpha_lr",
+  "source_files": [],
+  "tex_line": 360,
+  "refs": [
+   "§5 Discussions and Analysis (L329)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "4",
+  "page": 7,
+  "caption": "Table 4. Conditioning independently on each of the modalities leads to inferior music generation performance in this experiment.",
+  "file": "figures/tab-04.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.686,
+   0.896,
+   0.764
+  ],
+  "label": "tab:input_conditioning",
+  "source_files": [],
+  "tex_line": 385,
+  "refs": [
+   "§5 Discussions and Analysis (L382)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "5",
+  "page": 8,
+  "caption": "Table 5. Sensitivity analysis on the number of denoising steps T, and the strength of classifier-free guidance.",
+  "file": "figures/tab-05.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.087,
+   0.473,
+   0.173
+  ],
+  "label": "tab:steps_and_guidance",
+  "source_files": [],
+  "tex_line": 409,
+  "refs": [
+   "§5 Discussions and Analysis (L407)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "6",
+  "page": 8,
+  "caption": "Table 6. Performance of MELFUSION with varying verbosity of text prompts collected from MeLBench.",
+  "file": "figures/tab-06.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.223,
+   0.473,
+   0.307
+  ],
+  "label": "tab:varying text prompt",
+  "source_files": [],
+  "tex_line": 435,
+  "refs": [
+   "§5 Discussions and Analysis (L457)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "7",
+  "page": 8,
+  "caption": "Table 7. While comparing MELFUSION with state-of-the-art text- to-audio approaches, we see significant improvement in quality.",
+  "file": "figures/tab-07.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.088,
+   0.896,
+   0.177
+  ],
+  "label": "tab:comparison_against_text_to_audio",
+  "source_files": [],
+  "tex_line": 463,
+  "refs": [
+   "§5 Discussions and Analysis (L461)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "8",
+  "page": 14,
+  "caption": "Table 8. MELFUSION with different versions of Stable Diffusion.",
+  "file": "figures/tab-08.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.784,
+   0.473,
+   0.875
+  ],
+  "label": "tab:sd_version",
+  "source_files": [],
+  "tex_line": 561,
+  "refs": [
+   "§E.1 Choice of Text-to-Image Diffusion Model (L579)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "9",
+  "page": 14,
+  "caption": "Table 9. Performance of MELFUSION with different text encoders",
+  "file": "figures/tab-09.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.314,
+   0.896,
+   0.438
+  ],
+  "label": "tab:text_encoders",
+  "source_files": [],
+  "tex_line": 583,
+  "refs": [
+   "§E.2 Performance with Different Text Encoders (L603)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "10",
+  "page": 14,
+  "caption": "Table 10. A study on the diversity analysis of MELFUSION. We evaluate the performance of our model on generating musi- cal tracks of five different genres on MeLBench.",
+  "file": "figures/tab-10.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.625,
+   0.896,
+   0.713
+  ],
+  "label": "tab:genre_wise_performance",
+  "source_files": [],
+  "tex_line": 607,
+  "refs": [
+   "§E.3 Variation Across Genres (L627)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "11",
+  "page": 15,
+  "caption": "Table 11. Ablation of different decoder blocks",
+  "file": "figures/tab-11.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.442,
+   0.473,
+   0.526
+  ],
+  "label": "tab:decoder_block_ablation_rebuttal",
+  "source_files": [],
+  "tex_line": 632,
+  "refs": [
+   "§E.4 Ablating choice of layers (L630)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "12",
+  "page": 15,
+  "caption": "Table 12. Comparison against different visual conditioning",
+  "file": "figures/tab-12.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.281,
+   0.896,
+   0.372
+  ],
+  "label": "tab:comparisons_rebuttal",
+  "source_files": [],
+  "tex_line": 657,
+  "refs": [
+   "§E.6 Alternate visual conditioning (L655)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "13",
+  "page": 15,
+  "caption": "Table 13. Subjective analysis on generated samples",
+  "file": "figures/tab-13.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.087,
+   0.896,
+   0.177
+  ],
+  "label": "tab:subjective_rebuttal",
+  "source_files": [],
+  "tex_line": 680,
+  "refs": [
+   "§E.7 Subjective analysis (L678)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "14",
+  "page": 15,
+  "caption": "Table 14. Analyzing the effect of having fixed versus learnable α.",
+  "file": "figures/tab-14.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.5,
+   0.599,
+   0.896,
+   0.704
+  ],
+  "label": "tab:fixed_vs_learnable_alpha",
+  "source_files": [],
+  "tex_line": 707,
+  "refs": [
+   "§E.8 Learnable versus Fixed α Parameters (L729)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "15",
+  "page": 19,
+  "caption": "Table 15. Genre and sub-genre-wise division of the collected samples. Our dataset encompasses samples from 15 different genres each further divided into 22 sub-genres",
+  "file": "figures/tab-15.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.087,
+   0.896,
+   0.406
+  ],
+  "label": "tab:dataset_genre_division",
+  "source_files": [],
+  "tex_line": 738,
+  "refs": [
+   "§F.2 Dataset Hierarchy and Samples (L918)"
+  ]
+ },
+ {
+  "kind": "table",
+  "num": "16",
+  "page": 19,
+  "caption": "Table 16. Image categories in MeLBench.",
+  "file": "figures/tab-16.png",
+  "mode": "裁剪",
+  "bbox": [
+   0.077,
+   0.526,
+   0.473,
+   0.618
+  ],
+  "label": "tab:dataset",
+  "source_files": [],
+  "tex_line": 897,
+  "refs": [
+   "§F.1 MeLBench Statistics (L913)"
+  ]
+ }
+]

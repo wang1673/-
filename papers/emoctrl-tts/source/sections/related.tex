@@ -1,0 +1,71 @@
+
+\begin{figure*}[t]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Overview-v3.png}
+    \vspace{-25pt}
+    \caption{An overview of (a) training and (b) inference of the audio model of EmoCtrl-TTS. }
+    \vspace{-15pt}
+    \label{fig:overview}
+\end{figure*}
+
+\vspace{-.5em}
+\section{Related Work}
+\label{sec:relatedwork}
+
+\vspace{-.5em}
+\subsection{Controlling emotion in TTS}
+\vspace{-.5em}
+
+\input{tables/tts_comparison}
+
+Emotional TTS has undergone substantial advancements in recent years. Table~\ref{tab:tts_comparison} lists various TTS systems from different perspectives.
+
+The first point is whether TTS systems can control the fine-grained emotional attributes within one utterance. Such fine-grained control is ideal for many applications, for example, speech-to-speech translation where nuanced emotional changes need to be transferred to the translated speech. However, as in Table~\ref{tab:tts_comparison}, most prior works aimed to control the utterance-level emotion, and only a few works tackled the control of time-varying emotional status. MsEmoTTS~\cite{lei2022msemotts} used a local emotional strength predictor to estimate syllable-level emotion strength, leveraging it as a condition to control the emotion strength of generated speech. ELaTE~\cite{kanda2024making} leveraged laughter representation to condition the flow-matching-based zero-shot TTS, and showed superior controllability of laughter generation. However, they still lack full controllability of the emotional status.
+
+The second point is the capability to generate NVs. As far as we investigated, most prior emotional TTS works were not able to generate NVs. While ELaTE~\cite{kanda2024making} can generate natural laughter, it was not investigated with other NVs such as cries. Our work aims to generate arbitrary types of NVs, including laughter and cries.
+
+The third point is the size of the training data. Due to the difficulty in developing high-quality emotional training data with supervision, most works utilized less than 100 hours of training data. While ELaTE~\cite{kanda2024making} used 460 hours of speech containing laughter, the data scale is still less than 500 hours. To the best of our knowledge, ours is the first to investigate the impact of using large-scale emotional data for TTS training.
+
+The fourth point is the number of speakers. As shown in the table, most of the emotional TTS systems utilized voices from fewer than 100 speakers, with some exceptions where the number of speakers is not available. While the number of speakers in our data is also unavailable due to anonymization, we expect that our training data contains a significantly large variation of speakers given the data scale, which is beneficial for the zero-shot TTS capability.
+
+Finally, the fifth point is whether the emotional training data is staged data or real data. As shown in the table, most existing works utilized staged data for their training, which inevitably limited the variety of the speech. For example, in a speech-to-speech translation scenario, the source language speakers are often not professional actors, and their voice characteristics are different from the staged voice. By using large-scale training data, we aim to achieve highly faithful emotion transfer in the zero-shot TTS scenario.
+
+
+\vspace{-.5em}
+\subsection{Flow-matching-based TTS}
+\vspace{-.5em}
+\subsubsection{Conditional flow matching}
+\vspace{-.5em}
+
+Conditional flow-matching~\cite{lipman2023flow} is an objective for training generative models. 
+Continuous normalizing flows~\cite{chen2018neural} is employed to convert a simple prior distribution $p_0$ into a complex distribution $p_1$ that aligns with the data.
+To be specific, for a given data point $x$, a neural network parameterized by $\theta$ models a time-dependent vector field $v_t(x;\theta)$. 
+This vector field constructs a flow $\phi_t$, which reshapes the prior distribution into the target distribution.
+Lipman et al.~\cite{lipman2023flow} proposed to train such a neural network 
+with the conditional flow-matching objective:
+\begin{equation}
+\mathcal{L}^{\rm CFM}(\theta)=\mathbb{E}_{t,q(x_1), p_t(x|x_1)}||u_t(x|x_1)-v_t(x;\theta)||^2,
+\end{equation}
+where $q$ denotes the training data distribution, $x_1$ represents the random variable for the training data, $p_t$ denotes the probability path at time step $t$, and $u_t$ is the vector field associated with $p_t$.
+Also, Lipman et al.~\cite{lipman2023flow} present a conditional flow known as the optimal transport path, defined by the equations $p_t(x|x_1) = \mathcal{N}(x|tx_1, (1 - (1 - \sigma_{\rm min})t)^2I)$ and $u_t(x|x_1) = (x_1 - (1 - \sigma_{\rm min})x)/(1 - (1 - \sigma_{\rm min})t)$.
+
+
+\vspace{-.5em}
+\subsubsection{Voicebox}
+\vspace{-.5em}
+
+Voicebox \cite{le2024voicebox} is the first to utilize conditional flow matching for training zero-shot TTS. 
+It is designed to perform speech-infilling tasks given audio context and frame-wise phoneme sequence as conditions.
+Given the promising performance of Voicebox, we also employ conditional flow matching to develop our TTS model.
+
+\vspace{-.5em}
+\subsubsection{ELaTE}
+\vspace{-.5em}
+\label{sec:elate}
+
+ELaTE~\cite{kanda2024making} was proposed to generate natural laughing speech with fine-grained controllability.
+It utilized a frame-level laughter representation derived from 
+the laughter detector~\cite{ryokai2018capturing, gillick2021robust}\footnote{\label{fn:laugh}\url{https://github.com/jrgillick/laughter-detection}} 
+to condition the flow-matching-based zero-shot TTS, showing significantly higher quality and better controllability in generating laughing speech compared to conventional models.
+However, ELaTE was only tested with laughing speech, and the effects on other NVs, such as crying, have not been investigated. 
+In our preliminary experiment, we found that ELaTE sometimes generates laughing speech even when the audio prompt contains different NVs, such as crying. Our work can be regarded as an extension of ELaTE, where we aim to achieve better emotion controllability as well as the generation of various NVs.

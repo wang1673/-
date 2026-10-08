@@ -1,0 +1,116 @@
+[
+  {
+    "path": "papers/emo-dpo/figures/.kelip-paper-reading",
+    "size": 107,
+    "sha256": "4cc097e0aa8af6b6146a132e4f711f7a9714703f384fa81c871b736957f0c18c",
+    "git_blob_sha": "925c1353d376783fdba83fe2947c1619b3ca3bda"
+  },
+  {
+    "path": "papers/emo-dpo/figures/_contact.png",
+    "size": 18703,
+    "sha256": "05136a8bb38848605e1c9a6c769d55212873e18052f7e1a06b51c9bbdfdeae75",
+    "git_blob_sha": "75c15812986e80fd7b3b33564ce73032fb27a935"
+  },
+  {
+    "path": "papers/emo-dpo/figures/fig-01.png",
+    "size": 27069,
+    "sha256": "044126749cd21e289464471a6d3e9f40063c9460cb6b681b0d95add3ca5ba754",
+    "git_blob_sha": "084d42c6f9df220506c7a44486ef5041066b15cb"
+  },
+  {
+    "path": "papers/emo-dpo/figures/fig-02.png",
+    "size": 8967,
+    "sha256": "87fa1da982c70f1bcc5fadb1685148cc9d725594b88ebda9cd44332a13e5b7a0",
+    "git_blob_sha": "b0e4059a76cd5829fd2f606180f2d4a37439c448"
+  },
+  {
+    "path": "papers/emo-dpo/figures/fig-03.png",
+    "size": 10452,
+    "sha256": "da88dcde00f2eb4bc0de47707605ba6883000cb21fc2ea82700f98aa8170b465",
+    "git_blob_sha": "566df0ffa266b5a9472ad664986b034fdb63aaf1"
+  },
+  {
+    "path": "papers/emo-dpo/figures/index.json",
+    "size": 2887,
+    "sha256": "28f278e17c51aeaf5a6d135bd8e46214478dd3bdb7096e15802906b2c7d4d4cd",
+    "git_blob_sha": "42c07810dab9c74069a783ae77eafb4c56aa3f90"
+  },
+  {
+    "path": "papers/emo-dpo/figures/index.md",
+    "size": 2510,
+    "sha256": "f8f261a132fada9d6f4f983f46b594a5d48ee46b0f7f5dca6d21fd813ff75e69",
+    "git_blob_sha": "b99ff0aeadab6f2f970b2eecd27baa0a355a51e5"
+  },
+  {
+    "path": "papers/emo-dpo/figures/tab-I.png",
+    "size": 16714,
+    "sha256": "b1a851ea8bfa23754086c9eb0f06a386d23c3c48cc9101f49e3c92396e16d60f",
+    "git_blob_sha": "ffbe9cf8cc0b92e6ae357987af36d24e3dc41978"
+  },
+  {
+    "path": "papers/emo-dpo/figures/tab-II.png",
+    "size": 11071,
+    "sha256": "7ccb8435ee6abc358d46beac40528da85d4ea2e6fc50b5984f3499f7bc252ba3",
+    "git_blob_sha": "e6c4e274a1e3222dfb87f8cb482c159482948097"
+  },
+  {
+    "path": "papers/emo-dpo/meta.json",
+    "size": 2330,
+    "sha256": "47af07d25d4d5f472e3d5f9ebb05d91cea72df633d6edd3393d354d45a83d7fc",
+    "git_blob_sha": "7c608540182db5ef3add5b647d1ea9f2a7b9c38c"
+  },
+  {
+    "path": "papers/emo-dpo/outline.md",
+    "size": 1715,
+    "sha256": "16a4db350edef19eff38f3c2cc8cdcdf41d2723054714ebadc449da2a5335688",
+    "git_blob_sha": "69f7922e5e813eaa0053ec4c294f7af44a3e8267"
+  },
+  {
+    "path": "papers/emo-dpo/paper.tex",
+    "size": 24473,
+    "sha256": "9946dc388e71c19f6988c672521c0e8597733b147c9f806ad5a734a78f447f76",
+    "git_blob_sha": "9b2846d82405df3cc558089ee1f5abec3f91c79d"
+  },
+  {
+    "path": "papers/emo-dpo/paper.txt",
+    "size": 29213,
+    "sha256": "df150aa71c9b44dee3bbc61306e40e9ad9c17af31db2dc931eb617939a7251a8",
+    "git_blob_sha": "ab55900fae0f6e193aac8835cab731265b0214fe"
+  },
+  {
+    "path": "papers/emo-dpo/source/icassp.bbl",
+    "size": 10543,
+    "sha256": "ed38b37947e726cdf1114b4a6baadd26d2558ff39dcd797fbf1355be0e1e72ce",
+    "git_blob_sha": "a8946e16b04e55fa1c26cf113d99f7a7ef865209"
+  },
+  {
+    "path": "papers/emo-dpo/source/icassp.tex",
+    "size": 25410,
+    "sha256": "0dd0eb34b61408d848af5abdb573c4574e14035bc5614751b9cb0114ea0723ff",
+    "git_blob_sha": "a62d2bcda92d5c8bb1e10b374f8e7f3793b8dc95"
+  },
+  {
+    "path": "papers/emo-dpo/source/IEEEbib.bst",
+    "size": 17903,
+    "sha256": "7e6ca0c8b72158d504a12bb091f817c07032a021ba41ca783cca4c2dd80d570b",
+    "git_blob_sha": "f9bf3cca18df5226892678df3d5c5d01cdb23bc8"
+  },
+  {
+    "path": "papers/emo-dpo/source/refs.bib",
+    "size": 13530,
+    "sha256": "32449d01f63f92910b69cc077516e2428e4a97ec268132483798bf1ba20d05d1",
+    "git_blob_sha": "ef508c7b906296ddc9b2aa1d7409226e84b5781e"
+  },
+  {
+    "path": "papers/emo-dpo/精读笔记.md",
+    "size": 7544,
+    "sha256": "a3434666bdd14c30e8609aa6a5880c3a5ce3c70897959bd08e3408fa4afe391c",
+    "git_blob_sha": "99531e61f531148d5c2872652fe7490a7466deb9"
+  },
+  {
+    "path": "papers/emo-dpo/upload-status.md",
+    "size": 1102,
+    "sha256": "52c38fe21474d120fa133d8566cc93687d991c4a52721c63f26469490bf425a9",
+    "git_blob_sha": "64f463d08ee200141c5581edafad664e31f7adcf"
+  }
+]

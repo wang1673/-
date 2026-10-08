@@ -1,0 +1,55 @@
+{
+  "arxiv_id": "2606.18968",
+  "version": "v1",
+  "title": "Audio-to-Audio via Diffusion Warm Initialization",
+  "authors": [
+    "Cristóbal Andrade",
+    "Sebastian J. Schlecht"
+  ],
+  "published": "2026-06-17",
+  "updated": "2026-06-17",
+  "abstract": "In this paper, we propose diffusion warm initialization as a simple yet effective approach for a range of audio-to-audio transformation tasks. To illustrate the generality of the approach, we demonstrate its use in timbre transfer, MIDI-to-Real synthesis, and multiple audio enhancement tasks. We conduct a detailed empirical analysis on timbre transfer to investigate the role of the initialization time $t_\\text{init}$. The effect of $t_\\text{init}$ is evaluated using pitch-based Jaccard Distance and Fréchet Audio Distance to quantify faithfulness to the input signal and alignment with the target distribution. Our results provide practical guidance for selecting $t_\\text{init}$ and show that, once properly chosen, a single pretrained diffusion model combined with warm initialization can support multiple transformation objectives without task-specific training or conditioning. Despite its simplicity, this approach already achieves competitive results when compared with more complex pipelines designed specifically for these tasks. We further observe that warm initialization does not necessarily require explicit noise injection, as the guide signal itself can often serve as a valid initialization state for the backward diffusion process. Together, these findings show that warm initialization provides a simple and effective framework that serves as a fundamental building block for more complex audio transformation pipelines.",
+  "comment": "",
+  "journal_ref": "",
+  "categories": [
+    "eess.AS"
+  ],
+  "abs_url": "https://arxiv.org/abs/2606.18968v1",
+  "pdf_pages": 8,
+  "has_latex": true,
+  "main_tex": "source\\DAFx26_tmpl_v2.tex",
+  "links": {
+    "project": [
+      {
+        "url": "https://cristobalandrade.github.io/Audio-to-Audio-via-Diffusion-Warm-Initialization",
+        "score": 10,
+        "from": [
+          "首页链接",
+          "正文提到"
+        ]
+      }
+    ],
+    "other": [
+      {
+        "url": "https://www.lms.tf.fau.eu",
+        "score": 4,
+        "from": [
+          "首页链接"
+        ]
+      },
+      {
+        "url": "https://mailto:cristobal.andrade@fau.de, sebastian.schlecht@fau.de",
+        "score": 4,
+        "from": [
+          "首页链接"
+        ]
+      }
+    ]
+  },
+  "official_code": null,
+  "official_code_from": null,
+  "code_dir": null,
+  "fetched": "2026-10-08",
+  "reading_date": "2026-10-08",
+  "image_note": "PDF crops converted to compact indexed PNGs for readable low-bandwidth GitHub upload; original high-resolution figures may be omitted."
+}

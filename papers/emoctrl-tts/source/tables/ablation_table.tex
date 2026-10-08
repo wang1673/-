@@ -1,0 +1,39 @@
+\begin{table*}[t]
+  \centering
+      \caption{Impact of training configurations on the EmoCtrl-TTS on JVNV S2ST test set.} 
+  \label{tab:ablation_study}
+\ra{0.9}
+\resizebox{\textwidth}{!}
+{
+% \scriptsize
+\footnotesize
+ \tabcolsep = 0.8mm
+\begin{tabular}{@{}lccccccccccccccccc@{}}
+    \toprule
+    \multirow{2}{*}{\textbf{Training Data (hours)}} & \multirow{2}{*}{\textbf{Data Ratio}} & \multirow{2}{*}{\textbf{Steps}} && \multicolumn{2}{c}{\textbf{IH-EMO}} & \multicolumn{2}{c}{\textbf{LAUGH}} && \multirow{2}{*}{\textbf{SIM-o$\uparrow$}} && \multirow{2}{*}{\textbf{WER (\%)$\downarrow$}} && \multirow{2}{*}{\textbf{AutoPCP$\uparrow$}} && \multirow{2}{*}{\textbf{Emo SIM$\uparrow$}} && \multirow{2}{*}{\textbf{Aro-Val SIM$\uparrow$}}  \\
+    % \cmidrule{7-15}
+    & && & $h$ & $e$ & $h$ & $e$ &&  \\
+    \midrule
+     LL (60k) + LAUGH (460) & 0.5:0.5 & 40k           && && &&& 0.410  && 2.5  && 3.07 && 0.645 && 0.438  \\ 
+     LL (60k) + LAUGH (460) (= ELaTE) & 0.5:0.5 & 40k && && \checkmark & && 0.441  && 3.8  && 3.36 && 0.671 && 0.548  \\
+     \textcolor{black}{LL (60k) + LAUGH (460)} & 0.5:0.5 & 40k && && & \checkmark && 0.332 && 4.7 && 3.22 &&  0.680 &&  0.632 \\
+     LL (60k) + LAUGH (460) & 0.5:0.5 & 40k           && && \checkmark & \checkmark && 0.391  && 4.4  && 3.39 && 0.702 && {\bf 0.663}  \\
+    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+     LL (60k) + IH-EMO (27k) & 0.5:0.5 & 40k && && &&& 0.479 && {\bf 2.2} && 2.96 && 0.641 && 0.397   \\
+     \textcolor{black}{LL (60k) + IH-EMO (27k)} & 0.5:0.5 & 40k && \checkmark &  & &&& 0.403 && 6.7 && 3.14 && 0.687 &&  0.590  \\
+     LL (60k) + IH-EMO (27k) & 0.5:0.5 & 40k && & \checkmark & &&& 0.487 && 2.5 && 3.36 && 0.682 && 0.608   \\
+     LL (60k) + IH-EMO (27k) & 0.5:0.5 & 40k && \checkmark & \checkmark & &&& 0.438 && 7.7 && 3.29 && {\bf 0.707} && 0.637  \\
+    \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+     LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.5:0.25:0.25 & 40k & &&& &&& 0.455 && 3.0 && 3.17 && 0.659 && 0.470  \\
+     LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.5:0.25:0.25 & 40k && & \checkmark & \checkmark &&& 0.448 && 4.4 && 3.38 && 0.693 && 0.647  \\
+    % \hdashline[1pt/2pt]\hdashline[0pt/1pt]
+     LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.5:0.4:0.1   & 40k && & \checkmark & \checkmark &&& 0.487 && 3.4 && 3.44 && 0.690 && 0.626  \\
+     LL (60k) + IH-EMO (27k) + LAUGH (460) & 0.5:0.4:0.1   & 200k && & \checkmark & \checkmark &&& {\bf 0.497} && 3.2 && {\bf 3.50} && 0.697 && 0.643  \\
+    \bottomrule
+\end{tabular}
+}
+\vspace{-5mm}
+\end{table*}
+
+
+

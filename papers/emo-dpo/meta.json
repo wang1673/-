@@ -1,0 +1,54 @@
+{
+  "arxiv_id": "2409.10157",
+  "version": "v1",
+  "title": "Emo-DPO: Controllable Emotional Speech Synthesis through Direct Preference Optimization",
+  "authors": [
+    "Xiaoxue Gao",
+    "Chen Zhang",
+    "Yiming Chen",
+    "Huayun Zhang",
+    "Nancy F. Chen"
+  ],
+  "published": "2024-09-16",
+  "updated": "2024-09-16",
+  "abstract": "Current emotional text-to-speech (TTS) models predominantly conduct supervised training to learn the conversion from text and desired emotion to its emotional speech, focusing on a single emotion per text-speech pair. These models only learn the correct emotional outputs without fully comprehending other emotion characteristics, which limits their capabilities of capturing the nuances between different emotions. We propose a controllable Emo-DPO approach, which employs direct preference optimization to differentiate subtle emotional nuances between emotions through optimizing towards preferred emotions over less preferred emotional ones. Instead of relying on traditional neural architectures used in existing emotional TTS models, we propose utilizing the emotion-aware LLM-TTS neural architecture to leverage LLMs' in-context learning and instruction-following capabilities. Comprehensive experiments confirm that our proposed method outperforms the existing baselines.",
+  "comment": "5 pages",
+  "journal_ref": "",
+  "categories": [
+    "eess.AS",
+    "cs.SD",
+    "eess.SP"
+  ],
+  "abs_url": "https://arxiv.org/abs/2409.10157v1",
+  "pdf_pages": 5,
+  "has_latex": true,
+  "main_tex": "source\\icassp.tex",
+  "links": {
+    "code": [
+      {
+        "url": "https://github.com/facebookresearch/seamless_communication",
+        "score": 2.5,
+        "from": [
+          "正文链接",
+          "正文提到"
+        ]
+      }
+    ],
+    "project": [
+      {
+        "url": "https://xiaoxue1117.github.io/Emo-tts-dpo",
+        "score": 2.5,
+        "from": [
+          "正文链接",
+          "正文提到"
+        ]
+      }
+    ]
+  },
+  "official_code": null,
+  "official_code_from": null,
+  "code_dir": null,
+  "fetched": "2026-10-08",
+  "reading_date": "2026-10-08",
+  "image_note": "PDF crops converted to compact indexed PNGs for readable low-bandwidth GitHub upload; original high-resolution figures may be omitted."
+}
