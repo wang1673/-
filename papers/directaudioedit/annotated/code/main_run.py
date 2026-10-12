@@ -230,6 +230,7 @@ def ldm_step_noise_2(ldm_model, t, data_tar, data_src):
     xt_src, text_emb_src, uncond_emb_src, guidance_scale_src = data_src
     xt_tar, text_emb_tar, uncond_emb_tar, guidance_scale_tar = data_tar
 
+    # 【深入注释｜原文件 L225】把目标与源 latent 拼成同一 batch，保证两个条件预测使用同一扩散时刻。
     xt = torch.cat([xt_tar, xt_src])
     uncond_emb_embedding_hidden_states = pad_and_cat(uncond_emb_tar.embedding_hidden_states, uncond_emb_src.embedding_hidden_states)
     # import pdb; pdb.set_trace()
@@ -258,6 +259,7 @@ def ldm_step_noise_2(ldm_model, t, data_tar, data_src):
                 encoder_attention_mask=text_emb_boolean_prompt_mask,
             )
 
+    # 【深入注释｜原文件 L253】分别恢复目标/源 CFG 噪声预测；返回顺序是 target、source，后续做位移差时不要反过来。
     noise_pred_tar = noise_pred_uncond.sample[:1] + guidance_scale_tar * (noise_prediction_text.sample[:1] - noise_pred_uncond.sample[:1])
     noise_pred_src = noise_pred_uncond.sample[1:] + guidance_scale_src * (noise_prediction_text.sample[1:] - noise_pred_uncond.sample[1:])
     return noise_pred_tar, noise_pred_src
@@ -269,6 +271,7 @@ def ldm_step_noise_2(ldm_model, t, data_tar, data_src):
 def scale_noise(ldm_model, sample, timestep, noise):
     scheduler = ldm_model.model.scheduler
     alpha_t = scheduler.alphas_cumprod[timestep]
+    # 【深入注释｜原文件 L263】解析扩散前向核 q_t=√ᾱ_t·x+√(1−ᾱ_t)·ε；这一步没有 DDIM 反演。
     zt_src = alpha_t**0.5 * sample + (1 - alpha_t)**0.5 * noise
     return zt_src    
 
@@ -283,13 +286,17 @@ def scale_noise(ldm_model, sample, timestep, noise):
 def text2image_daedit_theory(ldm_model, prompt_src: List[str], prompt_tgt: List[str],
                           guidance_scale_src=3, guidance_scale_tar=8, x_src: Optional[torch.FloatTensor] = None, fix_noise=False, guidance_scale_strategy="cos"):
     
+    # 【深入注释｜原文件 L275】源/目标文本及各自无条件文本编码一次，编辑循环重复使用这些嵌入。
     _, src_emb, src_emb_uncond = get_text_embeddings(prompt_src, [""], ldm_model)
     _, tgt_emb, tgt_emb_uncond = get_text_embeddings(prompt_tgt, [""], ldm_model)
 
+    # 【深入注释｜原文件 L278】干净编辑状态起始为源 latent；每步只叠加目标与源预测位移之差。
     zt_edit = x_src.clone()
 
+    # 【深入注释｜原文件 L280】初始化共享高斯噪声；fix_noise=true 时整条轨迹共用它，否则每个时间步更新。
     fwd_noise = torch.randn_like(x_src).to(x_src.device)
     
+    # 【深入注释｜原文件 L282】循环沿 scheduler 的反向时间表推进；当前版本每步都从固定源与当前编辑状态解析加噪。
     for t in tqdm(ldm_model.model.scheduler.timesteps):
         current_guidance_scale_src = resolve_daedit_guidance_scale(
             guidance_scale_src,
@@ -303,21 +310,27 @@ def text2image_daedit_theory(ldm_model, prompt_src: List[str], prompt_tgt: List[
         )
 
 
+        # 【深入注释｜原文件 L295】默认每步重新抽一份 ε，同时用于源与目标，形成 Diffusion Prediction Contrast 所需配对。
         if not fix_noise:
             fwd_noise = torch.randn_like(x_src).to(x_src.device)
+        # 【深入注释｜原文件 L297】源加噪使用固定 x_src；不能把上一步带噪源状态递推，否则变成另一种轨迹。
         zt_src = scale_noise(ldm_model, x_src, t, fwd_noise)
         # 【中文精读｜原文件 L298】目标是当前干净 y 的重新加噪，区别于 FlowEdit 的完整位移平移。
+        # 【深入注释｜原文件 L298】目标加噪使用当前编辑状态 y_t 且共享 ε；这与 FlowEdit 的 p_t=y+q−x_src 不同。
         zt_tar = scale_noise(ldm_model, zt_edit, t, fwd_noise)
         
+        # 【深入注释｜原文件 L300】同一噪声下查询目标/源预测，单批模型调用得到两组 CFG 输出。
         eps_tgt, eps_src = ldm_step_noise_2(ldm_model, t, (zt_tar, tgt_emb, tgt_emb_uncond, current_guidance_scale_tar), (zt_src, src_emb, src_emb_uncond, current_guidance_scale_src))
         
         # 【中文精读｜原文件 L302】分别反向一步，eta=0；这里 scheduler 位移包含时间系数。
+        # 【深入注释｜原文件 L302】scheduler.step 把 ε 预测转为两个离散反向候选；此处 eta=0 使预测位移确定。
         zt_src_prev = ldm_model.model.scheduler.step(eps_src, t, zt_src, eta=0).prev_sample
         # 【中文精读｜原文件 L303】目标 scheduler 与源使用同一时间，保证位移可比较。
         zt_tar_prev = ldm_model.model.scheduler.step(eps_tgt, t, zt_tar, eta=0).prev_sample
         zt_src_delta = zt_src_prev - zt_src
         zt_tar_delta = zt_tar_prev - zt_tar
         # 【中文精读｜原文件 L306】累积 (目标反向位移−源反向位移)，不是把带噪 p_prev 直接当新 y。
+        # 【深入注释｜原文件 L306】核心更新 y←y+(x'_{target}−x_target)−(x'_{source}−x_source)；保留共同位移，积累条件差。
         zt_edit += zt_tar_delta - zt_src_delta
 
 
@@ -424,9 +437,11 @@ def daedit(args, save_name):
     args.tstart = torch.tensor(args.tstart, dtype=torch.int)
     skip = args.num_diffusion_steps - args.tstart
 
+    # 【深入注释｜原文件 L408】音频先转 mel 表征；模型 wrapper 统一各 backbone 的 STFT/VAE 接口。
     x0 = load_audio(args.init_aud, ldm_stable.get_fn_STFT(), device=device)
     torch.cuda.empty_cache()
     with inference_mode():
+        # 【深入注释｜原文件 L411】VAE 把 mel 压成扩散 latent；后面的直接编辑发生在该 latent 空间。
         w0 = ldm_stable.vae_encode(x0)
         w0_src = w0
 
@@ -438,6 +453,7 @@ def daedit(args, save_name):
 
     basescale_cfg_src = cfg_scale_src if len(cfg_scale_src) > 1 else cfg_scale_src[0]
     basescale_cfg_tar = cfg_scale_tar if len(cfg_scale_tar) > 1 else cfg_scale_tar[0]
+    # 【深入注释｜原文件 L422】入口把源/目标 CFG 和文字传入直接编辑函数；现有 n_avg 参数没有在此调用链使用。
     w0_daedit = text2image_daedit_theory(ldm_stable, args.source_prompt, args.target_prompt,
                            basescale_cfg_src, basescale_cfg_tar,
                            w0_src,
@@ -445,6 +461,7 @@ def daedit(args, save_name):
                            guidance_scale_strategy=args.daedit_guidance_strategy)
 
 
+    # 【深入注释｜原文件 L429】编辑结果先 VAE/vocoder 解码，再保存 16 kHz 波形；音频质量也受 codec 限制。
     audio_daedit = w2audio(w0_daedit)
 
 

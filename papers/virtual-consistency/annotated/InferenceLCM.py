@@ -22,6 +22,7 @@ class GenSamples:
         self.save_wav = save_wav
         self.original_inference_steps = original_inference_steps
 
+    # 【深入注释｜原文件 L21】编辑接口把原音频编码结果、源/目标文字交给一致性采样器。
     def gen_edit(self, audio_input, source_prompt, target_prompt, nb_consistency_steps=8, wav_name = None):
         
         if self.wrapper.model_name == "AudioLDM2":
@@ -101,6 +102,7 @@ def load_wrapper(model_type, model_id=None):
         raise ValueError("Model type not supported. Please choose a model type in VCI_AudioLCM, VCI_AudioLDM, VCI_AudioLDM2.")
 
 
+# 【深入注释｜原文件 L99】对外的 VCI_Edit 包装函数负责加载模型、设置局部/互注意力选项并写出音频。
 def VCI_Edit(wrapper, input_path, source_prompt, target_prompt, local=None, mutual=None, wav_name="test",
              result_dir = "results", nb_consistency_steps=8, save_wav=True, phi=None,
                 guidance_scale=1.0, src_guidance_scale=1.0, #attention_control=False,

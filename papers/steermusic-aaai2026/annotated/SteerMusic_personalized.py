@@ -102,6 +102,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
 
     with torch.no_grad():
         print(f'[INFO] Encode text prompt...')
+        # 【深入注释｜原文件 L98】个性化版本同时构造参考、当前和目标三个 prompt 条件。
         text_z_ref, text_z_ref_gen,z_attention_mask_ref = guidance_model.get_text_embeds(prompt_ref)
         text_z,text_z_gen,z_attention_mask = guidance_model.get_text_embeds(prompt)
         text_z_tgt,text_z_gen_tgt,z_attention_mask_tgt = guidance_model.get_text_embeds(prompt_tgt)
@@ -109,6 +110,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
         latent_ref = guidance_model.encode_audio(log_mel_spec) 
         latent[:] = latent_ref
 
+    # 【深入注释｜原文件 L105】仍以源 latent 为可优化初值；这里的学习率与普通 SteerMusic 分支不同。
     optim = torch.optim.SGD([latent], lr=0.1)
     scheduler = torch.optim.lr_scheduler.StepLR(optim, 20, 0.9)
     import torch.nn.functional as F
@@ -119,6 +121,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
         x = latent
 
         # \eps_{\phi'} (z,y,t)
+        # 【深入注释｜原文件 L115】当前个性化模型输出 ε，用相同 t/ε 与参考模型预测构成主 DDS 方向。
         noise_pred, t, noise = personalized_model.predict_noise(prompt_embds=text_z,
                                                             generated_prompt_embds=text_z_gen,
                                                             attention_mask = z_attention_mask,
@@ -142,6 +145,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
         w =   (1 - personalized_model.alphas[t])
         if add_reg==True:
             with torch.no_grad():
+                # 【深入注释｜原文件 L137】额外目标条件预测形成正则项，避免个性化条件使音乐偏离目标语义。
                 noise_pred_hat_z_phi0, _, _ = guidance_model.predict_noise(prompt_embds=text_z_tgt,
                                                             generated_prompt_embds=text_z_gen_tgt,
                                                             attention_mask = z_attention_mask_tgt,
@@ -155,11 +159,13 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
             reg = torch.nan_to_num(reg)
 
         # 【中文精读｜原文件 L148】DDS/PDS 目标预测减源预测；随后 SGD 执行负梯度更新。
+        # 【深入注释｜原文件 L148】核心梯度来自当前与源参考的噪声预测差，后面可与正则项叠加。
         grad = w * (noise_pred  - noise_pred_ref)
         grad = torch.nan_to_num(grad)
 
         sa_attn[t.item()] = {}
 
+        # 【深入注释｜原文件 L153】注册/读取中间注意力特征，供 PCon 比较；它与噪声预测差是两个约束来源。
         for name, module in guidance_model.unet.named_modules(): 
             module_name = type(module).__name__
             if module_name == "Attention":
@@ -169,6 +175,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
 
         if add_reg == True:
             # 【中文精读｜原文件 L161】注入指定梯度，不将占位 forward 常数解释为优化目标的数值。
+            # 【深入注释｜原文件 L161】SpecifyGradient 先注入 DDS/正则梯度，再叠加可微的 patch 对比损失。
             loss = steermusic_utils.SpecifyGradient.apply(x, grad+reg)
         else:
             # 【中文精读｜原文件 L163】注入指定梯度，不将占位 forward 常数解释为优化目标的数值。
@@ -189,6 +196,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
                                                         disable_grad=False)
             
             pconloss = 0
+            # 【深入注释｜原文件 L180】逐层从模型注意力特征抽 patch；PCon 约束结构对应，而非直接最大化 CLAP。
             for name, module in personalized_model.unet.named_modules(): 
                 module_name = type(module).__name__
                 if module_name == "Attention":
@@ -196,6 +204,7 @@ def SteerMusic_plus(audio_name,prompt_ref,prompt,prompt_tgt,
                         curr = module.hs
                         ref = sa_attn[t.item()][name].detach().to(device)
                         pconloss += pcon_loss.get_attn_pcon_loss(ref, curr)
+            # 【深入注释｜原文件 L187】PCon 损失反传到可优化 latent，固定模型权重；数值 3 是代码权重。
             (pconloss*3).backward()
 
         

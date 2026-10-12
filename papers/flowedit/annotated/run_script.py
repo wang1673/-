@@ -29,6 +29,7 @@ if __name__ == "__main__":
 
     # load exp yaml file to dict
     exp_yaml = args.exp_yaml
+    # 【深入注释｜原文件 L28】实验 YAML 控制模型、编辑步数、CFG、n_avg、n_min、n_max；复现时应保存它和随机种子。
     with open(exp_yaml) as file:
         exp_configs = yaml.load(file, Loader=yaml.FullLoader)
 
@@ -37,6 +38,7 @@ if __name__ == "__main__":
 
     if model_type == 'FLUX':
         # pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-schnell", torch_dtype=torch.float16) 
+        # 【深入注释｜原文件 L36】FLUX/SD3 只作为冻结的预训练速度模型加载，FlowEdit 本身没有训练 checkpoint。
         pipe = FluxPipeline.from_pretrained("black-forest-labs/FLUX.1-dev", torch_dtype=torch.float16)
     elif model_type == 'SD3':
         pipe = StableDiffusion3Pipeline.from_pretrained("stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16)
@@ -63,6 +65,7 @@ if __name__ == "__main__":
         np.random.seed(seed)
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
+        # 【深入注释｜原文件 L62】逐条读编辑任务 YAML：源图像路径、源描述、目标描述会流向两个条件速度查询。
         dataset_yaml = exp_dict["dataset_yaml"]
         with open(dataset_yaml) as file:
             dataset_configs = yaml.load(file, Loader=yaml.FullLoader)
@@ -86,6 +89,7 @@ if __name__ == "__main__":
             # cast image to half precision
             image_src = image_src.to(device).half()
             with torch.autocast("cuda"), torch.inference_mode():
+                # 【深入注释｜原文件 L85】VAE 编码后按 shift_factor/scaling_factor 转成模型 latent；跳过缩放会让速度模型看到错分布。
                 x0_src_denorm = pipe.vae.encode(image_src).latent_dist.mode()
             x0_src = (x0_src_denorm - pipe.vae.config.shift_factor) * pipe.vae.config.scaling_factor
             # send to cuda
@@ -94,6 +98,7 @@ if __name__ == "__main__":
             for tar_num, tar_prompt in enumerate(tar_prompts):
 
                 if model_type == 'SD3':
+                    # 【深入注释｜原文件 L93】SD3 分支把同一个 x_src 及两个 prompt 交给差分 ODE；下面的 FLUX 分支只换模型适配。
                     x0_tar = FlowEditSD3(pipe,
                                                             scheduler,
                                                             x0_src,
@@ -124,6 +129,7 @@ if __name__ == "__main__":
                     raise NotImplementedError(f"Sampler type {model_type} not implemented")
 
 
+                # 【深入注释｜原文件 L123】解码前准确逆转 VAE latent 归一化；这一步影响颜色和幅值，不属于编辑 ODE。
                 x0_tar_denorm = (x0_tar / pipe.vae.config.scaling_factor) + pipe.vae.config.shift_factor
                 with torch.autocast("cuda"), torch.inference_mode():
                     image_tar = pipe.vae.decode(x0_tar_denorm, return_dict=False)[0]
@@ -137,6 +143,7 @@ if __name__ == "__main__":
                 save_dir = f"outputs/{exp_name}/{model_type}/src_{src_prompt_txt}/tar_{tar_prompt_txt}"
                 os.makedirs(save_dir, exist_ok=True)
                 
+                # 【深入注释｜原文件 L136】结果文件名记录时间步、噪声平均、CFG 与编辑区间，有助于区分保留度/编辑强度实验。
                 image_tar[0].save(f"{save_dir}/output_T_steps_{T_steps}_n_avg_{n_avg}_cfg_enc_{src_guidance_scale}_cfg_dec{tar_guidance_scale}_n_min_{n_min}_n_max_{n_max}_seed{seed}.png")
                 # also save source and target prompt in txt file
                 with open(f"{save_dir}/prompts.txt", "w") as f:

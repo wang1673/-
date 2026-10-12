@@ -56,6 +56,7 @@ guidance_model.eval()
 # 【中文精读｜原文件 L52】§4.1：只更新 latent；源 latent 与模型参数冻结。每轮随机 t/noise 与源分支共享。
 # 【中文精读｜原文件 L52】注意保存发生在 optim.step 前：默认最后保存对应 400 次更新，循环实际执行 401 次。
 def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,guidance_model=guidance_model, preprocessor=preprocessor,guidance_scale = 15, device = "cuda:7"):
+    # 【深入注释｜原文件 L53】源音频读为 log-mel，再加 batch/channel 轴送入 AudioLDM2 VAE。
     log_mel_spec, _, _, _  = preprocessor.read_audio_file(filename=audio_name)
     log_mel_spec = log_mel_spec.unsqueeze(0).unsqueeze(0).to(device)
 
@@ -69,10 +70,12 @@ def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,g
     as_latent = True
     latent_size = 16 # need to adjust!
     # 【中文精读｜原文件 L65】可优化变量形状 [1,8,T,16]；后面复制源 latent 初始化，而非从随机噪声开始编辑。
+    # 【深入注释｜原文件 L65】创建可训练 latent；随后用源音频编码覆盖初值，优化变量只有这份 latent。
     latent = torch.randn(1, 8, lt.shape[2], latent_size, requires_grad=True, device=device)
 
     with torch.no_grad():
         print(f'[INFO] Encode text prompt...')
+        # 【深入注释｜原文件 L69】预先编码参考/目标 prompt；DDS 会反复用同一条件而改变 latent。
         text_z_ref, text_z_ref_gen,z_attention_mask_ref = guidance_model.get_text_embeds(prompt_ref)
         text_z,text_z_gen,z_attention_mask = guidance_model.get_text_embeds(prompt)
         print(f'[INFO] Encoding audio into latent...')
@@ -80,6 +83,7 @@ def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,g
         latent[:] = latent_ref
 
 
+    # 【深入注释｜原文件 L76】SGD 只持有 latent，不更新 guidance_model 的参数；StepLR 调整测试时优化步长。
     optim = torch.optim.SGD([latent], lr=0.02)
     scheduler = torch.optim.lr_scheduler.StepLR(optim, 20, 0.9)
 
@@ -90,6 +94,7 @@ def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,g
         x = latent
 
 
+        # 【深入注释｜原文件 L86】目标条件在当前 latent 上预测 ε；抽出的 t、ε 要传给参考分支构成公平差分。
         noise_pred, t, noise = guidance_model.predict_noise(prompt_embds=text_z,
                                                             generated_prompt_embds=text_z_gen,
                                                             attention_mask = z_attention_mask,
@@ -98,6 +103,7 @@ def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,g
                                                             as_latent=as_latent)
 
         with torch.no_grad():
+            # 【深入注释｜原文件 L94】参考条件在固定源 latent 上使用相同 t、相同 ε，隔离文本条件差。
             noise_pred_ref, _, _ = guidance_model.predict_noise(prompt_embds=text_z_ref,
                                                         generated_prompt_embds=text_z_ref_gen,
                                                         attention_mask = z_attention_mask_ref,
@@ -116,12 +122,15 @@ def SteerMusic_editing(audio_name,prompt_ref,prompt,weight_aug,validation_step,g
                     write(f"./{output_dir}/{basename}",16000, audio[0].detach().cpu().numpy())
         
         # 【中文精读｜原文件 L111】时间权重随 scheduler 的累计信号系数变化；base 还乘 weight_aug。
+        # 【深入注释｜原文件 L111】w_t 随扩散噪声日程改变，越靠近某些时间点权重越不同。
         w =  weight_aug*(1 - guidance_model.alphas[t])
         # 【中文精读｜原文件 L112】DDS/PDS 目标预测减源预测；随后 SGD 执行负梯度更新。
+        # 【深入注释｜原文件 L112】DDS 梯度近似 w_t(ε_target−ε_ref)；这不是显式训练损失的普通 autograd。
         grad = w * (noise_pred - noise_pred_ref)
         grad = torch.nan_to_num(grad)
 
         # 【中文精读｜原文件 L115】注入指定梯度，不将占位 forward 常数解释为优化目标的数值。
+        # 【深入注释｜原文件 L115】SpecifyGradient 把外部指定的梯度注入到 latent；反传后 SGD 更新。
         loss = steermusic_utils.SpecifyGradient.apply(x, grad)
         loss.backward()
         # 【中文精读｜原文件 L117】只更新优化器持有的 latent；模型参数已冻结。

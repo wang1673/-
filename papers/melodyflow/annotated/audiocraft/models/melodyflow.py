@@ -133,6 +133,7 @@ class MelodyFlow(BaseGenModel):
         }
 
     # 【中文精读｜原文件 L130】codec 将 [B,C,N] 波形编码为连续后验参数。返回值不一定已经采样；下游按通道判断均值/尺度。
+    # 【深入注释｜原文件 L130】encode_audio 输出 codec 后验表示；FlowModel.generate 会判断是否还需采样/标准化。
     def encode_audio(self, waveform: torch.Tensor) -> torch.Tensor:
         """Generate Audio from tokens."""
         assert waveform.dim() == 3
@@ -218,12 +219,14 @@ class MelodyFlow(BaseGenModel):
             progress (bool, optional): Flag to display progress of the generation process. Defaults to False.
             return_tokens (bool): Whether to return the generated tokens.
         """
+        # 【深入注释｜原文件 L210】源描述为空时构造空条件；若用户提供源描述，则反演依它估计源速度。
         empty_attributes, no_tokens = self._prepare_tokens_and_attributes(
             [""] if src_descriptions is None else src_descriptions, None)
         assert no_tokens is None
         edit_attributes, no_tokens = self._prepare_tokens_and_attributes(descriptions, None)
         assert no_tokens is None
 
+        # 【深入注释｜原文件 L216】复制编辑配置，保持源反演与目标生成共享 pivot 和步数设置。
         inversion_params = self.editing_params.copy()
         override_total_steps = inversion_params["steps"] * (
             inversion_params["regularize_iters"] + 1) if inversion_params["regularize"] else inversion_params["steps"] * 2
@@ -236,6 +239,7 @@ class MelodyFlow(BaseGenModel):
             else:
                 print(f'{elapsed_steps: 6d} / {override_total_steps: 6d}', end='\r')
 
+        # 【深入注释｜原文件 L228】第一遍 _generate_tokens 从 t=1 沿源条件走向 pivot，得到待编辑中间 latent。
         intermediate_tokens = self._generate_tokens(attributes=empty_attributes,
                                                     prompt_tokens=prompt_tokens,
                                                     source_flowstep=1.0,
@@ -243,11 +247,14 @@ class MelodyFlow(BaseGenModel):
                                                     callback=_progress_callback,
                                                     **inversion_params,
                                                     )
+        # 【深入注释｜原文件 L235】若目标描述条数多于源输入，则复制 pivot latent 做一对多编辑。
         if intermediate_tokens.shape[0] < len(descriptions):
             intermediate_tokens = intermediate_tokens.repeat(len(descriptions)//intermediate_tokens.shape[0], 1, 1)
         current_step_offset += inversion_params["steps"] * (
             inversion_params["regularize_iters"]) if inversion_params["regularize"] else inversion_params["steps"]
+        # 【深入注释｜原文件 L239】移除 regularize 参数，让第二遍目标生成不沿用反演阶段的局部正则。
         inversion_params.pop("regularize")
+        # 【深入注释｜原文件 L240】第二遍用目标描述从 pivot 积分到 t=1，最后 codec 解码成音频。
         final_tokens = self._generate_tokens(attributes=edit_attributes,
                                              prompt_tokens=intermediate_tokens,
                                              source_flowstep=inversion_params.pop("target_flowstep"),
@@ -274,6 +281,7 @@ class MelodyFlow(BaseGenModel):
         Returns:
             torch.Tensor: Generated audio, of shape [B, C, T], T is defined by the generation params.
         """
+        # 【深入注释｜原文件 L266】帧数由源潜变量长度或 duration×frame_rate 决定；30 秒、25 Hz 约 750 帧。
         generate_params = kwargs.copy()
         total_gen_len = prompt_tokens.shape[-1] if prompt_tokens is not None else int(
             generate_params.pop('duration') * self.frame_rate)

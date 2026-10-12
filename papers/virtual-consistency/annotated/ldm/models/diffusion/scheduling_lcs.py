@@ -103,6 +103,7 @@ class LCMSampler(object):
         return self._step_index
 
     # 【中文精读｜原文件 L101】配置少步推理时间表和内部 step_index；不能跳过后直接调用 edit_step_ldm。
+    # 【深入注释｜原文件 L101】先设置从原始训练时间表抽取的少步推理节点；下面的 step_index 依赖它。
     def set_timesteps(
         self,
         num_inference_steps: Optional[int] = None,
@@ -301,6 +302,7 @@ class LCMSampler(object):
         self._step_index = step_index.item()
 
     # 【中文精读｜原文件 L298】一致性 boundary 的 c_skip/c_out，控制 t 接近零时的边界行为，不是 CFG 系数。
+    # 【深入注释｜原文件 L298】c_skip/c_out 满足一致性边界参数化；小噪声时更多保留输入。
     def get_scalings_for_boundary_condition_discrete(self, timestep):
         self.sigma_data = 0.5  # Default: 0.5
         scaled_timestep = timestep * self.timestep_scaling
@@ -309,6 +311,7 @@ class LCMSampler(object):
         c_out = scaled_timestep / (scaled_timestep**2 + self.sigma_data**2) ** 0.5
         return c_skip, c_out
     
+    # 【深入注释｜原文件 L306】主采样入口维护目标/源两条带噪状态；可选 mutual 分支用于注意力控制。
     def VC_sampling_edit(self,
                S,
                batch_size,
@@ -342,6 +345,7 @@ class LCMSampler(object):
         b = size[0]
 
         if x_T is None:
+            # 【深入注释｜原文件 L339】未给定 x_T 时目标和源从同一随机端点初始化，确保后续能做成对比较。
             x_target_t = torch.randn(size, device=device)
             x_source_t = x_target_t.clone()
             x_mutual_t = x_target_t.clone() if attention_control else None
@@ -389,6 +393,7 @@ class LCMSampler(object):
         return x_source_t, x_target_t, x_target_0_pred
     
 
+    # 【深入注释｜原文件 L383】LCM 编辑步读取源/目标预测并应用边界条件；与 LDM 分支的模型接口不同。
     def edit_step_lcm(
         self,
         x_0: torch.FloatTensor,
@@ -523,6 +528,7 @@ class LCMSampler(object):
         return x_source_prev, x_target_prev, x_mutual_prev, x_target_0_pred
     
 
+    # 【深入注释｜原文件 L511】带 attention control 的扩散分支多维护 mutual 状态，用于混合注意力。
     def edit_step_ldm_ac(
         self,
         x_0: torch.FloatTensor,
@@ -559,6 +565,7 @@ class LCMSampler(object):
         beta_prod_t_prev = 1 - alpha_prod_t_prev
 
         # 【中文精读｜原文件 L546】正文一致性参考：由源带噪状态与固定干净源直接反解 epsilon。
+        # 【深入注释｜原文件 L546】由固定源 x₀ 与当前 x_source_t 解析回推一致性噪声 ε_cons。
         epsilon_cons = (x_source_t-alpha_prod_t.sqrt()*x_0)/beta_prod_t.sqrt()
         
         # 2. prepare latents and conditioning
@@ -620,6 +627,7 @@ class LCMSampler(object):
 
         # compute edit noise
         if self.phi is None:
+            # 【深入注释｜原文件 L607】目标-源噪声预测差叠加 ε_cons；方向项与源结构噪声由此合并。
             v = (epsilon_pred_target - epsilon_pred_source) + epsilon_cons
             v = v - v.mean()
             # 【中文精读｜原文件 L609】实现额外归一化：std 或平均绝对值，正文 eq:controlvci 简式未包含。
@@ -634,6 +642,7 @@ class LCMSampler(object):
 
 
         # 3. Get scalings for boundary conditions
+        # 【深入注释｜原文件 L619】用 c_skip/c_out 形成 LCM 边界输出，避免直接把 ε_edit 当作干净音频。
         c_skip, c_out = self.get_scalings_for_boundary_condition_discrete(timestep)
 
         # 4. Compute the predicted original sample x_0 based on the edited epsilon
@@ -660,6 +669,7 @@ class LCMSampler(object):
         # Noise is not used on the final timestep of the timestep schedule.
         # This also means that noise is not used for one-step sampling.
         if self.step_index != self.num_inference_steps - 1:
+            # 【深入注释｜原文件 L644】多步采样的三条分支注入同一新噪声，维持随机路径耦合。
             noise = torch.randn(denoised_target.shape, device=denoised_target.device)           
             x_target_prev = alpha_prod_t_prev.sqrt() * denoised_target + beta_prod_t_prev.sqrt() * noise
             # 【中文精读｜原文件 L646】源/目标共用同一 noise，使下一步仍配对。
@@ -683,6 +693,7 @@ class LCMSampler(object):
 
     # 【中文精读｜原文件 L664】§2.2 核心：解析一致性噪声+两条件预测差→目标干净估计→LCM 边界→共享下一步噪声。
     # 【中文精读｜原文件 L664】此实现额外去均值/归一化，是相对正文简式需要记录的差异。
+    # 【深入注释｜原文件 L664】无互注意力的主扩散编辑步；论文 Virtual Consistency 的核心实现集中于此。
     def edit_step_ldm(
         self,
         x_0: torch.FloatTensor,
@@ -718,6 +729,7 @@ class LCMSampler(object):
         beta_prod_t_prev = 1 - alpha_prod_t_prev
 
         # 【中文精读｜原文件 L698】正文一致性参考：由源带噪状态与固定干净源直接反解 epsilon。
+        # 【深入注释｜原文件 L698】epsilon_cons=(x_source_t−√ᾱ_t x₀)/√(1−ᾱ_t)，源观测锚定当前噪声。
         epsilon_cons = (x_source_t-alpha_prod_t.sqrt()*x_0)/beta_prod_t.sqrt()
         
         # 2. prepare latents and conditioning
@@ -764,6 +776,7 @@ class LCMSampler(object):
             epsilon_pred_source_c, epsilon_pred_target_c = eps_pred_cond.chunk(nb_branch)
             epsilon_pred_source_uc, epsilon_pred_target_uc = eps_pred_uncond.chunk(nb_branch)
             del eps_pred_cond, eps_pred_uncond
+            # 【深入注释｜原文件 L744】源/目标各自 CFG 后再做预测差；src_guidance_scale 与 guidance_scale 是两个旋钮。
             epsilon_pred_source = epsilon_pred_source_uc + self.src_guidance_scale * (epsilon_pred_source_c - epsilon_pred_source_uc)
             epsilon_pred_target = epsilon_pred_target_uc + self.guidance_scale * (epsilon_pred_target_c - epsilon_pred_target_uc)
             del epsilon_pred_source_uc, epsilon_pred_target_uc, epsilon_pred_source_c, epsilon_pred_target_c
@@ -774,6 +787,7 @@ class LCMSampler(object):
 
         # compute edit noise
         if self.phi is None:
+            # 【深入注释｜原文件 L754】目标-源预测差加一致性噪声，再归一化；代码归一化不在论文简式中显式写出。
             v = (epsilon_pred_target - epsilon_pred_source) + epsilon_cons
             v = v - v.mean()
             # 【中文精读｜原文件 L756】实现额外归一化：std 或平均绝对值，正文 eq:controlvci 简式未包含。
@@ -792,6 +806,7 @@ class LCMSampler(object):
 
         # 4. Compute the predicted original sample x_0 based on the edited epsilon
         # 【中文精读｜原文件 L769】用编辑 epsilon 求目标干净估计；之后还要 boundary 组合，不能提前 decode。
+        # 【深入注释｜原文件 L769】把编辑 ε 转回目标干净估计 x̂₀，随后按一致性边界系数组合。
         x_target_0_pred = (x_target_t - beta_prod_t.sqrt() * epsilon_edit) / alpha_prod_t.sqrt()
         with torch.no_grad():
             x_source_0_pred = (x_target_t - beta_prod_t.sqrt() * epsilon_pred_source) / alpha_prod_t.sqrt()
@@ -800,6 +815,7 @@ class LCMSampler(object):
         
        
         # 5. Denoise model output using boundary conditions
+        # 【深入注释｜原文件 L777】denoised_target=c_out·x̂₀+c_skip·x_target_t；保持边界条件。
         denoised_target = c_out * x_target_0_pred + c_skip * x_target_t
         denoised_source = c_out * x_0 + c_skip * x_source_t
         
@@ -812,6 +828,7 @@ class LCMSampler(object):
         # Noise is not used on the final timestep of the timestep schedule.
         # This also means that noise is not used for one-step sampling.
         if self.step_index != self.num_inference_steps - 1:
+            # 【深入注释｜原文件 L789】新噪声同时加到源/目标下一状态；末步直接返回干净估计。
             noise = torch.randn(denoised_target.shape, device=denoised_target.device)           
             x_target_prev = alpha_prod_t_prev.sqrt() * denoised_target + beta_prod_t_prev.sqrt() * noise
             # 【中文精读｜原文件 L791】源/目标共用同一 noise，使下一步仍配对。

@@ -60,6 +60,7 @@ class StableDiffusion3Base(BaseSampler):
 
         del pipe
 
+    # 【深入注释｜原文件 L59】SD3 文本接口同时返回 token 序列与 pooled CLIP 条件，两者都要送入 transformer。
     def encode_prompt(self, prompt: List[str], batch_size:int=1) -> List[torch.Tensor]:
         '''
         We assume that
@@ -98,6 +99,7 @@ class StableDiffusion3Base(BaseSampler):
 
 
         # Merge
+        # 【深入注释｜原文件 L97】CLIP 两路嵌入拼接并 pad 到 T5 维度；token 轴再接 T5 序列，保持 SD3 条件布局。
         clip_prompt_emb = torch.cat([text_clip1_emb, text_clip2_emb], dim=-1)
         clip_prompt_emb = torch.nn.functional.pad(
             clip_prompt_emb, (0, text_t5_emb.shape[-1] - clip_prompt_emb.shape[-1])
@@ -119,17 +121,20 @@ class StableDiffusion3Base(BaseSampler):
         return z
 
     # 【中文精读｜原文件 L117】图像 VAE 编码与尺度变换，仅图像接口；迁移音频需替换 codec 和维度。
+    # 【深入注释｜原文件 L117】VAE encode 后执行 checkpoint 的 latent 缩放；FlowAlign 在缩放后的连续空间积分。
     def encode(self, image: torch.Tensor) -> torch.Tensor:
         z = self.vae.encode(image).latent_dist.sample()
         z = (z-self.vae.config.shift_factor) * self.vae.config.scaling_factor
         return z
 
     # 【中文精读｜原文件 L122】反尺度变换后 VAE 解码；本文保留的内容指标属于图像，不能当音乐旋律指标。
+    # 【深入注释｜原文件 L122】VAE decode 逆向处理 latent 缩放；最终图像观感也受 VAE 重建误差影响。
     def decode(self, z: torch.Tensor) -> torch.Tensor:
         z = (z/self.vae.config.scaling_factor) + self.vae.config.shift_factor
         return self.vae.decode(z, return_dict=False)[0]
 
     # 【中文精读｜原文件 L126】将两路文本条件送入冻结 SD3 Transformer，输出 flow 速度；本函数不执行 Euler 更新。
+    # 【深入注释｜原文件 L126】唯一的速度查询接口；下游 FlowEdit/FlowAlign 都复用该冻结 Transformer。
     def predict_vector(self, z, t, prompt_emb, pooled_emb):
         v = self.transformer(hidden_states=z,
                              timestep=t,

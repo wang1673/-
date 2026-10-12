@@ -17,31 +17,34 @@
     {
       "path": "diffusion/editing/sd3_edit.py",
       "lines": 232,
-      "comments": 15,
+      "comments": 24,
       "sha256": "318719640b277b0adbe89d421ec49ae0397541493213566f630a3a9dfbe5089c",
       "git_sha": "04eb3f04fbd31122d97af2b99515b9f4f329e33b",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "017a8e370f6a29b940beff803f994ae21eb24564a2943c47debc4bc035a4312c"
     },
     {
       "path": "diffusion/base/sd3_sampler.py",
       "lines": 235,
-      "comments": 5,
+      "comments": 10,
       "sha256": "bb9f5376dc108e2a2567a692fe083355ddb6e0c5ff4e3731737aaa4757e74ce2",
       "git_sha": "566bbcde969133a1b0483b20acec04ecc9a00204",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "d81b2caf711aa68f9b3b3d70909f408863ab659000d31eead1e62475c0fc973e"
     },
     {
       "path": "run_edit.py",
       "lines": 75,
-      "comments": 0,
+      "comments": 3,
       "sha256": "3d652070aed152bf509d17066bcb857eb17ac06e2c3e4c135020d56c46a52ec0",
       "git_sha": "5e392777f478d8acbe26044693ac5b2e2368e602",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "c3bc5f4b0f0466877af4026097c65e168bd9d5d1155651b95862c9312878a6b5"
     }
   ],
   "licenses": [
     "LICENSE",
     "README.md"
   ],
-  "comments": 20
+  "comments": 37
 }

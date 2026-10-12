@@ -57,6 +57,7 @@ if is_librosa_available():
 
 logger = logging.get_logger(__name__)  # pylint: disable=invalid-name
 
+# 【深入注释｜原文件 L56】全局状态记录当前采样时间与注意力损失；并发请求共享同一 pipeline 时可能互相覆盖。
 CURRENT_LOSS = None
 CURRENT_TIMESTEP = None
 
@@ -131,6 +132,7 @@ def prepare_unet(unet: AudioLDM2UNet2DConditionModel):
 
 class Pix2PixZeroL2Loss:
     def __init__(self):
+        # 【深入注释｜原文件 L130】参考/编辑注意力差会累计到 loss；这里不是频谱距离，也不直接约束音符。
         self.loss = 0.0
 
     # 【中文精读｜原文件 L132】累计当前层注意力与参考的差；梯度在编辑循环中对 latent 反传，不重新训练 UNet。
@@ -203,15 +205,18 @@ class Pix2PixZeroAttnProcessor:
         key = attn.head_to_batch_dim(key)
         value = attn.head_to_batch_dim(value)
 
+        # 【深入注释｜原文件 L197】取得 cross-attention 概率，索引按时间步保存；注意力 shape 与文本 token 数有关。
         attention_probs = attn.get_attention_scores(query, key, attention_mask)
         if self.is_pix2pix_zero and CURRENT_TIMESTEP is not None:
             # new bookkeeping to save the attention weights.
             if CURRENT_LOSS is None:
                 # 【中文精读｜原文件 L201】参考轮保存源 attention；detach/cpu 避免保留参考计算图。
+                # 【深入注释｜原文件 L201】参考阶段把该时间步的注意力图 detach 后移到 CPU，避免保存整张反向计算图。
                 self.reference_cross_attn_map[CURRENT_TIMESTEP.item()] = attention_probs.detach().cpu()
             # compute loss
             elif CURRENT_LOSS is not None:
                 # 【中文精读｜原文件 L204】编辑轮取同一时间参考；pop 会消费缓存，重复编辑需要重新构造。
+                # 【深入注释｜原文件 L204】编辑阶段 pop 同一步参考图并计算 MSE；使用 pop 意味参考图只消费一次。
                 prev_attn_probs = self.reference_cross_attn_map.pop(CURRENT_TIMESTEP.item())
                 CURRENT_LOSS.compute_loss(attention_probs, prev_attn_probs.to(attention_probs.device))
 
@@ -841,6 +846,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                 )
 
     # 【中文精读｜原文件 L831】§4.1：target_mean−source_mean，方向在文本条件空间，不是音频 latent 空间。
+    # 【深入注释｜原文件 L831】构造属性嵌入差；方向施加在 T5 条件上，而不是音频 latent 本身。
     def construct_direction(self, embs_source: torch.Tensor, embs_target: torch.Tensor):
         """Constructs the edit direction to steer the image generation process semantically."""
         return (embs_target.mean(0) - embs_source.mean(0)).unsqueeze(0)
@@ -1086,6 +1092,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                 latent_model_input = self.scheduler.scale_model_input(latent_model_input, t)
 
                 # It is difficult to pass the timestep param. Using global variable
+                # 【深入注释｜原文件 L1075】先跑原条件的参考去噪并设置全局时间索引，cross-attention processor 随后缓存该步图。
                 CURRENT_TIMESTEP = t
                 # predict the noise residual
                 noise_pred = self.unet(
@@ -1135,12 +1142,14 @@ class AudioLDM2Pipeline(DiffusionPipeline):
 
 
         # p2p-2. Compute the edit directions.
+        # 【深入注释｜原文件 L1124】编辑方向由 target/source 平均 embedding 差得到；下方处理 token 长度不一致。
         edit_direction = 1 * self.construct_direction(source_embeddings, target_embeddings).to(prompt_embeds.device)
         # edit_direction_1 = 1.15 * self.construct_direction(generated_source_embeddings, generated_target_embeddings).to(prompt_embeds.device)
         #
         #
         # p2p-3. Edit the prompt embeddings as per the edit directions discovered.
         prompt_embeds_edit = prompt_embeds.clone()
+        # 【深入注释｜原文件 L1130】实际代码会截断或补零方向来匹配 prompt 长度，可能丢失部分文本方向信息。
         if prompt_embeds.shape[1] != edit_direction.shape[1]:
             print(f"Warning: edit direction {edit_direction.shape[1]} truncated to match prompt length {prompt_embeds_edit.shape[1]}.")
             if edit_direction.shape[1] > prompt_embeds.shape[1]: # truncate
@@ -1148,6 +1157,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
             else: # padding
                 edit_direction = torch.cat([edit_direction, torch.zeros([edit_direction.shape[0], prompt_embeds_edit.shape[1] - edit_direction.shape[1], edit_direction.shape[2]], device=edit_direction.device)], dim=1)
         # 【中文精读｜原文件 L1136】仅条件分支 T5 添加语义方向；无条件分支不加。
+        # 【深入注释｜原文件 L1136】只把方向加到正条件的 T5 embedding；另一路生成语义条件不采用同一增量。
         prompt_embeds_edit[1:2] += edit_direction  #
         # generated_prompt_embeds_edit = generated_prompt_embeds.clone()
         # generated_prompt_embeds_edit[1:2] += edit_direction_1
@@ -1178,6 +1188,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                 # we want to learn the latent such that it steers the generation
                 # process towards the edited direction, so make the make initial
                 # noise learnable
+                # 【深入注释｜原文件 L1166】当前去噪步复制一个可求导 latent，注意力修正只优化该步输入。
                 x_in = latent_model_input.detach().clone()
                 x_in.requires_grad = True
 
@@ -1186,6 +1197,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
 
                 # optimizer
                 # 【中文精读｜原文件 L1173】编辑步对 x_in 优化；步长为 cross_attention_guidance_amount。
+                # 【深入注释｜原文件 L1173】SGD 学习率即 attention guidance amount；它控制每一步 latent 的注意力回拉幅度。
                 opt = torch.optim.SGD([x_in], lr=cross_attention_guidance_amount)
 
                 with torch.enable_grad():
@@ -1197,6 +1209,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                         weights=1,  # remember the weight
                         device="cuda"
                     )
+                    # 【深入注释｜原文件 L1184】把当前时间写入全局状态，使每个注意力层取同一步的参考图。
                     CURRENT_TIMESTEP = t
                     # predict the noise residual
                     noise_pred = self.unet(
@@ -1208,6 +1221,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                         cross_attention_kwargs={"timestep": CURRENT_TIMESTEP, "loss": CURRENT_LOSS},
                     )[0]
 
+                    # 【深入注释｜原文件 L1195】反传注意力 MSE 梯度更新 x_in；网络权重不因此训练。
                     if cross_attention_guidance_amount > 0:
                         # 【中文精读｜原文件 L1196】沿注意力图到 latent 反传；这使方法具有测试时梯度成本。
                         CURRENT_LOSS.loss.backward(retain_graph=False)
@@ -1215,6 +1229,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
 
                 if cross_attention_guidance_amount > 0:
                     # recompute the noise
+                    # 【深入注释｜原文件 L1201】清掉全局时间后重新预测噪声，避免第二次前向再次写入/消费参考注意力图。
                     CURRENT_TIMESTEP = None
                     noise_pred = self.unet(
                         x_in.detach(),
@@ -1226,6 +1241,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                     )[0]
 
                 # 【中文精读｜原文件 L1211】取修正后的 latent，再按 CFG 与 scheduler 完成普通去噪。
+                # 【深入注释｜原文件 L1211】从优化后的 CFG batch 取实际 latent，再送 scheduler；与参考阶段逐步对齐。
                 latents = x_in.detach().chunk(2)[0]
 
                 # perform guidance
@@ -1234,6 +1250,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                     noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
 
                 # compute the previous noisy sample x_t -> x_t-1
+                # 【深入注释｜原文件 L1219】正常 DDIM/DDPM 调度器推进到下一个潜变量；注意力优化是该步额外动作。
                 latents = self.scheduler.step(noise_pred, t, latents, **extra_step_kwargs).prev_sample
 
                 # call the callback, if provided
@@ -1439,6 +1456,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                                                       original_waveform_length, prompt, prompt_embeds)
 
         # 4. Prepare latent variables
+        # 【深入注释｜原文件 L1423】真实音频先转换 mel 再 VAE 编码；随后 inverse_scheduler 执行 DDIM 反演。
         latents = self.vae.to(torch.float32).encode(mel.cuda()).latent_dist.sample(generator)
         latents = self.vae.config.scaling_factor * latents
 
@@ -1518,6 +1536,7 @@ class AudioLDM2Pipeline(DiffusionPipeline):
                         noise_pred = noise_pred.detach()
 
                 # compute the previous noisy sample x_t -> x_t-1
+                # 【深入注释｜原文件 L1502】inverse_scheduler 向噪声端推进，提供后续目标去噪的初始 latent。
                 latents = self.inverse_scheduler.step(noise_pred, t, latents).prev_sample
 
                 # call the callback, if provided

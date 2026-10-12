@@ -47,6 +47,7 @@ class Preprocessor:
 
         self.mixup = self.config["augmentation"]["mixup"]  
         
+    # 【深入注释｜原文件 L46】音频前处理建立 mel/STFT 参数；主优化中 VAE latent 的尺寸取决于这里的设置。
     def build_dsp(self):
         self.mel_basis = {}
         # 【中文精读｜原文件 L48】时间权重随 scheduler 的累计信号系数变化；base 还乘 weight_aug。
@@ -73,6 +74,7 @@ class Preprocessor:
         val = torch.rand(1).item()
         return start + (end - start) * val
 
+    # 【深入注释｜原文件 L71】裁剪随机时间片时长度必须与模型训练片长一致；否则 patch/节奏比较无效。
     def random_segment_wav(self, waveform, target_length):
         waveform_length = waveform.shape[-1]
         assert waveform_length > 100, "Waveform is too short, %s" % waveform_length
@@ -135,6 +137,7 @@ class Preprocessor:
         temp_wav[:, rand_start : rand_start + waveform_length] = waveform
         return temp_wav
 
+    # 【深入注释｜原文件 L133】波形到 log-mel 的步骤在音频域建立重建基线；后续优化发生在潜变量域。
     def wav_feature_extraction(self, waveform):
         waveform = waveform[0, ...]
         waveform = torch.FloatTensor(waveform)

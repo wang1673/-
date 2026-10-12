@@ -780,26 +780,29 @@
     {
       "path": "code/main_run.py",
       "lines": 499,
-      "comments": 15,
+      "comments": 32,
       "sha256": "1896f1f970a35eae5ddfa2b9741fab6fc6452b7c90347e0985e2d6619c64b7ce",
       "git_sha": "b54bc89399839eddcbf3d692a7c2ba1d63f90254",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "c19d70d103ad9bb1c9a295aaa5187838d8f221424eeddb3eb4e66cf96fe41d5c"
     },
     {
       "path": "code/models.py",
       "lines": 1048,
-      "comments": 1,
+      "comments": 11,
       "sha256": "b2287f3910134e5aea5a2f25df85d12abc68658e060c23dcf3c9a51adc09c8b9",
       "git_sha": "113093c60129b4cb7d05165211f7bf1613e10856",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "57b2573372dd07286b79d5643f492751bfd5f711199b9d447b6e2de3049d00e6"
     },
     {
       "path": "code/utils.py",
       "lines": 212,
-      "comments": 1,
+      "comments": 5,
       "sha256": "7c57d1f822fbd57ca13fd3e819ee204b9d586b7a9ba5c26ed37b00225dc87151",
       "git_sha": "f39c5e16447460fb6a75da5906d3544ef30f9322",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "ccea607aa055c94e5412834740fe999fb6faee43621ae55552ea597c6b6436a3"
     }
   ],
   "licenses": [
@@ -808,5 +811,5 @@
     "code/LICENSE_audioldm",
     "code/tango/LICENSE.md"
   ],
-  "comments": 17
+  "comments": 48
 }

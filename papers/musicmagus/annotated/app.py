@@ -88,6 +88,7 @@ with gr.Blocks(css='style.css') as demo:  #, delete_cache=(3600, 3600)) as demo:
     with gr.Group():
         gr.Markdown("💡 **note**: input longer than **30 sec** is automatically trimmed (for unlimited input, see the Help section below)")
         with gr.Row():
+            # 【深入注释｜原文件 L87】交互界面的音频输入可来自上传或麦克风；UI 在这里收集文件路径。
             input_audio = gr.Audio(sources=["upload", "microphone"], type="filepath", editable=True, label="Input Audio",
                                    interactive=True, scale=1)
             output_audio = gr.Audio(label="Edited Audio", interactive=False, scale=1)
@@ -99,6 +100,7 @@ with gr.Blocks(css='style.css') as demo:  #, delete_cache=(3600, 3600)) as demo:
 
     with gr.Row():
         t_start = gr.Slider(minimum=15, maximum=85, value=45, step=1, label="T-start (%)", interactive=True, scale=3,
+                            # 【深入注释｜原文件 L98】t_start 控制真实音频 DDIM 反演深度与编辑强度，和文本方向大小是不同旋钮。
                             info="Lower T-start -> closer to original audio. Higher T-start -> stronger edit.")
         # model_id = gr.Radio(label="AudioLDM2 Version",
         model_id = gr.Dropdown(label="AudioLDM2 Version",
@@ -114,6 +116,7 @@ with gr.Blocks(css='style.css') as demo:  #, delete_cache=(3600, 3600)) as demo:
 
     with gr.Accordion("More Options", open=False):
         with gr.Row():
+            # 【深入注释｜原文件 L113】源 prompt 可选，但真实音频反演与注意力参考通常需要描述原音频。
             src_prompt = gr.Textbox(label="Source Prompt", lines=2, interactive=True,
                                     info="Optional: Describe the original audio input",
                                     placeholder="A recording of a happy upbeat classical music piece",)

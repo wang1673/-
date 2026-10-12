@@ -67,6 +67,7 @@ This custom gradient function can be used in situations where you need to have f
     """
     @staticmethod
     @custom_fwd
+    # 【深入注释｜原文件 L65】前向只返回代理标量，真正需要的梯度由 backward 直接返回给 latent。
     def forward(ctx, input_tensor, gt_grad):
         ctx.save_for_backward(gt_grad)
         # we return a dummy value 1, which will be scaled by amp's scaler so we get the scale in backward.
@@ -75,6 +76,7 @@ This custom gradient function can be used in situations where you need to have f
     @staticmethod
     @custom_bwd
     # 【中文精读｜原文件 L72】取出保存的 gt_grad 并乘 AMP grad_scale，返回 latent 梯度；对外部 gt_grad 不求导，省略 denoiser Jacobian。
+    # 【深入注释｜原文件 L72】自定义 autograd 把外部 DDS 梯度注入计算图；不能将代理标量当真实目标函数值。
     def backward(ctx, grad_scale):
         gt_grad, = ctx.saved_tensors
         gt_grad = gt_grad * grad_scale
@@ -131,6 +133,7 @@ class PConLoss:
 
 
     # 【中文精读｜原文件 L126】按不同通道的时频布局恢复 [B,C,T,F]，归一化特征、随机选时间 patch，然后计算对比项。
+    # 【深入注释｜原文件 L126】从参考与编辑注意力张量抽 patch，形成 PCon 的正负样本。
     def get_attn_pcon_loss(self, ref_noise, trg_noise):
         loss = 0
 
@@ -202,6 +205,7 @@ class PConLoss:
         return loss
 
     # 【中文精读｜原文件 L196】同时间特征为正，其他时间为负；对参考 detach，只让目标 latent 通过特征反传。温度 nce_T=.07。
+    # 【深入注释｜原文件 L196】PatchNCE 温度与正负样本构造决定保留哪些局部结构，需与论文 PCon 定义对照。
     def PatchNCELoss(self, ref_noise, trg_noise, batch_size=1, nce_T = 0.07):
         batch_size = batch_size # 1
         nce_T = nce_T
@@ -328,6 +332,7 @@ class AudioLDM2_pipe(nn.Module):
         return unet
 
     @torch.no_grad()
+    # 【深入注释｜原文件 L322】AudioLDM2 双路文本编码；文本 embedding 与生成语义 embedding 不能混成单条件。
     def get_text_embeds(self, prompt,use_guidance=True,negative_prompt = ""):
         """
             The `get_text_embeds` method takes a text prompt as input and returns
@@ -351,6 +356,7 @@ class AudioLDM2_pipe(nn.Module):
         else:
             latents = self.encode_audio(mel_spec)
 
+        # 【深入注释｜原文件 L343】随机扩散时刻 t 属于训练步范围；DDS 每次可在不同噪声级估计方向。
         if t is None:
             t = torch.randint(self.min_step, self.max_step + 1, [1], dtype=torch.long, device=self.device)
         
@@ -358,15 +364,18 @@ class AudioLDM2_pipe(nn.Module):
             with torch.no_grad():
                 if noise is None:
                     # add noise
+                    # 【深入注释｜原文件 L350】当未传 noise 时新抽 ε；参考支显式传同一 ε 才是共享噪声比较。
                     noise = torch.randn_like(latents)
 
                 # x_t = \sqrt(\alpha_t)x_0 + \sqrt(1-\alpha_t) \eps, where \eps is the noise.
                 # latent here is x_0
                 if scheduler is None:
+                    # 【深入注释｜原文件 L355】scheduler.add_noise 实现 √ᾱ_t x+√(1−ᾱ_t) ε；此处不执行反演。
                     latents_noisy = self.scheduler.add_noise(latents, noise, t)
                 else:
                     latents_noisy = scheduler.add_noise(latents, noise, t)
 
+                # 【深入注释｜原文件 L359】为外部 CFG 把带噪 latent 复制成两份，一份无条件、一份条件。
                 latent_model_input = torch.cat([latents_noisy] * 2)
                 # Save input tensors for UNet
                 noise_pred = self.unet(latent_model_input, t, 
@@ -392,6 +401,7 @@ class AudioLDM2_pipe(nn.Module):
                                 encoder_hidden_states=generated_prompt_embds,
                                 encoder_hidden_states_1=prompt_embds,
                                 encoder_attention_mask_1=attention_mask)[0]
+        # 【深入注释｜原文件 L384】按无条件/正条件次序分解预测并组合 CFG；guidance_scale 并非优化器学习率。
         if cfg==True:
             # perform guidance (high scale from paper!)
             noise_pred_uncond, noise_pred_pos = noise_pred.chunk(2)

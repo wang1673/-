@@ -19,6 +19,7 @@ import json
 from typing import Any, Dict, List, Optional, Tuple, Union
 from diffusers import UniPCMultistepScheduler
 
+# 【深入注释｜原文件 L18】统一 wrapper 只抽象模型接口；Tango/AudioLDM 系列的文本编码、VAE 和 scheduler 细节仍各异。
 class PipelineWrapper(torch.nn.Module):
     def __init__(self, model_id, device, double_precision=False, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -26,6 +27,7 @@ class PipelineWrapper(torch.nn.Module):
         self.device = device
         self.double_precision = double_precision
 
+    # 【深入注释｜原文件 L25】σ_t=√(1/ᾱ_t−1) 是扩散噪声强度的另一种参数化；不要把它当作 FlowEdit 的线性插值 t。
     def get_sigma(self, timestep) -> float:
         sqrt_recipm1_alphas_cumprod = torch.sqrt(1.0 / self.model.scheduler.alphas_cumprod - 1)
         return sqrt_recipm1_alphas_cumprod[timestep]
@@ -292,6 +294,7 @@ class PipelineWrapper(torch.nn.Module):
         return UNet2DConditionOutput(sample=sample), h_space, extracted_res_conns
 
 
+# 【深入注释｜原文件 L291】Tango 的 wrapper 从模型配置恢复 STFT、文本编码器、VAE 和 scheduler，决定输入 latent 的真实形状。
 class TangoWrapper(PipelineWrapper):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -335,6 +338,7 @@ class TangoWrapper(PipelineWrapper):
     def get_fn_STFT(self):
         return self.stft
 
+    # 【深入注释｜原文件 L334】Tango VAE 编码进入音频潜变量；这一步的 scale 应与对应 checkpoint 的解码保持一致。
     def vae_encode(self, x: torch.Tensor):
         # TODO Accelerator
         # unwrapped_vae = accelerator.unwrap_model(vae)
@@ -407,6 +411,7 @@ def _import_tango2_modules():
     return Tango2TacotronSTFT, Tango2AutoencoderKL, Tango2AudioDiffusion
 
 
+# 【深入注释｜原文件 L406】Tango2 路径通过独立模块加载，不能直接套用 Tango 的文本嵌入字段。
 class Tango2Wrapper(PipelineWrapper):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -495,6 +500,7 @@ class Tango2Wrapper(PipelineWrapper):
         return self.model.scheduler.alphas_cumprod[prev_timestep] if prev_timestep >= 0 \
             else self.model.scheduler.final_alpha_cumprod
 
+# 【深入注释｜原文件 L494】AudioLDM 包装层使用另一套音频前处理与条件结构；相同编辑更新不意味着 backbone 完全相同。
 class AudioLDMWrapper(PipelineWrapper):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -573,6 +579,7 @@ class AudioLDMWrapper(PipelineWrapper):
             else self.model.scheduler.final_alpha_cumprod
 
 
+# 【深入注释｜原文件 L572】AudioLDM2 需要多路文本/语言模型条件；主编辑循环的 batch 拼接要与此 wrapper 返回结构对齐。
 class AudioLDM2Wrapper(PipelineWrapper):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
@@ -636,6 +643,7 @@ class AudioLDM2Wrapper(PipelineWrapper):
 
 
 
+    # 【深入注释｜原文件 L635】这里构造 AudioLDM2 文本条件；包含生成文本嵌入与 mask，不能简化成一个句向量。
     def encode_text(self, prompts: List[str]):
         
         tokenizers = [self.model.tokenizer, self.model.tokenizer_2]
@@ -730,6 +738,7 @@ class AudioLDM2Wrapper(PipelineWrapper):
         return self.model.scheduler.alphas_cumprod[prev_timestep] if prev_timestep >= 0 \
             else self.model.scheduler.final_alpha_cumprod
 
+    # 【深入注释｜原文件 L729】AudioLDM2 的 UNet 前向负责把拼接 batch 的目标/源条件映射成噪声预测。
     def unet_forward(self,
                      sample: torch.FloatTensor,
                      timestep: Union[torch.Tensor, float, int],
@@ -1032,6 +1041,7 @@ class StableDiffWrapper(PipelineWrapper):
 
 
 # 【中文精读｜原文件 L1030】按后端建立 wrapper。AudioLDM2/Tango2 的条件张量接口不同，算法通过统一包装器查询。
+# 【深入注释｜原文件 L1030】根据 model_id 选择 wrapper；复现实验必须同时记录 checkpoint 与 scheduler 类型。
 def load_model(model_id, device, num_diffusion_steps, double_precision=False):
     if 'tango2' in model_id:
         ldm_stable = Tango2Wrapper(model_id=model_id, device=device, double_precision=double_precision)

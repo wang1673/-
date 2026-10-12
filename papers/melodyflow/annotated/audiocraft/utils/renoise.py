@@ -27,13 +27,17 @@ def noise_regularization(
     if should_move_back_to_cpu:
         e_t = e_t.to("cpu")
         noise_pred_optimal = noise_pred_optimal.to("cpu")
+    # 【深入注释｜原文件 L24】每轮用可求导的速度副本优化局部统计；这是推理计算，并非模型参数训练。
     for _outer in range(num_reg_steps):
         if lambda_kl > 0:
+            # 【深入注释｜原文件 L26】detach 后重新启用梯度，只对当前速度变量求导，避免把梯度传回 DiT。
             _var = torch.autograd.Variable(e_t.detach().clone(), requires_grad=True)
+            # 【深入注释｜原文件 L27】把当前速度与参考带噪速度的 patch 分布做 KL，对应论文的反演正则。
             l_kld = patchify_latents_kl_divergence(_var, noise_pred_optimal)
             l_kld.backward()
             _grad = _var.grad.detach()  # pyre-ignore
             _grad = torch.clip(_grad, -100, 100)
+            # 【深入注释｜原文件 L31】以 KL 梯度修正速度；lambda_kl 控制偏向参考统计的强度。
             e_t = e_t - lambda_kl * _grad
         if lambda_ac > 0:
             for _inner in range(num_ac_rolls):
@@ -80,6 +84,7 @@ def auto_corr_loss(
 
 
 # 【中文精读｜原文件 L76】将 latent 切成小块，比较两组局部统计。这里的统计 KL 不等于真实音频分布间精确 KL。
+# 【深入注释｜原文件 L76】先将时间 latent 划成局部 patch，再计算统计差；保留不是逐音符约束。
 def patchify_latents_kl_divergence(
     x0: torch.Tensor, x1: torch.Tensor, patch_size: int = 4, num_channels: int = 4
 ) -> torch.Tensor:
@@ -101,6 +106,7 @@ def patchify_latents_kl_divergence(
 
 
 # 【中文精读｜原文件 L96】按局部均值与方差计算高斯统计差异，加 epsilon 避免除零；保留上游的绝对值和求和约定。
+# 【深入注释｜原文件 L96】计算两组 latent 局部统计的 KL；数值项属于实现细节，需结合 patchify 读。
 def latents_kl_divergence(x0: torch.Tensor, x1: torch.Tensor) -> torch.Tensor:
     EPSILON = 1e-6
     x0 = x0.view(x0.shape[0], x0.shape[1], -1)

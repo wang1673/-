@@ -23,6 +23,7 @@ def run(args):
     src_img = src_img * 2.0 - 1.0
 
     # prepare method
+    # 【深入注释｜原文件 L22】只在此入口选择 SD3 适配器；命令行 method 决定具体编辑类。
     if args.model == 'sd3':
         from diffusion.editing.sd3_edit import get_editor
     else:
@@ -31,6 +32,7 @@ def run(args):
 
     # pre-compute text embeddings (if efficient_memoery=True)
     if args.efficient_memory:
+        # 【深入注释｜原文件 L30】源/目标/空文字嵌入可预先缓存，避免每个时间步重复运行文本编码器。
         src_prompt_emb, tgt_prompt_emb, null_prompt_emb = \
             util.precompute_text_embedding(sampler, 
                                            [args.src_prompt, args.tgt_prompt, args.null_prompt],
@@ -40,6 +42,7 @@ def run(args):
         tgt_prompt_emb = None
         null_prompt_emb = None
 
+    # 【深入注释｜原文件 L39】把源图、文字与 NFE 等参数传给编辑器；模型查询数需按每步速度评估次数计。
     # DO editing
     sampler = sampler.to(device='cuda')
     output = sampler.sample(src_img=src_img,

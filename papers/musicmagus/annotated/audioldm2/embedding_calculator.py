@@ -20,6 +20,7 @@ class EmbeddingCalculator(object):
 
     @staticmethod
     # 【中文精读｜原文件 L17】通过旧版 OpenAI Completion 接口生成 captions；此处只阅读，不实际请求外部服务。当前接口兼容性未测试。
+    # 【深入注释｜原文件 L17】为属性词扩展多条 caption，减少单句表述偶然性；生成器输出仍需筛选/长度对齐。
     def generate_captions(input_prompt, number=24):
         response = openai.Completion.create(
             model="gpt-3.5-turbo-instruct",
@@ -41,6 +42,7 @@ class EmbeddingCalculator(object):
 
     @torch.no_grad()
     # 【中文精读｜原文件 L37】冻结编码，沿 caption batch 维平均；保持 token 维，得到同形方向而非单一全局句向量。
+    # 【深入注释｜原文件 L37】两条条件链经 AudioLDM2.encode_prompt 编码，返回 T5 与生成语义嵌入。
     def embed_captions(self, l_sentences, fix_length=None):
         prompt_embeds, _, generated_prompt_embeds = self.embedding_model.encode_prompt(
             prompt=l_sentences,
@@ -51,6 +53,7 @@ class EmbeddingCalculator(object):
         )
 
         # average
+        # 【深入注释｜原文件 L47】对 caption 维求平均后得到属性中心；目标减源才是编辑语义方向。
         prompt_embeds = prompt_embeds.mean(dim=0, keepdim=True)
         generated_prompt_embeds = generated_prompt_embeds.mean(dim=0, keepdim=True)
 
@@ -73,6 +76,7 @@ class EmbeddingCalculator(object):
         fix_length = self.prompt_length + 2
 
         # captions -> embeddings
+        # 【深入注释｜原文件 L68】同时返回源/目标两路条件，供 pipeline 构造方向并更新目标语义分支。
         source_embeddings, generated_source_embeddings = self.embed_captions(source_captions, fix_length=fix_length)
         target_embeddings, generated_target_embeddings = self.embed_captions(target_captions, fix_length=fix_length)
 

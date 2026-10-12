@@ -24,31 +24,34 @@
     {
       "path": "audioldm2/p2p_pipeline.py",
       "lines": 1705,
-      "comments": 15,
+      "comments": 34,
       "sha256": "5b75a1da9e85a580872b30c7964acf1a39055a0cf2b4f96f9946e4381f0423cc",
       "git_sha": "787366f48a2fd7078173a616ba7b736b668756b2",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "e5a378819c7e234de79f3911f9e6e3a655c49b5f3261e34279a474ca7affc3d6"
     },
     {
       "path": "audioldm2/embedding_calculator.py",
       "lines": 71,
-      "comments": 4,
+      "comments": 8,
       "sha256": "eb76e1bd360bcc8f0fe780a2e42c60a243ec3afb59d438b8dd8c9f8b111c8102",
       "git_sha": "0071bb6fec14fa06b2f8f3e254a2202f6571e881",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "e9d4f7eb426ec2c1eef936c61432c8e6287b54f4db637c88074f04e0b1b53194"
     },
     {
       "path": "app.py",
       "lines": 178,
-      "comments": 0,
+      "comments": 3,
       "sha256": "c7d0a6c9d2e4954b3f96b564844c81ff5c615bd04874599522363686e8f07ad8",
       "git_sha": "bcf77d03a63f2d57f7ed50086d453cc399753d5d",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "d84c2f0d20f363d904f27583eeb75489beec369590ba39f77701621f8dbbe947"
     }
   ],
   "licenses": [
     "LICENSE",
     "README.md"
   ],
-  "comments": 19
+  "comments": 45
 }

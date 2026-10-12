@@ -279,9 +279,11 @@ class FlowModel(torch.nn.Module):
     def forward(
         self, z: torch.Tensor, t: torch.Tensor, condition_src: torch.Tensor, condition_mask: torch.Tensor,
     ) -> torch.Tensor:
+        # 【深入注释｜原文件 L276】z_t 的方差随 t 改变；除以 √(t²+(1−t)²) 让 DiT 输入尺度稳定。
         # Rescale input so that its std remains 1 whatever the flow step t.
         x = z / torch.sqrt(torch.pow(t.unsqueeze(-1), 2) + torch.pow(1 - t.unsqueeze(-1), 2))
         x = self.in_proj(x.permute(0, 2, 1))
+        # 【深入注释｜原文件 L279】潜变量由 [B,D,T] 换成 Transformer 使用的 [B,T,D]，文字条件经 cross-attention 输入。
         x = self.transformer(
             x,
             cross_attention_src=condition_src,
@@ -354,6 +356,7 @@ class FlowModel(torch.nn.Module):
         assert [x == possible_num_samples[0] for x in possible_num_samples], "Inconsistent inputs shapes"
         num_samples = possible_num_samples[0]
 
+        # 【深入注释｜原文件 L349】若 prompt 是 VAE 输出的均值/尺度双通道，先后验采样再标准化；不能直接拿均值当生成 latent。
         if prompt is not None and self.latent_mean.shape[1] != prompt.shape[1]:
             # tokens directly emanate from the VAE encoder
             mean, scale = prompt.chunk(2, dim=1)
@@ -370,6 +373,7 @@ class FlowModel(torch.nn.Module):
         # the padding structure is exactly the same between train and test.
         # With a batch size of 1, this can be slower though.
         cfg_conditions: CFGConditions
+        # 【深入注释｜原文件 L365】同一 batch 拼接条件与空条件，使一次网络前向得到 CFG 两支速度。
         if conditions:
             null_conditions = ClassifierFreeGuidanceDropout(p=1.0)(conditions)
             conditions = conditions + null_conditions
@@ -378,6 +382,7 @@ class FlowModel(torch.nn.Module):
         else:
             cfg_conditions = {}
 
+        # 【深入注释｜原文件 L373】无 prompt 时从高斯噪声开始生成；编辑/反演则从源音乐潜变量开始。
         gen_sequence = torch.randn(num_samples, self.latent_dim, max_gen_len, device=device) if prompt is None else prompt
         B = gen_sequence.shape[0]
 
@@ -392,27 +397,32 @@ class FlowModel(torch.nn.Module):
             avg_regularized_velocity = torch.zeros_like(gen_sequence)
         regularization_iters_threshold = regularize_iters - keep_last_k_iters
         # 【中文精读｜原文件 L385】反演禁用额外 CFG；生成 CFG 此处系数 a 对应常用 scale=1+a。
+        # 【深入注释｜原文件 L385】反演方向关闭 CFG 以减轻发散；生成方向才使用设置的文字引导强度。
         cfg_coef = 0.0 if target_flowstep < source_flowstep else self.cfg_coef  # prevent divergence during latent inversion
         if target_flowstep > source_flowstep:
             schedule = torch.arange(0, 1+1e-5, 1/steps)
         else:
             schedule = torch.arange(1, 0-1e-5, -1/steps)
         # 【中文精读｜原文件 L390】当前公开版默认 sway 非均匀时间表；与论文均匀步长配置需区分。
+        # 【深入注释｜原文件 L390】sway_coefficient 改变求解时间节点密度；相同 steps 不代表与均匀 Euler 同一离散化。
         schedule = schedule + sway_coefficient * (torch.cos(math.pi * 0.5 * schedule) - 1 + schedule)
         if target_flowstep > source_flowstep:
             schedule = schedule * (target_flowstep-source_flowstep) + source_flowstep
         else:
             schedule = schedule * (source_flowstep-target_flowstep) + target_flowstep
 
+        # 【深入注释｜原文件 L396】schedule 从 source_flowstep 走向 target_flowstep；反演时 delta_t 为负。
         for idx, current_flowstep in enumerate(schedule[:-1]):
             delta_t = schedule[idx+1] - current_flowstep
             input_sequence = gen_sequence
             if solver == "midpoint" and idx % 2 == 1:
                 input_sequence = next_sequence
+            # 【深入注释｜原文件 L401】每个 ODE 步可能运行多个正则化内循环，模型前向次数大于 steps。
             for jdx in range(regularize_iters):
                 should_compute_kl = jdx >= regularization_iters_threshold
                 if should_compute_kl:
                     # 【中文精读｜原文件 L404】在下一时间对源 prompt 解析加噪，获得用于 KL 的参考查询。
+                    # 【深入注释｜原文件 L404】构造参考带噪潜变量，用于比较当前速度统计；仅在正则化内循环的末几次计算。
                     regularizing_sequence = (
                                 1 - schedule[idx+1]
                             ) * torch.randn_like(input_sequence) + schedule[idx+1] * prompt + 1e-5 * torch.randn_like(input_sequence)
@@ -423,6 +433,7 @@ class FlowModel(torch.nn.Module):
                         ],
                         dim=0,
                     )
+                # 【深入注释｜原文件 L414】源向反演时只取文字条件速度；正向生成的 CFG 分支见下方。
                 if cfg_coef == 0.0:
                     predicted_velocity = self.forward(input_sequence,
                                             torch.tensor([schedule[idx+1] if regularize else current_flowstep], device=device).expand(B * (1+should_compute_kl), 1),
@@ -436,6 +447,7 @@ class FlowModel(torch.nn.Module):
                                             torch.tensor([schedule[idx+1] if regularize else current_flowstep], device=device).expand(B*2*(1 + should_compute_kl), 1),
                                             cfg_conditions['description'][0].repeat_interleave(1 + should_compute_kl, dim=0),
                                             torch.log(cfg_conditions['description'][1].unsqueeze(1).unsqueeze(1)).repeat_interleave(1 + should_compute_kl, dim=0))
+                    # 【深入注释｜原文件 L427】代码 CFG 为 (1+a)v_cond−a v_uncond；换常见系数 s 的写法时 s=1+a。
                     if should_compute_kl:
                         velocity = (1 + cfg_coef) * predicted_velocity[:B] - cfg_coef * predicted_velocity[2*B:3*B]
                         regularizing_velocity = (1 + cfg_coef) * predicted_velocity[B:2*B] - cfg_coef * predicted_velocity[3*B:4*B]
@@ -443,6 +455,7 @@ class FlowModel(torch.nn.Module):
                         velocity = (1 + cfg_coef) * predicted_velocity[:B] - cfg_coef * predicted_velocity[B:2*B]
                 if should_compute_kl:
                     # 【中文精读｜原文件 L433】正则修正速度而非模型权重；内部仍需局部梯度。
+                    # 【深入注释｜原文件 L433】noise_regularization 通过梯度修正速度，不更新 DiT 权重；这是推理时的额外优化成本。
                     regularized_velocity = noise_regularization(
                         velocity,
                         regularizing_velocity,
@@ -451,6 +464,7 @@ class FlowModel(torch.nn.Module):
                         num_reg_steps=4,
                         num_ac_rolls=5,
                     )
+                    # 【深入注释｜原文件 L441】末几轮速度按索引加权求和；权重不是简单算术平均。
                     avg_regularized_velocity += (
                         regularized_velocity
                         * jdx
@@ -460,6 +474,7 @@ class FlowModel(torch.nn.Module):
                         )
                     )
                 if should_compute_kl:
+                    # 【深入注释｜原文件 L450】固定点内循环更新临时状态，真正推进时间表在外层的 gen_sequence 更新处。
                     input_sequence = gen_sequence + regularized_velocity * delta_t
                 else:
                     input_sequence = gen_sequence + velocity * delta_t
@@ -477,5 +492,6 @@ class FlowModel(torch.nn.Module):
                     gen_sequence = gen_sequence + velocity * (schedule[idx+1] - schedule[idx-1])
             else:
                 # 【中文精读｜原文件 L464】Euler 用 dt*v；midpoint 另一分支跨两个半步更新，勿重复计为两完整步。
+                # 【深入注释｜原文件 L464】Euler 最终更新 z←z+Δt·v；此处速度定义与训练的 x−ε 目标一致。
                 gen_sequence = gen_sequence + velocity * delta_t
         return gen_sequence

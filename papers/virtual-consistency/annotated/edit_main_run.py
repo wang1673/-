@@ -36,6 +36,7 @@ def parse_args():
     return args
 
 
+# 【深入注释｜原文件 L35】命令行入口读取模型、音频与文字，选择一致性采样的步数和编辑强度。
 def main():
     args = parse_args()
 

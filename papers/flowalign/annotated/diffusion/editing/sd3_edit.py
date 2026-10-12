@@ -214,34 +214,43 @@ class SD3FlowAlign(SD3Euler):
                 tgt_prompt_emb = self.prepare_embed(tgt_prompt, tgt_prompt_emb)
                 null_prompt_emb = self.prepare_embed(null_prompt, null_prompt_emb)
 
+        # 【深入注释｜原文件 L201】NFE 配置离散时间表；后面使用 t/训练步数得到连续噪声权重 sigma。
         self.scheduler.set_timesteps(NFE, device=self.transformer.device)
         timesteps = self.scheduler.timesteps
         sigmas = timesteps / self.scheduler.config.num_train_timesteps
 
+        # 【深入注释｜原文件 L205】源图像仅 VAE 编码一次并固定 zsrc；后续每步采样都从它解析构造 q_t。
         with torch.no_grad():
             zsrc = self.encode(src_img.to(self.vae.device).half())
         xt = zsrc.clone()
 
         pbar = tqdm(timesteps, total=NFE, desc='SD3 FlowAlign')
+        # 【深入注释｜原文件 L210】每步生成一个共享 ε，计算源查询 q_t 和含编辑位移的目标查询 p_t。
         for i, t in enumerate(pbar):
             eps = torch.randn_like(zsrc)
             timestep = t.expand(batch_size)
             sigma = sigmas[i]
             sigma_next = sigmas[i+1] if i+1 < NFE else 0.0
 
+            # 【深入注释｜原文件 L216】q_t=(1−σ)zsrc+σε 是源条件评估位置，不是一次反演所得的真实源轨迹。
             qt = (1-sigma)*zsrc + sigma*eps
             # 【中文精读｜原文件 L217】完整平移构造，不是对 xt 的前向重新加噪。
+            # 【深入注释｜原文件 L217】p_t=xt+q_t−zsrc 是目标评估位置；完整保留当前编辑位移。
             pt = xt + qt - zsrc
 
             with torch.no_grad():
+                # 【深入注释｜原文件 L220】vpc 是 p_t 的目标条件速度，vpn 是同一 p_t 的源条件速度。
                 vpc = self.predict_vector(pt, timestep, tgt_prompt_emb[0], tgt_prompt_emb[1])
                 vpn = self.predict_vector(pt, timestep, src_prompt_emb[0], src_prompt_emb[1])
                 # 【中文精读｜原文件 L222】此类 vpn 来自源文字条件，不是空条件；这是 source-anchored guidance。
+                # 【深入注释｜原文件 L222】vp=vpn+cfg_scale(vpc−vpn)；这里以源条件作引导基线，并非空 prompt CFG。
                 vp = vpn + cfg_scale * (vpc - vpn)
+                # 【深入注释｜原文件 L223】vqn 是 q_t 上的源条件速度，随后从目标路径速度 vp 中减去。
                 vqn = self.predict_vector(qt, timestep, src_prompt_emb[0], src_prompt_emb[1])
                 vq = vqn
 
             # 【中文精读｜原文件 L226】§3.3 实际两项：dt*(vp−vq)+.01*(q−t*vq−p+t*vp)。括号内即 q0hat−p0hat。
+            # 【深入注释｜原文件 L226】前项是 FlowEdit 式速度差 Euler；0.01·(q−σvq−p+σvp) 为论文轨迹对齐修正，系数是代码常量。
             xt = xt + (sigma_next-sigma) * (vp-vq) + 0.01 * (qt - sigma*vq - pt + sigma*vp)
 
 

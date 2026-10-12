@@ -104,34 +104,38 @@
     {
       "path": "SteerMusic_edit.py",
       "lines": 123,
-      "comments": 7,
+      "comments": 16,
       "sha256": "84b4eb0def359a22220403cb049940431a986603855ebaabe3f0c8bb8b9dc547",
       "git_sha": "7dd9c9ccd6d99e871701e841c560f064657e3329",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "f31ec73ddca53309f750c9b344b83250047485cedc8479ec03153c92609462b6"
     },
     {
       "path": "SteerMusic_personalized.py",
       "lines": 201,
-      "comments": 9,
+      "comments": 18,
       "sha256": "5ade153a0597f4165b05cbfb4f3a06573dbdafbe3c9bd3f200d0d50b73a976bb",
       "git_sha": "5b997cccfc44cf11dd0ab0e56bcded4fb913efbd",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "eee2ae26ca61cc96c14807e0307be94978b5751d60172faf59980f3e202e2e0b"
     },
     {
       "path": "steermusic_utils.py",
       "lines": 437,
-      "comments": 9,
+      "comments": 19,
       "sha256": "511d1b0608405de873722b4a5947a092c07dccb322cae407ac7202f4c94e7829",
       "git_sha": "f1b0dca0b231744628d9ccce99dbfde65c387521",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "87ab2aaefecb98531a434955e958937d63941572c1b50202ed8578c96be0ddca"
     },
     {
       "path": "preprocessor.py",
       "lines": 267,
-      "comments": 1,
+      "comments": 4,
       "sha256": "ef8fda9d30b01a4e8ad39e3537d6f3dfd3787b25f91e8172303ee514c6c7cabe",
       "git_sha": "ba745e3e0e5a4e2bbe55d39836f9dad08526df22",
-      "ast_equal": true
+      "ast_equal": true,
+      "annotated_sha256": "baa626c1860e26b09f947761ed2ddb86737b0ac60a231de345901eaa68089f25"
     }
   ],
   "licenses": [
@@ -139,5 +143,5 @@
     "README.md",
     "audioldm_train/modules/hifigan/LICENSE"
   ],
-  "comments": 26
+  "comments": 57
 }

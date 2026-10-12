@@ -49,6 +49,7 @@ def load_image(image_path: str, left: int = 0, right: int = 0, top: int = 0, bot
 
 
 # 【中文精读｜原文件 L47】读取、重采样和谱变换，决定实际输入片长与归一化；不要把波形采样率等同 latent 帧率。
+# 【深入注释｜原文件 L47】读取波形并计算与选定 backbone 匹配的 mel；采样率、裁剪和 STFT 会改变后续 latent。
 def load_audio(audio_path: str, fn_STFT, left: int = 0, right: int = 0, device: Optional[torch.device] = None
                ) -> torch.tensor:
     if type(audio_path) is str:
@@ -71,6 +72,7 @@ def load_audio(audio_path: str, fn_STFT, left: int = 0, right: int = 0, device: 
     return mel
 
 
+# 【深入注释｜原文件 L69】设置随机种子覆盖 Python/NumPy/PyTorch；共享噪声实验的比较需要固定该状态。
 def set_reproducability(seed: int, extreme: bool = True):
     if seed is not None:
         torch.manual_seed(seed)
@@ -91,6 +93,7 @@ def set_reproducability(seed: int, extreme: bool = True):
     torch.backends.cudnn.allow_tf32 = False
 
 
+# 【深入注释｜原文件 L89】根据 waveform 长度推算谱图尺寸；这是输入裁剪/对齐，不能当作编辑时间掩码。
 def get_height_of_spectrogram(length: int, ldm_stable: PipelineWrapper) -> int:
     vocoder_upsample_factor = np.prod(ldm_stable.model.vocoder.config.upsample_rates) / \
         ldm_stable.model.vocoder.config.sampling_rate
@@ -187,6 +190,7 @@ def plot_corrs(args, corrs: List[np.array], in_corrs: List[List[torch.Tensor]],
 
 
 
+# 【深入注释｜原文件 L185】源/目标与无条件 prompt 被转换成 wrapper 需要的多路嵌入，供每步复用。
 def get_text_embeddings(target_prompt: List[str], target_neg_prompt: List[str], ldm_stable: PipelineWrapper
                         ) -> Tuple[torch.Tensor, PromptEmbeddings, PromptEmbeddings]:
 
