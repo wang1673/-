@@ -1,14 +1,18 @@
-# 音频生成五篇论文精读
+# 音乐与音频编辑论文精读
 
-2026-10-08整理。每篇覆盖动机、架构、训练、数据、信息流、数值例子、实验及局限；区分论文、代码与读者推论。
+本仓库收录十篇 flow/diffusion 音频或音乐编辑论文的中文精读、代码树注解和论文章节/源码对应关系。精读文档标注论文事实、代码观察与研究建议；代码树对没有公开代码的论文明确标注为“无官方代码”，不把伪代码当作真实实现。
 
-- [五篇统一对比](五篇论文对比.md)
-- [audio-to-audio](audio-to-audio/精读笔记.md) · [图表](audio-to-audio/figures/index.md) · [材料范围](audio-to-audio/upload-status.md)
-- [eftts](eftts/精读笔记.md) · [图表](eftts/figures/index.md) · [材料范围](eftts/upload-status.md)
-- [emoctrl-tts](emoctrl-tts/精读笔记.md) · [图表](emoctrl-tts/figures/index.md) · [材料范围](emoctrl-tts/upload-status.md)
-- [emo-dpo](emo-dpo/精读笔记.md) · [图表](emo-dpo/figures/index.md) · [材料范围](emo-dpo/upload-status.md)
-- [melfusion](melfusion/精读笔记.md) · [图表](melfusion/figures/index.md) · [材料范围](melfusion/upload-status.md)
+| 顺序 | 论文 | 年份 / venue | 精读 | 代码树 | 原文对应 |
+|---|---|---|---|---|---|
+| 1 | MelodyFlow | 2024 | [完整精读](melodyflow/完整精读.md) | [代码树](melodyflow/代码树.md) | [源码对应](melodyflow/代码原文对应.md) |
+| 2 | FlowEdit | ICCV 2025 | [完整精读](flowedit/完整精读.md) | [代码树](flowedit/代码树.md) | [源码对应](flowedit/代码原文对应.md) |
+| 3 | DirectAudioEdit | 2026 | [完整精读](directaudioedit/完整精读.md) | [代码树](directaudioedit/代码树.md) | [源码对应](directaudioedit/代码原文对应.md) |
+| 4 | EchoEdit / EchoEdit+ | 2026 | [完整精读](echoedit/完整精读.md) | [代码树](echoedit/代码树.md) | [源码对应](echoedit/代码原文对应.md) |
+| 5 | Melodia | AAAI 2026 | [完整精读](melodia-aaai2026/完整精读.md) | [代码树](melodia-aaai2026/代码树.md) | [源码对应](melodia-aaai2026/代码原文对应.md) |
+| 6 | SteerMusic | AAAI 2026 | [完整精读](steermusic-aaai2026/完整精读.md) | [代码树](steermusic-aaai2026/代码树.md) | [源码对应](steermusic-aaai2026/代码原文对应.md) |
+| 7 | Virtual Consistency | 2025 | [完整精读](virtual-consistency/完整精读.md) | [代码树](virtual-consistency/代码树.md) | [源码对应](virtual-consistency/代码原文对应.md) |
+| 8 | FlowAlign | 2025 | [完整精读](flowalign/完整精读.md) | [代码树](flowalign/代码树.md) | [源码对应](flowalign/代码原文对应.md) |
+| 9 | FreeSonic | 2026 | [完整精读](freesonic/完整精读.md) | [代码树](freesonic/代码树.md) | [源码对应](freesonic/代码原文对应.md) |
+| 10 | MusicMagus | IJCAI 2024 | [完整精读](musicmagus/完整精读.md) | [代码树](musicmagus/代码树.md) | [源码对应](musicmagus/代码原文对应.md) |
 
-主要发现：暖初始化的时间图注与算法有冲突；EFTTS句子级情绪CFM与EmoCtrl-TTS声学CFM作用对象不同；Emo-DPO收益不能全归因DPO；MeLFusion当前公开代码的图片输入及融合实现与论文有差异。详见各篇证据定位。
-
-未执行模型训练、推理或主观试听。原始PDF与部分源包二进制资产未上传，原因和原文入口见各目录材料范围。
+精读内容按动机、架构、训练、数据、信息流、数字例子与源码讲解组织；另有实验与局限总结。每篇链接至原论文及作者公开代码仓库。主要方法脉络：FlowEdit 用源/目标速度差构造直接编辑 ODE；音频方法进一步讨论共享噪声、轨迹耦合、注意力/时间定位与音乐结构保持。
