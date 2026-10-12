@@ -1,0 +1,32 @@
+{
+ "arxiv_id": "2511.08252",
+ "version": "v3",
+ "title": "Melodia: Training-Free Music Editing Guided by Attention Probing in Diffusion Models",
+ "authors": [
+  "Yi Yang",
+  "Haowen Li",
+  "Tianxiang Li",
+  "Boyu Cao",
+  "Xiaohan Zhang",
+  "Liqun Chen",
+  "Qi Liu"
+ ],
+ "published": "2025-11-11",
+ "updated": "2025-11-18",
+ "abstract": "Text-to-music generation technology is progressing rapidly, creating new opportunities for musical composition and editing. However, existing music editing methods often fail to preserve the source music's temporal structure, including melody and rhythm, when altering particular attributes like instrument, genre, and mood. To address this challenge, this paper conducts an in-depth probing analysis on attention maps within AudioLDM 2, a diffusion-based model commonly used as the backbone for existing music editing methods. We reveal a key finding: cross-attention maps encompass details regarding distinct musical characteristics, and interventions on these maps frequently result in ineffective modifications. In contrast, self-attention maps are essential for preserving the temporal structure of the source music during its conversion into the target music. Building upon this understanding, we present Melodia, a training-free technique that selectively manipulates self-attention maps in particular layers during the denoising process and leverages an attention repository to store source music information, achieving accurate modification of musical characteristics while preserving the original structure without requiring textual descriptions of the source music. Additionally, we propose two novel metrics to better evaluate music editing methods. Both objective and subjective experiments demonstrate that our approach achieves superior results in terms of textual adherence and structural integrity across various datasets. This research enhances comprehension of internal mechanisms within music generation models and provides improved control for music creation.",
+ "comment": "AAAI 2026 (Oral)",
+ "journal_ref": "",
+ "categories": [
+  "cs.SD",
+  "eess.AS"
+ ],
+ "abs_url": "https://arxiv.org/abs/2511.08252",
+ "pdf_pages": 9,
+ "has_latex": true,
+ "main_tex": "source\\CameraReady\\LaTeX\\main.tex",
+ "links": {},
+ "official_code": null,
+ "official_code_from": null,
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
