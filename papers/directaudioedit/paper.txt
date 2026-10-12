@@ -1,0 +1,1889 @@
+
+===== 第 1 页 =====
+DIRECTAUDIOEDIT: Inversion-Free Text-Guided Audio Editing via
+Diffusion Prediction Contrast
+Zhengkun Ge1, Xiaoqian Liu1, Haoran Zhang1, Yuan Ge1, Junxiang Zhang1,
+Zhengtao Yu2, Jingbo Zhu1,3, Tong Xiao1,3*
+1School of Computer Science and Engineering, Northeastern University, Shenyang, China
+2Kunming University of Science and Technology 3NiuTrans Research, Shenyang, China
+liuxiaoqian0319@outlook.com xiaotong@mail.neu.edu.cn
+Abstract
+Text-guided audio editing aims to modify the
+language-specified acoustic content while pre-
+serving edit-irrelevant source components. Ex-
+isting training-free methods typically rely on
+inversion-based editing. While inversion-free
+editing is appealing as it decreases computa-
+tional overhead and reconstruction errors, it
+remains largely unexplored for audio editing.
+The key challenge is to construct a source-to-
+target editing path through diffusion denois-
+ing dynamics.
+In this paper, we introduce
+DIRECTAUDIOEDIT, the first attempt to de-
+velop a training-free and inversion-free method
+for audio editing. Experiments on music and
+event-level benchmarks across two backbones
+show that DIRECTAUDIOEDIT reduces macro-
+averaged FAD and KL by 15.9% and 15.8%
+compared with DDPM inversion, while achiev-
+ing up to 64.5% editing speedup 1.
+1
+Introduction
+Audio editing aims to modify an existing audio sig-
+nal according to a user-specified instruction while
+preserving the irrelevant content of the source au-
+dio (Wang et al., 2023; Liang et al., 2024; Lan
+et al., 2025). For example, given an audio clip
+and an instruction such as “replace the guitar mu-
+sic with a piano melody”, an audio editing system
+is expected to selectively alter the target attribute
+while maintaining the remaining acoustic structure.
+Training-free audio editing has attracted increasing
+attention, as it seeks to adapt powerful pretrained
+generative audio models to editing tasks without
+relying on costly paired supervision (Manor and
+Michaeli, 2024; Jia et al., 2025; Liang et al., 2025).
+Beyond audio editing, condition-guided con-
+tent editing spans a wide range of modalities,
+including images, audio, and 3D assets (Shuai
+et al., 2024; Huang et al., 2025; Lu et al., 2024).
+* Corresponding author.
+1 Project: https://directaudioedit.github.io/
+Figure 1: Mel-spectrograms of (a) the source audio, (b)
+the DDIM-inversion reconstruction, and (c) the edited
+audio produced by Tango2. The highlighted regions
+show that inversion-induced deviations can be carried
+into target-conditioned editing, causing distortion be-
+yond the intended guitar-to-piano edit.
+Across these modalities, editing methods can be
+broadly summarized into three paradigms: noise-
+injection-based editing, inversion-based editing,
+and inversion-free editing. Noise-injection-based
+editing directly injects random noise into the edited
+region of the source content and then performs
+condition-guided denoising to synthesize the tar-
+get content (Meng et al., 2022). Inversion-based
+editing first obtains an initial noise through image-
+to-noise inversion of the source content and then
+applies a similar condition-guided denoising pro-
+cess from the inverted noise toward the edited out-
+put (Mokady et al., 2023; Huberman-Spiegelglas
+et al., 2024). Inversion-free editing directly trans-
+forms the source content under instruction guid-
+ance without explicitly reconstructing its gener-
+ative path (Kulikov et al., 2025). Among them,
+inversion-based audio reconstruction and editing
+causes undesired distortion, as shown in Fig 1. In
+contrast, inversion-free editing is particularly ap-
+1
+arXiv:2606.07356v1  [cs.SD]  5 Jun 2026
+
+===== 第 2 页 =====
+pealing as it decreases the computational overhead
+and reconstruction errors (Kim et al., 2025; Dao
+et al., 2026). However, inversion-free method re-
+mains unexplored for audio editing.
+In this paper, we investigate inversion-free au-
+dio editing with pretrained text-to-audio generative
+models. A key challenge is that mainstream audio
+generative models are commonly built upon diffu-
+sion models rather than flow models (Majumder
+et al., 2024; Liu et al., 2024). We find that directly
+applying inversion-free editing, such as FLOWEDIT
+(Kulikov et al., 2025), to diffusion-based audio
+models is suboptimal. The target editing path is
+harder to estimate because the generation paths of
+diffusion models described by stochastic differen-
+tial equations are curved and uncertain.
+To this end, we propose DIRECTAUDIOEDIT,
+a training-free and inversion-free method for
+diffusion-based audio editing. Rather than indi-
+rectly estimating the target state through path con-
+version, DIRECTAUDIOEDIT directly constructs a
+more accurate target state estimate by conditioning
+on the initial noise available during both inversion
+and denoising. A dynamic guidance schedule fur-
+ther balances editing strength and source preserva-
+tion. Experiments on music and event-level editing
+benchmarks across two diffusion backbones show
+that DIRECTAUDIOEDIT reduces macro-averaged
+FAD and KL by 15.9% and 15.8% over DDPM
+inversion with comparable target alignment. We
+summarize our contributions as follows:
+• We make the first attempt to extend inversion-
+free editing to the challenging audio editing
+task, aiming to improve both editing efficiency
+and editing quality without relying on costly
+inversion procedures.
+• We
+propose
+DIRECTAUDIOEDIT,
+an
+inversion-free audio editing method that
+improves target state estimation by leveraging
+the shared initial noise available throughout
+both the inversion and denoising processes.
+• Extensive experiments on AudioLDM2 and
+Tango2 demonstrate the effectiveness of DI-
+RECTAUDIOEDIT across music and event-
+level editing tasks.
+DIRECTAUDIOEDIT
+achieves up to 64.5% acceleration and 85.0%
+performance improvement compared with
+inversion-based editing methods.
+2
+Preliminary
+2.1
+Content Editing
+Suppose we are given a source content Xsrc, a
+source prompt csrc describing its original semantics,
+and a target prompt ctgt specifying the desired edit,
+text-guided editing aims to produce
+Xtgt = Mθ(Xsrc, csrc, ctgt),
+where Mθ is a pretrained diffusion or flow model,
+and Xtgt should preserve edit-irrelevant informa-
+tion in Xsrc while reflecting the target semantics
+in ctgt. For example, in audio editing, a guitar per-
+formance can be edited into a piano performance
+by setting csrc to “guitar” and ctgt to “piano”, while
+preserving the original melody.
+2.2
+Inversion-based Editing
+As shown in Fig. 2a, inversion-based methods
+including two process: inversion and denoising.
+The inversion process maps the source content Xsrc
+to the initial noise ϵ under the source condition csrc,
+whereas the denoising process generates the final
+content Xtgt from the inverted noise ϵ under the
+target condition ctgt. Specifically, the inversion
+and denoising paths are respectively defined by the
+following ordinary differential equations (ODEs):
+dZsrc
+t
+= V src(Zsrc
+t , t)dt
+(1)
+dZtgt
+t
+= V tgt(Ztgt
+t , t)dt
+(2)
+where V src and V tgt denote the text-conditioned
+velocities induced by the pre-trained diffusion/flow
+model under the source and target conditions, csrc
+and ctgt, respectively.
+2.3
+Inversion-free Editing with Direct Path
+As shown in Fig. 2b, Kulikov et al. (2025) pro-
+poses a reinterpretation of inversion-based editing.
+Specifically, given the forward and reverse flow
+paths, Zsrc and Ztgt, we can construct a virtual di-
+rect path ZDP
+t
+defined by an ODE in Eq. 4:
+ZDP
+t
+= Zsrc
+0
++ Ztgt
+t
+−Zsrc
+t
+(3)
+dZDP
+t
+= V ∆(Zsrc
+t , Ztgt
+t , t)dt
+(4)
+where V ∆
+t
+= V tgt
+t
+−V src
+t
+is the direct velocity.
+Motivated by this, inversion-free methods no
+longer extract the inverted initial noise to construct
+a conditioned target path. Instead, FLOWEDIT es-
+timates the target state utilizing path conversion:
+2
+
+===== 第 3 页 =====
+(c) Editing by FlowEdit
+𝜖
+Source Distribution
+Target Distribution
+መ𝑍𝑡
+tgt
+Source Distribution
+𝑍𝑇
+𝐷𝑃= 𝑍0
+src
+Target Distribution
+መ𝑍𝑡
+tgt
+𝜖
+(d) Editing by DirectAudioEdit
+(a) Editing by Inversion
+Target Distribution
+(b) Reinterpreting Inversion
+𝜖
+𝑍0
+𝐷𝑃
+Target Distribution
+𝜖
+𝑍𝑡
+src
+𝑍𝑡
+tgt
+Source Distribution
+𝑍0
+src
+𝑍𝑡
+tgt
+Source Distribution
+𝑍𝑇
+𝐷𝑃= 𝑍0
+src
+𝑍0
+𝐷𝑃= 𝑍0
+tgt
+𝑍𝑡
+𝐷𝑃
+…
+Direct Path
+𝑍𝑡−1
+𝐷𝑃
+𝑍𝑇
+𝐷𝑃= 𝑍0
+src
+𝑍𝑡
+𝐷𝑃
+…
+𝑍0
+𝐷𝑃
+𝑍𝑡−1
+𝐷𝑃
+𝑍0
+tgt
+𝑍𝑡
+src
+…
+𝑍𝑡
+𝐷𝑃
+𝑍𝑡−1
+𝐷𝑃
+Figure 2: Comparison of editing paradigms. (a) Inversion-based editing reconstructs a noisy source trajectory before
+target-guided denoising, while (b) reinterprets it as a direct source-to-target trajectory. (c) FlowEdit implements
+inversion-free editing in flow models via flow-direction contrast, whereas (d) DirectAudioEdit implements it in
+diffusion models via shared-noise re-noising and reverse-dynamics contrast.
+ˆZtgt
+t
+= ZDP
+t
++ ˆZsrc
+t
+−Zsrc
+t , where ˆZsrc
+t
+is calcu-
+lated using the conditioned source path.
+Then
+FLOWEDIT employs the flow model to predict the
+source velocity V src
+t
+and the target velocity V tgt
+t .
+The virtual direct velocity at ZDP
+t
+is calculated as
+V tgt
+t
+−V src
+t
+. The final reconstructed target content
+is obtained after T iterations.
+2.4
+Clean-State Editing Path
+We denote by ZDP
+t
+the current clean estimate along
+the editing path. Subscript t indexes the diffusion
+timestep used to construct the noisy estimates. For
+simplicity, we write the selected editing timesteps
+as T, . . . , 1, where t −1 denotes the next lower-
+noise step after t in the schedule. The clean editing
+path is initialized from the source latent:
+ZDP
+T
+= Zsrc
+0 ,
+(5)
+where T denotes the initial editing timestep. The
+path is then progressively updated from ZDP
+t
+to
+ZDP
+0
+as the timestep decreases.
+3
+Methodology
+A key challenge of inversion-free audio editing is
+the mainstream audio generative models are com-
+monly built upon diffusion models rather than flow
+models. We find that directly applying inversion-
+free editing to diffusion-based audio models is
+suboptimal because the target editing path ˆZtgt
+t
+is
+harder to predict: unlike rectified flows (Liu et al.,
+2023b), whose sampling paths are encouraged to be
+relatively straight, diffusion models describe gen-
+eration through stochastic differential equations
+(SDE), leading to more curved and uncertain paths.
+Furthermore, the generated target audio depends
+on the pre-trained diffusion model Mθ, the target
+condition ctgt, and the initial noise ϵ. Inversion-
+based editing suggests that an ideal target audio
+can be obtained by denoising an appropriate ini-
+tial noise derived through inversion. To improve
+efficiency, inversion-free editing instead adopts ran-
+domly initialized noise. Although this random ini-
+tialization may be biased, we argue that condition-
+ing the denoising process on the initial noise allows
+the target state to be progressively corrected, lead-
+ing to ideal performance. To this end, we propose
+DIRECTAUDIOEDIT in this section.
+3.1
+Shared-Noise Re-noising
+To address the uncertainty and bias introduced by
+diffusion paths and randomly initialized noise, we
+establish a shared-noise re-noising scheme that
+makes the source and target branches comparable
+before estimating their editing direction.
+We use Rt(x; ϵ) to denote the standard forward
+re-noising operation that maps a clean latent x to
+timestep t with Gaussian noise ϵ ∼N(0, I):
+Rt(x; ϵ) = √αtx +
+√
+1 −αtϵ,
+(6)
+where αt is the cumulative noise coefficient of the
+diffusion schedule.
+3
+
+===== 第 4 页 =====
+For the source branch, the clean reference is
+directly available as Zsrc
+0 . Given the shared noise
+ϵt, we construct the source-side noisy estimate as
+ˆZsrc
+t
+= Rt(Zsrc
+0 ; ϵt).
+(7)
+This estimate anchors the source-conditioned re-
+verse dynamics around the original source content.
+For the target branch, we use the current clean
+editing state ZDP
+t
+to predict the target-side noisy es-
+timate ˆZtgt
+t
+. Although ZDP
+t
+is not the true target la-
+tent, it provides the current clean estimate along the
+editing path. Initialized from the source latent, ZDP
+t
+progressively accumulates target-oriented updates
+along the clean-state editing path. We construct the
+target-side noisy estimate as
+ˆZtgt
+t
+= Rt(ZDP
+t ; ϵt).
+(8)
+This estimate evaluates the target-conditioned re-
+verse dynamics around the current edited state, in-
+dicating how the clean editing path should further
+move toward the target condition.
+3.2
+Diffusion Prediction Contrast
+With the source-side and target-side noisy estimates
+constructed, we next compare their local reverse
+dynamics. Let Φθ denote one reverse scheduler
+update from timestep t to t −1 induced by the
+pretrained diffusion model. For the source-side
+estimate, we compute
+ˆZsrc
+t−1 = Φθ
+
+ˆZsrc
+t , t, csrc; wsrc(t)
+
+.
+(9)
+The source-side reverse displacement is defined as
+∆src
+t
+= ˆZsrc
+t−1 −ˆZsrc
+t .
+(10)
+Here, csrc and wsrc(t) denote the source text con-
+dition and the guidance scale. The target-side pre-
+diction ˆZtgt
+t−1 and displacement ∆tgt
+t
+are obtained
+analogously by replacing the source-side noisy es-
+timate, condition, and guidance scale with their
+target-side counterparts. ∆src
+t
+describes the source-
+consistent reverse motion around the original con-
+tent, while ∆tgt
+t
+describes the target-conditioned
+reverse motion around the current edited state.
+We define the editing direction as the diffusion
+prediction contrast between the target- and source-
+conditioned reverse displacements:
+∆edit
+t
+= ∆tgt
+t
+−∆src
+t .
+(11)
+This contrast estimates the target-induced motion
+relative to the source dynamics. Because the two
+Algorithm 1 DIRECTAUDIOEDIT
+Require: Zsrc
+0 , csrc, ctgt, Rt, Φθ, timesteps {T, . . . , 1},
+branch-wise guidance scales wb(t)
+Ensure: Edited latent ZDP
+0
+1: ZDP
+t
+←Zsrc
+0
+// initialize
+2: for t = T, T −1, . . . , 1 do
+3:
+ϵt ∼N(0, I)
+// shared noise
+4:
+Xsrc ←Zsrc
+0 ,
+Xtgt ←ZDP
+t
+// clean references
+5:
+for b ∈{src, tgt} do
+6:
+ˆZb
+t ←Rt(Xb; ϵt)
+// re-noise
+7:
+ˆZb
+t−1 ←Φθ( ˆZb
+t , t, cb; wb(t))
+// reverse update
+8:
+∆b
+t ←ˆZb
+t−1 −ˆZb
+t
+// displacement
+9:
+end for
+10:
+∆edit
+t
+←∆tgt
+t
+−∆src
+t
+// prediction contrast
+11:
+ZDP
+t−1 ←ZDP
+t
++ ∆edit
+t
+// clean-state update
+12: end for
+13: return ZDP
+0
+estimates are constructed with shared noise, ∆edit
+t
+mainly reflects the difference between the source-
+and target-conditioned reverse dynamics. We use
+this contrast to update the clean editing state:
+ZDP
+t−1 = ZDP
+t
++ ∆edit
+t
+.
+(12)
+Although ∆edit
+t
+is estimated from noisy diffusion
+estimates, we do not treat it as a reconstructed
+noisy latent, but as a relative residual direction
+for clean-state editing. Since the source and target
+estimates share the same forward kernel, timestep,
+and noise realization, their displacement difference
+suppresses shared stochastic effects and highlights
+the condition-induced deviation between source-
+and target-conditioned reverse dynamics. DIREC-
+TAUDIOEDIT applies this residual as a first-order
+correction to ZDP
+t , rather than following an inverted
+noisy path. Repeating this update steers the clean
+editing path toward the target semantics while re-
+taining source-conditioned structure, yielding the
+final edited latent ZDP
+0 .
+3.3
+Dynamic Guidance Schedule
+Classifier-free guidance (CFG) (Ho and Salimans,
+2022) modulates how strongly each reverse update
+follows its text condition. In DIRECTAUDIOEDIT,
+the source and target branches serve different roles
+and therefore use different guidance strategies. The
+source branch acts as a stable structural reference
+for the original audio, so we keep its guidance scale
+fixed throughout editing:
+wsrc(t) = wsrc.
+(13)
+The target branch is responsible for injecting the
+desired edit semantics; instead of using static guid-
+ance, we progressively strengthen its guidance
+4
+
+===== 第 5 页 =====
+scale along the clean-state editing path:
+wtgt(t) = wmin + st
+ wmax −wmin
+,
+(14)
+where st is a monotonic schedule that increases
+from 0 to 1 as the editing process proceeds from
+ZDP
+t
+to ZDP
+0 . More details about the concrete form
+and hyperparameter values of this schedule are pro-
+vided in Appendix A.
+This scheduling reflects the changing role of tar-
+get guidance during editing. At early timesteps,
+the editing state remains close to the source latent,
+and weaker target guidance helps avoid abrupt de-
+viations from edit-irrelevant source structure. As
+editing proceeds, stronger target guidance encour-
+ages more complete target-semantic injection. This
+asymmetric design keeps the source branch as
+a fixed reference field while allowing the target
+branch to control the strength of semantic devia-
+tion. The full process is presented in Algorithm 1.
+4
+Experiments
+4.1
+Experimental Setup
+Backbones.
+We evaluate DIRECTAUDIOEDIT
+on two representative diffusion backbones: Audi-
+oLDM2 (Liu et al., 2024) and Tango2 (Majumder
+et al., 2024). Both models generate audio through
+iterative diffusion denoising, making them suitable
+testbeds for examining whether inversion-free au-
+dio editing can be formulated directly within diffu-
+sion reverse dynamics. Unless otherwise specified,
+all methods are evaluated using the same backbone,
+data split, and metric computation pipeline.
+Datasets.
+We conduct experiments on two types
+of text-guided audio editing benchmarks.
+Event-level editing. We construct a benchmark
+from AudioCaps (Kim et al., 2019), covering three
+fundamental editing operations: addition, removal,
+and replacement. For each operation, we construct
+and manually clean 363 source-target text pairs,
+resulting in 1,089 editing pairs in total. The source
+and target descriptions differ mainly in the edit-
+relevant event, so the benchmark evaluates whether
+a method can introduce localized semantic changes
+while preserving edit-irrelevant acoustic content.
+Details of the benchmark construction and exam-
+ples are provided in Appendix B.
+Music editing. We use the MedleyMDPrompts
+benchmark (Manor and Michaeli, 2024). Follow-
+ing the generation length supported by the evalu-
+ated text-to-audio backbones, we use the first 10
+seconds of each original music recording. Com-
+pared with event-level editing, music editing places
+stronger emphasis on preserving global musical
+structures, including rhythm, timbre, and instru-
+mentation, while still requiring the edited audio to
+match the target description.
+Baselines.
+We use three representative training-
+free audio editing baselines: SDEdit, DDIM inver-
+sion, and DDPM inversion (Manor and Michaeli,
+2024). SDEdit edits the source by adding noise to
+an intermediate diffusion state and then performing
+target-conditioned denoising. DDIM inversion and
+DDPM inversion first map the source audio into a
+noisy latent state or path, and then perform target-
+conditioned reverse diffusion. These methods rep-
+resent the common inversion-based paradigm in
+training-free diffusion audio editing. Further im-
+plementation details, including editing steps and
+guidance scales, are provided in Appendix A.
+Evaluation metrics.
+We evaluate editing perfor-
+mance from target semantic alignment, audio qual-
+ity, source preservation, and human perceptual
+quality. We report LAION-CLAP target similar-
+ity (Wu et al., 2023) for target alignment; Fréchet
+Audio Distance (FAD) (Kilgour et al., 2019), KL di-
+vergence (KL), and Inception Score (IS) (Salimans
+et al., 2016) for audio quality and distributional con-
+sistency; and mel-spectrogram SSIM (Wang, 2004)
+for source preservation. Since text-guided audio
+editing involves an inherent trade-off between tar-
+get alignment and source preservation, we analyze
+these metrics jointly rather than optimizing a single
+metric in isolation. We also conduct a comple-
+mentary Mean Opinion Score (MOS) evaluation on
+the Tango2 Replacement setting, where 40 listeners
+rate 20 edited clips per method on a five-point scale
+with method names hidden.
+Statistical analysis.
+Each experiment is repeated
+with five random seeds, and Table 1 reports the
+averaged scores. To assess statistical significance,
+we conduct Tukey’s honestly significant difference
+(HSD) post-hoc tests (Tukey, 1949) for each task–
+backbone–metric setting, comparing DIRECTAU-
+DIOEDIT with each baseline. Significance mark-
+ers denote p < 0.001 (∗∗∗), p < 0.01 (∗∗), and
+p < 0.05 (∗). More mean–standard deviation re-
+sults and detailed pairwise significance tests are
+provided in Appendix C.
+5
+
+===== 第 6 页 =====
+Task
+Method
+AudioLDM2
+Tango2
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+Event-level Editing Benchmark
+Addition
+SDEdit
+43.03
+2.166
+1.257
+6.626
+0.311
+47.74
+4.049
+1.020
+5.886
+0.354
+DDIM-Inv
+34.16
+3.428
+2.154
+6.073
+0.535
+39.38
+6.547
+2.094
+5.251
+0.479
+DDPM-Inv
+42.23
+1.046
+0.721
+6.857
+0.688
+47.28
+3.500
+0.796
+6.239
+0.634
+DIRECTAUDIOEDIT
+41.44
+0.989
+0.536
+6.709
+0.702
+47.65
+3.103
+0.674
+6.709
+0.655
+Removal
+SDEdit
+40.09
+2.852
+2.160
+6.706
+0.281
+41.67
+3.717
+1.467
+5.858
+0.361
+DDIM-Inv
+35.88
+4.690
+2.748
+6.363
+0.451
+23.71
+11.425
+3.423
+4.653
+0.410
+DDPM-Inv
+40.56
+1.660
+1.590
+6.793
+0.615
+41.75
+3.395
+1.298
+6.245
+0.647
+DIRECTAUDIOEDIT
+39.18
+2.229
+1.393
+6.848
+0.604
+43.87
+2.923
+1.312
+6.699
+0.658
+Replacement
+SDEdit
+43.43
+2.466
+1.443
+7.144
+0.309
+45.16
+3.328
+1.072
+6.170
+0.357
+DDIM-Inv
+34.84
+4.251
+2.556
+6.563
+0.501
+32.71
+7.193
+2.551
+4.968
+0.447
+DDPM-Inv
+42.46
+1.173
+0.825
+7.427
+0.681
+44.94
+2.923
+0.892
+6.583
+0.639
+DIRECTAUDIOEDIT
+41.60
+1.048
+0.621
+7.158
+0.695
+45.82
+2.455
+0.811
+7.060
+0.659
+Music Editing Benchmark
+Music
+SDEdit
+40.33
+5.765
+1.454
+1.734
+0.411
+29.28
+7.891
+1.354
+1.466
+0.496
+DDIM-Inv
+38.93
+5.347
+1.921
+1.990
+0.544
+34.06
+5.164
+1.598
+1.786
+0.580
+DDPM-Inv
+37.21
+2.252
+0.821
+1.668
+0.770
+31.13
+6.158
+0.833
+1.498
+0.729
+DIRECTAUDIOEDIT
+37.40
+1.929
+0.582
+1.807
+0.788
+33.99
+3.919
+0.617
+1.570
+0.757
+Table 1: Main results on the event-level and music editing benchmarks. Scores are averaged over five random seeds.
+Best results are in bold, and second-best results are underlined. CLAP scores are multiplied by 100. Higher CLAP,
+IS, and SSIM indicate better performance, while lower FAD and KL are better. Mean–standard deviation results and
+Tukey’s HSD post-hoc tests are reported in Appendix C.
+4.2
+Main Results
+Overall performance.
+Table 1 reports the re-
+sults on both event-level and music editing bench-
+marks. Across the two backbones and four editing
+settings, DIRECTAUDIOEDIT generally improves
+distributional quality and source-structure preser-
+vation while maintaining competitive target align-
+ment. Averaged over all task–backbone settings
+in Table 1, DIRECTAUDIOEDIT reduces FAD and
+KL by 15.9% and 15.8%, respectively, compared
+with DDPM inversion. Tukey’s HSD post-hoc tests
+over five random seeds further show that the im-
+provements on quality- and preservation-oriented
+metrics are statistically significant in most compar-
+isons on FAD, KL, and SSIM. These gains support
+the feasibility of source-preserving audio editing
+without explicit inversion.
+Event-level editing.
+For event-level editing, Ta-
+ble 1 shows that DIRECTAUDIOEDIT achieves a
+favorable balance between localized target edit-
+ing and source preservation across addition, re-
+moval, and replacement. The advantage is mainly
+reflected in distributional quality metrics such as
+FAD and KL, together with competitive IS and
+stronger SSIM in most settings. This indicates that
+diffusion prediction contrast can introduce event-
+level semantic changes while reducing unintended
+distortions to the surrounding acoustic scene.
+Music editing.
+The music benchmark further
+stresses source preservation because rhythm, tim-
+bre, and instrumentation should remain stable dur-
+ing editing. As shown in Table 1, DIRECTAU-
+DIOEDIT achieves the best FAD, KL, and SSIM on
+both backbones, indicating better preservation of
+global musical structure. Although some baselines
+obtain higher CLAP, their weaker quality or preser-
+vation metrics suggest that target alignment alone
+is insufficient for structure-sensitive audio editing.
+Alignment–preservation trade-off.
+The results
+also show that target-text alignment alone cannot
+fully reflect editing quality. Although SDEdit and
+DDIM inversion achieve higher CLAP in some set-
+tings, they often show worse FAD, KL, or SSIM,
+especially on music editing. This indicates that the
+edited audio may better match the target text while
+losing edit-irrelevant source structures. By con-
+trast, DIRECTAUDIOEDIT keeps CLAP competi-
+tive and achieves stronger quality- and preservation-
+oriented results.
+This supports our motivation:
+source-preserving audio editing should introduce
+the target change while avoiding unnecessary dis-
+tortion to the original audio.
+4.3
+Human Evaluation
+We further analyze the MOS results on the Tango2
+Replacement setting. Replacement is selected be-
+cause it requires both suppressing the original
+6
+
+===== 第 7 页 =====
+Backbone
+Task
+Method
+MOS ↑
+Tango2
+Replacement
+SDEdit
+3.04
+DDIM-Inv
+2.96
+DDPM-Inv
+3.34
+DIRECTAUDIOEDIT
+3.43
+Table 2: Human evaluation on the Replacement task
+with the Tango2 backbone. Higher MOS scores indicate
+better perceived editing quality.
+AudioLDM2
+Tango2
+0
+1
+2
+3
+RTF ↓
+SDEdit
+DDIM-Inv
+DDPM-Inv
+DIRECTAUDIOEDIT
+Figure 3: RTF comparison of different editing meth-
+ods on AudioLDM2 and Tango2, measured on a single
+NVIDIA RTX 3090 GPU. Lower RTF indicates higher
+inference efficiency.
+source event and introducing the target event, mak-
+ing it representative for perceptual editing assess-
+ment. Listeners rate the overall editing quality by
+jointly considering target-event correctness, source
+preservation, and audio naturalness. As shown in
+Table 2, DIRECTAUDIOEDIT obtains the highest
+average MOS score among compared methods un-
+der this setting, indicating that the proposed method
+produces perceptually competitive edited audio.
+4.4
+Inference Cost
+We report real-time factor (RTF) on a single
+NVIDIA RTX 3090 GPU to compare inference
+cost. As shown in Figure 3, DIRECTAUDIOEDIT
+avoids explicit inversion and therefore achieves
+lower RTF than DDIM-Inv and DDPM-Inv on both
+backbones. While SDEdit is faster, its weaker edit-
+ing quality in Table 1 indicates a less favorable
+efficiency-quality trade-off.
+5
+Ablation Studies and Analysis
+5.1
+Why Target-State Re-noising?
+The first ablation examines how the target-side
+noisy estimate is constructed. The variant w/o Re-
+noising in Figure 4 replaces re-noising ZDP
+t
+with
+the translated source-side noisy state defined in
+Eq. (3), while keeping the reverse-dynamics update
+unchanged. This variant leads to a weaker CLAP–
+1.8
+2.2
+2.6
+3
+3.4
+3.8
+20
+30
+40
+50
+FAD ↓
+CLAP ↑
+DIRECTAUDIOEDIT
+w/o Re-noising
+w/o Reverse Contrast
+Figure 4: CLAP–FAD trade-off for target-state re-
+noising and reverse-dynamics contrast on the Tango2
+Replacement task. Upper-left is better: higher CLAP
+indicates stronger target alignment, and lower FAD in-
+dicates better audio quality.
+FAD trade-off, indicating that the target branch
+should be evaluated around the current clean edit-
+ing state. Otherwise, the target-side estimate is
+no longer generated from the clean editing path
+through the diffusion forward kernel, which can
+introduce mismatch between the estimated editing
+direction and the state being updated. These results
+show that directly re-noising ZDP
+t
+is important for
+obtaining a diffusion-consistent target estimate and
+maintaining audio quality.
+5.2
+Why Reverse-Dynamics Contrast?
+The second ablation studies how the editing di-
+rection is computed once the source and target
+estimates are constructed. In Figure 4, w/o Re-
+verse Contrast removes the one-step reverse-
+displacement comparison and instead applies
+the raw difference between source- and target-
+conditioned noise predictions. This variant sub-
+stantially underperforms the full model, suggesting
+that prediction differences alone do not provide
+a reliable update direction for clean-state editing.
+By incorporating the scheduler-level reverse up-
+date, diffusion prediction contrast accounts for how
+model predictions are converted into reverse tran-
+sitions, yielding a more stable local direction for
+source-to-target editing.
+5.3
+Why Dynamic Guidance?
+We further study whether the target-branch guid-
+ance should remain fixed during editing. The vari-
+ant w/o Dynamic CFG replaces the increasing tar-
+get CFG schedule with a fixed target guidance
+scale, while keeping the source guidance and other
+components unchanged. As shown in Table 3, dy-
+namic guidance consistently improves FAD, KL,
+7
+
+===== 第 8 页 =====
+Method
+CLAP ↑FAD ↓KL ↓
+IS ↑
+SSIM ↑
+Backbone: AudioLDM2
+w/o Dynamic CFG
+0.410
+1.184
+0.658 7.207
+0.689
+w Dynamic CFG
+0.416
+1.099
+0.636 7.244
+0.695
+Backbone: Tango2
+w/o Dynamic CFG
+0.463
+2.629
+0.867 7.147
+0.647
+w Dynamic CFG
+0.456
+2.535
+0.821 7.039
+0.658
+Table 3: Effect of dynamic target guidance on the Re-
+placement task. The w/o Dynamic CFG setting replaces
+the increasing CFG schedule with a fixed scale.
+and SSIM on both backbones, indicating better
+audio quality and source preservation. On Audi-
+oLDM2, it also improves CLAP and IS, whereas
+on Tango2, CLAP and IS slightly decrease. This
+discrepancy suggests that dynamic CFG’s effect
+depends on how each backbone converts stronger
+text guidance into semantic change versus acoustic
+distortion. Overall, dynamic guidance acts as a
+stepwise trade-off controller: weaker target guid-
+ance at early steps avoids abrupt source distortion,
+while stronger guidance at later steps gradually pro-
+motes target-semantic injection.
+5.4
+Qualitative Analysis
+We further provide a qualitative case study to visu-
+alize how DIRECTAUDIOEDIT edits the source au-
+dio. As shown in Figure 5, the edit-relevant region
+is modified to introduce the target semantics, while
+the main spectrogram structure remains largely pre-
+served. This suggests that DIRECTAUDIOEDIT
+does not simply regenerate audio from the target
+prompt, but performs a localized source-to-target
+update. The preserved edit-irrelevant patterns and
+the newly introduced target region are consistent
+with the design of diffusion prediction contrast,
+which estimates target-induced changes relative to
+source-conditioned reverse dynamics.
+6
+Related Work
+6.1
+Text-guided Audio Editing
+Early text-guided audio editing methods mainly
+formulate editing as an instruction-following gener-
+ation problem, where the model learns to transform
+a source audio according to a textual instruction.
+AUDIT (Wang et al., 2023) constructs a multi-task
+editing framework from source-instruction-target
+triplets. For music editing, InstructME (Han et al.,
+2024) introduces a diffusion-based framework with
+multi-scale feature fusion and musical constraints.
+These training-based editors can learn explicit edit-
+Figure 5: Qualitative case study of DIRECTAUDIOEDIT.
+DIRECTAUDIOEDIT introduces the target edit while
+preserving the main source structure.
+ing behaviors, but their scalability is limited by the
+need for paired editing data (Huang et al., 2024).
+6.2
+Training-free Audio Editing
+Text-conditioned audio diffusion models provide
+generative priors learned from large-scale audio-
+text data (Liu et al., 2024; Huang et al., 2023).
+Recent training-free methods adapt such priors to
+editing by modifying the sampling process rather
+than retraining the model (Niu et al., 2026). A com-
+mon strategy is to first connect the clean source
+audio to a source-compatible noisy latent state or
+path, and then perform target-conditioned denois-
+ing (Manor and Michaeli, 2024; Jia et al., 2025).
+6.3
+Inversion-free Generative Editing
+Recent inversion-free editing methods suggest that
+generative editing need not follow the invert-then-
+generate paradigm. FlowEdit (Kulikov et al., 2025),
+for example, performs text-guided editing through
+direct source-to-target evolution. This formulation
+is closely tied to flow-matching models, which
+learn continuous velocity fields for transporting
+samples between distributions (Esser et al., 2024;
+Lipman et al., 2023). Under such models, editing
+can be formulated as source-to-target transport.
+7
+Conclusion
+We presented DIRECTAUDIOEDIT, a training-free
+and inversion-free method for text-guided audio
+editing with pretrained diffusion models. DIREC-
+TAUDIOEDIT formulates editing as direct source-
+to-target evolution within diffusion denoising dy-
+namics. It realizes this formulation through diffu-
+sion prediction contrast, which constructs compa-
+rable source/target estimates via shared-noise re-
+noising, extracts target-induced updates by reverse-
+dynamics contrast, and controls their strength with
+dynamic guidance.
+8
+
+===== 第 9 页 =====
+Limitations
+This work focuses on training-free editing with
+pretrained diffusion backbones. Its editing ability
+is therefore bounded by the text-following ability,
+acoustic coverage, and generation quality of the un-
+derlying model. In addition, the current evaluation
+mainly covers event-level and music editing, while
+more fine-grained temporal, spatial, and composi-
+tional editing instructions remain to be explored.
+References
+Thinh Dao, Zhen Wang, Kien T Pham, and Long Chen.
+2026. Steerflow: Steering rectified flows for faith-
+ful inversion-based image editing. ArXiv preprint,
+abs/2604.01715.
+DeepSeek-AI. 2024. Deepseek-v3 technical report.
+Patrick Esser, Sumith Kulal, Andreas Blattmann, Rahim
+Entezari, Jonas Müller, Harry Saini, Yam Levi, Do-
+minik Lorenz, Axel Sauer, Frederic Boesel, Dustin
+Podell, Tim Dockhorn, Zion English, and Robin
+Rombach. 2024. Scaling rectified flow transformers
+for high-resolution image synthesis. In Forty-first In-
+ternational Conference on Machine Learning, ICML
+2024, Vienna, Austria, July 21-27, 2024. OpenRe-
+view.net.
+Bing Han, Junyu Dai, Weituo Hao, Xinyan He, Dong
+Guo, Jitong Chen, Yuxuan Wang, Yanmin Qian, and
+Xuchen Song. 2024.
+Instructme: An instruction
+guided music edit framework with latent diffusion
+models. In Proceedings of the Thirty-Third Inter-
+national Joint Conference on Artificial Intelligence,
+IJCAI 2024, Jeju, South Korea, August 3-9, 2024,
+pages 5835–5843. ijcai.org.
+Jonathan Ho and Tim Salimans. 2022. Classifier-free
+diffusion guidance. ArXiv preprint, abs/2207.12598.
+Rongjie Huang, Ruofan Hu, Yongqi Wang, Zehan Wang,
+Xize Cheng, Ziyue Jiang, Zhenhui Ye, Dongchao
+Yang, Luping Liu, Peng Gao, and Zhou Zhao. 2024.
+Instructspeech: Following speech editing instructions
+via large language models. In Forty-first Interna-
+tional Conference on Machine Learning, ICML 2024,
+Vienna, Austria, July 21-27, 2024. OpenReview.net.
+Rongjie Huang, Jiawei Huang, Dongchao Yang, Yi Ren,
+Luping Liu, Mingze Li, Zhenhui Ye, Jinglin Liu, Xi-
+ang Yin, and Zhou Zhao. 2023. Make-an-audio: Text-
+to-audio generation with prompt-enhanced diffusion
+models. In International Conference on Machine
+Learning, ICML 2023, 23-29 July 2023, Honolulu,
+Hawaii, USA, volume 202 of Proceedings of Machine
+Learning Research, pages 13916–13932. PMLR.
+Yi Huang, Jiancheng Huang, Yifan Liu, Mingfu Yan,
+Jiaxi Lv, Jianzhuang Liu, Wei Xiong, He Zhang,
+Liangliang Cao, and Shifeng Chen. 2025. Diffusion
+model-based image editing: A survey. IEEE Transac-
+tions on Pattern Analysis and Machine Intelligence.
+Inbar Huberman-Spiegelglas, Vladimir Kulikov, and
+Tomer Michaeli. 2024. An edit friendly DDPM noise
+space: Inversion and manipulations. In IEEE/CVF
+Conference on Computer Vision and Pattern Recog-
+nition, CVPR 2024, Seattle, WA, USA, June 16-22,
+2024, pages 12469–12478. IEEE.
+Yuhang Jia, Yang Chen, Jinghua Zhao, Shiwan Zhao,
+Wenjia Zeng, Yong Chen, and Yong Qin. 2025. Au-
+dioeditor: A training-free diffusion-based audio edit-
+ing framework. In ICASSP 2025-2025 IEEE Interna-
+tional Conference on Acoustics, Speech and Signal
+Processing (ICASSP), pages 1–5. IEEE.
+Kevin Kilgour, Mauricio Zuluaga, Dominik Roblek, and
+Matthew Sharifi. 2019. Fréchet audio distance: A
+reference-free metric for evaluating music enhance-
+ment algorithms. In Interspeech 2019, 20th Annual
+Conference of the International Speech Communi-
+cation Association, Graz, Austria, 15-19 September
+2019, pages 2350–2354. ISCA.
+Chris Dongjoo Kim, Byeongchang Kim, Hyunmin Lee,
+and Gunhee Kim. 2019. AudioCaps: Generating cap-
+tions for audios in the wild. In Proceedings of the
+2019 Conference of the North American Chapter of
+the Association for Computational Linguistics: Hu-
+man Language Technologies, Volume 1 (Long and
+Short Papers), pages 119–132, Minneapolis, Min-
+nesota. Association for Computational Linguistics.
+Jeongsol Kim, Yeobin Hong, Jonghyun Park, and
+Jong Chul Ye. 2025.
+Flowalign:
+Trajectory-
+regularized, inversion-free flow-based image editing.
+ArXiv preprint, abs/2505.23145.
+Vladimir Kulikov, Matan Kleiner, Inbar Huberman-
+Spiegelglas, and Tomer Michaeli. 2025. Flowedit:
+Inversion-free text-based editing using pre-trained
+flow models. In Proceedings of the IEEE/CVF In-
+ternational Conference on Computer Vision, pages
+19721–19730.
+Zitong Lan, Yiduo Hao, and Mingmin Zhao. 2025.
+Guiding audio editing with audio language model.
+ArXiv preprint, abs/2509.21625.
+Jinhua Liang, Yuanzhe Chen, Yi Yuan, Dongya Jia,
+Xiaobin Zhuang, Zhuo Chen, Yuping Wang, and Yux-
+uan Wang. 2025. Audiomorphix: Training-free audio
+editing with diffusion probabilistic models. ArXiv
+preprint, abs/2505.16076.
+Jinhua Liang, Huan Zhang, Haohe Liu, Yin Cao, Qi-
+uqiang Kong, Xubo Liu, Wenwu Wang, Mark D
+Plumbley, Huy Phan, and Emmanouil Benetos. 2024.
+Wavcraft: Audio editing and generation with large
+language models. ArXiv preprint, abs/2403.09527.
+Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Max-
+imilian Nickel, and Matthew Le. 2023. Flow match-
+ing for generative modeling. In The Eleventh Inter-
+national Conference on Learning Representations,
+ICLR 2023, Kigali, Rwanda, May 1-5, 2023. Open-
+Review.net.
+9
+
+===== 第 10 页 =====
+Haohe Liu, Zehua Chen, Yi Yuan, Xinhao Mei, Xubo
+Liu, Danilo P. Mandic, Wenwu Wang, and Mark D.
+Plumbley. 2023a. Audioldm: Text-to-audio genera-
+tion with latent diffusion models. In International
+Conference on Machine Learning, ICML 2023, 23-29
+July 2023, Honolulu, Hawaii, USA, volume 202 of
+Proceedings of Machine Learning Research, pages
+21450–21474. PMLR.
+Haohe Liu, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang
+Kong, Qiao Tian, Yuping Wang, Wenwu Wang, Yux-
+uan Wang, and Mark D Plumbley. 2024.
+Audi-
+oldm 2: Learning holistic audio generation with self-
+supervised pretraining. IEEE/ACM Transactions on
+Audio, Speech, and Language Processing, 32:2871–
+2883.
+Xingchao Liu, Chengyue Gong, and Qiang Liu. 2023b.
+Flow straight and fast: Learning to generate and trans-
+fer data with rectified flow. In The Eleventh Inter-
+national Conference on Learning Representations,
+ICLR 2023, Kigali, Rwanda, May 1-5, 2023. Open-
+Review.net.
+Lihua Lu, Ruyang Li, Xiaohui Zhang, Hui Wei,
+Guoguang Du, and Binqiang Wang. 2024. Advances
+in text-guided 3d editing: a survey. Artificial Intelli-
+gence Review, 57(12):321.
+Navonil Majumder, Chia-Yu Hung, Deepanway Ghosal,
+Wei-Ning Hsu, Rada Mihalcea, and Soujanya Poria.
+2024. Tango 2: Aligning diffusion-based text-to-
+audio generations through direct preference optimiza-
+tion. In Proceedings of the 32nd ACM International
+Conference on Multimedia, pages 564–572.
+Hila Manor and Tomer Michaeli. 2024. Zero-shot unsu-
+pervised and text-based audio editing using DDPM
+inversion. In Forty-first International Conference on
+Machine Learning, ICML 2024, Vienna, Austria, July
+21-27, 2024. OpenReview.net.
+Chenlin Meng, Yutong He, Yang Song, Jiaming Song,
+Jiajun Wu, Jun-Yan Zhu, and Stefano Ermon. 2022.
+Sdedit: Guided image synthesis and editing with
+stochastic differential equations. In The Tenth Inter-
+national Conference on Learning Representations,
+ICLR 2022, Virtual Event, April 25-29, 2022. Open-
+Review.net.
+Ron Mokady, Amir Hertz, Kfir Aberman, Yael Pritch,
+and Daniel Cohen-Or. 2023. Null-text inversion for
+editing real images using guided diffusion models.
+In IEEE/CVF Conference on Computer Vision and
+Pattern Recognition, CVPR 2023, Vancouver, BC,
+Canada, June 17-24, 2023, pages 6038–6047. IEEE.
+Xinlei Niu, Kin Wai Cheuk, Jing Zhang, Naoki Murata,
+Chieh-Hsin Lai, Michele Mancusi, Woosung Choi,
+Giorgio Fabbro, Wei-Hsiang Liao, Charles Patrick
+Martin, and 1 others. 2026. Steermusic: Enhanced
+musical consistency for zero-shot text-guided and per-
+sonalized music editing. In Proceedings of the AAAI
+Conference on Artificial Intelligence, volume 40,
+pages 2000–2010.
+Tim Salimans, Ian J. Goodfellow, Wojciech Zaremba,
+Vicki Cheung, Alec Radford, and Xi Chen. 2016. Im-
+proved techniques for training gans. In Advances in
+Neural Information Processing Systems 29: Annual
+Conference on Neural Information Processing Sys-
+tems 2016, December 5-10, 2016, Barcelona, Spain,
+pages 2226–2234.
+Xincheng
+Shuai,
+Henghui
+Ding,
+Xingjun
+Ma,
+Rongcheng Tu, Yu-Gang Jiang, and Dacheng Tao.
+2024. A survey of multimodal-guided image editing
+with text-to-image diffusion models. ArXiv preprint,
+abs/2406.14555.
+John W Tukey. 1949. Comparing individual means in
+the analysis of variance. Biometrics, pages 99–114.
+Yuancheng Wang, Zeqian Ju, Xu Tan, Lei He, Zhizheng
+Wu, Jiang Bian, and Sheng Zhao. 2023. AUDIT:
+audio editing by following instructions with latent
+diffusion models. In Advances in Neural Information
+Processing Systems 36: Annual Conference on Neu-
+ral Information Processing Systems 2023, NeurIPS
+2023, New Orleans, LA, USA, December 10 - 16,
+2023.
+Zhou Wang. 2004. Image quality assessment: from
+error visibility to structural similarity. IEEE transac-
+tions on image processing, 13(4):600–612.
+Yusong Wu, Ke Chen, Tianyu Zhang, Yuchen Hui, Tay-
+lor Berg-Kirkpatrick, and Shlomo Dubnov. 2023.
+Large-scale contrastive language-audio pretraining
+with feature fusion and keyword-to-caption augmen-
+tation. In IEEE International Conference on Acous-
+tics, Speech and Signal Processing ICASSP 2023,
+Rhodes Island, Greece, June 4-10, 2023, pages 1–5.
+IEEE.
+Appendix
+A
+Implementation Details
+For a fair comparison, we use 50 editing-stage iter-
+ations for all methods, while the operation at each
+iteration depends on the method. For SDEdit, we
+initialize the editing path from the midpoint of a
+100-step diffusion schedule by adding noise to the
+source latent according to the corresponding noise
+level, and then generate the edited result with 50
+reverse denoising steps. DDIM-Inv performs 50
+inversion steps and DDPM-Inv performs 100 in-
+version steps, after which both methods generate
+the edited result with 50 reverse denoising steps.
+DIRECTAUDIOEDIT instead performs 50 updates
+on the editing state ZDP
+t .
+For guidance settings, we use a fixed source CFG
+scale wsrc = 3 whenever source-conditioned guid-
+ance is involved. For target guidance in the base-
+lines, we follow the recommended CFG settings
+in (Manor and Michaeli, 2024), setting the target
+10
+
+===== 第 11 页 =====
+CFG scales of SDEdit, DDIM-Inv, and DDPM-Inv
+to 12, 5, and 12, respectively. For DIRECTAU-
+DIOEDIT, the target CFG scale wtgt follows a co-
+sine schedule from 8 to 12, which is kept fixed
+across all settings without task-specific tuning.
+For evaluation, we compute FAD, KL, IS, and
+SSIM using the public AudioLDM evaluation
+toolkit2 (Liu et al., 2023a, 2024). For semantic
+alignment, we compute LAION-CLAP cosine sim-
+ilarity (Wu et al., 2023) between each generated
+audio and the target prompt.
+B
+Event-level Editing Benchmark
+We construct the event-level editing benchmark
+from AudioCaps to evaluate localized text-guided
+audio editing. Each example consists of a source
+audio, a source caption, and a target caption. The
+benchmark covers three edit operations: addition,
+removal, and replacement. Addition introduces
+a new event into the source scene, removal sup-
+presses an existing event, and replacement sub-
+stitutes one event with another while keeping the
+remaining scene unchanged.
+For each selected AudioCaps caption, we prompt
+a large language model (DeepSeek-AI, 2024) to
+generate target captions corresponding to the three
+edit operations.
+The generated target captions
+are required to preserve the edit-irrelevant context
+of the source caption and modify only the edit-
+relevant acoustic event. We then manually clean
+the generated pairs by removing ambiguous edits,
+unrealistic target events, overly broad event descrip-
+tions, and cases where the intended edit cannot be
+clearly localized from the caption. This yields 363
+pairs for each operation and 1,089 pairs in total.
+Table 4 provides representative examples.
+C
+Statistical Results
+Table 5 reports the mean and standard deviation of
+the automatic metrics for both benchmarks. To
+assess whether the differences between DIREC-
+TAUDIOEDIT and the baselines are statistically
+significant, we conduct Tukey’s honestly signifi-
+cant difference (HSD) post-hoc tests for each task–
+backbone–metric setting. Table 6 reports the pair-
+wise significance results.
+In the significance tables, +***, +**, and +* indicate
+that DIRECTAUDIOEDIT is significantly better than
+the corresponding baseline at p < 0.001, p < 0.01,
+and p < 0.05, respectively. Similarly, -***, -**, and
+2https://github.com/haoheliu/audioldm_eval
+Operation
+Description
+Addition
+Source: A child talking then a man speaking
+with bird sounds in the background.
+Target: A child talking then a man speaking
+with bird sounds and distant thunder in
+the background.
+Removal
+Source: A child talking then a man speaking
+with bird sounds in the background.
+Target: A child talking then a man speak-
+ing.
+Replacement
+Source: A child talking then a man speaking
+with bird sounds in the background.
+Target: A child talking then a woman speak-
+ing with bird sounds in the background.
+Table 4: Representative source-target text pairs in the
+event-level editing benchmark.
+-* indicate that DIRECTAUDIOEDIT is significantly
+worse. The symbol – indicates no significant differ-
+ence.
+D
+Mel-Spectrogram Comparison
+We provide a Mel-spectrogram comparison on the
+Tango2 backbone in Fig. 6. The source prompt
+is “Cats meowing and then wind”, and the target
+prompt is “Cats meowing and then a violent thun-
+derstorm.” For each method, the left column shows
+the reconstruction result, where the target prompt
+is set to the source prompt, and the right column
+shows the editing result generated with the target
+prompt.
+The visualization illustrates the preservation-
+editing trade-off of different methods. While base-
+line methods either introduce noticeable spectral
+changes or distort part of the source structure af-
+ter editing, DIRECTAUDIOEDIT better preserves
+the non-edited cat-meowing region and introduces
+stronger high-energy patterns in the edited region,
+which are consistent with the target thunderstorm
+description. This example suggests that DIREC-
+TAUDIOEDIT can better balance source preserva-
+tion and target-oriented acoustic modification.
+11
+
+===== 第 12 页 =====
+Method
+AudioLDM2
+Tango2
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+Event-level Editing Benchmark
+Addition
+SDEdit
+43.03±0.39
+2.166±0.316
+1.257±0.034
+6.626±0.242
+0.311±0.002
+47.74±0.18
+4.049±0.134
+1.020±0.021
+5.886±0.082
+0.354±0.001
+DDIM-Inv
+34.16±0.12
+3.428±0.000
+2.154±0.001
+6.073±0.004
+0.535±0.000
+39.38±0.36
+6.547±0.180
+2.094±0.029
+5.251±0.071
+0.479±0.001
+DDPM-Inv
+42.23±0.12
+1.046±0.020
+0.721±0.006
+6.857±0.071
+0.688±0.000
+47.28±0.16
+3.500±0.072
+0.796±0.013
+6.239±0.044
+0.634±0.000
+DIRECTAUDIOEDIT
+41.44±0.12
+0.989±0.029
+0.536±0.009
+6.709±0.034
+0.702±0.001
+47.65±0.12
+3.103±0.083
+0.674±0.005
+6.709±0.051
+0.655±0.001
+Removal
+SDEdit
+40.09±0.36
+2.852±0.216
+2.160±0.056
+6.706±0.237
+0.281±0.002
+41.67±0.26
+3.717±0.098
+1.467±0.042
+5.858±0.081
+0.361±0.001
+DDIM-Inv
+35.88±0.06
+4.690±0.000
+2.748±0.005
+6.363±0.004
+0.451±0.000
+23.71±0.31
+11.425±0.328
+3.423±0.021
+4.653±0.054
+0.410±0.001
+DDPM-Inv
+40.56±0.12
+1.660±0.039
+1.590±0.015
+6.793±0.110
+0.615±0.000
+41.75±0.14
+3.395±0.043
+1.298±0.012
+6.245±0.054
+0.647±0.000
+DIRECTAUDIOEDIT
+39.18±0.12
+2.229±0.014
+1.393±0.011
+6.848±0.039
+0.604±0.001
+43.87±0.06
+2.923±0.052
+1.312±0.011
+6.699±0.035
+0.658±0.001
+Replacement
+SDEdit
+43.43±0.48
+2.466±0.242
+1.443±0.029
+7.144±0.169
+0.309±0.002
+45.16±0.20
+3.328±0.149
+1.072±0.003
+6.170±0.113
+0.357±0.001
+DDIM-Inv
+34.84±0.20
+4.251±0.001
+2.556±0.002
+6.563±0.002
+0.501±0.000
+32.71±0.37
+7.193±0.204
+2.551±0.027
+4.968±0.044
+0.447±0.002
+DDPM-Inv
+42.46±0.27
+1.173±0.034
+0.825±0.007
+7.427±0.086
+0.681±0.000
+44.94±0.17
+2.923±0.031
+0.892±0.007
+6.583±0.053
+0.639±0.000
+DIRECTAUDIOEDIT
+41.60±0.05
+1.048±0.031
+0.621±0.021
+7.158±0.071
+0.695±0.001
+45.82±0.15
+2.455±0.053
+0.811±0.014
+7.060±0.020
+0.659±0.001
+Music Editing Benchmark
+SDEdit
+40.33±0.52
+5.765±0.592
+1.454±0.015
+1.734±0.051
+0.411±0.005
+29.28±0.39
+7.891±0.389
+1.354±0.046
+1.466±0.027
+0.496±0.003
+DDIM-Inv
+38.93±0.35
+5.347±0.001
+1.921±0.001
+1.990±0.006
+0.544±0.000
+34.06±0.11
+5.164±0.027
+1.598±0.013
+1.786±0.024
+0.580±0.001
+DDPM-Inv
+37.21±0.45
+2.252±0.051
+0.821±0.012
+1.668±0.015
+0.770±0.000
+31.13±0.15
+6.158±0.035
+0.833±0.006
+1.498±0.006
+0.729±0.000
+DIRECTAUDIOEDIT
+37.40±0.13
+1.929±0.020
+0.582±0.013
+1.807±0.035
+0.788±0.001
+33.99±0.10
+3.919±0.070
+0.617±0.011
+1.570±0.011
+0.757±0.001
+Table 5: Mean and standard deviation results on both the event-level editing benchmark and the music editing
+benchmark over five random seeds. CLAP scores are multiplied by 100.
+Baseline
+AudioLDM2
+Tango2
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+CLAP ↑
+FAD ↓
+KL ↓
+IS ↑
+SSIM ↑
+Event-level Editing Benchmark
+Addition
+SDEdit
+-***
++***
++***
+–
++***
+–
++***
++***
++***
++***
+DDIM-Inv
++***
++***
++***
++***
++***
++***
++***
++***
++***
++***
+DDPM-Inv
+-***
+–
++***
+–
++***
+–
++***
++***
++***
++***
+Removal
+SDEdit
+-***
++***
++***
+–
++***
++***
++***
++***
++***
++***
+DDIM-Inv
++***
++***
++***
++***
++***
++***
++***
++***
++***
++***
+DDPM-Inv
+-***
+-***
++***
+–
+-***
++***
++**
+–
++***
++***
+Replacement
+SDEdit
+-***
++***
++***
+–
++***
++**
++***
++***
++***
++***
+DDIM-Inv
++***
++***
++***
++***
++***
++***
++***
++***
++***
++***
+DDPM-Inv
+-**
+–
++***
+-**
++***
++***
++***
++***
++***
++***
+Music Editing Benchmark
+SDEdit
+-***
++***
++***
++*
++***
++***
++***
++***
++***
++***
+DDIM-Inv
+-***
++***
++***
+-***
++***
+–
++***
++***
+-***
++***
+DDPM-Inv
+–
+–
++***
++***
++***
++***
++***
++***
++***
++***
+Table 6: Pairwise significance results from Tukey’s HSD post-hoc tests on both the event-level editing benchmark
+and the music editing benchmark. Each entry compares DIRECTAUDIOEDIT against the corresponding baseline
+over five random seeds. + indicates that DIRECTAUDIOEDIT is significantly better, - indicates significantly worse,
+and – indicates no significant difference.
+12
+
+===== 第 13 页 =====
+Source Audio
+DDIM-Inv
+DIRECTAUDIOEDIT
+reconstruction 
+DDPM-Inv
+edit 
+SDEdit
+Figure 6: Mel-spectrogram comparison on the Tango2 backbone. The source prompt is “Cats meowing and then
+wind”, and the target prompt is “Cats meowing and then a violent thunderstorm”. For each method, the left column
+shows reconstruction results obtained by setting the target prompt to the source prompt, while the right column
+shows editing results generated with the target prompt.
+13
