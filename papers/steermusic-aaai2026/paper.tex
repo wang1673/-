@@ -1,0 +1,355 @@
+% paper.tex —— 由 source/formatting-instructions-latex-2026.tex 拍平：\input 已展开，注释、废稿（\iffalse）、参考文献已去掉。
+% 读正文就读这个文件；行号和 outline.md 对得上。
+% ==== 正文用到的自定义宏（0 个；看不懂的记号先查这里）====
+% ==== 正文 ====
+\maketitle
+
+\begin{abstract}
+ Music editing is an important step in music production, which has broad applications, including game development and film production. Most existing zero-shot text-guided editing methods rely on pretrained diffusion models by involving forward-backward diffusion processes. However, these methods often struggle to preserve the musical content. Additionally, text instructions alone usually fail to accurately describe the desired music. In this paper, we propose two music editing methods that improve the consistency between the original and edited music by leveraging score distillation. The first method, \textit{SteerMusic}, is a coarse-grained zero-shot editing approach using delta denoising score. The second method, \textit{SteerMusic+}, enables fine-grained personalized music editing by manipulating a concept token that represents a user-defined musical style. \textit{SteerMusic+} allows for the editing of music into user-defined musical styles that cannot be achieved by the text instructions alone. Experimental results show that our methods outperform existing approaches in preserving both music content consistency and editing fidelity. User studies further validate that our methods achieve superior music editing quality. 
+\end{abstract}
+\begin{links}
+    \link{Code}{https://github.com/sony/steermusic}
+    \link{Demonstration page}{https://steermusic.pages.dev/}
+    \link{Extended version}{https://arxiv.org/abs/2504.10826}
+\end{links}
+
+\section{Introduction}~\label{sec:intro}
+
+Text-guided diffusion probabilistic models (DPMs)~\cite{ho2020denoising,lai2025principles} have shown impressive performance in generating diverse high-quality audio samples, including music, speech, and sounds~\cite{mariani2023multi,zhang2024speaking,niu2024soundlocd}. These text-to-audio (TTA) diffusion model trained with large scale datasets that can generate diverse samples conditioned on the natural language prompts specified. Consequently, the text-guided music editing task was proposed, which edits music  by modifying the corresponding text prompts of the source music. Unlike controllable music generation, music editing task modifies an existing piece of music, which has two primary objectives: preserving original musical content and ensuring alignment between the edited music and the desired target.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/drift_example.pdf}
+  \caption{The distortion of the reconstructed melody (CQT1-PCC=0.721) after only 20 DDIM inversion steps.} \label{fig:drift_example}
+\end{figure}
+
+Existing music editing methods focus on training music editing models from scratch~\cite{copet2023simple} or fine-tuning pretrained TTA models~\cite{zhang2024instruct}, both of which require additional datasets or computational costs. Inspired by recent advances in image editing~\cite{brooks2023instructpix2pix,huberman2024edit,hertz2022prompt,zhang2021plug}, emerging music editing methods have instead pursued zero-shot techniques to reduce computational overhead. Existing zero-shot text-guided music editing pipelines~\cite{zhang2024musicmagus,manor2024zero,liu2024medic} introduce noise into the source music during the forward diffusion process to suppress high-frequency components (e.g., timbral information) and subsequently perform editing during the denoising phase based on target guidance in the diffusion latent space. The process of retrieving a noisy latent representation from the data is commonly referred as inversion step.
+Due to the imperfect diffusion inversion process, the latent representation obtained may not fully preserve the original music content. This issue becomes more serious when the source prompt used as the condition cannot accurately capture the detailed characteristics of the music input~\cite{kawar2023imagic,paissan2023audio}. We refer to the distortion in the inverted latent representation as an ``inversion error''.
+Notably, this distortion occurs even during the reconstruction of only a few of DDIM inversion steps~\cite{song2020denoising}
+, which alters the melodic information in the reconstructed results compared to the original music as shown in the CQT spectrogram~\cite{brown1991calculation} in Fig.~\ref{fig:drift_example}. 
+In music editing, such distortion can even be compounded, resulting in a failure to preserve instruction-irrelevant content in original music.
+Although methods such as textual inversion~\cite{gal2022image} have been proposed to mitigate this issue by tuning the embeddings for near-lossless audio reconstruction~\cite{niu2024soundmorpher}, there is no way to manipulate the target text prompts within the tuned source textual embeddings in editing tasks. A more promising solution to avoid inversion error is the delta denoising score (DDS)~\cite{hertz2023delta}, a score distillation method that performs editing directly in the data space, which defines a differentiable function rendering the source input. DDS computes the difference in denoising scores between the source and target prompts through a single forward step. This approach eliminates the dependency of a full or partial forward diffusion process that could introduce inversion errors. By operating in the data space, DDS enables high-fidelity editing while preserving instruction-irrelevant content on the input.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/surface_new.pdf}
+  \caption{SteerMusic: Steering the music style with text-guided music editing or personalized music editing.}
+  \label{fig:teaser}
+\end{figure}
+
+Text-guided editing enables flexible and intuitive modifications, requiring users to provide only an arbitrary text instruction to perform the desired edit. However, one limitation of text-guided music editing is that it lacks fine-grained control over the direction and nuance of editing.
+For instance, editing a guitar performance into the one played by person A with a guitar brand B. Text-based editing alone struggles to specify the exact ``guitar'' required. Moreover, person A and guitar brand B might be unseen concepts for the models, rendering attempts to specify these words in the text prompt ineffective.
+To enhance user-personalized controllability in text-to-music generation, DreamSound~\cite{plitsis2024investigating} introduces a pioneering approach that adapts image personalization techniques~\cite{gal2022image,ruiz2023dreambooth} to the music domain, allowing the extraction of user-defined musical characteristics from reference audio. 
+Besides, DreamSound also demonstrates the potential of leveraging the personalization techniques to perform personalized music editing by manipulating learned musical concepts on the noisy source latent through the denoising process of a personalized diffusion model.
+Despite their attempts, DreamSound still suffers from the inversion error, and struggles to preserve music content while editing the specific concept given in the text prompt.
+
+In this paper, we propose two music editing methods, \textit{SteerMusic} and \textit{SteerMusic+}, that can be easily adapted to existing text-to-music DPM based on the score distillation technique. We summarize our key contributions as follows.
+\begin{enumerate}
+    \item We propose \textit{SteerMusic}, a zero-shot text-guided music editing pipeline based on a DDS framework, which focuses on coarse‐level editing, producing high‐fidelity results while preserving source music contents. 
+    
+    \item We propose \textit{SteerMusic+}, a personalized music editing method that leverages user-defined musical concepts to enable customized editing. SteerMusic+, an extension of SteerMusic, enables editing results that are not attainable through text prompts alone. For example, from reggae to the customized reggae given the reference as in Fig.~\ref{fig:teaser}.
+
+    \item We provide extensive experiments to demonstrate that the proposed methods produce superior editing results compared to the existing state-of-the-art methods in terms of musical consistency and edit fidelity.
+\end{enumerate}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/drift.pdf}
+   \caption{Overview of two music editing pipelines: (a) shows the conventional approach, which performs editing during denoising after an inversion process in the diffusion latent space; (b) shows our solution, which directly edits in data space by optimizing the differentiable function $x = g(\theta)$. The differentiable function is initialized with $x^{\text{src}}$. [$S$] denotes a user-defined concept token, and gray circles represent the optimization trajectory from source to target.}
+  \label{fig:drift}
+\end{figure*}
+
+\section{Related work}\label{sec:related_work}
+
+\subsection{Text-guided Music Generation and Editing} 
+Earlier music generation work focused on low-level control signals with strict temporal alignment, such as lyrics~\cite{yu2021conditional,dhariwal2020jukebox} and MIDI~\cite{yang2017midinet} conditioning. Recently, high-level semantic prompts have gained popularity~\cite{liu2023audioldm,liu2024audioldm,kundu2024emotion,huang2023make,chowdhury2024melfusion,agostinelli2023musiclm,kreuk2022audiogen,huang2023noise2music,le2024high,li2024jen,saitosoundctm}. More recent studies further explore melody prompts from reference music~\cite{copet2024simple,novack2024ditto,novack2024ditto2,hou2024editing,chen2024jen,kumari2023multi}, enabling more precise, user-driven generation.
+
+Music editing transforms existing audio according to target conditions while preserving the original content. Earlier approaches train models from scratch~\cite{wang2023audit,agostinelli2023musiclm,copet2023simple,hou2024editing,mariani2023multi} or fine-tune pretrained models~\cite{paissan2023audio,zhang2024instruct,tsai2024audio,han2023instructme,liu2023m}. Recent work explores zero-shot methods~\cite{zhang2024musicmagus,manor2024zero,liu2024medic} using pretrained TTA generator. However, these pipelines rely on a forward-backward diffusion process, which can introduce inversion errors as in Fig.~\ref{fig:drift} (a).
+
+\subsection{Personalized Music Generation and Editing}
+DreamSound~\cite{plitsis2024investigating} explores the possibility of capturing musical concepts from the given reference music using a personalization diffusion model~\cite{ruiz2023dreambooth,gal2022image,kumari2023multi}. This method allows users to generate new music samples by incorporating the captured personalized musical concept token into the text prompts.
+In addition to personalized music generation~\cite{plitsis2024investigating,chen2024jen},
+DreamSound further extends their method to personalized music editing.
+However, we noticed that personalized music editing is still immature.
+Existing methods~\cite{plitsis2024investigating} struggle to maintain the musical consistency while editing into the desired music concept captured in the reference audio, which use the same music editing pipeline illustrated in Fig.~\ref{fig:drift} (a).
+
+\section{Preliminaries}
+
+Score distillation refines generated samples using the score (i.e., the gradient of the log-density) from a pretrained diffusion model $\epsilon_\phi$ to enforce predefined constraints. It is typically implemented via probability density distillation, where gradients from the source diffusion model are used to iteratively refine a differentiable function until the desired outcome is achieved.
+Score distillation sampling (SDS)~\cite{poole2022dreamfusion} pioneered score distillation by optimizing a differentiable function $x = g(\theta)$ to match a target prompt $y^{\text{tgt}}$, where the function $g(\theta)$ renders the source input $x$ with parameters $\theta$. It minimizes the loss
+$\mathcal{L}_{\text{Diff}} = \mathbb{E}_{t,\epsilon}[ w(t) \| \epsilon_\phi (x_t, y^{\text{tgt}},t) - \epsilon \|_2^2]$, where $x_t$ is a noisy version of $x$ at time $t$. By omitting the UNet Jacobian, the gradient is
+$
+    \nabla_\theta \mathcal{L}_{\text{SDS}}(\phi,x=g(\theta),y^{\text{tgt}}) 
+     =\mathbb{E}_{t,\epsilon}[w(t)(\epsilon_\phi(x_t,y^{\text{tgt}},t) -\epsilon)\frac{\partial x}{\partial \theta}] \label{eqn:sds}
+$,
+where $y^{\text{tgt}}$ is the target prompt, $x_t$
+is a noisy latent of $x = g(\theta)$ at time step $t$, and $w(t)$ is a weighting function. However, SDS often produces blurry results in image editing
+~\cite{wang2023prolificdreamer,hertz2023delta}. The delta denoising score (DDS)~\cite{hertz2023delta} addresses this issue by computing the delta score between the source prompt $y^{\text{src}}$ and the target prompt $y^{\text{tgt}}$. 
+
+In image editing, DDS refines only regions relevant to the target prompt $y^{\text{tgt}}$, preserving the rest of the image. Given source input $x^{\text{src}}$ with prompt $y^{\text{src}}$ and target prompt $y^{\text{tgt}}$, the gradient over $\theta$ is
+\begin{multline}
+    \nabla_\theta \mathcal{L}_{\text{DDS}}(\phi,x=g(\theta),y^{\text{tgt}},x^{\text{src}},y^{\text{src}}) \\
+    = \mathbb{E}_{t,\epsilon}[w(t)(\epsilon_\phi(x_t,y^{\text{tgt}},t)  -\epsilon_\phi(x^{\text{src}}_t,y^{\text{src}},t))\frac{\partial x}{\partial \theta}] \label{eqn:dds}
+\end{multline}
+where $x_t$ and $x_t^{\text{src}}$ share the same sampled noise $\epsilon$ and the timestep $t$. 
+
+Although different variants of SDS and DDS have been proposed for the image domain~\cite{yu2025dreamsteerer,hertz2023delta,nam2024contrastive,lin2025zero}, the application of DDS in music editing remains underexplored. In the next section, we will explain how to incorporate DDS into music editing tasks.
+
+\section{Method}
+In this section, we introduce two music editing methods: \textit{SteerMusic} for zero-shot text-guided editing, and \textit{SteerMusic+} for personalized editing using user-defined concepts from reference music. Unlike the forward-backward pipeline in Fig.\ref{fig:drift} (a), our methods edit directly in a data space (Fig.\ref{fig:drift} (b)), yielding better musical content consistency.
+
+\subsection{SteerMusic: Zero-shot Text-guided Music Editing}~\label{sec:SteerMusic}
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/steermusic.pdf}
+  \caption{Overview of the SteerMusic+ pipeline: (a) Personalized diffusion model (PDM) fine-tuned using $\mathcal{D}^{\text{ref}}$ and a user-defined [guitar] concept token. (b) Personalized editing using the PDM $\epsilon_{\phi'}$ from (a).  Red dashed lines indicate gradient flows.}
+  \label{fig:SteerMusic+}
+\end{figure*}
+
+We introduce \textit{SteerMusic}, a zero-shot text-guided music editing method that performs editing in the data space. In this setting, our goal is to edit a source music signal $x^{\text{src}}$ by modifying its corresponding text prompt $y^{\text{src}}$, which $y^{\text{src}}$ is a brief description of the source music that includes the specific musical attribute intended for modification. The modified text prompt $y^{\text{tgt}}$ acts as the target prompt to guide the editing.
+To obtain desirable results, the musical content shared by $y^{\text{tgt}}$ and $y^{\text{src}}$ should be preserved, changing only the content that is distinct in $y^{\text{tgt}}$. For example, if the only change in $y^{\text{tgt}}$ compared to $y^{\text{src}}$ is replacing only the word ``piano'' with ``guitar'' while keeping the rest of the sentence unchanged, the edited music should preserve the melody and tempo, while modifying only the musical instrument.
+
+To achieve this goal, we adopt the DDS, which has been previously explored only in the image domain. To the best of our knowledge, we are the first to investigate the potential application in music editing. Following DDS, we define $x = g(\theta)$ rendering a source music signal $x^{\text{src}}$. We picked $g(\theta)=\theta$ as the differentiable function in Eq.~\ref{eqn:dds}, where we initialize $\theta =x_0^{\text{src}}$. i.e. $x=x_0^{\text{src}}$. 
+In SteerMusic, we set $\epsilon_\phi$ as a pretrained TTA or text-to-music DPMs.
+
+Similar to~\citet{hertz2023delta}, the delta score in Eq.~\ref{eqn:dds} steers the optimization process toward the target prompt while reducing the noisy editing direction commonly associated with vanilla SDS, leading to enhanced edit fidelity.
+SteerMusic method enables flexible editing using text instructions alone; however, it is limited to coarse-grained editing, as text prompts often lack the precision information to capture fine-grained musical details.
+
+\subsection{SteerMusic+: Personalized Music Editing}~\label{sec:SteerMusic+}
+As mentioned before, text-guided editing lacks customization for precise music editing, such as transferring music to a specific style. To enable fine-grained personalized editing, we propose 
+\textit{SteerMusic+}, an extension of SteerMusic. In this setting, we have a set of source music and prompt pair $\{x^{\text{src}},y^{\text{src}}\}$. The target prompt $y^{\text{tgt}}$ is constructed by modifying $y^{\text{src}}$ to manipulate a user-defined concept token $[S]$, representing the desired customization (see example in Fig.~\ref{fig:SteerMusic+} (b)). SteerMusic+ uses two pretrained diffusion models:
+\begin{itemize}
+    \item A pretrained diffusion probabilistic model (DPM), denoted as $\epsilon_{\phi}$, which serves as a reference for maintaining consistency with the original music content; and
+    \item A personalized diffusion model (PDM), denoted as $\epsilon_{\phi '}$, is fine-tuned on a small set of data containing reference music to capture the user-defined concept $[S]$ and guide the editing process toward the desired direction.
+\end{itemize}
+We define successful personalized editing by the criteria:
+\begin{itemize} 
+\item The instruction-irrelevant part (i.e., \{$y^{\text{tgt}}\cap y^{\text{src}}$\}) in the source music should be maintained.
+\item The edited musical attributes should perceptually align with the intended personalized musical concept $[S]$.
+\end{itemize}
+We now present the SteerMusic+ method that enables personalized music editing with enhanced music consistency.
+
+\textbf{Personalized Diffusion Model (PDM)} serves a foundational part in SteerMusic+.
+Since training a PDM has been extensively studied in~\citet{plitsis2024investigating,ruiz2023dreambooth,gal2022image,kumari2023multi}, we assume the availability of a pretrained text-to-music PDM in SteerMusic+, as SteerMusic+ is a plug-in pipeline compatible with existing PDMs.
+The text-to-music PDM $\epsilon_{\phi '}$ captures the user-defined musical concept $S$ by fine-tuning a pretrained DPM $\epsilon_{\phi}$ under a small set of reference music $\mathcal{D}^{\text{ref}} = \{(x^{\text{ref}},y^{\text{ref}})_n\}^N_{n=1}$, which $N$ can be as few as $1$~\cite{plitsis2024investigating}. The fine-tuning is achieved via optimizing the objective
+\begin{equation}
+    \phi ' \in \text{arg min}_{\hat{\phi}}  \mathbb{E}_{(x^{\text{ref}},y^{\text{ref}})\sim\mathcal{D}^{\text{ref}}} \mathcal{L}_{\text{DPM}}(x^{\text{ref}},y^{\text{ref}};\hat \phi) \label{eqn:pdm}
+\end{equation}
+where $\hat{\phi}$ is initialized with a pretrained DPM weights $\phi$. As illustrated in Fig.~\ref{fig:SteerMusic+} (a), the prompt $y^{\text{ref}}$ takes form of ``a recording of a [$S$]'', where the placeholder [$S$] corresponds to a defined new concept word embedding. During inference, the PDM can generate music with the newly learned concept (e.g., ``A disco song with a [$S$]''). 
+The dataset $\mathcal{D}^{\text{ref}}$ consists of reference audio clips that encapsulate the concept users aim to extract. According to~\citet{plitsis2024investigating}, the concept represents a musical style, which can be either an instance of instrument sounds or a specific genre that cannot be yielded even with the most detailed textual description. For instance, if the objective is to capture the user's guitar playing style, the reference audio should feature performances on the user's guitar playing. Conversely, if the goal is to capture the concept of jazz, the reference audio should consist of recordings that exemplify the same jazz style.
+
+While the PDM can generate new music based on concepts from $\mathcal{D}^{\text{ref}}$, it cannot directly edit existing music using $y^\text{tgt}$ that contains the concepts. Next, we introduce key components of SteerMusic+ that enable personalized editing with PDMs.
+
+\textbf{Personalized Delta Score (PDS)} is an extension of Eq.~\ref{eqn:dds} to enable personalized music editing. We define the PDS loss as $\mathcal{L}_{\text{PDS}}(\phi ', \phi, x=g(\theta) ,y^{\text{tgt}},x^{\text{src}},y^{\text{src}}) = \mathbb{E}_{t,\epsilon} [w(t)\|\epsilon_{\phi '}(x_t,y^{\text{tgt}},t) - \epsilon_{\phi}(x^{\text{src}}_t,y^{\text{src}},t) \|^2_2]$.
+By omitting the UNet Jacobian, the gradient over $\theta$ is given by
+$
+   \nabla_\theta \mathcal{L}_{\text{PDS}} = \mathbb{E}_{t,\epsilon}[w(t)(\epsilon_{\phi '}(x_t,y^{\text{tgt}},t) -\epsilon_{\phi}(x^{\text{src}}_t,y^{\text{src}},t))\frac{\partial x}{\partial \theta}] 
+$,
+where $x_t$ and $x_t^{\text{src}}$ share the same sampled noise $\epsilon$ at the time step $t$.
+This modified delta score can be decomposed into two components: the score of $\epsilon_{\phi '}$ provides the desired direction to guide the editing to match the target prompt with the concept $[S]$. The score of $\epsilon_{\phi}$ reduces the noisy direction of unintended modification areas.
+The delta score between the PDM $\epsilon_{\phi '}$ and the DPM $\epsilon_{\phi}$ may not produce an effective direction toward $y^\text{tgt}$, as $\epsilon_{\phi '}$ shifted to the reference distribution $\mathcal{D}^{\text{ref}}$. We introduce an additional component to compensate for the distribution shift induced by the score of $\epsilon_{\phi '}$.
+
+\textbf{Distribution Shift Regularization.}
+To bridge the distribution gap between $\epsilon_{\phi '}$ and $\epsilon_{\phi}$, we introduce a regularization term to regularize the edited score to the personalized diffusion model $\epsilon_{\phi '}$. We wish to minimize the distribution shift between two diffusion models by adding a constraint as
+\begin{equation}
+\begin{aligned}
+\min_{\theta}\;& \mathcal{L}_{\text{PDS}}(\phi ',\phi,x=g(\theta),y^{\text{tgt}},x^{\text{src}},y^{\text{src}}),\\
+\text{subject to}\;& \mathcal{L}_{\text{shift}}(\phi ',\phi,x=g(\theta),y^{\text{tgt}}) - \zeta \leq 0.
+\end{aligned}
+\end{equation}
+where $\zeta$ is a small amount of constant; the regularization term is 
+$\mathcal{L}_{\text{shift}}(\phi ',\phi,x=g(\theta), y^{\text{tgt}}) = \mathbb{E}_{t,\epsilon}[w(t) \|\epsilon_{\phi '}(x_t, y^{\text{tgt}},t) - \epsilon_{\phi}(x_t,y^{\text{tgt}},t) \|^2_2 ]$.
+The gradient in respect to $\theta$ is given by
+$
+\nabla_\theta \mathcal{L}_{\text{shift}} =  \mathbb{E}_{t,\epsilon}[w(t)(\epsilon_{\phi '}(x_t,y^{\text{tgt}},t) - \epsilon_{\phi}(x_t,y^{\text{tgt}},t))\frac{\partial x}{\partial \theta} ]
+$.
+Therefore, the overall gradient through $\theta$ is 
+\begin{multline}~\label{eqn:psd_0}
+    \nabla_\theta \mathcal{L}_{\text{PDS-O}}(\phi ',\phi,x=g(\theta),y,x^{\text{src}},y^{\text{src}}) 
+    \\ =  \underbrace{\nabla_\theta \mathcal{L}_{\text{PDS}}(\phi ',\phi,x=g(\theta),y^{\text{tgt}},x^{\text{src}},y^{\text{src}})}_{\text{`Delta score points to edit direction'}} \\
+    + \lambda  \underbrace{\nabla_\theta  \mathcal{L}_{\text{shift}}(\phi ',\phi,x=g(\theta),y^{\text{tgt}})}_{\text{`Delta score regularizes distribution shift'}}
+\end{multline}
+where $\lambda$ is a constant that adjusts regularization strength. 
+
+\textbf{Personalized Contrastive (PCon) Loss.}
+Eq.~\ref{eqn:psd_0} formulates a regularized reference guided editing direction, where the regularized delta score encourages alignment with the target prompt while mitigating the distribution shift.
+However, it does not explicitly enforce the fidelity to the concept, which may lead to suboptimal editing quality.
+To further enhance the fidelity of the edit, 
+we incorporate a PCon loss between temporal features, which is modified from a patch-wise contrastive loss~\cite{nam2024contrastive}. PCon loss extracts intermediate features $h^{\text{src}}_l$ and $h_l$ that pass through the residual block and the self-attention block from $\epsilon_{\phi}$ conditioned on $y^{\text{src}}$ and $\epsilon_{\phi '}$ conditioned on $y^{\text{tgt}}$ at the $l$-th self-attention layer, respectively. The features are then reshaped to size $\mathbb{R}^{T_l \times F_l \times C_l}$, where $T_l,F_l$, and $C_l$ represent the size of the temporal, spatial, and channel dimensions in the $l$-th layer, respectively. The patch corresponding to the temporal location on the feature map $h^{\text{src}}_l$ is designated as `positive', and vice versa. The PCon loss is defined as
+\begin{equation}
+    \mathcal{L}_{\text{PCon}}(x,x^{\text{src}}) = \mathbb{E}_{h} [\sum_l \sum_{t'} \ell(h_l^{t'},h_l^{\text{src},t'},h_l^{\text{src},T_l\backslash t'})] \label{eqn:patch_personal}
+\end{equation}
+\begin{equation}
+    \ell(h,h^+,h^-) = -\text{log}(\frac{\text{exp}(h\cdot h^+/\tau)}{\text{exp}(h\cdot h^+/\tau)+ \text{exp}(h\cdot h^-/\tau)})  \nonumber
+\end{equation}
+where $t' \in \{1,...,T_l\}$ represents the temporal location query patch, the positive patch as $h_l^{src,t'}$ while the other patches as $h_l^{src,T_l\backslash t'}$. $\text{exp}(h\cdot h^+/\tau)$ is a a positive sample with the same temporal location, $\text{exp}(h\cdot h^-/\tau)$ is a negative sample with a mismatched temporal location in the self-attention features, $\tau$ is a temperature parameter 
+as $\tau >0$.
+
+The gradient of $\mathcal{L}_{\text{PCon}}(x,x^{\text{src}})$ will propagate to the hidden state of self-attention layers $h$ in personalized diffusion $\epsilon_{\phi '}$. Given that the personalized diffusion $\epsilon_{\phi '}$ has a distribution shift over the reference dataset $\mathcal{D}^{\text{ref}}$, the $\mathcal{L}_{\text{PCon}}$ explicitly encourages feature similarity at the frequency domain in self-attentions, particularly for attributes that distinguish the target concept. This reinforcement leads the model to prioritize concept consistency over strict temporal alignment with the source music. Consequently, $\mathcal{L}_{\text{PCon}}$ amplifies the distinctive characteristics of the target concept of $\epsilon_{\phi '}$ in SteerMusic+, ensuring that the edited music maintains stronger fidelity to the desired style while allowing structural variations.
+
+\section{Experiments}\label{sec:exp}
+\begin{table*}[t]
+\centering
+  {\fontsize{8pt}{9pt}\selectfont
+  \begin{tabular}{c|ccccc|cc}
+    \toprule
+    Method  &FAD$_{\text{CLAP}}$$\downarrow$  &FAD$_{\text{Vggish}}$$\downarrow$ & CQT1-PCC$\uparrow$& LPAPS$\downarrow$ &  CLAP$\uparrow$&  MOS-P$\uparrow$ & MOS-T$\uparrow$\\
+    \midrule    
+    DDIM& \underline{0.477} & 4.713 &  0.330  & 5.377 &\textbf{0.264} & 1.37 & \underline{1.91}\\
+    SDEdit & 0.638 & 6.749 & 0.169 & 6.208 & 0.218 & 0.92 & 1.68\\
+    MusicMagus & 0.593  & 7.631 & \underline{0.338}& \underline{5.243} & 0.238  & \underline{2.11} &  1.57\\ 
+    ZETA  & 0.509  &   \underline{3.380} & 0.293 & 5.458 & 0.252  & 1.22 & 1.60\\
+    SteerMusic& \textbf{0.278} & \textbf{2.426} & \textbf{0.480}  & \textbf{3.772} & \underline{0.259} & \textbf{2.92} & \textbf{2.50} \\
+    \bottomrule
+  \end{tabular}
+  }
+  \caption{Model comparison on zero-shot text-guided music editing task using the ZoME-Bench dataset.}\label{tab:SteerMusic}
+\end{table*}
+\subsection{Evaluation Metrics}
+
+We evaluate music editing objectively based on two aspects: musical consistency (content preservation before and after editing) and editing fidelity. We follow~\citet{manor2024zero} and calculate the following objective metrics for measurement. 
+To evaluate \textit{musical consistency}, we use:
+\begin{itemize}
+    \item \textbf{Fréchet Audio Distance (FAD)}~\cite{kilgour2018fr} which measures the distributional difference between source and edited music (lower the better). We calculate FAD based on both VGGish~\cite{hershey2017cnn} and clap-laion-music~\cite{wu2023large} embeddings, denoted as \textit{FAD$_{\text{Vggish}}$} and \textit{FAD$_\text{CLAP}$} respectively.
+    \item \textbf{LPAPS}~\cite{iashin2021taming}, an audio version of LPIPS~\cite{zhang2018unreasonable}, which quantifies the consistency of the edited audio relative to the source audio (lower the better).
+    \item \textbf{Top-1 Constant-Q Transform Pearson Correlation Coefficient (CQT1-PCC)}, which measures melody consistency between the source and edited music (higher the better). The CQT1-PCC~\cite{brown1991calculation} extracts the main melody of the music audio and has been shown to outperform traditional chroma-based features in representing melodic characteristics~\cite{hou2024editing}. While existing metrics such as FAD and LPAPS provide insight into audio quality and perceptual similarity, they fall short in comprehensively capturing melodic structure. Moreover, existing transcription models~\cite{cwitkowitz2024timbre,bittner2022lightweight,gardner2022mt,chang2024yourmt3+,mancusi2025latent} effectively extract melodies from real music, they are unreliable for synthesized audio. To address these limitations, we introduce CQT1-PCC as a supplementary objective metric, specifically designed to quantify melodic consistency in generative music editing. This metric enables a more targeted evaluation of whether the core melodic structure of the source audio is retained in the edited result. 
+\end{itemize}
+
+To evaluate \textit{editing fidelity}, we use:
+
+\begin{itemize}
+    \item \textbf{CLAP Score}~\cite{wu2023large} which
+measures the alignment between edited music and the target prompt in text-guided music editing (higher is better).
+    \item \textbf{CDPAM}~\cite{manocha2021cdpam}, a perceptual audio metric that leverages deep learning representations to measure perceptual distance between audios such as music and speech~\cite{jacobellis2024machine,hai2024dpm,gui2024adapting}. We use CDPAM to evaluate audio perceptual similarity between reference music and the edited result in personalized music editing (lower the better).
+\end{itemize}
+
+\textbf{Subjective evaluation.} 
+We designed a mean opinion score (MOS) study to evaluate target editing fidelity (MOS-T) and source content preservation (MOS-P) by asking participants to rate the results from 1-Bad to 5-Excellent~\cite{international1996methods} for randomly selected edited samples. We provide more experimental details in our extended version.
+
+\subsection{Zero-shot Text-guided Music Editing} ~\label{sec:SteerMusic_exp}
+In this part, we evaluate our SteerMusic method on the zero-shot text-guided music editing task.
+
+\textbf{Dataset.} 
+We use the ZoME-Bench dataset~\cite{liu2024medic} which includes 1,000 10-second audio samples from MusicCaps~\cite{agostinelli2023musiclm}, each paired with source and target text prompts. We evaluate our models on four well-defined editing tasks that require modifying a specific aspect of the audio while preserving the original melody: change instrument (131 clips), change genre (134), change mood (100), and change background (95).
+To assess long-form editing, we use the MusicDelta subset of MedleyDB~\cite{musicdelta} with ranging from 20 seconds to 5 minutes, comprising 34 excerpts of varying styles and lengths, with prompts from~\citet{manor2024zero}.
+
+\textbf{Baseline.}
+We compare SteerMusic with zero-shot text-guided music editing methods plug-in the same pretrained AudioLDM2~\cite{liu2024audioldm}, including SDEdit~\cite{meng2021sdedit}, DDIM~\cite{song2020denoising}, ZETA~\cite{manor2024zero}, and MusicMagus~\cite{zhang2024musicmagus}. To ensure statistical reliability, experiments are conducted using multiple random seeds.
+We are unable to include MelodyFlow~\cite{le2024high} and MEDIC~\cite{liu2024medic} due to the lack of source code.
+We exclude AudioEditor~\cite{jia2025audioeditor} and AudioMorphX~\cite{liang2024audiomorphix}, which are designed for general sound editing rather than music.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/user_test1_bar.pdf}
+  \caption{
+  User preference for SteerMusic: percentage of users preferring our method over ZETA and MusicMagus.
+  }
+  \label{fig:user_study1}
+\end{figure}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{Figure/model_compare_vis1.pdf}
+  \caption{A visualization of edited results between SteerMusic+ and baselines in personalized music editing. \textnormal{SteerMusic+ preserves instruction-irrelevant musical content on the source music}.}
+  \label{fig:compare1}
+\end{figure*}
+
+\begin{table*}[t]
+  \centering
+  {\fontsize{8pt}{9pt}\selectfont
+  \begin{tabular}{c|ccccc|cc}
+    \toprule
+    Method   & FAD$_{\text{CLAP}}$$\downarrow$& FAD$_{\text{Vggish}}$$\downarrow$ & CQT1-PCC$\uparrow$ & LPAPS$\downarrow$& CDPAM$\downarrow$ &  MOS-P$\uparrow$ &  MOS-T$\uparrow$ \\
+    \midrule
+    Textual Inv. & 0.789 & 9.688 & 0.216 & 5.083 & 0.713 & 1.64 & 1.63\\
+    DreamSound& 0.902 &10.686  & 0.292  & 5.082 & 0.609 & 1.42 & 1.81\\
+    SteerMusic+ & \textbf{0.362} & \textbf{4.434}&\textbf{0.399} & \textbf{4.125} & \textbf{0.593} &\textbf{3.07} &\textbf{2.47}\\
+    \bottomrule
+  \end{tabular}
+  }
+  \caption{Model comparison on personalized music editing task using the ZoME-Bench dataset.}\label{tab:SteerMusic+_overall}
+\end{table*}
+
+\textbf{Experimental results.}
+Tab.\ref{tab:SteerMusic} compares SteerMusic with zero-shot baselines across various style transfer tasks. SteerMusic achieves higher source consistency, shown by improved CQT1-PCC, lower LPAPS, and FAD. While DDIM attains a slightly higher CLAP score (+5e-3), its low CQT1-PCC and high LPAPS indicate poor preservation of source content due to lack of further source consistency constraints during denoising.
+In contrast, SteerMusic effectively balances source consistency and edit fidelity, fulfilling the core objective of music editing.
+Furthermore, our method attains the highest MOS scores and yields statistically significant improvements over all baseline models. An ANOVA test shows MOS-P $=2.92$ with p-value $=7.37\times10^{-27}$ and MOS-T $=2.5$ with p-value $=3.24\times10^{-7}$. These results demonstrate that SteerMusic provides substantially better editing performance in terms of both source-music consistency and editing fidelity as perceived by human listeners.
+
+To assess real-world applicability, we further evaluate our method on MusicDelta dataset in Tab.~\ref{tab:musicdelta}, which consists of varying lengths of music clips. MusicMagus fails in this experiment as it was designed for 5-second editing and doesn't support long-form music, and hence is excluded. SteerMusic consistently outperforms other baselines in terms of edit fidelity and source consistency, demonstrating its robustness and effectiveness in handling longer and more complex music editing.
+
+\textbf{User preference study.} We evaluate SteerMusic with the user preference study following the design in~\citet{manor2024zero}. To reduce cognitive load and improve reliability, we compare SteerMusic with the top-performing baselines, MusicMagus and ZETA.
+In this study, users were asked to answer a sequence of 20 questions, each question contains original music, an editing instruction, and two edited results. Users were instructed to select the edited result that better matches the instruction while preserving the main content of the original music. We collected 25 full responses, which the participants having a minimum of 1 and average of 5 years of music training. As shown in Fig.~\ref{fig:user_study1}, our method was clearly preferred over all competing methods.
+
+\subsection{Personalized Music Editing } ~\label{sec:SteerMusic+_exp}
+In this part, we evaluate our SteerMusic+ method, which is designed for personalized music editing task.
+
+\textbf{Dataset.}
+To cover both common and exotic concepts, we selected eight representative musical concepts from the 32 defined in~\citet{plitsis2024investigating}: four instruments style (Guitar, Bouzouki, Ocarina, Sitar) and four genres (Morricone, Reggae, Hiphop, Sarabande). Each concept includes a placeholder instruction and five 10-second reference clips from YouTube and FreeSound. We use the ``change instrument'' and ``change genre'' tasks from ZoME-Bench~\cite{liu2024medic}, replacing the original target prompt with the selected concept token. Due to the lack of detailed instructions in MusicDelta, we use the standardized prompt as ``A recording of a [style] song.'', where [style] is either the source style or the target style concept [S].
+
+\begin{table*}[t]
+  \centering
+{\fontsize{8pt}{9pt}\selectfont
+  \begin{tabular}{l|llllllllll}
+    \toprule
+    Method & FAD$_{\text{CLAP}}$$\downarrow$  & FAD$_{\text{Vggish}}$$\downarrow$ & CQT1-PCC$\uparrow$ & LPAPS$\downarrow$ & CDPAM$\downarrow$ & CLAP$\uparrow$\\
+    \midrule
+    DDIM & 0.646 & 3.336 & 0.245 & 4.972 & - & 0.316 \\
+    ZETA & 0.665 & 3.789 & 0.296 & 5.071 & - & 0.319 \\
+    SDEdit & 0.818 & 8.757 & 0.137 & 5.996& - & 0.310 \\
+    SteerMusic& \textbf{0.622}& \textbf{2.559} & \textbf{0.351} & \textbf{4.122} & - & \textbf{0.321} \\
+    \midrule
+    DreamSound & 0.847 & 8.972 & 0.220 & 5.318 & 0.583 & -\\
+    SteerMusic+  & \textbf{0.666} & \textbf{5.506} & \textbf{0.273} & \textbf{4.574} & \textbf{0.581} & -\\
+    \bottomrule
+  \end{tabular}
+  }
+  \caption{Model comparison of SteerMusic and SteerMusic+ on MusicDelta dataset.}\label{tab:musicdelta}
+\end{table*}
+
+\textbf{Baseline.} We set two existing personalized music editing methods proposed by~\citet{plitsis2024investigating} as the baselines, Textual inversion and DreamSound. Textual inversion optimizes a concept embedding, whereas DreamSound fine-tunes an AudioLDM2 with rare-token identifiers~\cite{ruiz2023dreambooth}.
+Both methods perform personalized music editing by manipulating the concept token during denoising process.
+We follow the official codes provided by~\citet{plitsis2024investigating} to obtain text-to-music PDM. We reproduce the personalized music editing methods by calculating noisy latent representations $x_t$ from $x_0^{\text{src}}$ of a DPM conditioned on the source prompt with a predefined shallow time step $t$ using DDIM inversion~\cite{song2020denoising}, where $t=30$. We denoise $x_t$ on the PDM~\footnote{\label{foot:textinv} Textual inversion optimizes only the concept token embedding rather than fine-tuning a PDM, we denoise $x_t$ using the DPM employed during DDIM inversion. Consequently, textual inversion is incompatible with SteerMusic+ pipeline, which relies on a PDM.} conditioned on the target prompt linked to the learned concept to obtain $x_0^{\text{tgt}}$. To ensure statistical reliability, experiments are conducted using multiple random seeds. We do not compare with Jen-1 DreamStyler~\cite{chen2024jen}, which is a personalized music generation method.
+
+\textbf{Experimental results.}
+We plug SteerMusic+ into the PDM used in DreamSound\textsuperscript{\ref{foot:textinv}}.
+Tab.~\ref{tab:SteerMusic+_overall}
+shows that SteerMusic+ achieves superior musical consistency compared to the baselines. It indicates that the edited outputs of SteerMusic+ successfully preserve instruction-irrelevant music content in the source music. Furthermore, SteerMusic+ performs accurate edits that align well with the concepts captured from references, as indicated by the low CDPAM compared to the baseline methods. These objective evaluation results aligned with the subjective metrics, with SteerMusic+ obtaining significantly higher MOS-P and MOS-T than the baselines as measured by an ANOVA test (MOS-P with p-value $1.38\times 10^{-13}$ and MOS-T with p-value $1 \times 10^{-3}$).
+In long-form music editing (Tab.~\ref{tab:musicdelta}), SteerMusic+ still outperforms the baseline. We exclude Textual Inv. from comparison as it fails to produce meaningful results on MusicDelta, likely due to the limitation of its base model with complex inputs.
+Fig.~\ref{fig:compare1} shows a personalized instrument style transfer example, where SteerMusic+ effectively preserves instruction-irrelevant content from the source music.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/user_test2_bar2.pdf}
+  \caption{
+  User preference for SteerMusic+: percentage of users preferring our method over the baselines, DreamSound and Textual Inv.
+  }
+  \label{fig:user_study2}
+\end{figure}
+
+\textbf{User preference study.} We evaluate SteerMusic+ by a user preference study compared to DreamSound and Textual Inv. Users were asked to select the edited result that best matches the reference style while preserving the main content of the source music. We collected 24 full responses, excluding responses that are partially finished. Participants have a minimum of 1 and an average of 5 years of music training experience. As shown in Fig.~\ref{fig:user_study2}, SteerMusic+ is clearly preferred by participants compared to baselines.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/lamb_new.pdf}
+  \caption{Ablation study on SteerMusic+ with adherence to music consistency vs. edit fidelity on the edited music with $\lambda$ values in Eq.~\ref{eqn:psd_0}. The horizontal axis (CQT1-PCC) indicates source melody preservation; the vertical axis (CDPAM) indicates alignment with the target concept.}
+  \label{fig:lambda}
+\end{figure}
+
+\textbf{Ablation study.} We conduct an ablation study to understand the effects of different components in SteerMusic+. We used the concept [bouzouki] as it is an uncommon musical instrument that typically requires the use of personalized models. The regularization weight 
+$\lambda$, which acts as the Lagrange multiplier for the constraint in Eq.~\ref{eqn:psd_0}, was tested within [-1,1] to balance the constraint enforcement and the optimization stability. Yellow dots indicate results obtained by $\mathcal{L}_{\text{PDS-O}}$ in Eq.~\ref{eqn:psd_0} with varying $\lambda$ values. From the zoomed-in view in Fig.~\ref{fig:lambda}, as the CDPAM value decreases with $\lambda$, the loss of $\mathcal{L}_{\text{shift}}$ within $\mathcal{L}_{\text{PDS-O}}$ helps steer the editing toward the concept. However, the effect of $\mathcal{L}_{\text{shift}}$ is minor, suggesting that the gradient of $\mathcal{L}_{\text{PDS}}$ alone does not sufficiently capture the target concept during editing. As a result, the edited music struggles to align with the reference musical characteristics. 
+In contrast, SteerMusic+ (with $\mathcal{L}_{\text{PCon}}$ in Eq.~\ref{eqn:patch_personal}) leads to a significant decrease in the CDPAM value, which indicates better alignment with the target concept. Since $\mathcal{L}_{\text{PCon}}$ was proposed to explicitly enhance the characteristics of the target concept on the editing, we observe that $\mathcal{L}_{\text{shift}}$ becomes more effective in this setting. Specifically, when $\lambda$ is negative, the edit preserves the original content, while positive $\lambda$ pushes the edit toward the target concept.
+
+This highlights a fundamental trade-off between the source music consistency and the adherence to the target style, consistent with the findings of~\citet{manor2024zero}. In personalized music editing, where target characteristics are derived from reference music, shifting the output towards the concept often disrupts the original content. This differs from text-guided editing, which follows abstract textual cues rather than concrete musical references. The key challenge in personalized editing is balancing the retention of the original music content, while integrating the distinctive attributes of the reference music. For practical use, we recommend keeping a smaller $\lambda$ value (e.g., $\lambda=0.05$) to avoid over-editing.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{Figure/ablation_ft_cr.pdf}
+  \caption{Adherence to music consistency vs. edit fidelity to edited results with different fine-tune steps in PDM. The horizontal axis (CQT1-PCC) indicates source melody preservation; the vertical axis (CDPAM) indicates alignment with the target concept.}
+  \label{fig:finetune}
+\end{figure}
+
+\textbf{Limitation.} 
+As shown in Fig.~\ref{fig:finetune}, the number of fine-tuning steps in the PDM significantly affects the performance of DreamSound and SteerMusic+. A small number of steps (e.g., 50) leads to poor concept learning and low edit fidelity, while a large number of steps (e.g., 200) causes overfitting and source music structural loss. These findings highlight the importance of balancing PDM fine-tuning steps to achieve both high edit fidelity and content preservation in personalized music editing settings. The editing fidelity of SteerMusic+ is fundamentally limited by the ability of the PDMs to capture the concept attributes. Consequently, failure cases can often be attributed to inherent shortcomings in the PDM's representational capacity. We refer readers to \citet{plitsis2024investigating}, which investigated the capacity of PDMs to capture musical attributes and offers insights into improving this capacity.
+
+\section{Conclusion}
+We present two music editing methods, \textit{SteerMusic} and \textit{SteerMusic+}, from coarse-grained to fine-grained music editing. To the best of our knowledge, this is the first work to fully leverage DDS and score distillation in the music editing framework. Our methods address the limitations of prior approaches by enhancing musical consistency while producing high-fidelity edits aligned with target prompts. SteerMusic+ further introduces a personalized editing pipeline that extracts user-defined style concepts from reference music for fine-grained control. We validate our methods through comprehensive experiments that show clear improvements over existing baselines in both consistency and fidelity. For practical application, the proposed methods could be extended by using a better-trained TTA diffusion backbone with a higher sampling rate to achieve high-fidelity editing results. In future studies, personalized music editing methods could focus on improving user-controllable editing outcomes for more nuanced and expressive edits.
