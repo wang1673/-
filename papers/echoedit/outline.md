@@ -1,0 +1,133 @@
+# 大纲 · EchoEdit: Stabilizing Inversion-Free Audio Editing via Optimal Transport Geometry
+
+行号指 `paper.tex`。读某一节：`sed -n '起,止p' paper.tex`（或用 Read 的 offset/limit）。
+
+- L15 摘要
+- L25–72 1 Introduction
+- L73–85 2 Related Work
+- L86–241 3 Background
+  - L100–136 3.1 Conditional Audio Flow and the Editing Problem
+  - L137–190 3.2 Observable Velocity Differences at Noisy States
+  - L191–241 3.3 Inversion-Based Editing as a Reference Topology
+- L242–406 4 Method
+  - L249–281 4.1 Editing as Coupled Transport
+  - L282–299 4.2 EchoEdit as a Stochastic Estimator
+  - L300–321 4.3 Uncertainty Drift and Manifold Deviation
+  - L322–373 4.4 OT-Regularized EchoEdit+
+  - L374–406 4.5 Transport-Cost Diagnostic Against Inversion
+- L407–517 5 Experiments
+  - L410–460 5.1 Experimental Setup
+  - L461–517 5.2 Comparison with Prior Methods
+- L518–531 6 Conclusion and limitations
+- L529 —— 附录 ——
+- L532–592 A Full Related Work
+- L593–829 B From Dynamic OT to the Audio Editing Field
+  - L608–698 B.1 Definitions Used in the Derivation
+  - L699–728 B.2 Dynamic OT Objective for the Ideal Edit
+  - L729–755 B.3 Local Observability Assumptions
+  - L756–829 B.4 A Local Variational Estimator
+- L830–987 C Unified Coupling View of Inversion, EchoEdit , and EchoEdit+
+  - L833–855 C.1 Admissible Noisy Couplings
+  - L856–878 C.2 Inversion and Noising as Bridge Topologies
+  - L879–934 C.3 EchoEdit as a Direct but Unconstrained Coupling
+  - L935–980 C.4 EchoEdit+ as the OT-Admissible Direct Coupling
+  - L981–987 C.5 Summary of the Coupling Hierarchy
+- L988–1242 D Energy and Transport Contraction Properties
+  - L996–1020 D.1 Transport Energy of a Coupling
+  - L1021–1055 D.2 Marginal Admissibility and OT Optimality
+  - L1056–1106 D.3 Paired-Cost Contraction
+  - L1107–1137 D.4 Wasserstein Correction of the Drifted Target Marginal
+  - L1138–1190 D.5 Residual Bias Bound
+  - L1191–1242 D.6 Local Field Bias Bound
+- L1243–1397 E Gap to the Ideal Editing Field
+  - L1250–1352 E.1 Error Decomposition
+  - L1353–1397 E.2 Consistency of the OT-Admissible Local Field
+- L1398–1439 F Full Algorithm
+- L1440–1626 G Experiment Configuration and Details
+  - L1443–1475 G.1 Default Configuration
+  - L1476–1543 G.2 Hyperparameters for All Compared Methods
+  - L1544–1626 G.3 Baseline Algorithm Pseudocode
+- L1627–2346 H Supplementary Experimental Evidence
+  - L1636–1706 H.1 Synthetic Transport-Cost Diagnostic Against Inversion
+  - L1707–1755 H.2 Benchmark Construction and Edit-Strategy Balance
+  - L1756–1779 H.3 Qualitative Energy and Spectro-Temporal Evidence
+  - L1780–1936 H.4 Distributional Search-Space Visualization
+  - L1937–2034 H.5 Transport Windows and Style Degrees of Freedom
+  - L2035–2114 H.6 Stochastic Stability and Solver Calibration
+  - L2115–2204 H.7 Operation-Type and Prompt Robustness
+  - L2205–2239 H.8 Sequential Editing and Accumulated Drift
+  - L2240–2307 H.9 Spectral Structure of the Direct Editing Field
+  - L2308–2346 H.10 Duration Scaling and Boundary Regimes
+- L2347–2435 I User Study
+
+## 公式（67 个，按出现顺序；L 后面是所在小节）
+
+- L106 §3.1 Conditional Audio Flow and the Editing P `eq:audio_rf_ode`：\frac{d\vect{z}_t}{dt} = V_\theta(\vect{z}_t,t,c), \qquad t\in[0,1],
+- L115 §3.1 Conditional Audio Flow and the Editing P `eq:audio_rf_interpolant`：\vect{z}_t=(1-t)\vect{x}+t\vect{\epsilon}.
+- L124 §3.1 Conditional Audio Flow and the Editing P `eq:audio_cfg_velocity`：V_\theta^{w}(\vect{z},t,c) = V_\theta(\vect{z},t,\varnothing) + w\left[ V_\theta(\vect{z},t,c)-V_\theta(\vect{…
+- L142 §3.2 Observable Velocity Differences at Noisy `eq:audio_kernel`：K_t(\cdot\mid \vect{x}) = \mathcal{L}\big((1-t)\vect{x}+t\vect{\epsilon}\big), \qquad \vect{\epsilon}\sim\math…
+- L153 §3.2 Observable Velocity Differences at Noisy `eq:observable_residual`：\begin{aligned} \mathcal{R}_t(\vect{y};\vect{x}^{\src},\pi) = \mathbb{E}_{\pi_t}\big[ V^{\tar}(\vect{z}^{\tar}…
+- L196 §3.3 Inversion-Based Editing as a Reference T `eq:audio_inv_forward`：\frac{d\vect{z}^{\src}_t}{dt} = V^{\src}(\vect{z}^{\src}_t,t),
+- L204 §3.3 Inversion-Based Editing as a Reference T `eq:audio_inv_reverse`：\frac{d\vect{z}^{\tar}_t}{dt} = V^{\tar}(\vect{z}^{\tar}_t,t), \qquad \vect{z}^{\tar}_{t_m}=\vect{z}^{\src}_{t…
+- L213 §3.3 Inversion-Based Editing as a Reference T `eq:audio_inv_forward_discrete`：\vect{z}_{t_i}^{\src} = \vect{z}_{t_{i-1}}^{\src} +(t_i-t_{i-1}) V^{\src}(\vect{z}_{t_{i-1}}^{\src},t_{i-1}),
+- L222 §3.3 Inversion-Based Editing as a Reference T `eq:audio_inv_reverse_discrete`：\vect{z}_{t_{i-1}}^{\tar} = \vect{z}_{t_i}^{\tar} +(t_{i-1}-t_i) V^{\tar}(\vect{z}_{t_i}^{\tar},t_i).
+- L231 §3.3 Inversion-Based Editing as a Reference T `eq:audio_sdedit_noise`：\tilde{\vect{z}}_{t_m}^{\src} = (1-t_m)\vect{x}^{\src}+t_m\vect{\epsilon}.
+- L256 §4.1 Editing as Coupled Transport：\pi_t\in \Pi\!\left( K_t(\cdot\mid \vect{x}^{\src}), K_t(\cdot\mid \vect{y}) \right),
+- L288 §4.2 EchoEdit as a Stochastic Estimator `eq:audioedit_field`：u_t^{\mathrm{A}}(\vect{y}) = \mathcal{R}_t(\vect{y};\vect{x}^{\src},\pi_t^{\mathrm{A}}).
+- L307 §4.3 Uncertainty Drift and Manifold Deviation `eq:audioedit_mismatch`：m_t^{\mathrm{A}}(\vect{y})-(1-t)\vect{y} = t(\vect{y}-\vect{x}^{\src}),
+- L326 §4.4 OT-Regularized EchoEdit+ `eq:ot_coupling`：\begin{aligned} \pi_t^{+} = \arg\min_{\pi\in \Pi\left( K_t(\cdot\mid \vect{x}^{\src}), K_t(\cdot\mid \vect{y})…
+- L343 §4.4 OT-Regularized EchoEdit+ `eq:ot_monge`：\vect{z}^{\src}_t=(1-t)\vect{x}^{\src}+t\vect{\epsilon}, \qquad \vect{z}^{\tar,+}_t=(1-t)\vect{y}+t\vect{\epsi…
+- L353 §4.4 OT-Regularized EchoEdit+ `eq:audioeditplus_field`：u_t^{+}(\vect{y}) = \mathcal{R}_t(\vect{y};\vect{x}^{\src},\pi_t^{+}).
+- L361 §4.4 OT-Regularized EchoEdit+ `eq:ot_contraction`：\mathbb{E}_{\pi_t^{+}}\|\vect{z}^{\tar}-\vect{z}^{\src}\|_2^2 = (1-t)^2\|\vect{y}-\vect{x}^{\src}\|_2^2 \le \|…
+- L601 §B From Dynamic OT to the Audio Editing Fie `eq:app_target_law`：\mu_{\tar|\src}(\cdot\mid \vect{x},c_{\src},c_{\tar}),
+- L612 §B.1 Definitions Used in the Derivation `eq:app_edit_density_path`：\begin{aligned} &\{\rho_\tau\}_{\tau\in[0,1]}, \qquad \rho_0=\delta_{\vect{x}}, \\ &\rho_1=\mu_{\tar|\src}(\cd…
+- L628 §B.1 Definitions Used in the Derivation `eq:app_edit_field`：u_\tau:\mathcal{X}\rightarrow\mathbb{R}^{d}
+- L633 §B.1 Definitions Used in the Derivation `eq:app_continuity`：\partial_\tau\rho_\tau(\vect{y}) + \nabla_{\vect{y}}\!\cdot\! \big(\rho_\tau(\vect{y})u_\tau(\vect{y})\big) = …
+- L649 §B.1 Definitions Used in the Derivation `eq:app_rf_kernel`：K_t(\cdot\mid \vect{y}) = \mathcal{L}\!\left((1-t)\vect{y}+t\vect{\epsilon}\right), \qquad \vect{\epsilon}\sim…
+- L659 §B.1 Definitions Used in the Derivation `eq:app_guided_velocities`：V^{\src}(\vect{z},t) = V_\theta(\vect{z},t,c_{\src}), \qquad V^{\tar}(\vect{z},t) = V_\theta(\vect{z},t,c_{\ta…
+- L675 §B.1 Definitions Used in the Derivation `eq:app_general_coupling`：\pi_t \in \Pi\!\left( K_t(\cdot\mid\vect{x}), \nu_t \right),
+- L685 §B.1 Definitions Used in the Derivation `eq:app_observable_residual`：\mathcal{R}_t(\vect{y};\pi_t) = \mathbb{E}_{(\vect{z}^{\src},\vect{z}^{\tar})\sim\pi_t} \left[ V^{\tar}(\vect{…
+- L702 §B.2 Dynamic OT Objective for the Ideal Edit `eq:app_dynamic_ot`：\begin{aligned} \min_{\rho,u}\quad & \int_0^1 \int_{\mathcal{X}} \frac{1}{2}\|u_\tau(\vect{y})\|_2^2 \,d\rho_\…
+- L733 §B.3 Local Observability Assumptions `eq:app_measurement_model`：\mathcal{R}_t(\vect{y};\pi_t) = a_t\,u_\tau(\vect{y}) + b_t(\vect{y};\pi_t) + \xi_t, \qquad \mathbb{E}[\xi_t]=…
+- L760 §B.4 A Local Variational Estimator `eq:app_local_objective`：\begin{aligned} \mathcal{J}_{\vect{y}}(u;\pi) &= \frac{\lambda}{2}\|u\|_2^2 \\ &\quad+ \frac{1}{2} \int_{\Omeg…
+- L785 §B.4 A Local Variational Estimator `eq:app_local_minimizer`：u^\star(\vect{y};\pi) = \frac{ \int_{\Omega}\omega(t)a_t\,\mathcal{R}_t(\vect{y};\pi_t)\,dt }{ \lambda+\int_{\…
+- L799 §B.4 A Local Variational Estimator `eq:app_normal_equation`：\lambda u + \int_\Omega \omega(t)a_t \left( a_t u-\mathcal{R}_t(\vect{y};\pi_t) \right) dt = 0.
+- L813 §B.4 A Local Variational Estimator：\left( \lambda+\int_\Omega\omega(t)a_t^2dt \right)u = \int_\Omega \omega(t)a_t\,\mathcal{R}_t(\vect{y};\pi_t)d…
+- L836 §C.1 Admissible Noisy Couplings `eq:app_noisy_marginals`：\mu_t^{\src}=K_t(\cdot\mid\vect{x}), \qquad \mu_t^{\vect{y}}=K_t(\cdot\mid\vect{y}).
+- L843 §C.1 Admissible Noisy Couplings `eq:app_admissible_coupling`：\pi_t\in\Pi(\mu_t^{\src},\mu_t^{\vect{y}}).
+- L862 §C.2 Inversion and Noising as Bridge Topologi `eq:app_inversion_bridge`：\gamma_{t_m}^{\mathrm{inv}} \in \Pi(\eta_{t_m}^{\src},\eta_{t_m}^{\src}), \qquad \gamma_{t_m}^{\mathrm{inv}} \…
+- L884 §C.3 EchoEdit as a Direct but Unconstrained C `eq:app_audioedit_target_law`：\begin{aligned} \widetilde{\mu}^{\mathrm{A}}_t(\cdot\mid\vect{x},\vect{y}) &= \mathcal{L}\!\left( (1-t)\vect{x…
+- L906 §C.3 EchoEdit as a Direct but Unconstrained C `eq:app_target_rf_marginal`：\mu_t^{\vect{y}} = \mathcal{L}\!\left((1-t)\vect{y}+t\vect{\epsilon}\right),
+- L913 §C.3 EchoEdit as a Direct but Unconstrained C `eq:app_audioedit_mean_bias`：\mathbb{E}_{\widetilde{\mu}^{\mathrm{A}}_t}[\vect{z}] - \mathbb{E}_{\mu_t^{\vect{y}}}[\vect{z}] = t(\vect{y}-\…
+- L923 §C.3 EchoEdit as a Direct but Unconstrained C `eq:app_audioedit_w2_bias`：W_2^2\!\left( \widetilde{\mu}^{\mathrm{A}}_t, \mu_t^{\vect{y}} \right) = t^2\|\vect{y}-\vect{x}\|_2^2.
+- L939 §C.4 EchoEdit+ as the OT-Admissible Direct Co `eq:app_audioeditplus_ot`：\pi_t^{+} \in \arg\min_{\pi\in\Pi(\mu_t^{\src},\mu_t^{\vect{y}})} \mathbb{E}_{\pi} \big[ \|\vect{z}^{\tar}-\ve…
+- L951 §C.4 EchoEdit+ as the OT-Admissible Direct Co `eq:app_distributional_projection`：\mathcal{L}\!\left( \widetilde{\vect{z}}^{\mathrm{A}}_t - t(\vect{y}-\vect{x}) \right) = \mu_t^{\vect{y}}, \qq…
+- L969 §C.4 EchoEdit+ as the OT-Admissible Direct Co `eq:app_plus_pair_cost`：\mathbb{E}_{\pi_t^{+}} \big[ \|\vect{z}^{\tar}-\vect{z}^{\src}\|_2^2 \big] = (1-t)^2\|\vect{y}-\vect{x}\|_2^2.
+- L999 §D.1 Transport Energy of a Coupling `eq:app_delta_def`：\Delta=\vect{y}-\vect{x}
+- L1005 §D.1 Transport Energy of a Coupling `eq:app_weighted_transport_energy`：\mathcal{E}_{\omega}(\pi) = \int_{\Omega} \omega(t) \mathbb{E}_{\pi_t} \big[ \|\vect{z}^{\tar}-\vect{z}^{\src}…
+- L1025 §D.2 Marginal Admissibility and OT Optimality：\mu_t^{\src} = \mathcal{L}((1-t)\vect{x}+t\vect{\epsilon}), \qquad \mu_t^{\vect{y}} = \mathcal{L}((1-t)\vect{y…
+- L1036 §D.2 Marginal Admissibility and OT Optimality `eq:app_ot_displacement`：\|\vect{z}^{\tar,+}-\vect{z}^{\src}\|_2 = (1-t)\|\Delta\|_2.
+- L1048 §D.2 Marginal Admissibility and OT Optimality：(1-t)\vect{y}-(1-t)\vect{x} = (1-t)\Delta,
+- L1061 §D.3 Paired-Cost Contraction `eq:app_pointwise_energy_compare`：\begin{aligned} \mathbb{E}_{\pi_t^+} \|\vect{z}^{\tar}-\vect{z}^{\src}\|_2^2 &= (1-t)^2\|\Delta\|_2^2 \\ &\le …
+- L1077 §D.3 Paired-Cost Contraction `eq:app_integrated_energy_compare`：\begin{aligned} \mathcal{E}_{\omega}(\pi^+) &= \left(\int_{\Omega}\omega(t)(1-t)^2dt\right) \|\Delta\|_2^2 \\ …
+- L1111 §D.4 Wasserstein Correction of the Drifted Ta `eq:app_w2_mismatch_restate`：W_2\!\left( \widetilde{\mu}^{\mathrm{A}}_t, \mu_t^{\vect{y}} \right) = t\|\Delta\|_2.
+- L1121 §D.4 Wasserstein Correction of the Drifted Ta `eq:app_plus_zero_mismatch`：W_2\!\left( \mu_t^{\vect{y}}, \mu_t^{\vect{y}} \right) = 0.
+- L1143 §D.5 Residual Bias Bound `eq:app_lipschitz_assumption`：\begin{aligned} \|V^{\tar}(\vect{z}_1,t)-V^{\tar}(\vect{z}_2,t)\|_2 &\le L_t\|\vect{z}_1-\vect{z}_2\|_2, \\ &\…
+- L1158 §D.5 Residual Bias Bound `eq:app_residual_bias_bound`：\left\| \mathcal{R}_t^{\mathrm{A}}(\vect{y}) - \mathcal{R}_t^{+}(\vect{y}) \right\|_2 \le L_t\,t\,\|\Delta\|_2…
+- L1173 §D.5 Residual Bias Bound：\left\| \mathbb{E}_{\widetilde{\mu}^{\mathrm{A}}_t} V^{\tar}(\vect{z},t) - \mathbb{E}_{\mu_t^{\vect{y}}} V^{\t…
+- L1195 §D.6 Local Field Bias Bound `eq:app_estimator_denominator`：D_{\Omega} = \lambda+\int_{\Omega}\omega(t)a_t^2dt, \qquad D_{\Omega}>0.
+- L1207 §D.6 Local Field Bias Bound `eq:app_field_bias_bound`：\|u_{\mathrm{A}}^\star(\vect{y})-u_+^\star(\vect{y})\|_2 \le \frac{ \int_{\Omega} \omega(t)|a_t|L_t\,t\,dt }{ …
+- L1222 §D.6 Local Field Bias Bound：u_{\mathrm{A}}^\star(\vect{y})-u_+^\star(\vect{y}) = \frac{ \int_{\Omega} \omega(t)a_t \big( \mathcal{R}^{\mat…
+- L1253 §E.1 Error Decomposition `eq:app_ideal_local_u`：u=u_\tau(\vect{y})
+- L1259 §E.1 Error Decomposition `eq:app_refined_measurement`：\mathcal{R}^{\pi}_t(\vect{y}) = a_tu + e_t^{\mathrm{loc}} + e_t^{\mathrm{mod}} + e_t^{\mathrm{cpl}}(\pi) + \xi…
+- L1280 §E.1 Error Decomposition `eq:app_aggregate_error`：e_t^\pi = e_t^{\mathrm{loc}} + e_t^{\mathrm{mod}} + e_t^{\mathrm{cpl}}(\pi) + \xi_t.
+- L1295 §E.1 Error Decomposition `eq:app_gap_decomposition`：\begin{aligned} u_\pi^\star(\vect{y})-u &= -\frac{\lambda}{D_\Omega}u \\ &\quad+ \frac{1}{D_\Omega} \int_\Omeg…
+- L1313 §E.1 Error Decomposition：\frac{\int_\Omega\omega(t)a_t^2dt}{D_\Omega}u = \left(1-\frac{\lambda}{D_\Omega}\right)u.
+- L1323 §E.1 Error Decomposition `eq:app_expected_gap_bound`：\begin{aligned} \mathbb{E}\|u_\pi^\star(\vect{y})-u\|_2 &\le \frac{\lambda}{D_\Omega}\|u\|_2 \\ &\quad+ \frac{…
+- L1342 §E.1 Error Decomposition：\begin{aligned} \ell_t&=\|e_t^{\mathrm{loc}}\|_2, &m_t&=\|e_t^{\mathrm{mod}}\|_2,\\ c_t^\pi&=\|e_t^{\mathrm{cp…
+- L1362 §E.2 Consistency of the OT-Admissible Local F：\frac{1}{D_h} \int_{\Omega_h} \omega_h(t)|a_t| \big(\ell_t+m_t\big)dt \rightarrow 0.
+- L1370 §E.2 Consistency of the OT-Admissible Local F：\frac{1}{D_h} \int_{\Omega_h} \omega_h(t)|a_t|s_tdt \rightarrow 0.
+- L1380 §E.2 Consistency of the OT-Admissible Local F `eq:app_consistency_result`：\mathbb{E}\|u_+^\star(\vect{y})-u_\tau(\vect{y})\|_2 \rightarrow 0.
+- L1658 §H.1 Synthetic Transport-Cost Diagnostic Agai `eq:app_empirical_w2_mm`：d_i^{\mathrm{MM}} = \frac{1}{\sqrt{D}} W_2\!\left( \widetilde{\mu}^{\mathrm{A}}_{t_i}, \mu^{\vect{y}_i}_{t_i} …
+
+图表的页码、caption、在哪节被引用：见 `figures/index.md`。
