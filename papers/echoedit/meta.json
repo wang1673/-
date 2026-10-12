@@ -1,0 +1,34 @@
+{
+ "arxiv_id": "2606.15149",
+ "version": "v2",
+ "title": "EchoEdit: Stabilizing Inversion-Free Audio Editing via Optimal Transport Geometry",
+ "authors": [
+  "Zhongyuan Fu",
+  "Yuhang Jia",
+  "Hui Wang",
+  "Pengjun Chen",
+  "Jian Gao",
+  "Cun Liu",
+  "Wenjia Zeng",
+  "Yong Chen",
+  "Yong Qin"
+ ],
+ "published": "2026-06-13",
+ "updated": "2026-08-06",
+ "abstract": "Text-guided audio editing with pretrained generative models is commonly implemented through inversion or noising. This topology induces a structural trade-off, as stronger edits require deeper corruption of the very rhythm, transients, timbre, and long-range form that should remain unchanged. Here, we introduce EchoEdit, a training-free and inversion-free framework for real-audio editing that directly constructs an editing field by differencing the drifts conditioned on the source and target prompts. This construction avoids explicit source inversion, paired edit data, and test-time optimization, but its stochastic source marginals introduce uncertainty drift, where small random deviations accumulate along the editing trajectory and can move the edited latent away from the audio data manifold. To address this limitation, we further propose EchoEdit+, an optimal-transport-regularized extension that stabilizes the direct editing path by minimizing the transportation cost between edited variables and the source-conditioned audio manifold. The resulting OT coupling contracts the stochastic displacement at noisy states, keeps model queries closer to the training distribution, and preserves structural information while allowing semantic change. Experiments on sound-effect and music editing demonstrate that EchoEdit+ improves target-prompt alignment and source preservation over inversion-based baselines and the unregularized direct editor. Code and dataset will be released.",
+ "comment": "",
+ "journal_ref": "",
+ "categories": [
+  "cs.SD",
+  "eess.AS"
+ ],
+ "abs_url": "https://arxiv.org/abs/2606.15149",
+ "pdf_pages": 30,
+ "has_latex": true,
+ "main_tex": "source\\main.tex",
+ "links": {},
+ "official_code": null,
+ "official_code_from": null,
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
