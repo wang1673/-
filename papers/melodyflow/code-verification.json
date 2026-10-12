@@ -1,0 +1,82 @@
+{
+  "source": {
+    "repo": "https://huggingface.co/spaces/facebook/MelodyFlow",
+    "commit": "19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e",
+    "files": [
+      "LICENSE",
+      "LICENSE_weights",
+      "README.md",
+      "audiocraft/data/audio_utils.py",
+      "audiocraft/grids/compression/__init__.py",
+      "audiocraft/grids/compression/_explorers.py",
+      "audiocraft/grids/compression/debug.py",
+      "audiocraft/grids/compression/encodec_audiogen_16khz.py",
+      "audiocraft/grids/compression/encodec_base_24khz.py",
+      "audiocraft/grids/compression/encodec_musicgen_32khz.py",
+      "audiocraft/models/encodec.py",
+      "audiocraft/models/flow.py",
+      "audiocraft/models/genmodel.py",
+      "audiocraft/models/loaders.py",
+      "audiocraft/models/melodyflow.py",
+      "audiocraft/modules/conditioners.py",
+      "audiocraft/modules/transformer.py",
+      "audiocraft/solvers/compression.py",
+      "audiocraft/utils/renoise.py",
+      "audiocraft/utils/utils.py",
+      "config/conditioner/chroma2music.yaml",
+      "config/conditioner/clapemb2music.yaml",
+      "config/conditioner/none.yaml",
+      "config/conditioner/text2music.yaml",
+      "config/conditioner/text2sound.yaml",
+      "config/model/encodec/default.yaml",
+      "config/model/encodec/encodec_base_causal.yaml",
+      "config/model/encodec/encodec_large_nq4_s320.yaml",
+      "config/model/encodec/encodec_large_nq4_s640.yaml",
+      "config/solver/compression/debug.yaml",
+      "config/solver/compression/default.yaml",
+      "config/solver/compression/encodec_audiogen_16khz.yaml",
+      "config/solver/compression/encodec_base_24khz.yaml",
+      "config/solver/compression/encodec_musicgen_32khz.yaml",
+      "config/solver/diffusion/encodec_24khz.yaml",
+      "demos/melodyflow_app.py",
+      "tests/common_utils/temp_utils.py",
+      "tests/common_utils/wav_utils.py",
+      "tests/data/test_audio_utils.py",
+      "tests/models/test_encodec_model.py",
+      "tests/modules/test_transformer.py"
+    ],
+    "code_dir": "hf-official-code"
+  },
+  "files": [
+    {
+      "path": "audiocraft/models/melodyflow.py",
+      "lines": 292,
+      "comments": 7,
+      "sha256": "655c9d697b698b8c2dcdc560062dcbc32423b4468912bab3e5f4094b08071a43",
+      "git_sha": "2704ec93b336776c7b6f9e9bb467be9744fde82f",
+      "ast_equal": true
+    },
+    {
+      "path": "audiocraft/models/flow.py",
+      "lines": 465,
+      "comments": 12,
+      "sha256": "10bfa541ae8a41f932b9a7a98d1ba3f094c846d9918501f758deeea4648c2248",
+      "git_sha": "61c204a8e7e51466426504119ffe8642a62379d0",
+      "ast_equal": true
+    },
+    {
+      "path": "audiocraft/utils/renoise.py",
+      "lines": 110,
+      "comments": 4,
+      "sha256": "71cd7c4d719cc24f89a245d57aff3ca716c5a199b6b921d24e7ba39eaf610c5c",
+      "git_sha": "6177bb4d3eca1627aeb7cb60d651cd07eaeb5eae",
+      "ast_equal": true
+    }
+  ],
+  "licenses": [
+    "LICENSE",
+    "LICENSE_weights",
+    "README.md"
+  ],
+  "comments": 23
+}
