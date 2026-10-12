@@ -1,0 +1,1109 @@
+
+===== 第 1 页 =====
+FlowAlign: Trajectory-Regularized, Inversion-Free
+Flow-based Image Editing
+Jeongsol Kim*, Yeobin Hong*, Jonghyun Park, Jong Chul Ye
+KAIST
+{jeongsol, yeobin34, jhpark99, jong.ye}@kaist.ac.kr
+* Equal contribution
+Figure 1: Representative editing results produced by FlowAlign, where the red portion of the prompt
+is replaced with the green portion. Samples are drawn from EditBench and PIEBench.
+Abstract
+Recent inversion-free, flow-based image editing methods such as FlowEdit lever-
+ages a pre-trained noise-to-image flow model such as Stable Diffusion 3, enabling
+text-driven manipulation by solving an ordinary differential equation (ODE). While
+the lack of exact latent inversion is a core advantage of these methods, it often
+results in unstable editing trajectories and poor source consistency. To address
+this limitation, we propose FlowAlign, a novel inversion-free flow-based frame-
+work for consistent image editing with optimal control-based trajectory control.
+Specifically, FlowAlign introduces source similarity at the terminal point as a
+regularization term to promote smoother and more consistent trajectories during
+the editing process. Notably, our terminal point regularization is shown to explicitly
+balance semantic alignment with the edit prompt and structural consistency with
+the source image along the trajectory. Furthermore, FlowAlign naturally supports
+reverse editing by simply reversing the ODE trajectory, highliting the reversible and
+consistent nature of the transformation. Extensive experiments demonstrate that
+Preprint.
+arXiv:2505.23145v4  [cs.CV]  27 Jul 2025
+
+===== 第 2 页 =====
+FlowAlign outperforms existing methods in both source preservation and editing
+controllability.
+1
+Introduction
+In text-based image editing [21, 22, 33, 8, 14, 16, 3], the goal is to transform a source image into
+a target based on either textual descriptions of the images or specific editing instructions. From a
+distributional perspective, the image editing task can be interpreted as a continuous normalizing
+flow (CNF) [23] that pushes forward a source distribution to a target distribution. Specifically, we
+parameterize a velocity field, that uniquely determines the flow, using a neural network. Then, the
+generative process corresponds to solving an ordinary differential equation (ODE) governed by the
+trained velocity field. To reduce the computational cost of simulating ODEs during training for
+likelihood evaluation, flow matching has been proposed [17]. Its conditional variant enables direct
+supervision by computing the target velocity, allowing efficient training of flow models between
+arbitrary distributions. These flow models includes score-based diffusion models [31, 9, 30] as well
+as rectified flow models [20, 5].
+Recently, within the framework of flow-based models, text-to-image generation has achieved signif-
+icant advancements through improved time discretization, loss weighting, and model architecture,
+notably based on DiT [25]. While these foundational models are trained to map samples from
+a normal distribution to a clean data distribution, additional training—either from scratch or via
+fine-tuning—is necessary to establish a flow between two arbitrary distributions.
+To mitigate this additional cost for constructing a new flow between image distributions, several
+approaches such as SDEdit [21] and Dual Diffusion Implicit Bridge (DDIB) [32] have leveraged
+pre-trained noise-to-image diffusion models. However, SDEdit requires careful selection of an
+appropriate initial noise level for editing, while DDIB relies on an inversion process that is prone to
+errors arising from discretization and an approximated velocity field for subsequent timesteps.
+Recently, RF-inversion [28] proposes an optimal-control based inversion for flow models, in which a
+guiding vector field steers the dynamics toward high-likelihood samples via velocity interpolation.
+Unfortunately, it still involves computational overhead due to the ODE inversion. To address this,
+FlowEdit [16] proposed simulating an ODE between two image samples without inversion. However,
+empirical results showed that the method is quite sensitive to the hyperparameters and often fails to
+retain the source consistency. Moreover, the method heuristically applies classifier-free-guidance
+(CFG) to the both source and target velocity fields with different scaling factor and relies on skipping
+early timesteps of the ODE to enhance editing quality. These design choices introduce multiple
+hyperparameters to be searched and compromise the deterministic nature of ODE (see Section 4).
+Motivated by the observation that these limitations of FlowEdit arise from nonsmooth and unstable
+editing trajectories—partly due to the lack of explicit latent inversion—we introduce FlowAlign, an
+optimal control-based inversion-free approach for consistent and controllable text-driven image edit-
+ing through trajectory regularization. In contrast to RF-inversion [28] that requires an ODE inversion,
+we introduces a structural similarity at the terminal point as our trajectory regularization term to
+overcome the instability caused by the absence of the inverted latent. Although the regularization
+is primarily enforced at the terminal point, we further observe that it also naturally enforces source
+consistency along the trajectory by penalizing unnecessary deviations from the original image.
+Our method is also computationally efficient, requiring only one additional function evaluation (NFE)
+per ODE step for the regularization term. In contrast, methods like FlowEdit [16] incur twice the NFE
+due to the reliance on classifier-free guidance. Despite this efficiency, FlowAlign achieves superior
+source preservation and competitive or improved editing quality compared to existing approaches in
+image, video, and 3D editing. Finally, FlowAlign supports editing through backward ODE with the
+learned flow field, enabling accurate reconstruction of the original image from the edited output. This
+highlights the reversible and deterministic nature of the learned transformation, made possible by our
+explicit trajectory regularization.
+2
+
+===== 第 3 页 =====
+2
+Backgrounds
+Suppose we have access to samples from two distributions X1 ∼p and X0 ∼q that forms inde-
+pendent coupling, π0,1(X0, X1) = p(X1)q(X0). We can define a time-dependent function called
+flow ψt(x) : [0, 1] × Rd →Rd, which is diffeomorphism and satisfies ψt(X1) = Xt, to describe
+a continuous transform between X1 and X0. Specifically, for 0 ≤s < t ≤1, we can sequentially
+transfer the sample Xt to Xs = ψs(X1) = ψs(ψ−1
+t
+(Xt)) = ψs|t(Xt). Here, the ψt is uniquely
+characterized by a flow ODE
+dψt(x) = vt(ψt(x))dt
+(1)
+where vt represents velocity field. Here, vt is approximated by a neural network vθ
+t with the
+parameter θ to construct a flow as generative model. The training objective for the parameterized
+velocity field is called flow matching, which is expressed as
+LF M = Et∈[0,1],xt∼pt∥vt(xt) −vθ
+t (xt)∥2.
+(2)
+Unfortunately, we cannot access vt(xt) due to intractable integration over all x0. To address this,
+[17] proposes conditional flow matching:
+LCF M = Et∈[0,1],x0∼q∥vt(xt|x0) −vθ
+t (xt)∥2
+(3)
+where vt(xt|x0) is a conditional velocity field given by
+vt(xt|x0) = ˙ψt(ψ−1
+t
+(xt|x0)|x0) = ˙ψt(x1|x0),
+(4)
+where the last equality is due to the definition of xt = ψt(x1|x0). One of the most important
+contribution of [17] is that the trained velocity field vθ
+t (xt) from the conditional flow matching
+Eq. (3) can also approximate the unconditional velocity field vt(xt) in Eq. (2). Accordingly, after
+training of the velocity field using Eq. (3), we can generate a sample by solving the following ODE:
+dx = vθ
+t (xt)dt.
+(5)
+Among various flows, the affine conditional flow defined as ψt(x1|x0) = atx0 + btx1 is widely
+used, where a0 = b1 = 1 and a1 = b0 = 0. The resulting conditional velocity field derived from the
+rectified flow for Eq. (3) is then given by
+vt(xt|x0) = ˙ψt(ψ−1
+t
+(xt|x0)|x0) = ˙atx0 + ˙btx1.
+(6)
+In case of linear conditional flow (or rectified flow) [20], at = t and bt = 1 −t, and the conditional
+velocity field derived from the rectified flow for Eq. (3) is vt(xt|x0) = x1 −x0.
+Without loss of generality, the problem formulation could be extended to a flow defined in latent
+space. Accordingly, we will use xt to denote both images and latent codes.
+3
+FlowAlign
+3.1
+Text-based Image Editing using Pre-trained Flow Models
+In text-based image editing using flow models, we aim to translate a source image xsrc at t = 1 to a
+target image xtgt at t = 0 based on text description of each image or editing instruction. In particular,
+such translation can be represented through a linear conditional flow between two image distributions,
+ψt(xsrc|xtgt) := xt = (1 −t)xtgt + txsrc
+.
+(7)
+Note that the associated flow ODE described by Eq. (5) requires training between two image
+distributions using the conditional flow matching of Eq. (3) with Eq. (7). To bypass the additional
+training, consider two generative flows that transfers the same noise ϵ ∼N(0, Id) to each image,
+ψsrc
+t
+(ϵ|xsrc) := qt = (1 −t)xsrc + tϵ,
+(8)
+ψtgt
+t
+(ϵ|xtgt) := pt = (1 −t)xtgt + tϵ,
+(9)
+and the associated ODEs:
+dqt = vsrc
+t
+(qt)dt,
+dqt = vtgt
+t
+(pt)dt
+(10)
+3
+
+===== 第 4 页 =====
+Figure 2: Overview. (a) Starting from the inverted latent, the ODE from source to target images can
+be obtained. (b) In contrast, existing inversion-free approaches suffer from nonsmooth trajectories,
+as qt is sampled with random noise at each step, often resulting in editing artifacts. (c) FlowAlign
+uses the regularized velocity vx
+t from the similarity regularization at the terminal point, producing
+smoother and more consistent trajectories between the source and target images. Prompt: "...white
+and red sign that reads CAFE" →"...white and red sign that reads NeurIPS".
+with q1 = p1 = ϵ, q0 = xsrc, and p0 = xtgt. Since both flows are accessible without additional
+training by using a pre-trained noise-to-image flow model1, it is beneficial if we can leverage Eq. (8)
+and Eq. (9) to simulate the ODE for the flow in Eq. (7).
+Importantly, the system of equations (Eq. (7), Eq. (8) and Eq. (9)) lead to the following key equality:
+xt = pt −qt + xsrc,
+where
+x1 = xsrc, x0 = xtgt
+(11)
+Consequently, we can simulate the ODE for image editing by
+dxt = dpt −dqt = [vtgt
+t
+(pt) −vsrc
+t
+(qt)]dt,
+where
+pt := qt + xt −xsrc
+(12)
+without additional training of flow models (see Figure 2(a)). In case of text-conditional pre-trained
+flow models, we can leverage the same neural network vθ
+t with text embeddings csrc and ctgt to
+approximate the vtgt
+t
+(pt), vsrc
+t
+(qt), respectively, leading to
+dxt = [vθ
+t (pt, ctgt) −vθ
+t (qt, csrc)]dt.
+(13)
+3.2
+Trajectory Errors from Inversion-Free Approaches
+In Eq. (13), pt and qt are first computed at each discrete time step t. If an inverted latent ϵinv is
+obtained via ODE inversion from the source image xsrc along the trajectory of qt (as illustrated in
+Figure 2(a)), then pt and qt can be further updated as:
+dqt = vθ
+t (qt, csrc)dt,
+dpt = vθ
+t (pt, ctgt)dt
+(14)
+with the initialization condition p1 = q1 = ϵinv. However, ODE inversion increase the overall
+computational cost. Thus, we are interested in avoiding the ODE inversion process. Toward this aim,
+FlowEdit [16] proposed the following update for pt and qt
+qt = (1 −t)xsrc + tϵ,
+dpt = vθ
+t (qt + xt −xsrc, ctgt)dt
+(15)
+with the initialization condition p1 = q1 = ϵ for randomly sampled ϵ at each t, where the second
+equality stems from Eq. (11), i.e. pt = qt + xt −xsrc.
+Unfortunately, one of the critical limitations of FlowEdit using Eq. (15) is that qt trajectory is not
+sufficiently smooth due to the random sampling of ϵ (Figure 2(b)). This leads to the inaccuracy
+of using simulated ODE in Eq. (13) for xt. To mitigate this, we propose an explicit trajectory
+regularization method using the structural similarity at the terminal point.
+1In this paper, we use Stable Diffusion 3.0 (medium), a foundational pre-trained flow model for the main
+experiments.
+4
+
+===== 第 5 页 =====
+3.3
+Trajectory Regularization using Similarity at Terminal Point
+Given that the trajectory of xt in Eq. (13) is not necessarily smooth due to the random sampling of ϵ,
+our objective is to simulate an ODE that explicitly penalizes deviations from a smooth trajectory as a
+form of regularization. Inspired by the recent advances of the optimal control approaches for flow
+models [28, 29], we consider the following time-reversal optimal control problem
+˙xt = u(xt),
+x1 = xsrc
+(16)
+V (ut) =
+Z 1
+0
+ℓ(xt, ut, t)dt + m(x0)
+(17)
+In this paper, we use the following loss:
+ℓ(xt, ut, t) := 1
+2∥ut −
+ vθ
+t (pt, ctgt) −vθ
+t (qt, csrc)
+
+∥2,
+(18)
+thereby enforcing the similarity of the optimal control ut to the original velocity field in Eq. (13).
+Unfortunately, this is shown not sufficient for regularizing the trajectory deviation owing to the lack
+of inverted latent. Therefore, our goal is to utilize the terminal loss m(x0) to enforce the trajectory
+smoothness.
+One of the most important contributions of this work is showing that a similarity regularization at the
+terminal point serves the goal. Specifically, we introduce a l2-based terminal point regularization:
+m(x0) = η
+2∥x0 −xsrc∥2
+(19)
+This implies that the ODE evolution from from t = 1 to t = 0 ultimately converges to a terminal
+solution that closely resembles the starting point, i.e. xtgt ≃xsrc. While this might raise concerns
+about convergence to a trivial solution where xt = xsrc for all t, the crucial distinction lies in our
+use of a finite η, as opposed to taking the limit η →∞as done in RF-inversion [28]. In what follows,
+we show that this terminal point regularization lead to the balance between the semantic guidance
+and structural preservation.
+Proposition 1. For the linear conditional flow with at = 1 −t and bt = t where 0 ≤t ≤1, the
+ODE that solves the optimal control problem with Eq. (17), Eq. (18) and Eq. (19) is given by
+dxt = vx
+t (pt, qt, p0, q0)dt
+(20)
+with the initial condition x1 = xsrc, where
+vx
+t (pt, qt, p0, q0) :≃vt(pt, ctgt) −vt(qt, csrc) + γ (E[p0|pt] −E[q0|qt])
+(21)
+where γ =
+−η
+1−ηt is positive for sufficiently large η and E[q0|qt] = qt −tvt(qt, csrc), E[p0|pt] =
+pt −tvt(pt, ctgt) are Tweedie’s denoising estimates.
+Note that the resulting velocity field can be decomposed as
+vx
+t (pt, qt, p0, q0) := [vt(pt, ctgt) −vt(qt, csrc)]
+|
+{z
+}
+Semantic Guidance
++γ (E[p0|pt] −E[q0|qt])
+|
+{z
+}
+Source Consistency
+.
+(22)
+The final velocity in Eq. (22) needs more discussion. Similar to the drift term in Eq. (13), the first
+term in Eq. (22) serves as the directional signal from the source to the target semantics. On the other
+hand, the second term becomes a source consistent regularization gradient based on the distance
+between the clean estimates of pt and qt, computed using Tweedie formula. This regularization
+gradient keeps the trajectory pt close to the source-consistency direction represented by E[q0|qt],
+thereby implicitly regulating xt.
+Another byproduct of trajectory regularization is the robustness to the classifier-free guidance (CFG).
+Unlike recent work [16] that uses CFG to both estimated noises in with null-text embedding and
+different scales, we use the CFG as for the ODE trajectory pt only,
+vθ(pt, csrc, ctgt) = vθ(pt, csrc) + ω
+
+vθ(pt, ctgt) −vθ(pt, csrc)
+
+(23)
+where ω ≥0 is the CFG scale factor. We find that commonly used CFG values (such as 7.5) are
+effective. For further analysis of the effect of ω, see Section 4. Accordingly, the proposed method is
+presented as time-reversal regularized trajectory:
+dxt = [vt(pt, ctgt, csrc) −vt(qt, csrc)]dt −γdt(E[q0|qt] −E[p0|pt]),
+x1 = xsrc
+(24)
+The complete algorithm is presented in Algorithm 1. Our approach introduces two hyperparameters
+ω and ζ = −γdt > 0. We find that using constant values yields stable results and provide detailed
+analysis of their effects in Section 4.
+5
+
+===== 第 6 页 =====
+Algorithm 1 Algorithm of FlowAlign on Latent Space
+Require: Source image xsrc, Pre-trained flow model vθ, VAE encoder and Decoder E, D,
+Source/Target text embeddings csrc, ctgt, CFG scale ω, source consistency scale ζ
+1: xsrc ←E(zsrc)
+2: xt ←xsrc
+3: for t : 1 →0 do
+4:
+ϵ ∼N(0, I)
+5:
+qt ←(1 −t)xsrc + tϵ
+6:
+pt ←xt −xsrc + qt
+7:
+vθ(pt) := vθ(pt, csrc) + ω
+
+vθ(pt, ctgt) −vθ(pt, csrc)
+
+8:
+vθ(qt) := vθ(qt, csrc)
+9:
+E[p0|pt] ←pt −tvθ(pt),
+E[q0|qt] ←qt −tvθ(qt)
+10:
+xt ←xt +
+
+vθ(pt) −vθ(qt)
+
+dt + ζ(E[q0|qt] −E[p0|pt])
+11: end for
+12: zedit ←D(xt)
+Figure 3: Quantitative and human preference evaluation. (a) Trade-off between CLIP similarity
+versus background PSNR. (b) User preference results. Each bar shows the proportion of responses
+favoring the baseline (red), showing no preference (gray), or favoring our method (green). Bars are
+centered at 0 to emphasize directional preference. Across all comparisons, our method is preferred.
+4
+Experimental Results
+Dataset, Baseline and Compute Resource. To verify the editing performance, we perform multiple
+analysis using PIE-Bench [12] that contains 700 synthetic and natural images with paired original
+and editing prompts. For baseline algorithms, we focus on comparing with methods that establish
+trajectory between two samples. For the methods that utilizes noisy sample distribution to connect
+two trajectories, we use SDEdit [21] and DDIB [32]. For the method that improves the inversion
+process, we use RF-inversion [28]. For the inversion-free method, we select FlowEdit [16]. Note
+that all these methods are training-free text-based image editing algorithms. For a fair comparison,
+we use the same flow model and 33 NFEs by following FlowEdit. In case of methods that involves
+inversion process, we use 17 NFEs for each inversion and sampling process. We conduct experiments
+using NVIDIA GeForce RTX 4090 (24GB VRAM). For runtime analysis, see Appendix D.
+Semantic alignment and Structure Consistency. Image editing quality should be evaluated from
+two complementary perspectives: semantic alignment and source structure consistency. An effective
+editing method should achieve a balance between these two objectives, improving both simultaneously.
+To assess our method, we follow prior works and report CLIP similarity as a measure of semantic
+alignment and background PSNR as a proxy for structural consistency. We evaluate performance
+across various classifier-free-guidance (CFG) scales {5.0, 7.5, 10.0, 13.5}, as CFG is a key parameter
+that modulates the trade-off between semantic fidelity and structure consistency in flow-based, text-
+guided image editing. Figure 3a presents the quantitative evaluation results. For the complete results,
+please refer to Appendix E. While the trade-off between semantic alignment and structure consistency
+remains, the proposed method consistently achieves higher structural preservation compared to all
+other methods. In terms of semantic alignment, measured by CLIP similarity, the proposed method
+outperforms SDEdit and RF-Inversion, while FlowEdit (at certain CFG scales) and DDIB achieves
+6
+
+===== 第 7 页 =====
+Figure 4: Qualitative comparison of text-based image editing methods. Insets provide zoomed-in
+views of regions highlighted by red and blue rectangles. Our method achieves better semantic
+alignment and structure consistency across a diverse set of prompts.
+higher scores. However, these baselines tend to increase CLIP similarity at the cost of source structure
+consistency. In many cases, their high CLIP scores result from over-expression of target prompt
+objects, often distorting the original image as shown in Figure 4.
+Metric
+SDEdit [21]
+DDIB [32]
+RF-Inv [28]
+FlowEdit [16]
+Ours
+PSNR ↑
+13.83
+18.18
+12.14
+19.88
+27.42
+DINO Dist ↓
+0.078
+0.041
+0.113
+0.037
+0.025
+LPIPS ↓
+0.419
+0.190
+0.502
+0.147
+0.085
+MSE ↓
+0.043
+0.019
+0.065
+0.012
+0.006
+Table 1: Quantitative comparison for backward editing results. Bold represents the best.
+Human evaluation. Due to limitations of current metrics, such as CLIP similarity (as discussed in
+the previous section), we additionally conduct a human preference study.
+From a pool of 700 validation samples, we randomly select 100 images along with their corresponding
+original and editing text prompts. For each participant, we present a pairwise comparison between the
+edited image produced by the proposed method and that of a randomly selected baseline. Participants
+are asked to indicate which result they prefer, that is defined as one with accurate reflectance of editing
+prompt with source structure preservation. For a more detailed description of the human evaluation
+protocol, refer to Appendix C. Figure 3b summarizes the preference ratio of out method against each
+baseline. Across all comparisons, the proposed method is more preferred. These results demonstrates
+that our method achieves improved editing fidelity and superior source structure consistency, as
+intended.
+Backward Editing. In this work, we proposed a flow matching regularization to make smoother
+trajectory between two image samples. Thus, we investigate whether the proposed trajectory Eq. (24)
+behaves deterministically between two samples. To test this, we solve Eq. (24) in backward direction
+starting from the edited image. By evaluating the similarity between the source image and recon-
+structed image, we can evaluate whether the editing method indeed shows behavior like an ODE.
+7
+
+===== 第 8 页 =====
+Figure 5: Qualitative comparison of editing (odd columns) and backward editing (even columns)
+results. FlowAlign (the 2nd row) achieves better reconstruction quality compared to the baselines. (a)
+Source image, (b) FlowAlign, (c) FlowEdit, (d) RF-inversion, (e) DDIB, and (f) SDEdit.
+We compute both pixel-wise metrics (PSNR, MSE) and perceptual metrics (LPIPS, DINO structural
+distance) and report the results in Table 1. Across all metrics, the proposed method outperforms the
+baselines. These results suggest that reverse editing using the proposed method nearly reconstructs
+the source image, supporting the effectiveness of the proposed trajectory regularization. Figure 5
+shows a qualitative comparison for the edited image and reconstructed image. For example, in the
+last column, the proposed method uniquely reconstruct the torch of the statue to match the source
+image, whereas the baselines fail to reconstruct it accurately and instead convert it into a real torch.
+Importantly, the edited image obtained by the proposed method faithfully reflects the intended editing
+direction. This implies that the observed reconstruction ability stems from the smooth trajectory,
+rather than simply reducing changes during the editing process.
+Figure 6: Ablation study for ω and ζ. Top-left
+points represent to balanced performance.
+Ablation Study. The proposed method introduces
+two hyperparameters, ω and ζ, which control the
+relative strength of each regularization term in
+Eq. (22). These parameters govern the trade-off be-
+tween semantic alignment with the target prompt
+and structural consistency with the source image.
+To evaluate their impact, we conduct an ablation
+study under various settings. As shown in Figure 6,
+we observe that setting ζ = 0.01 consistently
+achieves a favorable balance between semantic
+alignment and structure preservation. Notably, the
+framework without any additional gradients (i.e.
+ω = ζ = 0, block dot) results in insufficient edit-
+8
+
+===== 第 9 页 =====
+Figure 7: Editing results for (a) 3D Gaussian splatting rendered from four different viewpoints, and
+(b) a video sequence edited frame-by-frame.
+ing, which appears at the left-bottom position. This result emphasizes the effectiveness of the
+proposed CFG.
+Further Applications. Figure 7a demonstrates the application of FlowAlign to 3D editing via
+Gaussian splatting, highlighting its effectiveness in editing Gaussian parameters using FlowAlign in
+place of standard score distillation—thus extending its utility beyond 2D image editing. Figure 7b
+illustrates the application of FlowAlign to video editing, where it is applied independently to each
+frame. Although temporal consistency is not explicitly enforced, the strong source consistency of
+FlowAlign results in visually coherent backgrounds across frames. Additional details and results for
+these applications are provided in Appendix F.
+5
+Conclusion
+In this paper, we propose a flow matching regularization, that leads to smooth and stable editing
+trajectory, for inversion-free flow-based image editing algorithm. By defining differentiable optimal
+control problem with similarity regularization at the terminal point, we explicitly balances semantic
+alignment with editing text and structural consistency with the source image. As a result, the proposed
+method achieves comparable or better editing performance while showing superior source consistency
+and better computational efficiency. Notably, we demonstrate that the simulated ODE exhibits a
+deterministic property by performing the reverse editing experiments. In summary, this work provides
+a novel design space for approximating ODEs between two samples without requiring additional
+training.
+Limitation and Potential Negative Impacts. While the proposed method offers efficient training-
+free image editing algorithm, it requires multiple diffusion timesteps for inference. Because the
+editing direction relies on the prior knowledge of pre-trained diffusion model, our method inherits
+potential negative impacts of generative models such as biased generation.
+References
+[1] Tamer Basar, Sean Meyn, and William R Perkins. Lecture notes on control system theory and
+design. arXiv preprint arXiv:2007.01367, 2020.
+[2] Yochai Blau and Tomer Michaeli. The perception-distortion tradeoff. In Proceedings of the
+IEEE conference on computer vision and pattern recognition, pages 6228–6237, 2018.
+9
+
+===== 第 10 页 =====
+[3] Tim Brooks, Aleksander Holynski, and Alexei A Efros. Instructpix2pix: Learning to follow
+image editing instructions. In Proceedings of the IEEE/CVF conference on computer vision and
+pattern recognition, pages 18392–18402, 2023.
+[4] Sergi Caelles, Jordi Pont-Tuset, Federico Perazzi, Alberto Montes, Kevis-Kokitsi Maninis, and
+Luc Van Gool. The 2019 davis challenge on vos: Unsupervised multi-object segmentation.
+arXiv:1905.00737, 2019.
+[5] Patrick Esser, Sumith Kulal, Andreas Blattmann, Rahim Entezari, Jonas Müller, Harry Saini,
+Yam Levi, Dominik Lorenz, Axel Sauer, Frederic Boesel, et al. Scaling rectified flow trans-
+formers for high-resolution image synthesis. In Forty-first international conference on machine
+learning, 2024.
+[6] Wendell H Fleming and Raymond W Rishel. Deterministic and stochastic optimal control,
+volume 1. Springer Science & Business Media, 2012.
+[7] Ayaan Haque, Matthew Tancik, Alexei A Efros, Aleksander Holynski, and Angjoo Kanazawa.
+Instruct-nerf2nerf: Editing 3d scenes with instructions. In Proceedings of the IEEE/CVF
+International Conference on Computer Vision, pages 19740–19750, 2023.
+[8] Amir Hertz, Kfir Aberman, and Daniel Cohen-Or. Delta denoising score. In Proceedings of the
+IEEE/CVF International Conference on Computer Vision, pages 2328–2337, 2023.
+[9] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. Advances
+in Neural Information Processing Systems, 33:6840–6851, 2020.
+[10] Hyeonho Jeong, Jinho Chang, Geon Yeong Park, and Jong Chul Ye. Dreammotion: Space-time
+self-similar score distillation for zero-shot video editing. In European Conference on Computer
+Vision, pages 358–376. Springer, 2024.
+[11] Hyeonho Jeong, Geon Yeong Park, and Jong Chul Ye. Vmc: Video motion customization using
+temporal attention adaption for text-to-video diffusion models. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition, pages 9212–9221, 2024.
+[12] Xuan Ju, Ailing Zeng, Yuxuan Bian, Shaoteng Liu, and Qiang Xu. Direct inversion: Boosting
+diffusion-based editing with 3 lines of code. CoRR, abs/2310.01506, 2023.
+[13] Xuan Ju, Ailing Zeng, Yuxuan Bian, Shaoteng Liu, and Qiang Xu. Pnp inversion: Boosting
+diffusion-based editing with 3 lines of code. In The Twelfth International Conference on
+Learning Representations, 2024.
+[14] Jeongsol Kim, Geon Yeong Park, and Jong Chul Ye. Dreamsampler: Unifying diffusion
+sampling and score distillation for image manipulation. arXiv preprint arXiv:2403.11415, 2024.
+[15] Juil Koo, Chanho Park, and Minhyuk Sung. Posterior distillation sampling. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 13352–13361,
+2024.
+[16] Vladimir Kulikov, Matan Kleiner, Inbar Huberman-Spiegelglas, and Tomer Michaeli.
+Flowedit: Inversion-free text-based editing using pre-trained flow models. arXiv preprint
+arXiv:2412.08629, 2024.
+[17] Yaron Lipman, Ricky T. Q. Chen, Heli Ben-Hamu, Maximilian Nickel, and Matthew Le. Flow
+matching for generative modeling. In The Eleventh International Conference on Learning
+Representations, 2023.
+[18] Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong Jae Lee. Visual instruction tuning. Advances
+in neural information processing systems, 36:34892–34916, 2023.
+[19] Shaoteng Liu, Yuechen Zhang, Wenbo Li, Zhe Lin, and Jiaya Jia. Video-p2p: Video editing
+with cross-attention control. In Proceedings of the IEEE/CVF Conference on Computer Vision
+and Pattern Recognition, pages 8599–8608, 2024.
+10
+
+===== 第 11 页 =====
+[20] Xingchao Liu, Chengyue Gong, and qiang liu. Flow straight and fast: Learning to generate
+and transfer data with rectified flow. In The Eleventh International Conference on Learning
+Representations, 2023.
+[21] Chenlin Meng, Yang Song, Jiaming Song, Jiajun Wu, Jun-Yan Zhu, and Stefano Ermon.
+SDEdit: Image synthesis and editing with stochastic differential equations. arXiv preprint
+arXiv:2108.01073, 2021.
+[22] Ron Mokady, Amir Hertz, Kfir Aberman, Yael Pritch, and Daniel Cohen-Or. Null-text inversion
+for editing real images using guided diffusion models. In Proceedings of the IEEE/CVF
+Conference on Computer Vision and Pattern Recognition, pages 6038–6047, 2023.
+[23] George Papamakarios, Eric Nalisnick, Danilo Jimenez Rezende, Shakir Mohamed, and Balaji
+Lakshminarayanan. Normalizing flows for probabilistic modeling and inference. Journal of
+Machine Learning Research, 22(57):1–64, 2021.
+[24] Geon Yeong Park, Hyeonho Jeong, Sang Wan Lee, and Jong Chul Ye. Spectral motion alignment
+for video motion transfer using diffusion models. In Proceedings of the AAAI Conference on
+Artificial Intelligence, volume 39, pages 6398–6405, 2025.
+[25] William Peebles and Saining Xie. Scalable diffusion models with transformers. In Proceedings
+of the IEEE/CVF international conference on computer vision, pages 4195–4205, 2023.
+[26] Ben Poole, Ajay Jain, Jonathan T. Barron, and Ben Mildenhall. Dreamfusion: Text-to-3d using
+2d diffusion. arXiv, 2022.
+[27] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal,
+Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learning transferable visual
+models from natural language supervision. In International conference on machine learning,
+pages 8748–8763. PmLR, 2021.
+[28] L Rout, Y Chen, N Ruiz, C Caramanis, S Shakkottai, and W Chu. Semantic image inversion
+and editing using rectified stochastic differential equations. In The Thirteenth International
+Conference on Learning Representations, 2025.
+[29] Litu Rout, Yujia Chen, Nataniel Ruiz, Abhishek Kumar, Constantine Caramanis, Sanjay Shakkot-
+tai, and Wen-Sheng Chu. RB-modulation: Training-free stylization using reference-based
+modulation. In The Thirteenth International Conference on Learning Representations, 2025.
+[30] Jiaming Song, Chenlin Meng, and Stefano Ermon. Denoising diffusion implicit models. In 9th
+International Conference on Learning Representations, ICLR, 2021.
+[31] Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, and
+Ben Poole. Score-based generative modeling through stochastic differential equations. In 9th
+International Conference on Learning Representations, ICLR, 2021.
+[32] Xuan Su, Jiaming Song, Chenlin Meng, and Stefano Ermon. Dual diffusion implicit bridges for
+image-to-image translation. In International Conference on Learning Representations, 2023.
+[33] Narek Tumanyan, Michal Geyer, Shai Bagon, and Tali Dekel. Plug-and-play diffusion features
+for text-driven image-to-image translation. In Proceedings of the IEEE/CVF Conference on
+Computer Vision and Pattern Recognition, pages 1921–1930, 2023.
+[34] Cyrus Vachha and Ayaan Haque. Instruct-gs2gs: Editing 3d gaussian splats with instructions,
+2024.
+[35] Zhou Wang, Alan C Bovik, Hamid R Sheikh, and Eero P Simoncelli. Image quality assessment:
+from error visibility to structural similarity. IEEE transactions on image processing, 13(4):600–
+612, 2004.
+[36] Haozhe Zhao, Xiaojian Shawn Ma, Liang Chen, Shuzheng Si, Rujie Wu, Kaikai An, Peiyu Yu,
+Minjia Zhang, Qing Li, and Baobao Chang. Ultraedit: Instruction-based fine-grained image
+editing at scale. Advances in Neural Information Processing Systems, 37:3058–3093, 2024.
+11
+
+===== 第 12 页 =====
+Supplementary Material
+FlowAlign: Trajectory-Regularized, Inversion-Free Flow-based Image Editing
+A
+Optimal Control Formulation to Prove Proposition 1
+The following lemma is required for the proof.
+Lemma 1. Consider the following time-reversal optimal control problem:
+V (ut) =
+Z 1
+0
+ℓ(xt, ut, t)dt + m(x1),
+˙xt = u(xt),
+xt0 = xstart,
+(25)
+where
+ℓ(xt, ut, t) := 1
+2∥ut −at∥2
+(26)
+m(x1) := η
+2∥x0 −xsrc∥2
+(27)
+Then, the optimal solution trajectory is given by
+˙xt = −pt + at
+(28)
+where pt is given by
+pt =
+−η
+1 −ηt (xt + vt −xsrc)
+where
+vt :=
+Z 0
+t
+atdt
+(29)
+Proof. The Hamiltonian for the given optimal control problem can be represented by
+H(xt, ut, pt, t) := 1
+2∥ut −at∥2 + pT
+t ut
+(30)
+The optimal control u∗
+t that minimizes the Hamitonian is then given by
+u∗
+t = at −pt
+(31)
+This leads to the following
+H(xt, u∗
+t , pt, t) := −1
+2∥pt∥2 + pT
+t at
+(32)
+Then, the minimum principle [1, 6] informs that the optimal pair (xt, pt) should satisfy the following:
+˙xt = u∗
+t = at −pt
+(33)
+˙pt = −∂H(xt, u∗
+t , pt, t)
+∂x
+= 0
+(34)
+with the additional boundary conditions
+xt0 = xstart,
+p0 = ∂m(xt, t)
+∂xt
+
+t=0
+= η(x0 −xsrc)
+(35)
+From Eq. (34), we can see that pt is time-invariant constant, i.e. pt = p for all t ∈[0, 1]. Accordingly,
+we have
+x0 = xt0 +
+Z 0
+t0
+−p + atdt
+(36)
+= t0p + xt0 + vt0
+(37)
+where
+vt0 :=
+Z 0
+t0
+atdt
+(38)
+12
+
+===== 第 13 页 =====
+By plugging this in Eq. (35) with p0 = p, we have
+p = η (t0p + xt0 + vt0 −xsrc)
+⇒p = η(xt0 + vt0 −xsrc)
+1 −t0η
+Therefore, the optimal control u∗
+t is given by
+u∗
+t = at +
+−η
+1 −ηt (xt + vt −xsrc)
+(39)
+Now we are ready to prove our main results.
+Proposition 1. For the linear conditional flow with at = 1 −t and bt = t where 0 ≤t ≤1, the
+ODE that solves the optimal control problem with Eq. (17), Eq. (18) and Eq. (19) is given by
+dxt = vx
+t (pt, qt, p0, q0)dt
+(20)
+with the initial condition x1 = xsrc, where
+vx
+t (pt, qt, p0, q0) :≃vt(pt, ctgt) −vt(qt, csrc) + γ (E[p0|pt] −E[q0|qt])
+(21)
+where γ =
+−η
+1−ηt is positive for sufficiently large η and E[q0|qt] = qt −tvt(qt, csrc), E[p0|pt] =
+pt −tvt(pt, ctgt) are Tweedie’s denoising estimates.
+Proof. We can now use Lemma 1 with the following modification
+at := vθ
+t (pt, ctgt) −vθ
+t (qt, csrc)
+(40)
+This leads to the following first order approximation:
+vt =
+Z 0
+t
+atdt =
+Z 0
+t
+vt(pt) −vt(qt)dt
+(41)
+≃−tvt(pt) + tvt(qt)
+(42)
+Accordingly, we have
+xt + vt −xsrc = pt −qt + vt
+≃pt −qt + (−tvt(pt) + tvt(qt))
+= E[p0|pt] −E[q0|qt]
+where we use xt −xsrc = pt −qt from Eq. (11) for the first equality. Thus, the optimal control u∗
+t
+is given by
+u∗
+t = at +
+−η
+1 −ηt (xt + vt −xsrc)
+≃at +
+−η
+1 −ηt (E[p0|pt] −E[q0|qt])
+(43)
+Therefore, we have
+˙xt = vt(pt, ctgt) −vt(qt, csrc) +
+−η
+1 −ηt (E[p0|pt] −E[q0|qt])
+(44)
+= vt(pt, ctgt) −vt(qt, csrc) + γ (E[p0|pt] −E[q0|qt])
+(45)
+B
+Implementation details
+In this section, we provide implementation details of baseline methods and the proposed method. For
+the proposed method, we will release the code to https://github.com/FlowAlign/FlowAlign.
+13
+
+===== 第 14 页 =====
+Backbone model
+While various text-to-image generative models exist, we leverage a flow-based
+model defined in latent space, specifically using Stable Diffusion 3.0 (medium) [5] provided by the
+diffusers package. Given the significantly improved generative and text alignment performance of
+this backbone compared to earlier versions, we use the same backbone model for all baselines to
+establish a fair comparison. For the time discretizations, we set the shift coefficient to 3.0, which is a
+default option of the Stable Diffusion 3.0
+Baseline methods
+1. DDIB [32] : DDIB involves an inversion process followed by a sampling process. For
+inversion, we adopt the backward flow ODE. Regarding classifier-free guidance (CFG),
+we use only the null-text embedding during inversion and both target text and null-text
+embeddings during the sampling. This choice is motivated by the instability observed
+when applying standard CFG (i.e., using the source text and null-text embeddings) during
+inversion. To ensure a fair comparison under similar computational cost, we set the number
+of ODE timesteps to 17 for both the inversion and sampling processes.
+2. SDEdit [21] : SDEdit requires specifying the initial SNR (i.e. timestep), and its performance
+can vary significantly depending on this choice. In this work, our main focus is to address
+the limitations of inversion-free editing methods. To fairly demonstrate the effectiveness
+of our approach in comparison to alternative methods that also can mitigate this issue, we
+adopt the same initial SNR setting as FlowEdit [16], determined by the starting timestep of
+the ODE. Specifically, we use the 18th timestep as the starting point in our experiments.
+3. RF-inversion [28] : RF-Inversion introduces an optimal-control-based guidance mechanism
+that ensures the inverted representation aligns with a target terminal state, resuling in a
+sampling process that is more likely under a predefined terminal distribution. We follow the
+official implementation, setting γ = 0.5, η = 0.9, the starting time s = 0, and the stopping
+time τ = 0.25. RF-Inversion uses only the null-text embedding, while both the target text
+and null-text embeddings are used during the sampling phase.
+4. FlowEdit [16] : We follow the official implementation of FlowEdit, setting the CFG scale to
+3.0 for the source direction and 13.5 for the target direction. Additionally, we solve the flow
+ODE starting from the 18th timestep out of 50, resulting in 33 ODE timesteps.
+Evaluation Metrics
+For the quantitative comparison, we evaluate following metrics using the
+official evaluation code 2 from PIEBench [13]:
+1. Background PSNR : PIEbench [13] provides masks that cover the object to be edited.
+Accordingly, we compute the PSNR by excluding the masked region, resulting in the
+background PSNR.
+2. Background LPIPS : We measure the LPIPS [2], which is defined as distance between
+feature maps of pre-trained VGG network, by excluding the masked region.
+3. Background SSIM : We compute the structural similarity [35] by excluding the masked
+region.
+4. Background MSE : we compute pixel-wise mean-squared-error by excluding the masked
+region.
+5. CLIP-score : We report the similarity between features embedded by pre-trained CLIP [27]3
+image encoder and text encoder. For the CLIP score within the edited region, we apply it
+only to the masked area.
+C
+Human preference test protocol
+To evaluate the quality of image editing, we conduct a human preference study in the form of an AB-
+test. Specifically, we randomly sample 100 images from the 700 validation samples of PIEBench [13].
+The study follows the protocol below for each participant:
+2https://github.com/cure-lab/PnPInversion/tree/main/evaluation
+3We use CLIP ViT-base-patch16.
+14
+
+===== 第 15 页 =====
+Figure 8: User interface for AB-test.
+1. Randomly select one sample from the 100-image pool.
+2. Randomly choose one baseline method from the four.
+3. Randomly assign the baseline and the proposed method to gruops A and B.
+4. Display AB-test user instruction with editing instruction, source image, and edited results
+from both methods.
+5. The participant selects one of the following options: "A is better", "B is better", or "Not
+sure".
+6. The participant clicks "Submit", and the response is recorded.
+7. Step 1-6 are repeated until 20 cases are completed.
+8. If more than half of the responses are "Not sure", an additional 5 comparisons is presented
+following the same protocol.
+Although the editing methods utilize source–target text pairs, we present the editing instructions
+from PIEBench to participants instead, aiming to improve readability and reduce cognitive load.
+The AB-test interface is shown Fig. 8, and was implement using Google Script. We recruited 25
+participants and collected a total of 505 responses (with one participant receiving additional cases due
+to frequent "Not sure" selections). These responses were used to compute the final human preference
+results.
+D
+Run-time comparison
+In this section, we report the wall-clock time for each editing method evaluated in the main paper,
+specifically focusing on the runtime for solving ODE in latent space. We use a single RTX 4090 to
+measure the runtime. For methods involving an inversion process, the number of function evaluations
+(NFEs) is effectively doubled compared to reverse sampling. However, to ensure fair comparison, all
+experiments are conducted with the similar number of ODE timesteps where the sample xt is updated.
+Thus, for the inversion-based method, we update sample with 17 ODE timesteps for inversion and 17
+ODE timesteps for the sampling. Table 2 shows the averaged runtime (in seconds) measured across
+50 editing cases.
+For SDEdit, the runtime corresponds to standard reverse sampling with CFG. In comparison, DDIB
+and RF inversion achieve slightly shorter runtime, as we set the CFG scale to 0 during inversion.
+15
+
+===== 第 16 页 =====
+Source Consistency
+Semantic Alignment
+method
+Structural Distance ↓
+Background PSNR ↑
+Background LPIPS ↓
+Background MSE ↓
+Background SSIM ↑
+CLIP Entire ↑
+CLIP Edited ↑
+DDIB [32]
+0.106
+14.43
+0.262
+0.037
+0.746
+30.68
+26.88
+SDEdit [21]
+0.036
+22.57
+0.119
+0.008
+0.747
+24.56
+21.95
+RF-Inv [28]
+0.103
+15.82
+0.291
+0.028
+0.663
+33.35
+29.60
+FlowEdit [16]
+0.036
+23.02
+0.082
+0.007
+0.842
+25.98
+22.81
+FlowAlign
+0.028
+25.50
+0.053
+0.004
+0.879
+25.28
+22.00
+Table 3: Quantitative results for image editing on PIEBench (CFG scale 10.0).
+This is because applying CFG in the inversion stage often amplifies errors and disrupts the sampling
+process. FlowEdit requires computing CFG twice per ODE timestep - once for the source direction
+and once for the target - which results in approximately double the runtime of SDEdit. In other
+words, when using the same discretized ODE schedule, FlowEdit incurs a similar computational
+cost to inversion-based methods. In contrast, the proposed method achieves faster runtime due to
+its efficient CFG, which is computed only for v(pt). Importantly, this computational efficiency is
+achieved without sacrificing performance.
+DDIB
+SDEdit
+RF-inv
+FlowEdit
+FlowAlign
+Stable Diffusion 3.0
+4.06
+5.26
+4.06
+10.64
+7.14
+Table 2: Runtime comparison (unit: seconds). Averaged time for 50 samples is reported.
+E
+Additional evaluation results on PIEBench
+E.1
+Quantitative and qualitative results
+We provide the complete evaluation result on PIEBench, which includes metrics described in Sec-
+tion B. As discussed in the main paper, the proposed method outperforms all baselines in source
+consistency metrics while achieving a CLIP score comparable to FlowEdit. Although inversion-based
+editing algorithms such as DDIB and RF-Inversion exhibit higher CLIP scores, they tends to overem-
+phasize the target concept at the expense of preserving the source structure (see more examples in
+Fig. 9 and 10). We also illustrate more qualitative results of the proposed method on text-based image
+editing task. Specifically, Fig. 9 and 10 present additional qualitative comparison between baselines
+and the FlowAlign. For diverse editing categories and objects, the proposed method shows better
+editing capability with better source structure preservation.
+E.2
+Ablation
+The proposed method includes two hyper-parameters: ω, which controls efficient CFG, and ζ, which
+weights the source consistency term derived from the flow-matching regularization. As discussed
+in Section 4 of the main paper, there is a trade-off between semantic alignment with the target text
+and structural consistency with the source image. Fig. 11 presents qualitative examples from the
+ablation study, focusing on the effect of ζ with a fixed ω = 10.0. While the editing results may vary
+across samples even for the same ζ, we find that ζ = 0.01 consistently yields robust and balanced
+performance, effectively satisfying both the editing instruction and source structure preservation
+across diverse cases.
+F
+Additional results
+As we demonstrated in the last section of the main paper, FlowAlign can be extended beyond text-
+based image editing. In this section, we provide details and additional examples for video editing and
+3D editing via Gaussian splatting.
+F.1
+Further Applications - Video Editing
+FlowAlign is fundamentally a text-based image editing method built on an image flow-based model.
+In contrast, video editing typically relies on generative models trained on video datasets with temporal
+16
+
+===== 第 17 页 =====
+attention mechanisms to enhance temporal consistency [11, 19, 10, 24]. However, video editing can
+also be viewed as a sequence of image editing tasks. Extending the applicable range of image editing
+methods to video could offer practical benefits, such as reduced training and inference costs.
+While the proposed method does not explicitly enforce temporal consistency, we can still apply it
+independently to each video frame. For this experiment, we use the DAVIS dataset [4] and extract
+the source text prompt using LLaVA [18], conditioned on the middle frame of each video. For the
+hyperparameter λ, we use a constant of 0.01, consistent with the main experiments. For ω, we vary it
+over [5.0, 7.5, 10.0, 13.5] and qualitatively select the best-performing value.
+Figures 12 and 13 present examples of edited video frames, focusing on texture and object editing
+tasks. Due to the strong source structure consistency of the proposed method, the video background
+remains well-preserved. However, temporal consistency for the edited object is limited, as no explicit
+constraint is imposed- for example, the head of the swan in Figure 12. Nonetheless, these results
+highlight the potential of the proposed method as a lightweight solution for video editing.
+F.2
+Further Applications - Gaussian Splatting Editing
+Recall that one of the main contributions of FlowAlign is introducing a regularization term for
+inversion-free image editing method, which has a goal of simulating the flow ODE between two
+image samples. Accordingly, we can apply FlowAlign for a 3D editing via Gaussian splatting.
+The basic idea is to distill the knowledge of text-conditioned image prior of flow model to update
+Gaussians.
+The common way to distill the prior knowledge to parameters of generators, such as NeRF or
+Gaussian Splatting, is to optimize those parameters with score distillation gradients. More generally,
+it involves guiding the parameters through the use of a pre-trained denoiser acting as a critic. From
+the result of Proposition 1, we construct a regularized trajectory between source and target images
+and the drift term Eq. (45) corresponds to gradient reflecting the editing direction. Specifically, we
+can define a editing loss function that satisfies
+∇xtLF A := vt(pt, ctgt) −vt(qt, csrc) + γ(E[p0|pt] −E[q0|qt]),
+(46)
+where we assume that the Jacobians ∂vt(qt)
+∂xt
+and ∂vt(pt)
+∂xt
+are identity matrices. Then, by using LF A
+as a critic for updating Gaussians, we can guide them toward target Gaussian whose rendered views
+are high likely sample in perspective of flow model. The only one we should consider is extending
+LF A to contain parameters ψ of differentiable generator g.
+Because we use flow model defined in latent space, we compute the loss function using qt,c =
+(1 −t)xsrc,c + tϵ, pt,c = qt,c + xt,c −xsrc,c. Here, c denotes sampled camera view, xsrc,c =
+E(g(ψsrc, c)) denotes the latent code of rendered view from initial Gaussian, xt,c = E(g(ψ, c))
+denotes the latent code of rendered vidw from current Gaussian, E denotes the pre-trained encoder of
+a VAE and ϵ ∼N(0, I). By using the chain rule, we obtain the following gradient for flow-based 3D
+editing:
+∇ψLF A := [∇xtLF A] ∂xt
+∂ψ
+(47)
+= [vt(pt,c, ctgt) −vt(qt,c, csrc) + γ(E[p0|pt] −E[q0|qt])] ∂xt
+∂ψ ,
+(48)
+and use gradient descent to update the ψ as
+ψ = ψ −ηt∇ψLF A.
+(49)
+For the semantic guidance term in this gradient, we only apply CFG for pt by setting csrc as null-text
+embedding, as same as the image editing algorithm.
+We perform Gaussian Splatting optimization for 3, 000 iterations using a classifier-free guidance
+(CFG) weight ω set to either 70 or 100. Experiments are conducted on real-world scenes using datasets
+from IN2N [7] and PDS [15]. For comparison, we benchmark against existing distillation methods,
+including SDS [26], DDS [8], and PDS [15], as well as the non-distillation baseline IGS2GS [34].
+For baselines using distillation methods we used Stable Diffusion 3.0 and for IGS2GS [34], we use
+UltraEdit [36] in replacement of Instruct-Nerf2Nerf [7] for flow-based models. One can find the
+pseudocode for the 3D editing with FlowAlign in Algorithm 2, and additional results on Figure 14
+and Figure 15.
+17
+
+===== 第 18 页 =====
+Algorithm 2 Algorithm of FlowAlign for 3D editing
+Require: Source parameter ψsrc, Pre-trained flow-based model vθ, VAE encoder E, Source/Target
+text embeddings csrc, ctgt, CFG scale ω, camera views Cams, Noise Schedule σt, differentiable
+generator g, min and max timestep Tmin, Tmax
+1: ψ ←ψsrc
+2: // Freeze VAE encoder E and flow model vθ
+3: xsrc,c ←E(g(ψsrc, c))
+4: for t : Tmax →Tmin do
+5:
+ϵ ∼N(0, σ2I)
+c ∼U(Cams)
+6:
+xt,c ←E(g(ψ, c))
+7:
+qt,c ←(1 −σt)xsrc,c + σtϵ
+8:
+pt,c ←xt,c −xsrc,c + qt,c
+9:
+vθ(pt,c) = vθ(pt,c, csrc)+ω
+
+vθ(pt,c, ctgt) −vθ(pt,c, csrc)
+
+,
+vθ(qt,c) = vθ(qt,c, csrc)
+10:
+E[p0|pt] ←pt,c −tvθ(pt,c),
+E[q0|qt] ←qt,c −tvθ(qt,c)
+11:
+∇ψLF A ←[(vθ(pt,c) −vθ(qt,c) + γ(E[p0|pt] −E[q0|qt)) ∂x
+∂ψ]
+12:
+ψ ←ψ −ηt∇ψLF A
+13: end for
+14: return ψ
+Algorithm 3 Algorithm of FlowAlign with FLUX (Guidance distilled model)
+Require: Source image xsrc, Pre-trained flow model vθ, VAE encoder and Decoder E, D,
+Source/Target text embeddings csrc, ctgt, CFG scales ωsrc, ωtgt, source consistency scale ζ
+1: xt ←E(zsrc)
+2: for t : 1 →0 do
+3:
+ϵ ∼N(0, I)
+4:
+qt ←(1 −t)xsrc + tϵ
+5:
+pt ←xt −xsrc + qt
+6:
+vθ(pt) := vθ(pt, ctgt, ωtgt),
+vθ(qt) := vθ(qt, csrc, ωsrc)
+7:
+E[p0|pt] ←pt −tvθ(pt),
+E[q0|qt] ←qt −tvθ(qt)
+8:
+xt ←xt +
+
+vθ(pt) −vθ(qt)
+
+dt + ζ(E[q0|qt] −E[p0|pt])
+9: end for
+10: zedit ←D(xt)
+F.3
+Further Variants - FLUX
+Our main experiments are conducted using by leveraging pre-trained flow model, Stable Diffusion
+3.0. Since the proposed method regulates the sampling ODE via a flow matching cost, it is also
+compatible with other flow-based models, such as FLUX. Following the setup in FlowEdit [16], we
+additionally evaluate our method using FLUX as the backbone model. We incorporate the source
+consistency term derived from optimal control with flow matching regularization, as described in
+Algorithm 3. As FLUX.1-dev is a guidance-distilled model that directly takes the CFG scale as input,
+there is no need to apply the modified CFG strategy used in Stable Diffusion 3.0 case. Therefore,
+we simply provide the CFG scale to both v(pt) and v(qt), following the approach used in FlowEdit.
+Figure 16 illustrates edited results generated by the proposed method implemented with FLUX.1-dev.
+Similar to the results with Stable Diffusion 3.0, the outputs effectively reflect the intended editing
+direction specified by the text prompts while preserving source structures. These results imply that
+the proposed method is broadly applicable to flow-based models for image editing.
+18
+
+===== 第 19 页 =====
+Figure 9: Additional qualitative comparison results.
+19
+
+===== 第 20 页 =====
+Figure 10: Additional qualitative comparison results.
+20
+
+===== 第 21 页 =====
+Figure 11: Ablation results for ζ.
+21
+
+===== 第 22 页 =====
+Figure 12: Additional results for video editing: texture change.
+Figure 13: Additional results for video editing: object change.
+22
+
+===== 第 23 页 =====
+Figure 14: Additional results for 3D editing.
+Figure 15: Video results of 3D editing. Click each image to play the video in Acrobat Reader.
+23
+
+===== 第 24 页 =====
+Figure 16: Qualitative image editing results using FLUX.
+24
