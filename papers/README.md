@@ -18,3 +18,5 @@
 每篇目录还包括 arXiv 元数据、章节与公式定位、论文 LaTeX 源、抽取文本、讲解关键图、源码快照和中文注释版（若有官方代码）、代码许可证与行号映射。论文 PDF 可从每篇精读稿所链接的 arXiv 页面获取；原始 PDF 未重复镜像进本仓库。
 
 方法脉络：FlowEdit 用源/目标速度差构造直接编辑 ODE；DirectAudioEdit 与 EchoEdit 将这种思路带到真实音频；Melodia、SteerMusic 与 MusicMagus关注结构/旋律保留；Virtual Consistency、FlowAlign 和 FreeSonic 分别从采样一致性、轨迹约束与时间/注意力控制补齐编辑能力。
+
+另有早期专题对比：[五篇论文的统一对比与阅读建议](五篇论文对比.md)。
