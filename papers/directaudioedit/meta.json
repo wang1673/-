@@ -1,0 +1,62 @@
+{
+ "arxiv_id": "2606.07356",
+ "version": "v1",
+ "title": "DirectAudioEdit: Inversion-Free Text-Guided Audio Editing via Diffusion Prediction Contrast",
+ "authors": [
+  "Zhengkun Ge",
+  "Xiaoqian Liu",
+  "Haoran Zhang",
+  "Yuan Ge",
+  "Junxiang Zhang",
+  "Zhengtao Yu",
+  "Jingbo Zhu",
+  "Tong Xiao"
+ ],
+ "published": "2026-06-05",
+ "updated": "2026-06-05",
+ "abstract": "Text-guided audio editing aims to modify the language-specified acoustic content while preserving edit-irrelevant source components. Existing training-free methods typically rely on inversion-based editing. While inversion-free editing is appealing as it decreases computational overhead and reconstruction errors, it remains largely unexplored for audio editing. The key challenge is to construct a source-to-target editing path through diffusion denoising dynamics. In this paper, we introduce DirectAudioEdit, the first attempt to develop a training-free and inversion-free method for audio editing. Experiments on music and event-level benchmarks across two backbones show that DirectAudioEdit reduces macro-averaged FAD and KL by 15.9% and 15.8% compared with DDPM inversion, while achieving up to 64.5% editing speedup.",
+ "comment": "",
+ "journal_ref": "",
+ "categories": [
+  "cs.SD",
+  "cs.CL"
+ ],
+ "abs_url": "https://arxiv.org/abs/2606.07356",
+ "pdf_pages": 13,
+ "has_latex": true,
+ "main_tex": "source\\acl_latex.tex",
+ "links": {
+  "project": [
+   {
+    "url": "https://directaudioedit.github.io",
+    "score": 9,
+    "from": [
+     "首页链接",
+     "首页文字",
+     "正文提到"
+    ]
+   }
+  ],
+  "code": [
+   {
+    "url": "https://github.com/NiuTrans/DirectAudioEdit",
+    "score": 3,
+    "from": [
+     "项目页"
+    ]
+   },
+   {
+    "url": "https://github.com/haoheliu/audioldm_eval",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   }
+  ]
+ },
+ "official_code": "https://github.com/NiuTrans/DirectAudioEdit",
+ "official_code_from": "项目页 https://directaudioedit.github.io",
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
