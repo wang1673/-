@@ -1,0 +1,49 @@
+{
+ "arxiv_id": "2505.23145",
+ "version": "v4",
+ "title": "FlowAlign: Trajectory-Regularized, Inversion-Free Flow-based Image Editing",
+ "authors": [
+  "Jeongsol Kim",
+  "Yeobin Hong",
+  "Jonghyun Park",
+  "Jong Chul Ye"
+ ],
+ "published": "2025-05-29",
+ "updated": "2025-07-27",
+ "abstract": "Recent inversion-free, flow-based image editing methods such as FlowEdit leverages a pre-trained noise-to-image flow model such as Stable Diffusion 3, enabling text-driven manipulation by solving an ordinary differential equation (ODE). While the lack of exact latent inversion is a core advantage of these methods, it often results in unstable editing trajectories and poor source consistency. To address this limitation, we propose {\\em FlowAlign}, a novel inversion-free flow-based framework for consistent image editing with optimal control-based trajectory control. Specifically, FlowAlign introduces source similarity at the terminal point as a regularization term to promote smoother and more consistent trajectories during the editing process. Notably, our terminal point regularization is shown to explicitly balance semantic alignment with the edit prompt and structural consistency with the source image along the trajectory. Furthermore, FlowAlign naturally supports reverse editing by simply reversing the ODE trajectory, highliting the reversible and consistent nature of the transformation. Extensive experiments demonstrate that FlowAlign outperforms existing methods in both source preservation and editing controllability.",
+ "comment": "",
+ "journal_ref": "",
+ "categories": [
+  "cs.CV",
+  "cs.AI",
+  "cs.LG"
+ ],
+ "abs_url": "https://arxiv.org/abs/2505.23145",
+ "pdf_pages": 24,
+ "has_latex": true,
+ "main_tex": "source\\main.tex",
+ "links": {
+  "code": [
+   {
+    "url": "https://github.com/FlowAlign/FlowAlign",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/cure-lab/PnPInversion",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   }
+  ]
+ },
+ "official_code": null,
+ "official_code_from": null,
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
