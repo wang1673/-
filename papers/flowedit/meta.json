@@ -1,0 +1,83 @@
+{
+ "arxiv_id": "2412.08629",
+ "version": "v2",
+ "title": "FlowEdit: Inversion-Free Text-Based Editing Using Pre-Trained Flow Models",
+ "authors": [
+  "Vladimir Kulikov",
+  "Matan Kleiner",
+  "Inbar Huberman-Spiegelglas",
+  "Tomer Michaeli"
+ ],
+ "published": "2024-12-11",
+ "updated": "2025-07-22",
+ "abstract": "Editing real images using a pre-trained text-to-image (T2I) diffusion/flow model often involves inverting the image into its corresponding noise map. However, inversion by itself is typically insufficient for obtaining satisfactory results, and therefore many methods additionally intervene in the sampling process. Such methods achieve improved results but are not seamlessly transferable between model architectures. Here, we introduce FlowEdit, a text-based editing method for pre-trained T2I flow models, which is inversion-free, optimization-free and model agnostic. Our method constructs an ODE that directly maps between the source and target distributions (corresponding to the source and target text prompts) and achieves a lower transport cost than the inversion approach. This leads to state-of-the-art results, as we illustrate with Stable Diffusion 3 and FLUX. Code and examples are available on the project's webpage.",
+ "comment": "ICCV 2025. Project's webpage at https://matankleiner.github.io/flowedit/",
+ "journal_ref": "",
+ "categories": [
+  "cs.CV",
+  "cs.LG"
+ ],
+ "abs_url": "https://arxiv.org/abs/2412.08629",
+ "pdf_pages": 35,
+ "has_latex": true,
+ "main_tex": "source\\0_main_combined.tex",
+ "links": {
+  "project": [
+   {
+    "url": "https://matankleiner.github.io/flowedit",
+    "score": 13,
+    "from": [
+     "arXiv 备注",
+     "HF Papers",
+     "首页链接"
+    ]
+   }
+  ],
+  "code": [
+   {
+    "url": "https://github.com/fallenshock/FlowEdit",
+    "score": 8.5,
+    "from": [
+     "HF Papers",
+     "正文链接",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/google/prompt-to-prompt",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/black-forest-labs/flux",
+    "score": 1.0,
+    "from": [
+     "正文链接"
+    ]
+   }
+  ],
+  "hf": [
+   {
+    "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev",
+    "score": 1.0,
+    "from": [
+     "正文链接"
+    ]
+   },
+   {
+    "url": "https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers",
+    "score": 1.0,
+    "from": [
+     "正文链接"
+    ]
+   }
+  ]
+ },
+ "official_code": "https://github.com/fallenshock/FlowEdit",
+ "official_code_from": "HF Papers、正文链接、正文提到",
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
