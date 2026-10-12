@@ -1,0 +1,20 @@
+{
+  "source": {
+    "repo": "YiYang-SCUT/Melodia",
+    "commit": "3ff1ab915261b61cc9763e690753f27aebe69fc5",
+    "files": [
+      "LICENSE",
+      "MelodiaEdit/MelodiaEdit/LICENSE",
+      "MelodiaEdit/MelodiaEdit/README.md",
+      "README.md",
+      "assets/README.md"
+    ]
+  },
+  "files": [],
+  "licenses": [
+    "LICENSE",
+    "README.md",
+    "MelodiaEdit/MelodiaEdit/LICENSE"
+  ],
+  "comments": 0
+}
