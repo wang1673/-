@@ -1,0 +1,47 @@
+{
+  "source": {
+    "repo": "FlowAlign/FlowAlign",
+    "commit": "a48125fd1ab8ba3de654cde7756002f30ca59b17",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "diffusion/__init__.py",
+      "diffusion/base/sd3_sampler.py",
+      "diffusion/editing/sd3_edit.py",
+      "run_edit.py",
+      "run_t2i.py",
+      "utils/util.py"
+    ]
+  },
+  "files": [
+    {
+      "path": "diffusion/editing/sd3_edit.py",
+      "lines": 232,
+      "comments": 15,
+      "sha256": "318719640b277b0adbe89d421ec49ae0397541493213566f630a3a9dfbe5089c",
+      "git_sha": "04eb3f04fbd31122d97af2b99515b9f4f329e33b",
+      "ast_equal": true
+    },
+    {
+      "path": "diffusion/base/sd3_sampler.py",
+      "lines": 235,
+      "comments": 5,
+      "sha256": "bb9f5376dc108e2a2567a692fe083355ddb6e0c5ff4e3731737aaa4757e74ce2",
+      "git_sha": "566bbcde969133a1b0483b20acec04ecc9a00204",
+      "ast_equal": true
+    },
+    {
+      "path": "run_edit.py",
+      "lines": 75,
+      "comments": 0,
+      "sha256": "3d652070aed152bf509d17066bcb857eb17ac06e2c3e4c135020d56c46a52ec0",
+      "git_sha": "5e392777f478d8acbe26044693ac5b2e2368e602",
+      "ast_equal": true
+    }
+  ],
+  "licenses": [
+    "LICENSE",
+    "README.md"
+  ],
+  "comments": 20
+}
