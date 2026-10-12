@@ -1,0 +1,58 @@
+{
+ "arxiv_id": "2509.17219",
+ "version": "v1",
+ "title": "Virtual Consistency for Audio Editing",
+ "authors": [
+  "Matthieu Cervera",
+  "Francesco Paissan",
+  "Mirco Ravanelli",
+  "Cem Subakan"
+ ],
+ "published": "2025-09-21",
+ "updated": "2025-09-21",
+ "abstract": "Free-form, text-based audio editing remains a persistent challenge, despite progress in inversion-based neural methods. Current approaches rely on slow inversion procedures, limiting their practicality. We present a virtual-consistency based audio editing system that bypasses inversion by adapting the sampling process of diffusion models. Our pipeline is model-agnostic, requiring no fine-tuning or architectural changes, and achieves substantial speed-ups over recent neural editing baselines. Crucially, it achieves this efficiency without compromising quality, as demonstrated by quantitative benchmarks and a user study involving 16 participants.",
+ "comment": "",
+ "journal_ref": "",
+ "categories": [
+  "cs.SD",
+  "cs.LG"
+ ],
+ "abs_url": "https://arxiv.org/abs/2509.17219",
+ "pdf_pages": 5,
+ "has_latex": true,
+ "main_tex": "source\\main.tex",
+ "links": {
+  "project": [
+   {
+    "url": "https://matthieu-cervera-9e056d.gitlab.io/vci_editing",
+    "score": 3.0,
+    "from": [
+     "正文提到"
+    ]
+   }
+  ],
+  "other": [
+   {
+    "url": "https://docs.alliancecan.ca/wiki/Fir",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   }
+  ],
+  "code": [
+   {
+    "url": "https://github.com/matthieu-cervera/VCI_Editing",
+    "score": 3,
+    "from": [
+     "项目页"
+    ]
+   }
+  ]
+ },
+ "official_code": "https://github.com/matthieu-cervera/VCI_Editing",
+ "official_code_from": "项目页 https://matthieu-cervera-9e056d.gitlab.io/vci_editing",
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
