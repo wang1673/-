@@ -1,0 +1,85 @@
+{
+ "arxiv_id": "2504.10826",
+ "version": "v3",
+ "title": "SteerMusic: Enhanced Musical Consistency for Zero-shot Text-guided and Personalized Music Editing",
+ "authors": [
+  "Xinlei Niu",
+  "Kin Wai Cheuk",
+  "Jing Zhang",
+  "Naoki Murata",
+  "Chieh-Hsin Lai",
+  "Michele Mancusi",
+  "Woosung Choi",
+  "Giorgio Fabbro",
+  "Wei-Hsiang Liao",
+  "Charles Patrick Martin",
+  "Yuki Mitsufuji"
+ ],
+ "published": "2025-04-15",
+ "updated": "2025-12-06",
+ "abstract": "Music editing is an important step in music production, which has broad applications, including game development and film production. Most existing zero-shot text-guided editing methods rely on pretrained diffusion models by involving forward-backward diffusion processes. However, these methods often struggle to preserve the musical content. Additionally, text instructions alone usually fail to accurately describe the desired music. In this paper, we propose two music editing methods that improve the consistency between the original and edited music by leveraging score distillation. The first method, SteerMusic, is a coarse-grained zero-shot editing approach using delta denoising score. The second method, SteerMusic+, enables fine-grained personalized music editing by manipulating a concept token that represents a user-defined musical style. SteerMusic+ allows for the editing of music into user-defined musical styles that cannot be achieved by the text instructions alone. Experimental results show that our methods outperform existing approaches in preserving both music content consistency and editing fidelity. User studies further validate that our methods achieve superior music editing quality.",
+ "comment": "Accepted by AAAI2026",
+ "journal_ref": "",
+ "categories": [
+  "cs.SD",
+  "cs.MM",
+  "eess.AS"
+ ],
+ "abs_url": "https://arxiv.org/abs/2504.10826",
+ "pdf_pages": 25,
+ "has_latex": true,
+ "main_tex": "source\\formatting-instructions-latex-2026.tex",
+ "links": {
+  "code": [
+   {
+    "url": "https://github.com/sony/steermusic",
+    "score": 5,
+    "from": [
+     "首页文字",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/haoheliu/audioldm_eval",
+    "score": 1.0,
+    "from": [
+     "正文链接"
+    ]
+   },
+   {
+    "url": "https://github.com/zelaki/DreamSound",
+    "score": 0.5,
+    "from": [
+     "正文链接"
+    ]
+   },
+   {
+    "url": "https://github.com/KinWaiCheuk/nnAudio",
+    "score": 0.5,
+    "from": [
+     "正文链接"
+    ]
+   },
+   {
+    "url": "https://github.com/microsoft/fadtk",
+    "score": 0.5,
+    "from": [
+     "正文链接"
+    ]
+   }
+  ],
+  "project": [
+   {
+    "url": "https://steermusic.pages.dev",
+    "score": 3,
+    "from": [
+     "首页文字"
+    ]
+   }
+  ]
+ },
+ "official_code": "https://github.com/sony/steermusic",
+ "official_code_from": "首页文字、正文提到",
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
