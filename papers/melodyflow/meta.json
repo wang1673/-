@@ -1,0 +1,76 @@
+{
+ "arxiv_id": "2407.03648",
+ "version": "v2",
+ "title": "High Fidelity Text-Guided Music Editing via Single-Stage Flow Matching",
+ "authors": [
+  "Gael Le Lan",
+  "Bowen Shi",
+  "Zhaoheng Ni",
+  "Sidd Srinivasan",
+  "Anurag Kumar",
+  "Brian Ellis",
+  "David Kant",
+  "Varun Nagaraja",
+  "Ernie Chang",
+  "Wei-Ning Hsu",
+  "Yangyang Shi",
+  "Vikas Chandra"
+ ],
+ "published": "2024-07-04",
+ "updated": "2024-10-16",
+ "abstract": "We introduce MelodyFlow, an efficient text-controllable high-fidelity music generation and editing model. It operates on continuous latent representations from a low frame rate 48 kHz stereo variational auto encoder codec. Based on a diffusion transformer architecture trained on a flow-matching objective the model can edit diverse high quality stereo samples of variable duration, with simple text descriptions. We adapt the ReNoise latent inversion method to flow matching and compare it with the original implementation and naive denoising diffusion implicit model (DDIM) inversion on a variety of music editing prompts. Our results indicate that our latent inversion outperforms both ReNoise and DDIM for zero-shot test-time text-guided editing on several objective metrics. Subjective evaluations exhibit a substantial improvement over previous state of the art for music editing. Code and model weights will be publicly made available. Samples are available at https://melodyflow.github.io.",
+ "comment": "",
+ "journal_ref": "",
+ "categories": [
+  "eess.AS",
+  "cs.SD"
+ ],
+ "abs_url": "https://arxiv.org/abs/2407.03648",
+ "pdf_pages": 17,
+ "has_latex": true,
+ "main_tex": "source\\neurips_2024.tex",
+ "links": {
+  "project": [
+   {
+    "url": "https://melodyflow.github.io",
+    "score": 14,
+    "from": [
+     "摘要",
+     "首页链接",
+     "首页文字",
+     "正文提到"
+    ]
+   }
+  ],
+  "code": [
+   {
+    "url": "https://github.com/facebookresearch/audiocraft",
+    "score": 6.0,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/ivan-chai/torch-linear-assignment",
+    "score": 5.0,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   },
+   {
+    "url": "https://github.com/LAION-AI/CLAP",
+    "score": 2.5,
+    "from": [
+     "正文链接",
+     "正文提到"
+    ]
+   }
+  ]
+ },
+ "official_code": "https://github.com/facebookresearch/audiocraft",
+ "official_code_from": "正文链接、正文提到",
+ "code_dir": null,
+ "fetched": "2026-10-12"
+}
