@@ -1,0 +1,40 @@
+{
+  "source": {
+    "repo": "fallenshock/FlowEdit",
+    "commit": "2620a9364f0f9c21368c36266e6200ff250273ec",
+    "files": [
+      "Data/README.md",
+      "Data/flowedit.yaml",
+      "FLUX_exp.yaml",
+      "FlowEdit_utils.py",
+      "LICENSE",
+      "README.md",
+      "SD3_exp.yaml",
+      "edits.yaml",
+      "run_script.py"
+    ]
+  },
+  "files": [
+    {
+      "path": "FlowEdit_utils.py",
+      "lines": 404,
+      "comments": 16,
+      "sha256": "1623a172e0a189d95423378c2b6c96fe4917c640bb2b6673db4eef06c918353a",
+      "git_sha": "43de828cc98ad531a913c87a5dda5407316a765c",
+      "ast_equal": true
+    },
+    {
+      "path": "run_script.py",
+      "lines": 150,
+      "comments": 0,
+      "sha256": "a36d9ef2c1a464ab8da4a261c7be4d1a1621bb27163a008dd99d8a07d5a7e482",
+      "git_sha": "a4fd9301cd9787f9c510f4b48258a0fdad446778",
+      "ast_equal": true
+    }
+  ],
+  "licenses": [
+    "LICENSE",
+    "README.md"
+  ],
+  "comments": 16
+}
