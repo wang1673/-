@@ -1,0 +1,914 @@
+
+===== 第 1 页 =====
+FreeSonic: Training-Free Temporal-Aware Decoupled Attention for Precise
+Audio Editing
+Yuxuan Jiang1, Mingyang Han2, Yusheng Dai3, Andong Wang4, Tianhong Zhou1, Jiaxin Ye5,
+Dongxiao Wang2, Haoxiang Shi2, Boyu Li2, Jun Song2, Cheng Yu2, Bo Zheng2, Weibei Dou1,
+Zehua Chen1,†, Jun Zhu1,†
+1 Tsinghua University, China 2 Alibaba Group, China 3 Monash University, Australia
+4 Renmin University of China, China 5 Fudan University, China
+jiangyux25@mails.tsinghua.edu.cn, {zhc23thuml, dcszj}@mail.tsinghua.edu.cn
+Abstract
+Text-to-audio (TTA) generation has made significant strides, yet
+achieving precise and consistent audio editing remains a ma-
+jor challenge. However, existing methods struggle to balance
+temporal consistency with background preservation. In this pa-
+per, we propose FreeSonic, a training-free framework leverag-
+ing the state-of-the-art Rectified Flow-based TangoFlux model.
+FreeSonic utilizes an optimized inversion-reverse process and
+joint text-audio attention maps for precise target segment ex-
+traction. For content editing, a novel scheduled attention decou-
+pling confines modifications to target regions while preserving
+original acoustic context. Furthermore, task-oriented noise in-
+jection enhances versatility for tasks such as audio removal and
+non-rigid replacement. Extensive experimental results demon-
+strate that FreeSonic achieves a superior balance by providing
+a high-fidelity and efficient solution for precise and consistent
+audio editing. Project and demos: https://free-sonic.github.io/.
+Index Terms: audio editing, training-free, rectified flow
+1. Introduction
+Recent advances in text-to-audio (TTA) generation [1, 2, 3, 4]
+have achieved significant success, allowing the production of
+diverse and high-quality audio according to given text prompts.
+The field has witnessed a paradigm shift from U-Net to DiT ar-
+chitectures, from diffusion models to flow-based models, and
+from mel-spectrogram VAEs to waveform-based VAEs [5, 6,
+7, 8]. Specifically, flow-based models such as Flux [9] con-
+struct a straight probability flow from noise to audio, enabling
+faster generation with fewer sampling steps and reduced train-
+ing cost [10]. DiT models [11], mainly built on pure atten-
+tion architectures, have demonstrated superior generation qual-
+ity and scalability compared to U-Net models. Concurrently,
+waveform-based VAEs directly encode waveforms into 1D la-
+tents that are temporally aligned with the waveform, avoiding
+the information loss introduced by mel vocoders [12, 13]. How-
+ever, there is still a large gap between our need and existing
+methods in terms of consistent and high-fidelity audio editing.
+In the context of text-conditioned audio editing, existing
+methods [14, 15, 16] have achieved impressive performance in
+content modification, semantic replacement, and style transfer.
+However, the additive nature of audio, where multiple sounds
+often overlap in time, makes it difficult to satisfy two key re-
+quirements: temporal consistency and background preserva-
+tion. Temporal consistency requires that changes are limited
+to the target regions while unedited parts remain highly con-
+†indicates the corresponding author.
+sistent to the original. Background preservation requires that
+non-edited background sounds stay intact even when the fore-
+ground events are modified. Since current methods struggle to
+decouple these overlapping sounds, modifying a specific part
+often leads to unintended changes in the entire audio. While
+some training-based methods [17] attempt to enhance control,
+they are often constrained by the necessity of constructing com-
+plex triplet datasets [18], and frequently rely on specialized ar-
+chitectural designs [19, 20] or external auxiliary models [21],
+resulting in high computational overhead and limited flexibility.
+In this paper, we propose FreeSonic, a training-free method
+designed to address the above challenges, enabling more con-
+sistent and precise audio editing, as shown in Figure 1. Our
+method is built upon TangoFlux [5], a state-of-the-art TTA
+model that employs Rectified Flow (RF). To achieve reliable
+and consistent editing, FreeSonic focuses on the double blocks
+within the MM-DiT of TangoFlux. By leveraging the text-audio
+attention maps, we can accurately localize the segments corre-
+sponding to the edited textual prompts, ensuring that modifica-
+tions are strictly confined to the intended regions while keeping
+the remaining content undisturbed. To perform precise editing,
+FreeSonic implements scheduled attention decoupling within
+the single blocks of MM-DiT. By leveraging KV features and
+the temporal mask, this strategy operates across different de-
+noising stages to adaptively modulate the editing process in
+target regions.
+Specifically, it applies a scheduled fusion of
+source and target features to ensure precise content modification
+while fully injecting source KV features in non-edited areas to
+maintain maximum consistency. Furthermore, to enhance ver-
+satility across diverse editing tasks, we introduce task-oriented
+noise injection. Specifically, we inject random noise into the la-
+tent distribution of the target regions to reduce the influence of
+the original acoustic attributes. This strategy allows for more
+flexible modifications while maintaining structural and back-
+ground consistency, enabling FreeSonic to handle challenging
+tasks such as audio removal and non-rigid replacement.
+Crucial to the success of these editing mechanisms is
+the underlying stability provided by our optimized inversion-
+reverse process. Benefiting from the straight probability flow
+of RF models, this process solves the rectified flow ODE with
+reduced error, which enhances audio reconstruction quality and
+effectively preserves the structural information of the source au-
+dio. To the best of our knowledge, this represents the first at-
+tempt to introduce RF inversion into a training-free audio edit-
+ing framework, providing a high-fidelity foundation for the sub-
+sequent evaluations. Through extensive quantitative and subjec-
+tive experiments, we demonstrate the effectiveness of FreeSonic
+across a wide range of audio editing tasks. Ablation studies con-
+arXiv:2606.15186v1  [cs.SD]  13 Jun 2026
+
+===== 第 2 页 =====
+“A woman talking as a dog growls
+followed by a fan blowing air”
+Double Blocks
+Temporal Extraction
+Single Blocks
+FreeSonic Inversion × T
+Inverted Noise
+Double Blocks
+Single Blocks
+Edit Audio
+FreeSonic Denoising × T
+Task-Oriented
+Noise Injection
+Scheduled Attention
+Decoupling
+(a) FreeSonic pipeline
+(b) Temporal extraction from attention maps
+Ground Truth Labels
+Text-Audio Attention Maps
+Source Audio
+Mask
+Mask
++ Noise
+Temporal Mask
+A woman talking
+a dog growls
+a fan blowing air
+“A man talking as a dog growls
+followed by a fan blowing air”
+A woman talking
+a dog growls
+a fan blowing air
+Figure 1: Overview of the FreeSonic pipeline. (a) The editing workflow involves inversion and denoising, where Scheduled Attention
+Decoupling (Sec. 2.2.2) and Task-Oriented Noise Injection (Sec. 2.2.3) are applied for localized modification. (b) The temporal mask
+is extracted from text-audio attention maps (Sec. 2.2.1) during the first five inversion steps. By aggregating interaction scores in the
+double blocks, target segments are localized to guide editing while preserving the source background.
+firm the contribution of each individual component, while effi-
+ciency analysis highlights its faster inference speed compared
+to existing models. By providing a flexible balance between
+temporal consistency and background preservation, FreeSonic
+demonstrates unique advantages in effectively addressing the
+intricate complexities of diverse real-world audio scenarios.
+2. Method
+2.1. Preliminaries
+2.1.1. Inversion-based Audio Editing
+Traditional inversion-based audio editing is primarily built upon
+diffusion models, such as DDIM and DDPM [14, 15, 16, 22].
+Given a source prompt c, the process maps the original audio
+latent into a noise representation via inversion, followed by re-
+verse sampling guided by a target prompt c∗[23, 24, 25]. This
+paradigm aims to preserve the structural layout while incorpo-
+rating semantic modifications. However, as the generative pro-
+cess is globally conditioned, altering the prompt shifts the entire
+latent trajectory, frequently leading to unintended deviations.
+Recently, inversion methods based on Rectified Flow have been
+proposed [26, 27, 28], which benefit from straighter sampling
+trajectories and enhanced generation efficiency.
+2.1.2. TangoFlux Base Model
+FreeSonic builds on TangoFlux [5], which employs Rectified
+Flow [29] for TTA and is refined by CLAP-ranked preference
+optimization to enhance audio quality. Given a 1D audio la-
+tent x1 and Gaussian noise ˜x0 ∼N(0, I), RF defines a linear
+probability path xt and the ground-truth velocity vt as:
+xt = (1 −t)x1 + t˜x0,
+vt = dxt
+dt = ˜x0 −x1,
+(1)
+where t ∈[0, 1].
+The model is trained as a velocity field
+u(xt, t; θ) to predict vt, conditioned on text embeddings ctext
+from a Flan-T5 [30] encoder and a duration encoding cdur. The
+training objective minimizes the Flow Matching loss:
+LFM = Ex1,˜x0,t||u(xt, t; θ) −vt||2.
+(2)
+This deterministic flow ensures a straight trajectory [31], pro-
+viding a stable foundation for training-free editing. During in-
+ference, noise ˜x0 is transformed back into the audio latent x1.
+2.1.3. Attention Mechanism in MM-DiT-based TTA
+Unlike traditional U-Net architectures, TangoFlux employs the
+MM-DiT backbone consisting of multiple double and single
+blocks.
+In double blocks, text embeddings ctext and audio
+latents xt are processed independently, whereas single blocks
+concatenate them into a unified sequence for joint modulation.
+Within these blocks, inter-modal interactions are captured via
+joint-attention. Specifically, the audio and text sequences are
+projected into queries Q, keys K, and values V as:
+Q = [Qa; Qt],
+K = [Ka; Kt],
+V = [Va; Vt],
+(3)
+where subscripts a and t denote the audio and text modalities,
+respectively. The attention output is then computed as:
+Attention(Q, K, V ) = softmax
+QKT
+√
+d
+
+V.
+(4)
+Due to the concatenation, each attention matrix can be decom-
+posed into four components: audio-to-audio, text-to-text, text-
+to-audio, and audio-to-text attention. In TangoFlux, the text-
+to-audio and audio-to-text terms explicitly encode cross-modal
+alignment, enabling direct identification of temporal regions
+associated with specific semantic concepts.
+Meanwhile, the
+text-to-text and audio-to-audio components exhibit diagonal-
+dominant patterns, similar to observations in visual diffusion
+models [32], indicating strong intra-modal temporal correlation
+essential for preserving coherent audio structure.
+
+===== 第 3 页 =====
+2.2. Temporal-Aware Decoupled Attention
+2.2.1. Text-Audio Attention for Temporal Extraction
+To precisely localize editing regions, we exploit the natural
+alignment between the 1D latent structure of audio genera-
+tive models and temporal progression [33, 34, 35].
+While
+previous training-free editing approaches often rely on cross-
+attention manipulation to associate textual concepts with latent
+representations [14, 15, 16], the 1D structure of audio mod-
+els offers a more direct mapping between latent positions and
+acoustic events.
+This property enables the precise localiza-
+tion of segments corresponding to textual descriptions by uti-
+lizing the joint-attention mechanism within the MM-DiT archi-
+tecture, as illustrated in Fig. 1 (b). Specifically, we analyze the
+text-audio attention maps that capture the interaction across all
+heads within the double blocks of the MM-DiT. By aggregat-
+ing these scores, we derive a raw temporal importance map that
+is subsequently thresholded to produce a binary temporal mask
+M ∈{0, 1}L, where L denotes the latent sequence length.
+The mask M is extracted during the first five steps of the
+inversion process [36]. At these initial stages, the latent repre-
+sentations maintain the strongest semantic correlation with the
+original audio and are least perturbed by noise, providing the
+most reliable alignment for localization [37]. To address the
+coarse granularity of the downsampled latent space, we further
+refine M through temporal dilation and smoothing. This re-
+finement ensures comprehensive coverage of the target acous-
+tic segment and eliminates internal discontinuities, facilitating
+seamless transitions and structural coherence during the editing
+process. The final extraction target is identified more accurately
+through specific prompt keywords or external masks.
+2.2.2. Scheduled Attention Decoupling
+To achieve stable and precise editing, we implement a three-
+stage scheduled decoupling strategy within MM-DiT single
+blocks. This approach progressively modulates the interactions
+between source and target KV features and the temporal mask
+M across the early, intermediate, and late denoising stages.
+Stage 1: Feature Mixing. In the early stage, the latent rep-
+resentation establishes the global layout and primary semantic
+attributes [35, 38]. We regulate this process by decoupling and
+interpolating KV features within the self-attention mechanism.
+Let (Ql
+tg, Kl
+tg, V l
+tg) denote the query, key, and value at layer l
+under the target prompt, and (Kl
+s, V l
+s ) represent the reference
+features extracted from the source prompt. We mix source and
+target features to achieve semantic injection:
+ˆKl
+tg = δKl
+tg + (1 −δ)Kl
+s,
+ˆV l
+tg = δV l
+tg + (1 −δ)V l
+s ,
+(5)
+where δ is a scheduling coefficient that linearly transitions from
+0.85 to 1.0 during this stage. Unlike fixed-weight methods [36],
+this dynamic schedule ensures smoother acoustic transitions
+and more seamless fusion. To achieve precise region editing,
+we utilize a temporal mask M to decouple the target from non-
+editing regions, applying a full injection of source features to
+the latter to ensure content consistency:
+˜Kl
+tg = M ⊙ˆKl
+tg + (1 −M) ⊙Kl
+s,
+˜V l
+tg = M ⊙ˆV l
+tg + (1 −M) ⊙V l
+s .
+(6)
+The updated latent representation is then computed as:
+zl+1 = Attention(Ql
+tg, ˜Kl
+tg, ˜V l
+tg).
+(7)
+Stage 2: Temporal Control. During the intermediate phase,
+we set δ=1 in Eq. 5 to allow the target prompt to fully guide the
+semantic generation. The masking operation in Eq. 6 is strictly
+maintained to confine the editing process within the target re-
+gion, ensuring the non-editing segments remain unchanged.
+Stage 3: Global Harmonization. In the final steps, standard
+self-attention is restored to allow for global coordination across
+the entire sequence. By removing the KV constraints and the
+masking operation, the model can generate more harmonious
+transitions between the edited and unedited parts, ensuring the
+final audio as a whole is perceptually natural and coherent.
+2.2.3. Task-Oriented Noise Injection
+Deterministic inversion via RF effectively preserves the struc-
+tural information of the source audio. However, this often leads
+to residual acoustic features in the latent space that interfere
+with modifications such as audio removal or non-rigid replace-
+ment [39]. To address this, we implement a task-oriented noise
+injection strategy that perturbs the latent exclusively within the
+temporal mask M to break the deterministic dependency on the
+source content. Specifically, during the initial denoising steps
+t ∈[t1, T], we update the latent zt as follows:
+z′
+t = (1 −M) ⊙zt + M ⊙((1 −λt)zt + λtη),
+(8)
+where η ∼N(0, I) and λt is a linear scheduler. This scheduler
+scales the noise intensity from a predefined λ at t = T down
+to 0 at step t1, beyond which no further noise is injected. This
+unified noise injection strategy maintains plasticity in the edited
+regions while ensuring structural and background consistency
+in non-target areas, thereby enhancing editing performance in
+challenging scenarios like removal and non-rigid replacement.
+3. Experiments
+3.1. Experimental Settings
+3.1.1. Datasets and Baselines
+To evaluate audio editing performance, we construct a bench-
+mark based on 10-second clips from the AudioCaps [40] test set
+and AudioSet Strong [41]. We utilize annotations from the Au-
+dioCondition [42] test set and additional high-quality audio-text
+pairs from FSD50K [43], ESC-50 [44], and VGG-Sound [45],
+filtered via CLAP [46] to ensure semantic alignment. Our eval-
+uation encompasses three primary tasks: addition (1,300 sam-
+ples), removal (1,300 samples), and replacement (750 samples).
+For each sample, we manually craft a target caption based on the
+original content to guide the editing process, and provide cor-
+responding natural-language instructions to facilitate the eval-
+uation of instruction-tuned methods. We compare our method
+against training-free baselines including SDEdit [47], AudioEd-
+itor [14], and ZETA [16], as well as the training-based SAO-
+Instruct [18]. For fair comparison, all methods are evaluated
+using their official open-source implementations, with SDEdit
+and ZETA built upon Stable Audio Open [48].
+3.1.2. Evaluation Metrics
+To quantitatively evaluate model performance, we employ sev-
+eral objective metrics, including Fr´echet Audio Distance (FAD),
+Kullback–Leibler Divergence (KL), Fr´echet Distance (FD), In-
+ception Score (IS), and CLAP similarity [1, 46], which together
+measure distribution alignment, generation quality, diversity,
+and audio–text semantic consistency. Efficiency is measured via
+
+===== 第 4 页 =====
+Table 1: Quantitative evaluation of audio editing. Methods marked with ∗are training-based, while the others are training-free. Bold
+and underline denote the best and second-best performance within each metric, respectively.
+Method
+Add
+Remove
+Replace
+FAD↓
+KL↓
+IS↑
+FD↓
+CLAP↑
+FAD↓
+KL↓
+IS↑
+FD↓
+CLAP↑
+FAD↓
+KL↓
+IS↑
+FD↓
+CLAP↑
+Ground Truth
+-
+-
+-
+-
+0.432
+-
+-
+-
+-
+0.408
+-
+-
+-
+-
+0.421
+SDEdit
+2.35
+2.81
+6.60
+35.85
+0.319
+4.93
+3.59
+7.45
+33.85
+0.352
+3.67
+3.08
+5.17
+28.43
+0.338
+AudioEditor
+1.92
+2.34
+6.62
+29.05
+0.355
+2.68
+2.67
+8.14
+31.83
+0.395
+2.29
+2.54
+6.28
+24.98
+0.362
+ZETA
+1.69
+2.07
+7.87
+24.54
+0.368
+2.49
+2.49
+8.25
+27.81
+0.402
+2.27
+2.34
+7.02
+28.62
+0.378
+SAO-Instruct*
+1.87
+1.39
+6.03
+15.69
+0.352
+3.60
+1.18
+5.48
+19.09
+0.408
+3.14
+2.08
+4.93
+20.34
+0.316
+FreeSonic
+1.55
+1.58
+7.75
+19.59
+0.374
+1.95
+1.72
+7.15
+17.55
+0.420
+1.83
+2.21
+6.77
+22.97
+0.424
+Table 2: Subjective evaluation of Audio Editing in terms of Quality, Relevance, and Faithfulness.
+Method
+Add
+Remove
+Replace
+Quality↑
+Relevance↑
+Faithfulness↑
+Quality↑
+Relevance↑
+Faithfulness↑
+Quality↑
+Relevance↑
+Faithfulness↑
+Ground Truth
+4.05
+4.19
+4.36
+4.65
+4.59
+4.73
+4.27
+4.36
+4.41
+AudioEditor
+3.34
+3.28
+3.14
+3.35
+3.26
+3.31
+3.28
+3.15
+3.26
+ZETA
+3.53
+3.57
+3.51
+3.61
+3.51
+3.65
+3.62
+3.76
+3.68
+SAO-Instruct*
+3.70
+3.51
+3.68
+3.55
+3.73
+3.59
+3.58
+3.81
+3.69
+FreeSonic
+3.84
+3.62
+3.59
+3.71
+3.64
+3.87
+3.67
+3.67
+3.76
+the Real-Time Factor (RTF) on a single NVIDIA A800 GPU.
+Additionally, we conduct subjective studies with 15 participants
+using Mean Opinion Score across three criteria: Quality, the
+perceptual excellence of the edited audio compared to the orig-
+inal; Relevance, how accurately the editing task was performed
+according to the instructions; and Faithfulness, the preservation
+of original acoustic components in the unedited regions.
+3.2. Quantitative Results
+We use the RF-Solver [26] as a second-order ODE sampler
+with 25 denoising steps. The proposed three-stage scheduled
+attention decoupling is partitioned into 5 early, 5 intermediate,
+and 15 final steps. For task-specific noise injection, we set the
+intensity to 0.1, 0.4, and 0.25 for the Add, Remove, and Re-
+place tasks, respectively, and set the noise injection cutoff step
+t1 = 5. Table 1 summarizes the overall results. FreeSonic
+achieves superior results across most metrics, demonstrating ro-
+bust capabilities in high-fidelity audio generation and semantic
+alignment. Our method outperforms the training-free baselines
+on most fidelity and semantic-alignment metrics. More impor-
+tantly, FreeSonic surpasses the training-based SAO-Instruct* in
+several critical metrics, despite requiring no additional training.
+These results indicate that the proposed scheduled attention de-
+coupling enables high-quality audio editing without the need for
+specialized fine-tuning or additional training data.
+3.3. Subjective Results
+As shown in Table 2, FreeSonic demonstrates strong overall
+performance across the subjective metrics, confirming its per-
+ceptual effectiveness. Additional qualitative samples across di-
+verse scenarios are available on the project demo page.
+3.4. Ablation Study and Efficiency Analysis
+Table 3 presents the ablation results for the key components of
+FreeSonic. The removal of the temporal mask, the substitution
+of scheduled decoupling with full KV replacement, or the ex-
+clusion of noise injection all result in a consistent degradation.
+These findings confirm that each component is essential for
+maintaining acoustic quality and ensuring semantic alignment
+with the target prompt. Table 4 compares FreeSonic with other
+Table 3: Ablation study on key components of FreeSonic.
+Variant
+FAD↓
+KL↓
+CLAP↑
+FreeSonic
+1.78
+1.84
+0.406
+w/o temporal mask
+2.05
+2.11
+0.372
+w full KV replacement
+1.96
+2.07
+0.383
+w/o noise injection
+2.11
+2.18
+0.366
+Table 4: Efficiency analysis on audio editing. NFE includes
+inversion and CFG-based denoising to reflect latency.
+Method
+Model
+Sampler
+Steps
+NFE↓
+RTF↓
+FAD↓
+KL↓
+CLAP↑
+AudioEditor
+Auffusion
+DDIM
+100
+300
+2.744
+2.30
+2.52
+0.371
+ZETA
+SAO
+DPM-Solver
+100
+300
+1.711
+2.15
+2.30
+0.383
+SAO-Instruct*
+SAO
+DPM++ 3M SDE
+100
+200
+1.098
+2.87
+1.55
+0.359
+AudioEditor
+Auffusion
+DDIM
+50
+150
+2.293
+2.46
+2.75
+0.357
+ZETA
+SAO
+DPM-Solver
+50
+150
+1.025
+2.14
+2.33
+0.375
+SAO-Instruct*
+SAO
+DPM++ 3M SDE
+75
+150
+0.720
+2.85
+1.53
+0.342
+FreeSonic
+TangoFlux
+RF-Inversion
+50
+150
+0.854
+1.89
+1.90
+0.398
+FreeSonic
+TangoFlux
+RF-Solver
+25
+150
+0.854
+1.78
+1.84
+0.406
+methods under both default and fixed NFE settings. To ensure
+a fair evaluation, the NFE for training-free methods accounts
+for both inversion and denoising, where Classifier-Free Guid-
+ance (CFG) doubles the function evaluations per step. We also
+evaluate the editing capability of first-order RF-Inversion [49]
+within our framework. The results indicate that our method
+attains better performance with lower computational overhead,
+highlighting its efficiency for high-quality audio editing.
+4. Conclusion
+In this paper, we presented FreeSonic, a training-free audio edit-
+ing framework built upon the Rectified Flow-based TangoFlux
+model. By leveraging joint text-audio attention maps for precise
+localization and implementing scheduled attention decoupling,
+FreeSonic ensures that modifications are strictly confined to tar-
+get regions while preserving the original acoustic background.
+Task-oriented noise injection further enhances versatility across
+editing objectives.
+Extensive quantitative and subjective ex-
+periments demonstrate that FreeSonic provides a training-free,
+high-performance and efficient solution for diverse audio edit-
+ing tasks, achieving superior results in both acoustic fidelity and
+precise and consistent editing across various scenarios.
+
+===== 第 5 页 =====
+5. Acknowledgments
+This work is supported by the Fundamental and Interdisci-
+plinary Disciplines Breakthrough Plan of the Ministry of Ed-
+ucation of China (No. JYB2025XDXM101), and the National
+Natural Science Foundation of China (62550004, U24A20342,
+U25B6003, 92570001).
+6. Generative AI Use Disclosure
+Generative AI tools were used for the sole purpose of editing
+and polishing the manuscript’s language to improve clarity and
+readability. These tools were not used to generate any scientific
+content, data, or conclusions. All authors reviewed and edited
+the final manuscript and take full responsibility for the accuracy
+and integrity of the work.
+7. References
+[1] H. Liu, Z. Chen, Y. Yuan, X. Mei, X. Liu, D. Mandic, W. Wang,
+and M. D. Plumbley, “Audioldm: Text-to-audio generation with
+latent diffusion models,” arXiv preprint arXiv:2301.12503, 2023.
+[2] D. Ghosal, N. Majumder, A. Mehrish, and S. Poria, “Text-to-
+audio generation using instruction guided latent diffusion model,”
+in Proceedings of the 31st ACM International Conference on Mul-
+timedia, 2023, pp. 3590–3598.
+[3] R. Huang, J. Huang, D. Yang, Y. Ren, L. Liu, M. Li, Z. Ye, J. Liu,
+X. Yin, and Z. Zhao, “Make-an-audio: Text-to-audio generation
+with prompt-enhanced diffusion models,” in International Con-
+ference on Machine Learning.
+PMLR, 2023, pp. 13 916–13 932.
+[4] Z. Evans, C. Carr, J. Taylor, S. H. Hawley, and J. Pons, “Fast
+timing-conditioned latent audio diffusion,” in Forty-first Interna-
+tional Conference on Machine Learning, 2024.
+[5] C.-Y. Hung, N. Majumder, Z. Kong, A. Mehrish, A. A.
+Bagherzadeh, C. Li, R. Valle, B. Catanzaro, and S. Poria, “Tan-
+goflux: Super fast and faithful text to audio generation with
+flow matching and clap-ranked preference optimization,” arXiv
+preprint arXiv:2412.21037, 2024.
+[6] X. Li, J. Liu, Y. Liang, Z. Niu, W. Chen, and X. Chen, “Meanau-
+dio: Fast and faithful text-to-audio generation with mean flows,”
+arXiv preprint arXiv:2508.06098, 2025.
+[7] Z. Evans, J. D. Parker, C. Carr, Z. Zukowski, J. Taylor, and
+J. Pons, “Long-form music generation with latent diffusion,”
+arXiv preprint arXiv:2404.10301, 2024.
+[8] S.-g. Lee, Z. Kong, A. Goel, S. Kim, R. Valle, and B. Catan-
+zaro, “Etta: Elucidating the design space of text-to-audio models,”
+arXiv preprint arXiv:2412.19351, 2024.
+[9] Black Forest Labs, “Flux,” https://github.com/black-forest-labs/
+flux, 2024, accessed: 2024-11-14.
+[10] Y. Lipman,
+R. T. Chen,
+H. Ben-Hamu,
+M. Nickel,
+and
+M. Le, “Flow matching for generative modeling,” arXiv preprint
+arXiv:2210.02747, 2022.
+[11] W. Peebles and S. Xie, “Scalable diffusion models with transform-
+ers,” in Proceedings of the IEEE/CVF international conference on
+computer vision, 2023, pp. 4195–4205.
+[12] C. Li, Z. Chen, F. Bao, and J. Zhu, “Bridge-sr: Schr¨odinger bridge
+for efficient sr,” in ICASSP 2025-2025 IEEE International Con-
+ference on Acoustics, Speech and Signal Processing (ICASSP).
+IEEE, 2025, pp. 1–5.
+[13] C. Li, Z. Chen, L. Wang, and J. Zhu, “Audio super-resolution with
+latent bridge models,” Advances in Neural Information Process-
+ing Systems, vol. 38, pp. 48 593–48 636, 2026.
+[14] Y. Jia, Y. Chen, J. Zhao, S. Zhao, W. Zeng, Y. Chen, and
+Y. Qin, “Audioeditor: A training-free diffusion-based audio edit-
+ing framework,” in ICASSP 2025-2025 IEEE International Con-
+ference on Acoustics, Speech and Signal Processing (ICASSP).
+IEEE, 2025, pp. 1–5.
+[15] M. Xu, C. Li, D. Su, W. Liang, D. Yu et al., “Prompt-guided
+precise audio editing with diffusion models,” arXiv preprint
+arXiv:2406.04350, 2024.
+[16] H. Manor and T. Michaeli, “Zero-shot unsupervised and text-
+based audio editing using ddpm inversion,” arXiv preprint
+arXiv:2402.10009, 2024.
+[17] Y. Wang, Z. Ju, X. Tan, L. He, Z. Wu, J. Bian et al., “Audit: Audio
+editing by following instructions with latent diffusion models,”
+Advances in Neural Information Processing Systems, vol. 36, pp.
+71 340–71 357, 2023.
+[18] M. Ungersb¨ock, F. Gr¨otschla, L. A. Lanzend¨orfer, J. Y. Yi,
+C. Choi, and R. Wattenhofer, “Sao-instruct:
+Free-form au-
+dio editing using natural language instructions,” arXiv preprint
+arXiv:2510.22795, 2025.
+[19] Y. Tao, W. Wu, C. Zhang, M. Wu, S. Wang, and X. Xu, “Mmedit:
+A unified framework for multi-type audio editing via audio lan-
+guage model,” arXiv preprint arXiv:2512.20339, 2025.
+[20] L. Gao, Y. Yuan, Y. Chen, Y. Cheng, Z. Li, J. Wen, S. Zhang, and
+W. Wang, “Rfm-editing: Rectified flow matching for text-guided
+audio editing,” arXiv preprint arXiv:2509.14003, 2025.
+[21] Z. Lan, Y. Hao, and M. Zhao, “Guiding audio editing with audio
+language model,” arXiv preprint arXiv:2509.21625, 2025.
+[22] J. Liang, Y. Chen, Y. Yuan, D. Jia, X. Zhuang, Z. Chen, Y. Wang,
+and Y. Wang, “Audiomorphix: Training-free audio editing with
+diffusion probabilistic models,” arXiv preprint arXiv:2505.16076,
+2025.
+[23] Y. Dai, C. Wang, C. Li, C. Wang, K. Li, J. Du, L. Sun, J. Gao,
+R. Wang, and J. Ma, “Latent swap joint diffusion for 2d long-form
+latent generation,” in Proceedings of the IEEE/CVF International
+Conference on Computer Vision, 2025, pp. 11 006–11 015.
+[24] J. Wang, Z. Chen, B. Yuan, K. Zheng, C. Li, Y. Jiang, and
+J. Zhu, “Audiomog: Guiding audio generation with mixture-of-
+guidance,” arXiv preprint arXiv:2509.23727, 2025.
+[25] Y. Dai, Z. Chen, Y. Jiang, Q. Ke, J. Cai, and J. Zhu, “Omni2sound:
+Towards unified video-text-to-audio generation,” in Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition, 2026, pp. 1661–1671.
+[26] J. Wang, J. Pu, Z. Qi, J. Guo, Y. Ma, N. Huang, Y. Chen, X. Li,
+and Y. Shan, “Taming rectified flow for inversion and editing,”
+arXiv preprint arXiv:2411.04746, 2024.
+[27] Y. Deng, X. He, C. Mei, P. Wang, and F. Tang, “Fireflow: Fast
+inversion of rectified flow for image semantic editing,” arXiv
+preprint arXiv:2412.07517, 2024.
+[28] C. Xie, M. Li, S. Li, Y. Wu, Q. Yi, and L. Zhang, “Dnaedit: Direct
+noise alignment for text-guided rectified flow editing,” Advances
+in Neural Information Processing Systems, vol. 38, pp. 124 456–
+124 474, 2026.
+[29] X. Liu, C. Gong, and Q. Liu, “Flow straight and fast: Learning
+to generate and transfer data with rectified flow,” arXiv preprint
+arXiv:2209.03003, 2022.
+[30] S. Longpre, L. Hou, T. Vu, A. Webson, H. W. Chung, Y. Tay,
+D. Zhou, Q. V. Le, B. Zoph, J. Wei et al., “The flan collection:
+Designing data and methods for effective instruction tuning,” in
+International Conference on Machine Learning.
+PMLR, 2023,
+pp. 22 631–22 648.
+[31] P. Esser, S. Kulal, A. Blattmann, R. Entezari, J. M¨uller, H. Saini,
+Y. Levi, D. Lorenz, A. Sauer, F. Boesel et al., “Scaling rectified
+flow transformers for high-resolution image synthesis,” in Forty-
+first international conference on machine learning, 2024.
+[32] M. Cai, X. Cun, X. Li, W. Liu, Z. Zhang, Y. Zhang, Y. Shan,
+and X. Yue, “Ditctrl: Exploring attention control in multi-modal
+diffusion transformer for tuning-free multi-prompt longer video
+generation,” in Proceedings of the Computer Vision and Pattern
+Recognition Conference, 2025, pp. 7763–7772.
+[33] Y. Jiang, Z. Chen, Z. Ju, C. Li, W. Dou, and J. Zhu, “Freeaudio:
+Training-free timing planning for controllable long-form text-to-
+audio generation,” in Proceedings of the 33rd ACM International
+Conference on Multimedia, 2025, pp. 9871–9880.
+
+===== 第 6 页 =====
+[34] C. Wang, Y. Dai, L. Sun, J. Du, and J. Gao, “Audioatlas: A com-
+prehensive and balanced benchmark towards movie-oriented text-
+to-audio generation,” in Proceedings of the 33rd ACM Interna-
+tional Conference on Multimedia, 2025, pp. 13 266–13 272.
+[35] Y. Jiang, Z. Chen, Z. Ju, Y. Dai, W. Dou, and J. Zhu, “Contro-
+laudio: Tackling text-guided, timing-indicated and intelligible au-
+dio generation via progressive diffusion modeling,” arXiv preprint
+arXiv:2510.08878, 2025.
+[36] Z. Ouyang, D. Zheng, X.-M. Wu, J.-J. Jiang, K.-Y. Lin, J. Meng,
+and W.-S. Zheng, “Proedit: Inversion-based editing from prompts
+done right,” arXiv preprint arXiv:2512.22118, 2025.
+[37] Z. Yin, L.-H. Chen, L. Ni, and X. Dai, “Consistedit: Highly con-
+sistent and precise training-free visual editing,” in Proceedings of
+the SIGGRAPH Asia 2025 Conference Papers, 2025, pp. 1–11.
+[38] L. Chen, T. Ma, J. Liu, B. Li, Z. Chen, L. Liu, X. He,
+G. Li, Q. He, and Z. Wu, “Humo: Human-centric video gener-
+ation via collaborative multi-modal conditioning,” arXiv preprint
+arXiv:2509.08519, 2025.
+[39] T. Zhu, S. Zhang, J. Shao, and Y. Tang, “Kv-edit: Training-free
+image editing for precise background preservation,” in Proceed-
+ings of the IEEE/CVF International Conference on Computer Vi-
+sion, 2025, pp. 16 607–16 617.
+[40] C. D. Kim, B. Kim, H. Lee, and G. Kim, “Audiocaps: Generat-
+ing captions for audios in the wild,” in Proceedings of the 2019
+Conference of the North American Chapter of the Association for
+Computational Linguistics: Human Language Technologies, Vol-
+ume 1 (Long and Short Papers), 2019, pp. 119–132.
+[41] S. Hershey, D. P. Ellis, E. Fonseca, A. Jansen, C. Liu, R. C.
+Moore, and M. Plakal, “The benefit of temporally-strong labels
+in audio event classification,” in ICASSP 2021-2021 IEEE Inter-
+national Conference on Acoustics, Speech and Signal Processing
+(ICASSP).
+IEEE, 2021, pp. 366–370.
+[42] Z. Guo, J. Mao, R. Tao, L. Yan, K. Ouchi, H. Liu, and X. Wang,
+“Audio generation with multiple conditional diffusion model,” in
+Proceedings of the AAAI Conference on Artificial Intelligence,
+vol. 38, no. 16, 2024, pp. 18 153–18 161.
+[43] E. Fonseca, X. Favory, J. Pons, F. Font, and X. Serra, “Fsd50k: an
+open dataset of human-labeled sound events,” IEEE/ACM Trans-
+actions on Audio, Speech, and Language Processing, vol. 30, pp.
+829–852, 2021.
+[44] K. J. Piczak, “Esc: Dataset for environmental sound classifica-
+tion,” in Proceedings of the 23rd ACM international conference
+on Multimedia, 2015, pp. 1015–1018.
+[45] H. Chen, W. Xie, A. Vedaldi, and A. Zisserman, “Vggsound: A
+large-scale audio-visual dataset,” in ICASSP 2020-2020 IEEE In-
+ternational Conference on Acoustics, Speech and Signal Process-
+ing (ICASSP).
+IEEE, 2020, pp. 721–725.
+[46] Y. Wu, K. Chen, T. Zhang, Y. Hui, T. Berg-Kirkpatrick, and
+S. Dubnov, “Large-scale contrastive language-audio pretraining
+with feature fusion and keyword-to-caption augmentation,” in
+ICASSP 2023-2023 IEEE International Conference on Acoustics,
+Speech and Signal Processing (ICASSP).
+IEEE, 2023, pp. 1–5.
+[47] C. Meng, Y. He, Y. Song, J. Song, J. Wu, J.-Y. Zhu, and S. Er-
+mon, “Sdedit: Guided image synthesis and editing with stochastic
+differential equations,” arXiv preprint arXiv:2108.01073, 2021.
+[48] Z. Evans, J. D. Parker, C. Carr, Z. Zukowski, J. Taylor, and
+J. Pons, “Stable audio open,” in ICASSP 2025-2025 IEEE Inter-
+national Conference on Acoustics, Speech and Signal Processing
+(ICASSP).
+IEEE, 2025, pp. 1–5.
+[49] L. Rout, Y. Chen, N. Ruiz, C. Caramanis, S. Shakkottai,
+and W.-S. Chu, “Semantic image inversion and editing us-
+ing rectified stochastic differential equations,” arXiv preprint
+arXiv:2410.10792, 2024.
