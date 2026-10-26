@@ -1,0 +1,2007 @@
+{
+  "url": "https://zenodo.org/records/3338373/files/musdb18hq.zip?download=1",
+  "archive_size": 22656664047,
+  "archive_md5": "12d4f2ecd55245a4688754dd76363103",
+  "entries": [
+    {
+      "path": "test/Buitraker - Revo X/bass.wav",
+      "offset": 14782844460,
+      "compressed_size": 37783284,
+      "size": 48655732,
+      "crc32": 2082590170,
+      "method": 8
+    },
+    {
+      "path": "test/Buitraker - Revo X/drums.wav",
+      "offset": 14820627834,
+      "compressed_size": 37359684,
+      "size": 48655732,
+      "crc32": 1779188939,
+      "method": 8
+    },
+    {
+      "path": "test/Buitraker - Revo X/other.wav",
+      "offset": 14857987609,
+      "compressed_size": 42245403,
+      "size": 48655732,
+      "crc32": 471709667,
+      "method": 8
+    },
+    {
+      "path": "test/Buitraker - Revo X/vocals.wav",
+      "offset": 14900233103,
+      "compressed_size": 28450319,
+      "size": 48655732,
+      "crc32": 379208863,
+      "method": 8
+    },
+    {
+      "path": "test/Buitraker - Revo X/mixture.wav",
+      "offset": 14928683514,
+      "compressed_size": 44538065,
+      "size": 48655732,
+      "crc32": 54816844,
+      "method": 8
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/bass.wav",
+      "offset": 14973221761,
+      "compressed_size": 20376046,
+      "size": 47628044,
+      "crc32": 126281495,
+      "method": 8
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/drums.wav",
+      "offset": 14993597904,
+      "compressed_size": 31312737,
+      "size": 47628044,
+      "crc32": 1324548809,
+      "method": 8
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/other.wav",
+      "offset": 15024910739,
+      "compressed_size": 35137353,
+      "size": 47628044,
+      "crc32": 1595126827,
+      "method": 8
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/vocals.wav",
+      "offset": 15060048190,
+      "compressed_size": 35584171,
+      "size": 47628044,
+      "crc32": 3687374655,
+      "method": 8
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/mixture.wav",
+      "offset": 15095632460,
+      "compressed_size": 42532013,
+      "size": 47628044,
+      "crc32": 737924200,
+      "method": 8
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/bass.wav",
+      "offset": 15138164681,
+      "compressed_size": 40621919,
+      "size": 56500376,
+      "crc32": 3029172292,
+      "method": 8
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/drums.wav",
+      "offset": 15178786716,
+      "compressed_size": 45017491,
+      "size": 56500376,
+      "crc32": 3270573013,
+      "method": 8
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/other.wav",
+      "offset": 15223804324,
+      "compressed_size": 36715829,
+      "size": 56500376,
+      "crc32": 1967642060,
+      "method": 8
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/vocals.wav",
+      "offset": 15260520270,
+      "compressed_size": 44016788,
+      "size": 56500376,
+      "crc32": 1083296873,
+      "method": 8
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/mixture.wav",
+      "offset": 15304537176,
+      "compressed_size": 49101348,
+      "size": 56500376,
+      "crc32": 1773886816,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Oh No/bass.wav",
+      "offset": 15353638717,
+      "compressed_size": 8851187,
+      "size": 13440968,
+      "crc32": 785510201,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Oh No/drums.wav",
+      "offset": 15362489986,
+      "compressed_size": 10614295,
+      "size": 13440970,
+      "crc32": 302030594,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Oh No/other.wav",
+      "offset": 15373104364,
+      "compressed_size": 9361163,
+      "size": 13440970,
+      "crc32": 3879050624,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Oh No/vocals.wav",
+      "offset": 15382465610,
+      "compressed_size": 5604926,
+      "size": 13440972,
+      "crc32": 3781342524,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Oh No/mixture.wav",
+      "offset": 15388070620,
+      "compressed_size": 11641458,
+      "size": 13440972,
+      "crc32": 2539457132,
+      "method": 8
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/bass.wav",
+      "offset": 15399712259,
+      "compressed_size": 26802495,
+      "size": 49676332,
+      "crc32": 2132274889,
+      "method": 8
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/drums.wav",
+      "offset": 15426514858,
+      "compressed_size": 28186328,
+      "size": 49676332,
+      "crc32": 2120422457,
+      "method": 8
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/other.wav",
+      "offset": 15454701291,
+      "compressed_size": 38825595,
+      "size": 49676332,
+      "crc32": 2649819745,
+      "method": 8
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/vocals.wav",
+      "offset": 15493526991,
+      "compressed_size": 38391958,
+      "size": 49676332,
+      "crc32": 1952062785,
+      "method": 8
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/mixture.wav",
+      "offset": 15531919055,
+      "compressed_size": 44739855,
+      "size": 49676332,
+      "crc32": 676422381,
+      "method": 8
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/bass.wav",
+      "offset": 15576659122,
+      "compressed_size": 17235616,
+      "size": 31292932,
+      "crc32": 3603955458,
+      "method": 8
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/drums.wav",
+      "offset": 15593894851,
+      "compressed_size": 21593443,
+      "size": 31292932,
+      "crc32": 3022680425,
+      "method": 8
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/other.wav",
+      "offset": 15615488408,
+      "compressed_size": 23291347,
+      "size": 31292932,
+      "crc32": 1347360154,
+      "method": 8
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/vocals.wav",
+      "offset": 15638779869,
+      "compressed_size": 22649144,
+      "size": 31292932,
+      "crc32": 834207794,
+      "method": 8
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/mixture.wav",
+      "offset": 15661429128,
+      "compressed_size": 27452119,
+      "size": 31292932,
+      "crc32": 3983411420,
+      "method": 8
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/bass.wav",
+      "offset": 15688881460,
+      "compressed_size": 26694218,
+      "size": 43122756,
+      "crc32": 327695018,
+      "method": 8
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/drums.wav",
+      "offset": 15715575783,
+      "compressed_size": 16652310,
+      "size": 43122756,
+      "crc32": 3063900721,
+      "method": 8
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/other.wav",
+      "offset": 15732228199,
+      "compressed_size": 35998813,
+      "size": 43122756,
+      "crc32": 1524483726,
+      "method": 8
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/vocals.wav",
+      "offset": 15768227118,
+      "compressed_size": 18997492,
+      "size": 43122756,
+      "crc32": 3666697229,
+      "method": 8
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/mixture.wav",
+      "offset": 15787224717,
+      "compressed_size": 38195599,
+      "size": 43122756,
+      "crc32": 3262638621,
+      "method": 8
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/bass.wav",
+      "offset": 15825420519,
+      "compressed_size": 24687055,
+      "size": 35372968,
+      "crc32": 540649508,
+      "method": 8
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/drums.wav",
+      "offset": 15850107677,
+      "compressed_size": 28904706,
+      "size": 35372968,
+      "crc32": 3132227012,
+      "method": 8
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/other.wav",
+      "offset": 15879012487,
+      "compressed_size": 29748458,
+      "size": 35372968,
+      "crc32": 95794268,
+      "method": 8
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/vocals.wav",
+      "offset": 15908761049,
+      "compressed_size": 28886259,
+      "size": 35372968,
+      "crc32": 2487924650,
+      "method": 8
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/mixture.wav",
+      "offset": 15937647413,
+      "compressed_size": 32589100,
+      "size": 35372968,
+      "crc32": 1767991456,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/bass.wav",
+      "offset": 15970236709,
+      "compressed_size": 6118254,
+      "size": 55154444,
+      "crc32": 943509643,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/drums.wav",
+      "offset": 15976355061,
+      "compressed_size": 43866361,
+      "size": 55154444,
+      "crc32": 3595011934,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/other.wav",
+      "offset": 16020221521,
+      "compressed_size": 46780108,
+      "size": 55154444,
+      "crc32": 3903730332,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/vocals.wav",
+      "offset": 16067001728,
+      "compressed_size": 40515147,
+      "size": 55154444,
+      "crc32": 4237656977,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/mixture.wav",
+      "offset": 16107516975,
+      "compressed_size": 49320108,
+      "size": 55154444,
+      "crc32": 1215758769,
+      "method": 8
+    },
+    {
+      "path": "test/Zeno - Signs/bass.wav",
+      "offset": 16156837260,
+      "compressed_size": 28907756,
+      "size": 41345368,
+      "crc32": 2449146460,
+      "method": 8
+    },
+    {
+      "path": "test/Zeno - Signs/drums.wav",
+      "offset": 16185745100,
+      "compressed_size": 34411978,
+      "size": 41345368,
+      "crc32": 3956695881,
+      "method": 8
+    },
+    {
+      "path": "test/Zeno - Signs/other.wav",
+      "offset": 16220157163,
+      "compressed_size": 36170803,
+      "size": 41345368,
+      "crc32": 3711007902,
+      "method": 8
+    },
+    {
+      "path": "test/Zeno - Signs/vocals.wav",
+      "offset": 16256328051,
+      "compressed_size": 27397475,
+      "size": 41345368,
+      "crc32": 4207491455,
+      "method": 8
+    },
+    {
+      "path": "test/Zeno - Signs/mixture.wav",
+      "offset": 16283725612,
+      "compressed_size": 37853285,
+      "size": 41345368,
+      "crc32": 1841187813,
+      "method": 8
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/bass.wav",
+      "offset": 16321579072,
+      "compressed_size": 21306735,
+      "size": 24991356,
+      "crc32": 1001179852,
+      "method": 8
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/drums.wav",
+      "offset": 16342885903,
+      "compressed_size": 19232203,
+      "size": 24991356,
+      "crc32": 2580327221,
+      "method": 8
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/other.wav",
+      "offset": 16362118203,
+      "compressed_size": 22871823,
+      "size": 24991356,
+      "crc32": 3771493665,
+      "method": 8
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/vocals.wav",
+      "offset": 16384990123,
+      "compressed_size": 7978418,
+      "size": 24991356,
+      "crc32": 1481827891,
+      "method": 8
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/mixture.wav",
+      "offset": 16392968639,
+      "compressed_size": 23504862,
+      "size": 24991356,
+      "crc32": 1742860063,
+      "method": 8
+    },
+    {
+      "path": "test/Timboz - Pony/bass.wav",
+      "offset": 16416473677,
+      "compressed_size": 31695483,
+      "size": 44637840,
+      "crc32": 303321425,
+      "method": 8
+    },
+    {
+      "path": "test/Timboz - Pony/drums.wav",
+      "offset": 16448169245,
+      "compressed_size": 36758767,
+      "size": 44637840,
+      "crc32": 2513569288,
+      "method": 8
+    },
+    {
+      "path": "test/Timboz - Pony/other.wav",
+      "offset": 16484928098,
+      "compressed_size": 39888628,
+      "size": 44637840,
+      "crc32": 3185204871,
+      "method": 8
+    },
+    {
+      "path": "test/Timboz - Pony/vocals.wav",
+      "offset": 16524816812,
+      "compressed_size": 31740445,
+      "size": 44637840,
+      "crc32": 2792126272,
+      "method": 8
+    },
+    {
+      "path": "test/Timboz - Pony/mixture.wav",
+      "offset": 16556557344,
+      "compressed_size": 40688289,
+      "size": 44637840,
+      "crc32": 1639753167,
+      "method": 8
+    },
+    {
+      "path": "test/Forkupines - Semantics/bass.wav",
+      "offset": 16597245807,
+      "compressed_size": 35226758,
+      "size": 48260408,
+      "crc32": 328420895,
+      "method": 8
+    },
+    {
+      "path": "test/Forkupines - Semantics/drums.wav",
+      "offset": 16632472659,
+      "compressed_size": 38357534,
+      "size": 48260408,
+      "crc32": 777337072,
+      "method": 8
+    },
+    {
+      "path": "test/Forkupines - Semantics/other.wav",
+      "offset": 16670830288,
+      "compressed_size": 37526502,
+      "size": 48260408,
+      "crc32": 433305782,
+      "method": 8
+    },
+    {
+      "path": "test/Forkupines - Semantics/vocals.wav",
+      "offset": 16708356885,
+      "compressed_size": 16745538,
+      "size": 48260408,
+      "crc32": 231884331,
+      "method": 8
+    },
+    {
+      "path": "test/Forkupines - Semantics/mixture.wav",
+      "offset": 16725102519,
+      "compressed_size": 43643577,
+      "size": 48260408,
+      "crc32": 2003475596,
+      "method": 8
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/bass.wav",
+      "offset": 16768746284,
+      "compressed_size": 22457535,
+      "size": 35078444,
+      "crc32": 2854553399,
+      "method": 8
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/drums.wav",
+      "offset": 16791203918,
+      "compressed_size": 27205524,
+      "size": 35078444,
+      "crc32": 2187038101,
+      "method": 8
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/other.wav",
+      "offset": 16818409542,
+      "compressed_size": 29703520,
+      "size": 35078444,
+      "crc32": 1432274054,
+      "method": 8
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/vocals.wav",
+      "offset": 16848113162,
+      "compressed_size": 23447589,
+      "size": 35078444,
+      "crc32": 305459954,
+      "method": 8
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/mixture.wav",
+      "offset": 16871560852,
+      "compressed_size": 32207017,
+      "size": 35078444,
+      "crc32": 1214228035,
+      "method": 8
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/bass.wav",
+      "offset": 16903768060,
+      "compressed_size": 15965708,
+      "size": 31020456,
+      "crc32": 3366670850,
+      "method": 8
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/drums.wav",
+      "offset": 16919733865,
+      "compressed_size": 19776833,
+      "size": 31020456,
+      "crc32": 2203040865,
+      "method": 8
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/other.wav",
+      "offset": 16939510796,
+      "compressed_size": 25248474,
+      "size": 31020456,
+      "crc32": 1904859745,
+      "method": 8
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/vocals.wav",
+      "offset": 16964759368,
+      "compressed_size": 17044294,
+      "size": 31020456,
+      "crc32": 999242466,
+      "method": 8
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/mixture.wav",
+      "offset": 16981803761,
+      "compressed_size": 27580484,
+      "size": 31020456,
+      "crc32": 603051817,
+      "method": 8
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/bass.wav",
+      "offset": 17009384455,
+      "compressed_size": 11465510,
+      "size": 44966292,
+      "crc32": 937301798,
+      "method": 8
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/drums.wav",
+      "offset": 17020850083,
+      "compressed_size": 20158288,
+      "size": 44966292,
+      "crc32": 51517079,
+      "method": 8
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/other.wav",
+      "offset": 17041008490,
+      "compressed_size": 34711125,
+      "size": 44966292,
+      "crc32": 3236632289,
+      "method": 8
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/vocals.wav",
+      "offset": 17075719734,
+      "compressed_size": 21318925,
+      "size": 44966292,
+      "crc32": 2929846564,
+      "method": 8
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/mixture.wav",
+      "offset": 17097038779,
+      "compressed_size": 36042496,
+      "size": 44966292,
+      "crc32": 2427469064,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Borderline/bass.wav",
+      "offset": 17133081484,
+      "compressed_size": 37359774,
+      "size": 50599612,
+      "crc32": 650129482,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Borderline/drums.wav",
+      "offset": 17170441354,
+      "compressed_size": 36007444,
+      "size": 50599612,
+      "crc32": 136329629,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Borderline/other.wav",
+      "offset": 17206448895,
+      "compressed_size": 43535140,
+      "size": 50599612,
+      "crc32": 3674823619,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Borderline/vocals.wav",
+      "offset": 17249984132,
+      "compressed_size": 24736106,
+      "size": 50599612,
+      "crc32": 2626787279,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Borderline/mixture.wav",
+      "offset": 17274720336,
+      "compressed_size": 44622956,
+      "size": 50599612,
+      "crc32": 4091870718,
+      "method": 8
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/bass.wav",
+      "offset": 17319343483,
+      "compressed_size": 15183664,
+      "size": 37062700,
+      "crc32": 4031471035,
+      "method": 8
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/drums.wav",
+      "offset": 17334527247,
+      "compressed_size": 27899570,
+      "size": 37062700,
+      "crc32": 3056851904,
+      "method": 8
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/other.wav",
+      "offset": 17362426918,
+      "compressed_size": 30364573,
+      "size": 37062700,
+      "crc32": 1175906973,
+      "method": 8
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/vocals.wav",
+      "offset": 17392791592,
+      "compressed_size": 24948229,
+      "size": 37062700,
+      "crc32": 20388373,
+      "method": 8
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/mixture.wav",
+      "offset": 17417739923,
+      "compressed_size": 33401093,
+      "size": 37062700,
+      "crc32": 4105016864,
+      "method": 8
+    },
+    {
+      "path": "test/Motor Tapes - Shore/bass.wav",
+      "offset": 17451141202,
+      "compressed_size": 29335118,
+      "size": 43522020,
+      "crc32": 1083116245,
+      "method": 8
+    },
+    {
+      "path": "test/Motor Tapes - Shore/drums.wav",
+      "offset": 17480476411,
+      "compressed_size": 27139154,
+      "size": 43522020,
+      "crc32": 2664797942,
+      "method": 8
+    },
+    {
+      "path": "test/Motor Tapes - Shore/other.wav",
+      "offset": 17507615657,
+      "compressed_size": 36077518,
+      "size": 43522020,
+      "crc32": 2099390494,
+      "method": 8
+    },
+    {
+      "path": "test/Motor Tapes - Shore/vocals.wav",
+      "offset": 17543693267,
+      "compressed_size": 22725631,
+      "size": 43522020,
+      "crc32": 1806690312,
+      "method": 8
+    },
+    {
+      "path": "test/Motor Tapes - Shore/mixture.wav",
+      "offset": 17566418991,
+      "compressed_size": 36823100,
+      "size": 43522020,
+      "crc32": 549835748,
+      "method": 8
+    },
+    {
+      "path": "test/Arise - Run Run Run/bass.wav",
+      "offset": 17603242268,
+      "compressed_size": 32342936,
+      "size": 38700944,
+      "crc32": 4141500597,
+      "method": 8
+    },
+    {
+      "path": "test/Arise - Run Run Run/drums.wav",
+      "offset": 17635585295,
+      "compressed_size": 27650942,
+      "size": 38700944,
+      "crc32": 3821068887,
+      "method": 8
+    },
+    {
+      "path": "test/Arise - Run Run Run/other.wav",
+      "offset": 17663236329,
+      "compressed_size": 31177535,
+      "size": 38700944,
+      "crc32": 2766458030,
+      "method": 8
+    },
+    {
+      "path": "test/Arise - Run Run Run/vocals.wav",
+      "offset": 17694413956,
+      "compressed_size": 21608667,
+      "size": 38700944,
+      "crc32": 1054922619,
+      "method": 8
+    },
+    {
+      "path": "test/Arise - Run Run Run/mixture.wav",
+      "offset": 17716022716,
+      "compressed_size": 35943266,
+      "size": 38700944,
+      "crc32": 325061431,
+      "method": 8
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/bass.wav",
+      "offset": 17751966163,
+      "compressed_size": 26902001,
+      "size": 69794984,
+      "crc32": 2046899264,
+      "method": 8
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/drums.wav",
+      "offset": 17778868259,
+      "compressed_size": 52122689,
+      "size": 69794984,
+      "crc32": 443270269,
+      "method": 8
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/other.wav",
+      "offset": 17830991044,
+      "compressed_size": 59911752,
+      "size": 69794984,
+      "crc32": 204940266,
+      "method": 8
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/vocals.wav",
+      "offset": 17890902892,
+      "compressed_size": 8640574,
+      "size": 69794984,
+      "crc32": 3609094246,
+      "method": 8
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/mixture.wav",
+      "offset": 17899543563,
+      "compressed_size": 63791210,
+      "size": 69794984,
+      "crc32": 3226800646,
+      "method": 8
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/bass.wav",
+      "offset": 17963334964,
+      "compressed_size": 34147822,
+      "size": 51653744,
+      "crc32": 2146635650,
+      "method": 8
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/drums.wav",
+      "offset": 17997482887,
+      "compressed_size": 40388164,
+      "size": 51653744,
+      "crc32": 1545951335,
+      "method": 8
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/other.wav",
+      "offset": 18037871153,
+      "compressed_size": 43753910,
+      "size": 51653744,
+      "crc32": 3153725835,
+      "method": 8
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/vocals.wav",
+      "offset": 18081625165,
+      "compressed_size": 17115661,
+      "size": 51653744,
+      "crc32": 323342798,
+      "method": 8
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/mixture.wav",
+      "offset": 18098740929,
+      "compressed_size": 46075240,
+      "size": 51653744,
+      "crc32": 3247809685,
+      "method": 8
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/bass.wav",
+      "offset": 18144816361,
+      "compressed_size": 21718286,
+      "size": 39089968,
+      "crc32": 2913626868,
+      "method": 8
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/drums.wav",
+      "offset": 18166534743,
+      "compressed_size": 19158605,
+      "size": 39089968,
+      "crc32": 3162950742,
+      "method": 8
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/other.wav",
+      "offset": 18185693445,
+      "compressed_size": 21920446,
+      "size": 39089968,
+      "crc32": 3791354067,
+      "method": 8
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/vocals.wav",
+      "offset": 18207613988,
+      "compressed_size": 14844916,
+      "size": 39089968,
+      "crc32": 3289793048,
+      "method": 8
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/mixture.wav",
+      "offset": 18222459002,
+      "compressed_size": 32380357,
+      "size": 39089968,
+      "crc32": 4197181062,
+      "method": 8
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/bass.wav",
+      "offset": 18254839552,
+      "compressed_size": 26132973,
+      "size": 36673132,
+      "crc32": 703347959,
+      "method": 8
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/drums.wav",
+      "offset": 18280972627,
+      "compressed_size": 29801534,
+      "size": 36673132,
+      "crc32": 1050007033,
+      "method": 8
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/other.wav",
+      "offset": 18310774264,
+      "compressed_size": 31590931,
+      "size": 36673132,
+      "crc32": 1112100885,
+      "method": 8
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/vocals.wav",
+      "offset": 18342365298,
+      "compressed_size": 17210259,
+      "size": 36673132,
+      "crc32": 4135421653,
+      "method": 8
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/mixture.wav",
+      "offset": 18359575661,
+      "compressed_size": 33092688,
+      "size": 36673132,
+      "crc32": 46425482,
+      "method": 8
+    },
+    {
+      "path": "test/Raft Monk - Tiring/bass.wav",
+      "offset": 18392668536,
+      "compressed_size": 27459328,
+      "size": 37440156,
+      "crc32": 1781469924,
+      "method": 8
+    },
+    {
+      "path": "test/Raft Monk - Tiring/drums.wav",
+      "offset": 18420127954,
+      "compressed_size": 26806135,
+      "size": 37440156,
+      "crc32": 297051524,
+      "method": 8
+    },
+    {
+      "path": "test/Raft Monk - Tiring/other.wav",
+      "offset": 18446934180,
+      "compressed_size": 32679340,
+      "size": 37440156,
+      "crc32": 2421346227,
+      "method": 8
+    },
+    {
+      "path": "test/Raft Monk - Tiring/vocals.wav",
+      "offset": 18479613611,
+      "compressed_size": 24954539,
+      "size": 37440156,
+      "crc32": 3571252567,
+      "method": 8
+    },
+    {
+      "path": "test/Raft Monk - Tiring/mixture.wav",
+      "offset": 18504568242,
+      "compressed_size": 33753325,
+      "size": 37440156,
+      "crc32": 3208676958,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Too Much/bass.wav",
+      "offset": 18538321738,
+      "compressed_size": 30209794,
+      "size": 38830092,
+      "crc32": 3177624458,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Too Much/drums.wav",
+      "offset": 18568531618,
+      "compressed_size": 31174439,
+      "size": 38830092,
+      "crc32": 2796680396,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Too Much/other.wav",
+      "offset": 18599706144,
+      "compressed_size": 32273144,
+      "size": 38830092,
+      "crc32": 31723432,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Too Much/vocals.wav",
+      "offset": 18631979375,
+      "compressed_size": 20044349,
+      "size": 38830092,
+      "crc32": 3228029952,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Too Much/mixture.wav",
+      "offset": 18652023812,
+      "compressed_size": 35446848,
+      "size": 38830092,
+      "crc32": 808495598,
+      "method": 8
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/bass.wav",
+      "offset": 18687470839,
+      "compressed_size": 13042895,
+      "size": 33601092,
+      "crc32": 212921175,
+      "method": 8
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/drums.wav",
+      "offset": 18700513832,
+      "compressed_size": 29191764,
+      "size": 33601092,
+      "crc32": 3876308427,
+      "method": 8
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/other.wav",
+      "offset": 18729705695,
+      "compressed_size": 23439749,
+      "size": 33601092,
+      "crc32": 3782914828,
+      "method": 8
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/vocals.wav",
+      "offset": 18753145543,
+      "compressed_size": 5912135,
+      "size": 33601092,
+      "crc32": 3785306006,
+      "method": 8
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/mixture.wav",
+      "offset": 18759057778,
+      "compressed_size": 30918798,
+      "size": 33601092,
+      "crc32": 2316066106,
+      "method": 8
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/bass.wav",
+      "offset": 18789976776,
+      "compressed_size": 45437533,
+      "size": 55968456,
+      "crc32": 1078559539,
+      "method": 8
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/drums.wav",
+      "offset": 18835414416,
+      "compressed_size": 44382932,
+      "size": 55968456,
+      "crc32": 990587840,
+      "method": 8
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/other.wav",
+      "offset": 18879797456,
+      "compressed_size": 48222484,
+      "size": 55968456,
+      "crc32": 4072842590,
+      "method": 8
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/vocals.wav",
+      "offset": 18928020048,
+      "compressed_size": 15867092,
+      "size": 55968456,
+      "crc32": 3299952947,
+      "method": 8
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/mixture.wav",
+      "offset": 18943887249,
+      "compressed_size": 52121308,
+      "size": 55968456,
+      "crc32": 1414845978,
+      "method": 8
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/bass.wav",
+      "offset": 18996008758,
+      "compressed_size": 40821770,
+      "size": 53929216,
+      "crc32": 3095023923,
+      "method": 8
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/drums.wav",
+      "offset": 19036830627,
+      "compressed_size": 31493685,
+      "size": 53929216,
+      "crc32": 1195943414,
+      "method": 8
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/other.wav",
+      "offset": 19068324412,
+      "compressed_size": 44425263,
+      "size": 53929216,
+      "crc32": 128448350,
+      "method": 8
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/vocals.wav",
+      "offset": 19112749775,
+      "compressed_size": 32365555,
+      "size": 53929216,
+      "crc32": 1440222469,
+      "method": 8
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/mixture.wav",
+      "offset": 19145115431,
+      "compressed_size": 46582322,
+      "size": 53929216,
+      "crc32": 2826045813,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Bulldozer/bass.wav",
+      "offset": 19191697934,
+      "compressed_size": 43348229,
+      "size": 59453932,
+      "crc32": 2255667080,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Bulldozer/drums.wav",
+      "offset": 19235046250,
+      "compressed_size": 48016109,
+      "size": 59453932,
+      "crc32": 2011298920,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Bulldozer/other.wav",
+      "offset": 19283062447,
+      "compressed_size": 48599417,
+      "size": 59453932,
+      "crc32": 2221476860,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Bulldozer/vocals.wav",
+      "offset": 19331661952,
+      "compressed_size": 28536720,
+      "size": 59453932,
+      "crc32": 2968132840,
+      "method": 8
+    },
+    {
+      "path": "test/BKS - Bulldozer/mixture.wav",
+      "offset": 19360198761,
+      "compressed_size": 54053240,
+      "size": 59453932,
+      "crc32": 1054492206,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/bass.wav",
+      "offset": 19414252189,
+      "compressed_size": 22720489,
+      "size": 41398316,
+      "crc32": 3985261240,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/drums.wav",
+      "offset": 19436972784,
+      "compressed_size": 24256738,
+      "size": 41398316,
+      "crc32": 2241096348,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/other.wav",
+      "offset": 19461229629,
+      "compressed_size": 36035370,
+      "size": 41398316,
+      "crc32": 4107216184,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/vocals.wav",
+      "offset": 19497265106,
+      "compressed_size": 23300237,
+      "size": 41398316,
+      "crc32": 3585001518,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/mixture.wav",
+      "offset": 19520565451,
+      "compressed_size": 37971820,
+      "size": 41398316,
+      "crc32": 638153702,
+      "method": 8
+    },
+    {
+      "path": "test/Mu - Too Bright/bass.wav",
+      "offset": 19558537459,
+      "compressed_size": 11013465,
+      "size": 48009980,
+      "crc32": 3448482251,
+      "method": 8
+    },
+    {
+      "path": "test/Mu - Too Bright/drums.wav",
+      "offset": 19569551011,
+      "compressed_size": 30386869,
+      "size": 48009980,
+      "crc32": 756569762,
+      "method": 8
+    },
+    {
+      "path": "test/Mu - Too Bright/other.wav",
+      "offset": 19599937968,
+      "compressed_size": 40040684,
+      "size": 48009980,
+      "crc32": 3503552963,
+      "method": 8
+    },
+    {
+      "path": "test/Mu - Too Bright/vocals.wav",
+      "offset": 19639978740,
+      "compressed_size": 33524996,
+      "size": 48009980,
+      "crc32": 3180440135,
+      "method": 8
+    },
+    {
+      "path": "test/Mu - Too Bright/mixture.wav",
+      "offset": 19673503825,
+      "compressed_size": 43247747,
+      "size": 48009980,
+      "crc32": 2167951863,
+      "method": 8
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/bass.wav",
+      "offset": 19716751753,
+      "compressed_size": 41425740,
+      "size": 60631244,
+      "crc32": 2126452364,
+      "method": 8
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/drums.wav",
+      "offset": 19758177592,
+      "compressed_size": 35221739,
+      "size": 60631244,
+      "crc32": 2774250912,
+      "method": 8
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/other.wav",
+      "offset": 19793399431,
+      "compressed_size": 52157559,
+      "size": 60631244,
+      "crc32": 1362189161,
+      "method": 8
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/vocals.wav",
+      "offset": 19845557090,
+      "compressed_size": 30836702,
+      "size": 60631244,
+      "crc32": 4252286673,
+      "method": 8
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/mixture.wav",
+      "offset": 19876393893,
+      "compressed_size": 54630881,
+      "size": 60631244,
+      "crc32": 4181840485,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Happy Daze/bass.wav",
+      "offset": 19931024955,
+      "compressed_size": 12522203,
+      "size": 28700932,
+      "crc32": 3512683886,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Happy Daze/drums.wav",
+      "offset": 19943547245,
+      "compressed_size": 24366294,
+      "size": 28700934,
+      "crc32": 1733075597,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Happy Daze/other.wav",
+      "offset": 19967913627,
+      "compressed_size": 18473147,
+      "size": 28700934,
+      "crc32": 38266070,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Happy Daze/vocals.wav",
+      "offset": 19986386862,
+      "compressed_size": 10940426,
+      "size": 28700936,
+      "crc32": 1770828828,
+      "method": 8
+    },
+    {
+      "path": "test/PR - Happy Daze/mixture.wav",
+      "offset": 19997327377,
+      "compressed_size": 25825339,
+      "size": 28700938,
+      "crc32": 4275382858,
+      "method": 8
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/bass.wav",
+      "offset": 20023152902,
+      "compressed_size": 11529428,
+      "size": 44138632,
+      "crc32": 3486482408,
+      "method": 8
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/drums.wav",
+      "offset": 20034682434,
+      "compressed_size": 28113291,
+      "size": 44138632,
+      "crc32": 3405030505,
+      "method": 8
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/other.wav",
+      "offset": 20062795830,
+      "compressed_size": 36919852,
+      "size": 44138632,
+      "crc32": 1833875228,
+      "method": 8
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/vocals.wav",
+      "offset": 20099715787,
+      "compressed_size": 31364806,
+      "size": 44138632,
+      "crc32": 3784503041,
+      "method": 8
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/mixture.wav",
+      "offset": 20131080699,
+      "compressed_size": 38462744,
+      "size": 44138632,
+      "crc32": 4208975029,
+      "method": 8
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/bass.wav",
+      "offset": 20169543646,
+      "compressed_size": 20325623,
+      "size": 56073980,
+      "crc32": 3922268469,
+      "method": 8
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/drums.wav",
+      "offset": 20189869373,
+      "compressed_size": 23951897,
+      "size": 56073980,
+      "crc32": 1026023394,
+      "method": 8
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/other.wav",
+      "offset": 20213821375,
+      "compressed_size": 46995073,
+      "size": 56073980,
+      "crc32": 1849053618,
+      "method": 8
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/vocals.wav",
+      "offset": 20260816553,
+      "compressed_size": 25407515,
+      "size": 56073980,
+      "crc32": 3951640090,
+      "method": 8
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/mixture.wav",
+      "offset": 20286224174,
+      "compressed_size": 49860946,
+      "size": 56073980,
+      "crc32": 3630701935,
+      "method": 8
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/bass.wav",
+      "offset": 20336085318,
+      "compressed_size": 36155557,
+      "size": 58466408,
+      "crc32": 1462397565,
+      "method": 8
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/drums.wav",
+      "offset": 20372240974,
+      "compressed_size": 45711102,
+      "size": 58466408,
+      "crc32": 4197543451,
+      "method": 8
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/other.wav",
+      "offset": 20417952176,
+      "compressed_size": 50977825,
+      "size": 58466408,
+      "crc32": 3333911569,
+      "method": 8
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/vocals.wav",
+      "offset": 20468930101,
+      "compressed_size": 36638295,
+      "size": 58466408,
+      "crc32": 2991626094,
+      "method": 8
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/mixture.wav",
+      "offset": 20505568497,
+      "compressed_size": 53234700,
+      "size": 58466408,
+      "crc32": 1762520298,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/bass.wav",
+      "offset": 20558803393,
+      "compressed_size": 31739428,
+      "size": 43569196,
+      "crc32": 2603445369,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/drums.wav",
+      "offset": 20590542923,
+      "compressed_size": 34039287,
+      "size": 43569196,
+      "crc32": 3656501334,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/other.wav",
+      "offset": 20624582313,
+      "compressed_size": 38388185,
+      "size": 43569196,
+      "crc32": 3988003725,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/vocals.wav",
+      "offset": 20662970601,
+      "compressed_size": 31804880,
+      "size": 43569196,
+      "crc32": 2827948909,
+      "method": 8
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/mixture.wav",
+      "offset": 20694775585,
+      "compressed_size": 39989858,
+      "size": 43569196,
+      "crc32": 4159846781,
+      "method": 8
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/bass.wav",
+      "offset": 20734765647,
+      "compressed_size": 19861553,
+      "size": 42985732,
+      "crc32": 3829057403,
+      "method": 8
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/drums.wav",
+      "offset": 20754627307,
+      "compressed_size": 30787526,
+      "size": 42985732,
+      "crc32": 347634090,
+      "method": 8
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/other.wav",
+      "offset": 20785414941,
+      "compressed_size": 32050641,
+      "size": 42985732,
+      "crc32": 2500476523,
+      "method": 8
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/vocals.wav",
+      "offset": 20817465690,
+      "compressed_size": 33848186,
+      "size": 42985732,
+      "crc32": 38468737,
+      "method": 8
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/mixture.wav",
+      "offset": 20851313985,
+      "compressed_size": 38820864,
+      "size": 42985732,
+      "crc32": 1671291656,
+      "method": 8
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/bass.wav",
+      "offset": 20890135051,
+      "compressed_size": 18648821,
+      "size": 40118444,
+      "crc32": 559178739,
+      "method": 8
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/drums.wav",
+      "offset": 20908783972,
+      "compressed_size": 19604220,
+      "size": 40118444,
+      "crc32": 1643205,
+      "method": 8
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/other.wav",
+      "offset": 20928388293,
+      "compressed_size": 32149135,
+      "size": 40118444,
+      "crc32": 3303709168,
+      "method": 8
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/vocals.wav",
+      "offset": 20960537529,
+      "compressed_size": 26519951,
+      "size": 40118444,
+      "crc32": 3860921750,
+      "method": 8
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/mixture.wav",
+      "offset": 20987057582,
+      "compressed_size": 33884086,
+      "size": 40118444,
+      "crc32": 1880527072,
+      "method": 8
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/bass.wav",
+      "offset": 21020941857,
+      "compressed_size": 46160891,
+      "size": 75918196,
+      "crc32": 1144856614,
+      "method": 8
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/drums.wav",
+      "offset": 21067102842,
+      "compressed_size": 61001521,
+      "size": 75918196,
+      "crc32": 264598645,
+      "method": 8
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/other.wav",
+      "offset": 21128104458,
+      "compressed_size": 67717034,
+      "size": 75918196,
+      "crc32": 3412385968,
+      "method": 8
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/vocals.wav",
+      "offset": 21195821587,
+      "compressed_size": 40388602,
+      "size": 75918196,
+      "crc32": 403857213,
+      "method": 8
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/mixture.wav",
+      "offset": 21236210285,
+      "compressed_size": 70378290,
+      "size": 75918196,
+      "crc32": 3961777126,
+      "method": 8
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/bass.wav",
+      "offset": 21306588769,
+      "compressed_size": 15132333,
+      "size": 32986056,
+      "crc32": 3155875791,
+      "method": 8
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/drums.wav",
+      "offset": 21321721207,
+      "compressed_size": 17069344,
+      "size": 32986056,
+      "crc32": 406052301,
+      "method": 8
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/other.wav",
+      "offset": 21338790657,
+      "compressed_size": 28522201,
+      "size": 32986056,
+      "crc32": 3692906361,
+      "method": 8
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/vocals.wav",
+      "offset": 21367312964,
+      "compressed_size": 21851120,
+      "size": 32986056,
+      "crc32": 289462028,
+      "method": 8
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/mixture.wav",
+      "offset": 21389164191,
+      "compressed_size": 30105683,
+      "size": 32986056,
+      "crc32": 4264012329,
+      "method": 8
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/bass.wav",
+      "offset": 21419270070,
+      "compressed_size": 28009229,
+      "size": 39028544,
+      "crc32": 1344564465,
+      "method": 8
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/drums.wav",
+      "offset": 21447279395,
+      "compressed_size": 28789314,
+      "size": 39028544,
+      "crc32": 2289104201,
+      "method": 8
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/other.wav",
+      "offset": 21476068806,
+      "compressed_size": 32176628,
+      "size": 39028544,
+      "crc32": 2935862612,
+      "method": 8
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/vocals.wav",
+      "offset": 21508245531,
+      "compressed_size": 23879272,
+      "size": 39028544,
+      "crc32": 815168971,
+      "method": 8
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/mixture.wav",
+      "offset": 21532124901,
+      "compressed_size": 34703304,
+      "size": 39028544,
+      "crc32": 3316215205,
+      "method": 8
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/bass.wav",
+      "offset": 21566828396,
+      "compressed_size": 31577391,
+      "size": 47213820,
+      "crc32": 2088670413,
+      "method": 8
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/drums.wav",
+      "offset": 21598405887,
+      "compressed_size": 36533920,
+      "size": 47213820,
+      "crc32": 1830735423,
+      "method": 8
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/other.wav",
+      "offset": 21634939908,
+      "compressed_size": 40208012,
+      "size": 47213820,
+      "crc32": 1464619612,
+      "method": 8
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/vocals.wav",
+      "offset": 21675148021,
+      "compressed_size": 27878511,
+      "size": 47213820,
+      "crc32": 2389499490,
+      "method": 8
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/mixture.wav",
+      "offset": 21703026634,
+      "compressed_size": 42212707,
+      "size": 47213820,
+      "crc32": 3467185458,
+      "method": 8
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/bass.wav",
+      "offset": 21745239542,
+      "compressed_size": 23455437,
+      "size": 31680380,
+      "crc32": 527657564,
+      "method": 8
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/drums.wav",
+      "offset": 21768695085,
+      "compressed_size": 26175045,
+      "size": 31680380,
+      "crc32": 642969424,
+      "method": 8
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/other.wav",
+      "offset": 21794870237,
+      "compressed_size": 28110158,
+      "size": 31680380,
+      "crc32": 793033638,
+      "method": 8
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/vocals.wav",
+      "offset": 21822980502,
+      "compressed_size": 21847447,
+      "size": 31680380,
+      "crc32": 527606515,
+      "method": 8
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/mixture.wav",
+      "offset": 21844828057,
+      "compressed_size": 29274504,
+      "size": 31680380,
+      "crc32": 56620629,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/bass.wav",
+      "offset": 21874102759,
+      "compressed_size": 7481338,
+      "size": 44657500,
+      "crc32": 2162193047,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/drums.wav",
+      "offset": 21881584194,
+      "compressed_size": 34654473,
+      "size": 44657500,
+      "crc32": 3854947060,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/other.wav",
+      "offset": 21916238765,
+      "compressed_size": 34794702,
+      "size": 44657500,
+      "crc32": 3829199428,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/vocals.wav",
+      "offset": 21951033565,
+      "compressed_size": 33764472,
+      "size": 44657500,
+      "crc32": 979090021,
+      "method": 8
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/mixture.wav",
+      "offset": 21984798136,
+      "compressed_size": 39798567,
+      "size": 44657500,
+      "crc32": 1550759315,
+      "method": 8
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/bass.wav",
+      "offset": 22024596898,
+      "compressed_size": 27316690,
+      "size": 41473392,
+      "crc32": 1152861122,
+      "method": 8
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/drums.wav",
+      "offset": 22051913691,
+      "compressed_size": 31135877,
+      "size": 41473392,
+      "crc32": 2623496391,
+      "method": 8
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/other.wav",
+      "offset": 22083049672,
+      "compressed_size": 30626360,
+      "size": 41473392,
+      "crc32": 3072538623,
+      "method": 8
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/vocals.wav",
+      "offset": 22113676136,
+      "compressed_size": 31143234,
+      "size": 41473392,
+      "crc32": 3566893699,
+      "method": 8
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/mixture.wav",
+      "offset": 22144819475,
+      "compressed_size": 35894366,
+      "size": 41473392,
+      "crc32": 3343571911,
+      "method": 8
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/bass.wav",
+      "offset": 22180714034,
+      "compressed_size": 34025911,
+      "size": 44829268,
+      "crc32": 3641139378,
+      "method": 8
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/drums.wav",
+      "offset": 22214740040,
+      "compressed_size": 36014821,
+      "size": 44829268,
+      "crc32": 1872427441,
+      "method": 8
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/other.wav",
+      "offset": 22250754957,
+      "compressed_size": 37162118,
+      "size": 44829268,
+      "crc32": 330577326,
+      "method": 8
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/vocals.wav",
+      "offset": 22287917171,
+      "compressed_size": 28981778,
+      "size": 44829268,
+      "crc32": 3903693902,
+      "method": 8
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/mixture.wav",
+      "offset": 22316899046,
+      "compressed_size": 40651468,
+      "size": 44829268,
+      "crc32": 1225264714,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Over The Top/bass.wav",
+      "offset": 22357550702,
+      "compressed_size": 33360768,
+      "size": 44293356,
+      "crc32": 3244599163,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Over The Top/drums.wav",
+      "offset": 22390911568,
+      "compressed_size": 34902233,
+      "size": 44293356,
+      "crc32": 3498382213,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Over The Top/other.wav",
+      "offset": 22425813900,
+      "compressed_size": 37433331,
+      "size": 44293356,
+      "crc32": 2540808065,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Over The Top/vocals.wav",
+      "offset": 22463247330,
+      "compressed_size": 20246835,
+      "size": 44293356,
+      "crc32": 597507824,
+      "method": 8
+    },
+    {
+      "path": "test/Secretariat - Over The Top/mixture.wav",
+      "offset": 22483494265,
+      "compressed_size": 39919845,
+      "size": 44293356,
+      "crc32": 13427117,
+      "method": 8
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/bass.wav",
+      "offset": 22523414324,
+      "compressed_size": 17039240,
+      "size": 36245520,
+      "crc32": 365233246,
+      "method": 8
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/drums.wav",
+      "offset": 22540453685,
+      "compressed_size": 28888836,
+      "size": 36245520,
+      "crc32": 1544662509,
+      "method": 8
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/other.wav",
+      "offset": 22569342643,
+      "compressed_size": 30777509,
+      "size": 36245520,
+      "crc32": 297630442,
+      "method": 8
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/vocals.wav",
+      "offset": 22600120274,
+      "compressed_size": 24053057,
+      "size": 36245520,
+      "crc32": 1494946927,
+      "method": 8
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/mixture.wav",
+      "offset": 22624173454,
+      "compressed_size": 32381842,
+      "size": 36245520,
+      "crc32": 2831480917,
+      "method": 8
+    }
+  ]
+}

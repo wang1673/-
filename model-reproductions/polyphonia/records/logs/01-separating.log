@@ -1,0 +1,24 @@
+
+  "track": "Al James - Schoolboy Facination",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Al James - Schoolboy Facination/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 4201115,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 9.432438144000116,
+  "sha256": {
+    "drums.wav": "8c65778a20e1b6ddb134eb8592f7e72ab735bb658513e9c612e711cad06fd9cc",
+    "vocals.wav": "50b3ed04d27f8779e0aed4468c0654bffac111c291d594f71848a6d3a7c25e37",
+    "other.wav": "3b087c9c0796c4742ba7c6e1230d20a026f9d4a3d618f8a5f2367f28752f9bbc",
+    "mixture.wav": "897c38eefff37b428ad2397cd363362dece06e7a07bf58a9ff8c49b132fe0f73",
+    "prompt_multi.json": "74c7136ae73e5b91267daaa4deda187ca871a9a87e1ff9f01911969ab219a052",
+    "bass.wav": "5c17234d28bb3649b3ae7691bfada5a7c13479756c6809fcbd9ec113bfa337d0"
+  }
+}
+

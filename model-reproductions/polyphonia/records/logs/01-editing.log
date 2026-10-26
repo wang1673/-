@@ -1,0 +1,91 @@
+[2026-10-26 12:56:57][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 12:56:57][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Al James - Schoolboy Facination
+[2026-10-26 12:56:57][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Al James - Schoolboy Facination
+[2026-10-26 12:56:57][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 12:56:57][INFO] 随机种子: 928
+[2026-10-26 12:56:57][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:00<00:00, 12.03it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:02,  3.12it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:01<00:00,  5.03it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:01<00:00,  4.24it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  3.94it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  3.54it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  2.75it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.52it/s][2026-10-26 12:57:02][INFO] 发现 15 个编辑任务: ['vocals2violin', 'vocals2cello', 'vocals2flute', 'vocals2trumpet', 'vocals2choir', 'vocals2saxophone', 'vocals2trombone', 'guitar2piano', 'guitar2harp', 'guitar2marimba', 'guitar2banjo', 'guitar2organ', 'drums2electronic', 'drums2jazz', 'bass2upright']
+[2026-10-26 12:57:02][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 12:57:30][INFO] --> 执行任务: vocals2violin
+
+
+[2026-10-26 12:58:05][INFO] --> 执行任务: vocals2cello
+
+
+[2026-10-26 12:58:27][INFO] --> 执行任务: vocals2flute
+
+
+[2026-10-26 12:58:51][INFO] --> 执行任务: vocals2trumpet
+
+
+[2026-10-26 12:59:14][INFO] --> 执行任务: vocals2choir
+
+
+[2026-10-26 12:59:36][INFO] --> 执行任务: vocals2saxophone
+
+
+[2026-10-26 13:00:21][INFO] --> 执行任务: vocals2trombone
+
+
+[2026-10-26 13:00:44][INFO] --> 执行任务: guitar2piano
+
+
+[2026-10-26 13:01:07][INFO] --> 执行任务: guitar2harp
+
+
+[2026-10-26 13:01:30][INFO] --> 执行任务: guitar2marimba
+
+
+[2026-10-26 13:01:53][INFO] --> 执行任务: guitar2banjo
+
+
+[2026-10-26 13:02:17][INFO] --> 执行任务: guitar2organ
+
+
+[2026-10-26 13:02:40][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:03:03][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:03:34][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 13:03:57][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:03:57][INFO] 成功: 15 | 失败: 0
+{
+  "track": "Al James - Schoolboy Facination",
+  "state": "completed",
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Al James - Schoolboy Facination",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Al James - Schoolboy Facination",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 419.3471880819998,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.023024559020996,
+  "peak_cuda_reserved_gib": 10.36328125
+}
+

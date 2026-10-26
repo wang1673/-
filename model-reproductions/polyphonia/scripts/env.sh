@@ -1,0 +1,12 @@
+export POLYPHONIA_ROOT=/home/featurize/work/polyphonia_repro
+export POLYPHONIA_RUNTIME=/home/featurize/data/polyphonia/runtime
+export PIP_CACHE_DIR="$POLYPHONIA_RUNTIME/pip-cache"
+export HF_HOME="$POLYPHONIA_RUNTIME/huggingface"
+export TORCH_HOME="$POLYPHONIA_RUNTIME/torch"
+export MPLCONFIGDIR="$POLYPHONIA_RUNTIME/matplotlib"
+export NUMBA_CACHE_DIR="$POLYPHONIA_RUNTIME/numba"
+export TMPDIR="$POLYPHONIA_RUNTIME/tmp"
+export MPLBACKEND=Agg
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export PATH="$POLYPHONIA_RUNTIME/env/bin:$PATH"

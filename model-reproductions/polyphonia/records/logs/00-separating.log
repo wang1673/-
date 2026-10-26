@@ -1,0 +1,24 @@
+
+  "track": "AM Contra - Heart Peripheral",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/AM Contra - Heart Peripheral/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 4412332,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 10.165810122000039,
+  "sha256": {
+    "drums.wav": "f9866bba2aa45a468868de9eb83583b09e548f7d7dd17f90b089f506b6d2e2f5",
+    "vocals.wav": "59ee68adff60945bde9e05abb5284ff78bf3e27272281b3e668bd77c49f806cd",
+    "other.wav": "2ed623d357f23f2bda65a6093f9ce2e916b0b11e7838bab4dbd0ad9d401474f8",
+    "mixture.wav": "657555d467e3ecf06bab373848a09c1f71c5972befc57ad4a1f7ffcec6af0c44",
+    "prompt_multi.json": "42e51312119768806201814b0697d6d8d7bb1d0a86b5127f865eb1c65f0a431e",
+    "bass.wav": "477e1344670888b25b006e1e5c60c15dcacf53e837bc64683476629a0c8916a3"
+  }
+}
+

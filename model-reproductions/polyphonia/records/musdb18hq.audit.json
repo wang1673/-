@@ -1,0 +1,2416 @@
+{
+  "status": "passed",
+  "root": "/home/featurize/data/polyphonia/musdb18hq",
+  "track_count": 50,
+  "file_count": 250,
+  "sample_rate": 44100,
+  "channels": 2,
+  "total_mixture_hours": 3.464161356764929,
+  "mapped_prompt_tracks": 50,
+  "mapped_tasks": 750,
+  "missing_or_ambiguous": [],
+  "mapping": [
+    {
+      "prompt_track": "AM Contra - Heart Peripheral",
+      "audio_track": "AM Contra - Heart Peripheral",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/AM Contra - Heart Peripheral/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/AM Contra - Heart Peripheral/mixture.wav"
+    },
+    {
+      "prompt_track": "Al James - Schoolboy Facination",
+      "audio_track": "Al James - Schoolboy Facination",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Al James - Schoolboy Facination/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Al James - Schoolboy Facination/mixture.wav"
+    },
+    {
+      "prompt_track": "Angels In Amplifiers - I'm Alright",
+      "audio_track": "Angels In Amplifiers - I'm Alright",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Angels In Amplifiers - I'm Alright/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Angels In Amplifiers - I'm Alright/mixture.wav"
+    },
+    {
+      "prompt_track": "Arise - Run Run Run",
+      "audio_track": "Arise - Run Run Run",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Arise - Run Run Run/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Arise - Run Run Run/mixture.wav"
+    },
+    {
+      "prompt_track": "BKS - Bulldozer",
+      "audio_track": "BKS - Bulldozer",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/BKS - Bulldozer/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/BKS - Bulldozer/mixture.wav"
+    },
+    {
+      "prompt_track": "BKS - Too Much",
+      "audio_track": "BKS - Too Much",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/BKS - Too Much/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/BKS - Too Much/mixture.wav"
+    },
+    {
+      "prompt_track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "audio_track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Ben Carrigan - We'll Talk About It All Tonight/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Ben Carrigan - We'll Talk About It All Tonight/mixture.wav"
+    },
+    {
+      "prompt_track": "Bobby Nobody - Stitch Up",
+      "audio_track": "Bobby Nobody - Stitch Up",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Bobby Nobody - Stitch Up/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Bobby Nobody - Stitch Up/mixture.wav"
+    },
+    {
+      "prompt_track": "Buitraker - Revo X",
+      "audio_track": "Buitraker - Revo X",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Buitraker - Revo X/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Buitraker - Revo X/mixture.wav"
+    },
+    {
+      "prompt_track": "Carlos Gonzalez - A Place For Us",
+      "audio_track": "Carlos Gonzalez - A Place For Us",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Carlos Gonzalez - A Place For Us/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Carlos Gonzalez - A Place For Us/mixture.wav"
+    },
+    {
+      "prompt_track": "Cristina Vane - So Easy",
+      "audio_track": "Cristina Vane - So Easy",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Cristina Vane - So Easy/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Cristina Vane - So Easy/mixture.wav"
+    },
+    {
+      "prompt_track": "Detsky Sad - Walkie Talkie",
+      "audio_track": "Detsky Sad - Walkie Talkie",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Detsky Sad - Walkie Talkie/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Detsky Sad - Walkie Talkie/mixture.wav"
+    },
+    {
+      "prompt_track": "Enda Reilly - Cur An Long Ag Seol",
+      "audio_track": "Enda Reilly - Cur An Long Ag Seol",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Enda Reilly - Cur An Long Ag Seol/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Enda Reilly - Cur An Long Ag Seol/mixture.wav"
+    },
+    {
+      "prompt_track": "Forkupines - Semantics",
+      "audio_track": "Forkupines - Semantics",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Forkupines - Semantics/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Forkupines - Semantics/mixture.wav"
+    },
+    {
+      "prompt_track": "Georgia Wonder - Siren",
+      "audio_track": "Georgia Wonder - Siren",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Georgia Wonder - Siren/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Georgia Wonder - Siren/mixture.wav"
+    },
+    {
+      "prompt_track": "Girls Under Glass - We Feel Alright",
+      "audio_track": "Girls Under Glass - We Feel Alright",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Girls Under Glass - We Feel Alright/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Girls Under Glass - We Feel Alright/mixture.wav"
+    },
+    {
+      "prompt_track": "Hollow Ground - Ill Fate",
+      "audio_track": "Hollow Ground - Ill Fate",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Hollow Ground - Ill Fate/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Hollow Ground - Ill Fate/mixture.wav"
+    },
+    {
+      "prompt_track": "James Elder & Mark M Thompson - The English Actor",
+      "audio_track": "James Elder & Mark M Thompson - The English Actor",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/James Elder & Mark M Thompson - The English Actor/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/James Elder & Mark M Thompson - The English Actor/mixture.wav"
+    },
+    {
+      "prompt_track": "Juliet's Rescue - Heartbeats",
+      "audio_track": "Juliet's Rescue - Heartbeats",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Juliet's Rescue - Heartbeats/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Juliet's Rescue - Heartbeats/mixture.wav"
+    },
+    {
+      "prompt_track": "Little Chicago's Finest - My Own",
+      "audio_track": "Little Chicago's Finest - My Own",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Little Chicago's Finest - My Own/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Little Chicago's Finest - My Own/mixture.wav"
+    },
+    {
+      "prompt_track": "Louis Cressy Band - Good Time",
+      "audio_track": "Louis Cressy Band - Good Time",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Louis Cressy Band - Good Time/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Louis Cressy Band - Good Time/mixture.wav"
+    },
+    {
+      "prompt_track": "Lyndsey Ollard - Catching Up",
+      "audio_track": "Lyndsey Ollard - Catching Up",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Lyndsey Ollard - Catching Up/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Lyndsey Ollard - Catching Up/mixture.wav"
+    },
+    {
+      "prompt_track": "M.E.R.C. Music - Knockout",
+      "audio_track": "M.E.R.C. Music - Knockout",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/M.E.R.C. Music - Knockout/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/M.E.R.C. Music - Knockout/mixture.wav"
+    },
+    {
+      "prompt_track": "Moosmusic - Big Dummy Shake",
+      "audio_track": "Moosmusic - Big Dummy Shake",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Moosmusic - Big Dummy Shake/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Moosmusic - Big Dummy Shake/mixture.wav"
+    },
+    {
+      "prompt_track": "Motor Tapes - Shore",
+      "audio_track": "Motor Tapes - Shore",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Motor Tapes - Shore/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Motor Tapes - Shore/mixture.wav"
+    },
+    {
+      "prompt_track": "Mu - Too Bright",
+      "audio_track": "Mu - Too Bright",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Mu - Too Bright/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Mu - Too Bright/mixture.wav"
+    },
+    {
+      "prompt_track": "Nerve 9 - Pray For The Rain",
+      "audio_track": "Nerve 9 - Pray For The Rain",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Nerve 9 - Pray For The Rain/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Nerve 9 - Pray For The Rain/mixture.wav"
+    },
+    {
+      "prompt_track": "PR - Happy Daze",
+      "audio_track": "PR - Happy Daze",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/PR - Happy Daze/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/PR - Happy Daze/mixture.wav"
+    },
+    {
+      "prompt_track": "PR - Oh No",
+      "audio_track": "PR - Oh No",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/PR - Oh No/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/PR - Oh No/mixture.wav"
+    },
+    {
+      "prompt_track": "Punkdisco - Oral Hygiene",
+      "audio_track": "Punkdisco - Oral Hygiene",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Punkdisco - Oral Hygiene/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Punkdisco - Oral Hygiene/mixture.wav"
+    },
+    {
+      "prompt_track": "Raft Monk - Tiring",
+      "audio_track": "Raft Monk - Tiring",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Raft Monk - Tiring/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Raft Monk - Tiring/mixture.wav"
+    },
+    {
+      "prompt_track": "Sambasevam Shanmugam - Kaathaadi",
+      "audio_track": "Sambasevam Shanmugam - Kaathaadi",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Sambasevam Shanmugam - Kaathaadi/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Sambasevam Shanmugam - Kaathaadi/mixture.wav"
+    },
+    {
+      "prompt_track": "Secretariat - Borderline",
+      "audio_track": "Secretariat - Borderline",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Secretariat - Borderline/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Secretariat - Borderline/mixture.wav"
+    },
+    {
+      "prompt_track": "Secretariat - Over The Top",
+      "audio_track": "Secretariat - Over The Top",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Secretariat - Over The Top/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Secretariat - Over The Top/mixture.wav"
+    },
+    {
+      "prompt_track": "Side Effects Project - Sing With Me",
+      "audio_track": "Side Effects Project - Sing With Me",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Side Effects Project - Sing With Me/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Side Effects Project - Sing With Me/mixture.wav"
+    },
+    {
+      "prompt_track": "Signe Jakobsen - What Have You Done To Me",
+      "audio_track": "Signe Jakobsen - What Have You Done To Me",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Signe Jakobsen - What Have You Done To Me/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Signe Jakobsen - What Have You Done To Me/mixture.wav"
+    },
+    {
+      "prompt_track": "Skelpolu - Resurrection",
+      "audio_track": "Skelpolu - Resurrection",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Skelpolu - Resurrection/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Skelpolu - Resurrection/mixture.wav"
+    },
+    {
+      "prompt_track": "Speak Softly - Broken Man",
+      "audio_track": "Speak Softly - Broken Man",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Speak Softly - Broken Man/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Speak Softly - Broken Man/mixture.wav"
+    },
+    {
+      "prompt_track": "Speak Softly - Like Horses",
+      "audio_track": "Speak Softly - Like Horses",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Speak Softly - Like Horses/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Speak Softly - Like Horses/mixture.wav"
+    },
+    {
+      "prompt_track": "The Doppler Shift - Atrophy",
+      "audio_track": "The Doppler Shift - Atrophy",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Doppler Shift - Atrophy/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Doppler Shift - Atrophy/mixture.wav"
+    },
+    {
+      "prompt_track": "The Easton Ellises (Baumi) - SDRNR",
+      "audio_track": "The Easton Ellises (Baumi) - SDRNR",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Easton Ellises (Baumi) - SDRNR/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Easton Ellises (Baumi) - SDRNR/mixture.wav"
+    },
+    {
+      "prompt_track": "The Easton Ellises - Falcon 69",
+      "audio_track": "The Easton Ellises - Falcon 69",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Easton Ellises - Falcon 69/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Easton Ellises - Falcon 69/mixture.wav"
+    },
+    {
+      "prompt_track": "The Long Wait - Dark Horses",
+      "audio_track": "The Long Wait - Dark Horses",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Long Wait - Dark Horses/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Long Wait - Dark Horses/mixture.wav"
+    },
+    {
+      "prompt_track": "The Mountaineering Club - Mallory",
+      "audio_track": "The Mountaineering Club - Mallory",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Mountaineering Club - Mallory/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Mountaineering Club - Mallory/mixture.wav"
+    },
+    {
+      "prompt_track": "The Sunshine Garcia Band - For I Am The Moon",
+      "audio_track": "The Sunshine Garcia Band - For I Am The Moon",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/The Sunshine Garcia Band - For I Am The Moon/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/The Sunshine Garcia Band - For I Am The Moon/mixture.wav"
+    },
+    {
+      "prompt_track": "Timboz - Pony",
+      "audio_track": "Timboz - Pony",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Timboz - Pony/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Timboz - Pony/mixture.wav"
+    },
+    {
+      "prompt_track": "Tom McKenzie - Directions",
+      "audio_track": "Tom McKenzie - Directions",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Tom McKenzie - Directions/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Tom McKenzie - Directions/mixture.wav"
+    },
+    {
+      "prompt_track": "Triviul feat. The Fiend - Widow",
+      "audio_track": "Triviul feat. The Fiend - Widow",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Triviul feat. The Fiend - Widow/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Triviul feat. The Fiend - Widow/mixture.wav"
+    },
+    {
+      "prompt_track": "We Fell From The Sky - Not You",
+      "audio_track": "We Fell From The Sky - Not You",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/We Fell From The Sky - Not You/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/We Fell From The Sky - Not You/mixture.wav"
+    },
+    {
+      "prompt_track": "Zeno - Signs",
+      "audio_track": "Zeno - Signs",
+      "match_type": "exact",
+      "task_count": 15,
+      "prompt_file": "/home/featurize/work/polyphonia_repro/polyphonia/PolyEvalPrompts/musdb18_test/Zeno - Signs/prompt_multi.json",
+      "mixture": "/home/featurize/data/polyphonia/musdb18hq/test/Zeno - Signs/mixture.wav"
+    }
+  ],
+  "audio_info": [
+    {
+      "path": "test/BKS - Bulldozer/mixture.wav",
+      "frames": 14863472,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 337.0401814058957
+    },
+    {
+      "path": "test/BKS - Bulldozer/other.wav",
+      "frames": 14863472,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 337.0401814058957
+    },
+    {
+      "path": "test/BKS - Bulldozer/drums.wav",
+      "frames": 14863472,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 337.0401814058957
+    },
+    {
+      "path": "test/BKS - Bulldozer/bass.wav",
+      "frames": 14863472,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 337.0401814058957
+    },
+    {
+      "path": "test/BKS - Bulldozer/vocals.wav",
+      "frames": 14863472,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 337.0401814058957
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/mixture.wav",
+      "frames": 7920084,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 179.59374149659865
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/other.wav",
+      "frames": 7920084,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 179.59374149659865
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/drums.wav",
+      "frames": 7920084,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 179.59374149659865
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/bass.wav",
+      "frames": 7920084,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 179.59374149659865
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/vocals.wav",
+      "frames": 7920084,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 179.59374149659865
+    },
+    {
+      "path": "test/Secretariat - Borderline/mixture.wav",
+      "frames": 12649892,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 286.84562358276645
+    },
+    {
+      "path": "test/Secretariat - Borderline/other.wav",
+      "frames": 12649892,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 286.84562358276645
+    },
+    {
+      "path": "test/Secretariat - Borderline/drums.wav",
+      "frames": 12649892,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 286.84562358276645
+    },
+    {
+      "path": "test/Secretariat - Borderline/bass.wav",
+      "frames": 12649892,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 286.84562358276645
+    },
+    {
+      "path": "test/Secretariat - Borderline/vocals.wav",
+      "frames": 12649892,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 286.84562358276645
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/mixture.wav",
+      "frames": 13992103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.2812471655329
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/other.wav",
+      "frames": 13992103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.2812471655329
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/drums.wav",
+      "frames": 13992103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.2812471655329
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/bass.wav",
+      "frames": 13992103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.2812471655329
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/vocals.wav",
+      "frames": 13992103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.2812471655329
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/mixture.wav",
+      "frames": 10780678,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 244.45981859410432
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/other.wav",
+      "frames": 10780678,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 244.45981859410432
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/drums.wav",
+      "frames": 10780678,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 244.45981859410432
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/bass.wav",
+      "frames": 10780678,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 244.45981859410432
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/vocals.wav",
+      "frames": 10780678,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 244.45981859410432
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/mixture.wav",
+      "frames": 17448735,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 395.66292517006804
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/other.wav",
+      "frames": 17448735,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 395.66292517006804
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/drums.wav",
+      "frames": 17448735,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 395.66292517006804
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/bass.wav",
+      "frames": 17448735,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 395.66292517006804
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/vocals.wav",
+      "frames": 17448735,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 395.66292517006804
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/mixture.wav",
+      "frames": 9061369,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 205.47321995464853
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/other.wav",
+      "frames": 9061369,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 205.47321995464853
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/drums.wav",
+      "frames": 9061369,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 205.47321995464853
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/bass.wav",
+      "frames": 9061369,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 205.47321995464853
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/vocals.wav",
+      "frames": 9061369,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 205.47321995464853
+    },
+    {
+      "path": "test/Motor Tapes - Shore/mixture.wav",
+      "frames": 10880494,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.72321995464853
+    },
+    {
+      "path": "test/Motor Tapes - Shore/other.wav",
+      "frames": 10880494,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.72321995464853
+    },
+    {
+      "path": "test/Motor Tapes - Shore/drums.wav",
+      "frames": 10880494,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.72321995464853
+    },
+    {
+      "path": "test/Motor Tapes - Shore/bass.wav",
+      "frames": 10880494,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.72321995464853
+    },
+    {
+      "path": "test/Motor Tapes - Shore/vocals.wav",
+      "frames": 10880494,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.72321995464853
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/mixture.wav",
+      "frames": 8843231,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 200.52678004535147
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/other.wav",
+      "frames": 8843231,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 200.52678004535147
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/drums.wav",
+      "frames": 8843231,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 200.52678004535147
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/bass.wav",
+      "frames": 8843231,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 200.52678004535147
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/vocals.wav",
+      "frames": 8843231,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 200.52678004535147
+    },
+    {
+      "path": "test/Zeno - Signs/mixture.wav",
+      "frames": 10336331,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.38392290249433
+    },
+    {
+      "path": "test/Zeno - Signs/other.wav",
+      "frames": 10336331,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.38392290249433
+    },
+    {
+      "path": "test/Zeno - Signs/drums.wav",
+      "frames": 10336331,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.38392290249433
+    },
+    {
+      "path": "test/Zeno - Signs/bass.wav",
+      "frames": 10336331,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.38392290249433
+    },
+    {
+      "path": "test/Zeno - Signs/vocals.wav",
+      "frames": 10336331,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.38392290249433
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/mixture.wav",
+      "frames": 10368337,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 235.10968253968255
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/other.wav",
+      "frames": 10368337,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 235.10968253968255
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/drums.wav",
+      "frames": 10368337,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 235.10968253968255
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/bass.wav",
+      "frames": 10368337,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 235.10968253968255
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/vocals.wav",
+      "frames": 10368337,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 235.10968253968255
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/mixture.wav",
+      "frames": 18979538,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 430.3750113378685
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/other.wav",
+      "frames": 18979538,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 430.3750113378685
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/drums.wav",
+      "frames": 18979538,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 430.3750113378685
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/bass.wav",
+      "frames": 18979538,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 430.3750113378685
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/vocals.wav",
+      "frames": 18979538,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 430.3750113378685
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/mixture.wav",
+      "frames": 11207306,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.13392290249433
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/other.wav",
+      "frames": 11207306,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.13392290249433
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/drums.wav",
+      "frames": 11207306,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.13392290249433
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/bass.wav",
+      "frames": 11207306,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.13392290249433
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/vocals.wav",
+      "frames": 11207306,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.13392290249433
+    },
+    {
+      "path": "test/BKS - Too Much/mixture.wav",
+      "frames": 9707512,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 220.12498866213153
+    },
+    {
+      "path": "test/BKS - Too Much/other.wav",
+      "frames": 9707512,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 220.12498866213153
+    },
+    {
+      "path": "test/BKS - Too Much/drums.wav",
+      "frames": 9707512,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 220.12498866213153
+    },
+    {
+      "path": "test/BKS - Too Much/bass.wav",
+      "frames": 9707512,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 220.12498866213153
+    },
+    {
+      "path": "test/BKS - Too Much/vocals.wav",
+      "frames": 9707512,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 220.12498866213153
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/mixture.wav",
+      "frames": 7755103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 175.85267573696146
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/other.wav",
+      "frames": 7755103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 175.85267573696146
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/drums.wav",
+      "frames": 7755103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 175.85267573696146
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/bass.wav",
+      "frames": 7755103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 175.85267573696146
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/vocals.wav",
+      "frames": 7755103,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 175.85267573696146
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/mixture.wav",
+      "frames": 7823222,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 177.39732426303854
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/other.wav",
+      "frames": 7823222,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 177.39732426303854
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/drums.wav",
+      "frames": 7823222,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 177.39732426303854
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/bass.wav",
+      "frames": 7823222,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 177.39732426303854
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/vocals.wav",
+      "frames": 7823222,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 177.39732426303854
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/mixture.wav",
+      "frames": 10349568,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.68408163265306
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/other.wav",
+      "frames": 10349568,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.68408163265306
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/drums.wav",
+      "frames": 10349568,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.68408163265306
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/bass.wav",
+      "frames": 10349568,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.68408163265306
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/vocals.wav",
+      "frames": 10349568,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 234.68408163265306
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/mixture.wav",
+      "frames": 8769600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 198.85714285714286
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/other.wav",
+      "frames": 8769600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 198.85714285714286
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/drums.wav",
+      "frames": 8769600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 198.85714285714286
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/bass.wav",
+      "frames": 8769600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 198.85714285714286
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/vocals.wav",
+      "frames": 8769600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 198.85714285714286
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/mixture.wav",
+      "frames": 11803444,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 267.65179138322
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/other.wav",
+      "frames": 11803444,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 267.65179138322
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/drums.wav",
+      "frames": 11803444,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 267.65179138322
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/bass.wav",
+      "frames": 11803444,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 267.65179138322
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/vocals.wav",
+      "frames": 11803444,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 267.65179138322
+    },
+    {
+      "path": "test/Arise - Run Run Run/mixture.wav",
+      "frames": 9675225,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 219.39285714285714
+    },
+    {
+      "path": "test/Arise - Run Run Run/other.wav",
+      "frames": 9675225,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 219.39285714285714
+    },
+    {
+      "path": "test/Arise - Run Run Run/drums.wav",
+      "frames": 9675225,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 219.39285714285714
+    },
+    {
+      "path": "test/Arise - Run Run Run/bass.wav",
+      "frames": 9675225,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 219.39285714285714
+    },
+    {
+      "path": "test/Arise - Run Run Run/vocals.wav",
+      "frames": 9675225,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 219.39285714285714
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/mixture.wav",
+      "frames": 12419072,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 281.61160997732424
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/other.wav",
+      "frames": 12419072,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 281.61160997732424
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/drums.wav",
+      "frames": 12419072,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 281.61160997732424
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/bass.wav",
+      "frames": 12419072,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 281.61160997732424
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/vocals.wav",
+      "frames": 12419072,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 281.61160997732424
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/mixture.wav",
+      "frames": 9265664,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 210.1057596371882
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/other.wav",
+      "frames": 9265664,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 210.1057596371882
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/drums.wav",
+      "frames": 9265664,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 210.1057596371882
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/bass.wav",
+      "frames": 9265664,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 210.1057596371882
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/vocals.wav",
+      "frames": 9265664,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 210.1057596371882
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/mixture.wav",
+      "frames": 11907000,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 270.0
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/other.wav",
+      "frames": 11907000,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 270.0
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/drums.wav",
+      "frames": 11907000,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 270.0
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/bass.wav",
+      "frames": 11907000,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 270.0
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/vocals.wav",
+      "frames": 11907000,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 270.0
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/mixture.wav",
+      "frames": 14616591,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 331.44197278911565
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/other.wav",
+      "frames": 14616591,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 331.44197278911565
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/drums.wav",
+      "frames": 14616591,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 331.44197278911565
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/bass.wav",
+      "frames": 14616591,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 331.44197278911565
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/vocals.wav",
+      "frames": 14616591,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 331.44197278911565
+    },
+    {
+      "path": "test/Forkupines - Semantics/mixture.wav",
+      "frames": 12065091,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 273.58482993197276
+    },
+    {
+      "path": "test/Forkupines - Semantics/other.wav",
+      "frames": 12065091,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 273.58482993197276
+    },
+    {
+      "path": "test/Forkupines - Semantics/drums.wav",
+      "frames": 12065091,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 273.58482993197276
+    },
+    {
+      "path": "test/Forkupines - Semantics/bass.wav",
+      "frames": 12065091,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 273.58482993197276
+    },
+    {
+      "path": "test/Forkupines - Semantics/vocals.wav",
+      "frames": 12065091,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 273.58482993197276
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/mixture.wav",
+      "frames": 13788600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 312.6666666666667
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/other.wav",
+      "frames": 13788600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 312.6666666666667
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/drums.wav",
+      "frames": 13788600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 312.6666666666667
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/bass.wav",
+      "frames": 13788600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 312.6666666666667
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/vocals.wav",
+      "frames": 13788600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 312.6666666666667
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/mixture.wav",
+      "frames": 15157800,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 343.7142857142857
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/other.wav",
+      "frames": 15157800,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 343.7142857142857
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/drums.wav",
+      "frames": 15157800,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 343.7142857142857
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/bass.wav",
+      "frames": 15157800,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 343.7142857142857
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/vocals.wav",
+      "frames": 15157800,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 343.7142857142857
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/mixture.wav",
+      "frames": 14125083,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 320.2966666666667
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/other.wav",
+      "frames": 14125083,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 320.2966666666667
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/drums.wav",
+      "frames": 14125083,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 320.2966666666667
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/bass.wav",
+      "frames": 14125083,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 320.2966666666667
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/vocals.wav",
+      "frames": 14125083,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 320.2966666666667
+    },
+    {
+      "path": "test/PR - Oh No/mixture.wav",
+      "frames": 3360177,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 76.19448979591837
+    },
+    {
+      "path": "test/PR - Oh No/other.wav",
+      "frames": 3360177,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 76.19448979591837
+    },
+    {
+      "path": "test/PR - Oh No/drums.wav",
+      "frames": 3360177,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 76.19448979591837
+    },
+    {
+      "path": "test/PR - Oh No/bass.wav",
+      "frames": 3360177,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 76.19448979591837
+    },
+    {
+      "path": "test/PR - Oh No/vocals.wav",
+      "frames": 3360177,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 76.19448979591837
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/mixture.wav",
+      "frames": 11164364,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.16018140589568
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/other.wav",
+      "frames": 11164364,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.16018140589568
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/drums.wav",
+      "frames": 11164364,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.16018140589568
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/bass.wav",
+      "frames": 11164364,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.16018140589568
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/vocals.wav",
+      "frames": 11164364,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.16018140589568
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/mixture.wav",
+      "frames": 6247828,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 141.67410430839
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/other.wav",
+      "frames": 6247828,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 141.67410430839
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/drums.wav",
+      "frames": 6247828,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 141.67410430839
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/bass.wav",
+      "frames": 6247828,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 141.67410430839
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/vocals.wav",
+      "frames": 6247828,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 141.67410430839
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/mixture.wav",
+      "frames": 9772481,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.59820861678006
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/other.wav",
+      "frames": 9772481,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.59820861678006
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/drums.wav",
+      "frames": 9772481,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.59820861678006
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/bass.wav",
+      "frames": 9772481,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.59820861678006
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/vocals.wav",
+      "frames": 9772481,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.59820861678006
+    },
+    {
+      "path": "test/Secretariat - Over The Top/mixture.wav",
+      "frames": 11073328,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 251.09587301587302
+    },
+    {
+      "path": "test/Secretariat - Over The Top/other.wav",
+      "frames": 11073328,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 251.09587301587302
+    },
+    {
+      "path": "test/Secretariat - Over The Top/drums.wav",
+      "frames": 11073328,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 251.09587301587302
+    },
+    {
+      "path": "test/Secretariat - Over The Top/bass.wav",
+      "frames": 11073328,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 251.09587301587302
+    },
+    {
+      "path": "test/Secretariat - Over The Top/vocals.wav",
+      "frames": 11073328,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 251.09587301587302
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/mixture.wav",
+      "frames": 10746422,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 243.68303854875285
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/other.wav",
+      "frames": 10746422,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 243.68303854875285
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/drums.wav",
+      "frames": 10746422,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 243.68303854875285
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/bass.wav",
+      "frames": 10746422,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 243.68303854875285
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/vocals.wav",
+      "frames": 10746422,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 243.68303854875285
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/mixture.wav",
+      "frames": 9757125,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.25
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/other.wav",
+      "frames": 9757125,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.25
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/drums.wav",
+      "frames": 9757125,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.25
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/bass.wav",
+      "frames": 9757125,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.25
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/vocals.wav",
+      "frames": 9757125,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 221.25
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/mixture.wav",
+      "frames": 12913425,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 292.82142857142856
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/other.wav",
+      "frames": 12913425,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 292.82142857142856
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/drums.wav",
+      "frames": 12913425,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 292.82142857142856
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/bass.wav",
+      "frames": 12913425,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 292.82142857142856
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/vocals.wav",
+      "frames": 12913425,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 292.82142857142856
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/mixture.wav",
+      "frames": 11241562,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.9107029478458
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/other.wav",
+      "frames": 11241562,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.9107029478458
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/drums.wav",
+      "frames": 11241562,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.9107029478458
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/bass.wav",
+      "frames": 11241562,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.9107029478458
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/vocals.wav",
+      "frames": 11241562,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 254.9107029478458
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/mixture.wav",
+      "frames": 10029600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 227.42857142857142
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/other.wav",
+      "frames": 10029600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 227.42857142857142
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/drums.wav",
+      "frames": 10029600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 227.42857142857142
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/bass.wav",
+      "frames": 10029600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 227.42857142857142
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/vocals.wav",
+      "frames": 10029600,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 227.42857142857142
+    },
+    {
+      "path": "test/PR - Happy Daze/mixture.wav",
+      "frames": 7175168,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 162.70222222222222
+    },
+    {
+      "path": "test/PR - Happy Daze/other.wav",
+      "frames": 7175168,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 162.70222222222222
+    },
+    {
+      "path": "test/PR - Happy Daze/drums.wav",
+      "frames": 7175168,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 162.70222222222222
+    },
+    {
+      "path": "test/PR - Happy Daze/bass.wav",
+      "frames": 7175168,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 162.70222222222222
+    },
+    {
+      "path": "test/PR - Happy Daze/vocals.wav",
+      "frames": 7175168,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 162.70222222222222
+    },
+    {
+      "path": "test/Buitraker - Revo X/mixture.wav",
+      "frames": 12163922,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 275.82589569160996
+    },
+    {
+      "path": "test/Buitraker - Revo X/other.wav",
+      "frames": 12163922,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 275.82589569160996
+    },
+    {
+      "path": "test/Buitraker - Revo X/drums.wav",
+      "frames": 12163922,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 275.82589569160996
+    },
+    {
+      "path": "test/Buitraker - Revo X/bass.wav",
+      "frames": 12163922,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 275.82589569160996
+    },
+    {
+      "path": "test/Buitraker - Revo X/vocals.wav",
+      "frames": 12163922,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 275.82589569160996
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/mixture.wav",
+      "frames": 11034647,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 250.21875283446713
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/other.wav",
+      "frames": 11034647,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 250.21875283446713
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/drums.wav",
+      "frames": 11034647,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 250.21875283446713
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/bass.wav",
+      "frames": 11034647,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 250.21875283446713
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/vocals.wav",
+      "frames": 11034647,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 250.21875283446713
+    },
+    {
+      "path": "test/Raft Monk - Tiring/mixture.wav",
+      "frames": 9360028,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 212.2455328798186
+    },
+    {
+      "path": "test/Raft Monk - Tiring/other.wav",
+      "frames": 9360028,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 212.2455328798186
+    },
+    {
+      "path": "test/Raft Monk - Tiring/drums.wav",
+      "frames": 9360028,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 212.2455328798186
+    },
+    {
+      "path": "test/Raft Monk - Tiring/bass.wav",
+      "frames": 9360028,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 212.2455328798186
+    },
+    {
+      "path": "test/Raft Monk - Tiring/vocals.wav",
+      "frames": 9360028,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 212.2455328798186
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/mixture.wav",
+      "frames": 8246503,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 186.9955328798186
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/other.wav",
+      "frames": 8246503,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 186.9955328798186
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/drums.wav",
+      "frames": 8246503,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 186.9955328798186
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/bass.wav",
+      "frames": 8246503,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 186.9955328798186
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/vocals.wav",
+      "frames": 8246503,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 186.9955328798186
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/mixture.wav",
+      "frames": 10892288,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.99065759637188
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/other.wav",
+      "frames": 10892288,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.99065759637188
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/drums.wav",
+      "frames": 10892288,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.99065759637188
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/bass.wav",
+      "frames": 10892288,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.99065759637188
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/vocals.wav",
+      "frames": 10892288,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 246.99065759637188
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/mixture.wav",
+      "frames": 13482293,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 305.72092970521544
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/other.wav",
+      "frames": 13482293,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 305.72092970521544
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/drums.wav",
+      "frames": 13482293,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 305.72092970521544
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/bass.wav",
+      "frames": 13482293,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 305.72092970521544
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/vocals.wav",
+      "frames": 13482293,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 305.72092970521544
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/mixture.wav",
+      "frames": 14018484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.8794557823129
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/other.wav",
+      "frames": 14018484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.8794557823129
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/drums.wav",
+      "frames": 14018484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.8794557823129
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/bass.wav",
+      "frames": 14018484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.8794557823129
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/vocals.wav",
+      "frames": 14018484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 317.8794557823129
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/mixture.wav",
+      "frames": 8400262,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 190.4821315192744
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/other.wav",
+      "frames": 8400262,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 190.4821315192744
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/drums.wav",
+      "frames": 8400262,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 190.4821315192744
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/bass.wav",
+      "frames": 8400262,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 190.4821315192744
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/vocals.wav",
+      "frames": 8400262,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 190.4821315192744
+    },
+    {
+      "path": "test/Timboz - Pony/mixture.wav",
+      "frames": 11159449,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.04873015873017
+    },
+    {
+      "path": "test/Timboz - Pony/other.wav",
+      "frames": 11159449,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.04873015873017
+    },
+    {
+      "path": "test/Timboz - Pony/drums.wav",
+      "frames": 11159449,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.04873015873017
+    },
+    {
+      "path": "test/Timboz - Pony/bass.wav",
+      "frames": 11159449,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.04873015873017
+    },
+    {
+      "path": "test/Timboz - Pony/vocals.wav",
+      "frames": 11159449,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 253.04873015873017
+    },
+    {
+      "path": "test/Mu - Too Bright/mixture.wav",
+      "frames": 12002484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 272.16517006802724
+    },
+    {
+      "path": "test/Mu - Too Bright/other.wav",
+      "frames": 12002484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 272.16517006802724
+    },
+    {
+      "path": "test/Mu - Too Bright/drums.wav",
+      "frames": 12002484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 272.16517006802724
+    },
+    {
+      "path": "test/Mu - Too Bright/bass.wav",
+      "frames": 12002484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 272.16517006802724
+    },
+    {
+      "path": "test/Mu - Too Bright/vocals.wav",
+      "frames": 12002484,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 272.16517006802724
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/mixture.wav",
+      "frames": 9168272,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 207.89732426303854
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/other.wav",
+      "frames": 9168272,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 207.89732426303854
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/drums.wav",
+      "frames": 9168272,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 207.89732426303854
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/bass.wav",
+      "frames": 9168272,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 207.89732426303854
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/vocals.wav",
+      "frames": 9168272,
+      "samplerate": 44100,
+      "channels": 2,
+      "subtype": "PCM_16",
+      "duration_seconds": 207.89732426303854
+    }
+  ]
+}

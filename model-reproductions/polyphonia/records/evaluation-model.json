@@ -1,0 +1,10 @@
+{
+  "checkpoint": "/home/featurize/data/polyphonia/runtime/huggingface/hub/models--lukewys--laion_clap/snapshots/b3708341862f581175dba5c356a4ebf74a9b6651/music_audioset_epoch_15_esc_90.14.pt",
+  "repo": "lukewys/laion_clap",
+  "revision": "b3708341862f581175dba5c356a4ebf74a9b6651",
+  "filename": "music_audioset_epoch_15_esc_90.14.pt",
+  "sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "roberta_repo": "roberta-base",
+  "roberta_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "roberta_snapshot": "/home/featurize/data/polyphonia/runtime/huggingface/hub/models--roberta-base/snapshots/e2da8e2f811d1448a5b465c236feacd80ffbac7b"
+}

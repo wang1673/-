@@ -1,0 +1,131 @@
+{
+  "track": "AM Contra - Heart Peripheral",
+  "state": "completed",
+  "files": {
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1487476804265645,
+      "peak": 0.6572265625,
+      "sha256": "fa2db1563fe6e0b4ec918b53f4637d9c2a386faac0c227c70088876633c6dc17"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15427638602136454,
+      "peak": 0.66748046875,
+      "sha256": "2d041fa14300103f701a0dc5c9543fdc7206cd25ad22ea487d227315cc65ca21"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13885997365638666,
+      "peak": 0.62744140625,
+      "sha256": "bc886a0b69a3e0e93dd4e27273fbdd720cde6fdc55de60dec9c23b2c30aac230"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1480618240824687,
+      "peak": 0.6640625,
+      "sha256": "2063f4064b613a999e9700cec7cf2a3478bf34bad8068090f4301f1b1edbd593"
+    },
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15129158367644022,
+      "peak": 0.6572265625,
+      "sha256": "bb706684af6b5ff264be637070e7988cad87d46434a20f8cc725281034d0cca1"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13417028230600236,
+      "peak": 0.634765625,
+      "sha256": "ac799615588c94b2ea8446fcaa21458e3d6db443cb2611da7115184e45fc0cdb"
+    },
+    "vocals2trombone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.17418127660914093,
+      "peak": 0.7451171875,
+      "sha256": "78583a3b99fa4456a682fd4b60a8d839046fcdfe5b24a170f437b6d9ecbfdcaf"
+    },
+    "guitar2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13631317472426174,
+      "peak": 0.6728515625,
+      "sha256": "52f9c2dbd504f1e1a1aef4bde64f93df66e88fa0fab6c7228655c3a8ef92c6ab"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1369975835020281,
+      "peak": 0.66552734375,
+      "sha256": "892ac5c82be224a37844318479af1fc7a849f267918ac95d1f2daa9fdd05120c"
+    },
+    "guitar2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1271905668541883,
+      "peak": 0.61328125,
+      "sha256": "53f5b9c3e6034b5579c323d64a848ed94a5508e613119e2a61db71965c9802ef"
+    },
+    "guitar2banjo": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12992440804529293,
+      "peak": 0.640625,
+      "sha256": "4b31e3785ee8879326caf1a2e8368322848d627a6642a442e1a632fb3ebda73c"
+    },
+    "guitar2organ": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13075097153266904,
+      "peak": 0.67041015625,
+      "sha256": "3c85be19ae7b701a5c1c729738cf33dd769a8f1741df4fa04796df0f319cb4e3"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.150466191722798,
+      "peak": 0.666015625,
+      "sha256": "74ac0289d3dd937634aba794f52c2f3670d0b405ef8f04d64d3cd08613774833"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1367861567838844,
+      "peak": 0.61083984375,
+      "sha256": "c1edf055ab5d2ac36bf544d9653c8bea8c991e6667e40c23865d4a6280366e87"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13458786878025877,
+      "peak": 0.59765625,
+      "sha256": "da5c1750ec286089eba70243c15132f09977b9bfa0ad53c40176b80c581d3fc9"
+    }
+  },
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/AM Contra - Heart Peripheral",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/AM Contra - Heart Peripheral",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 443.1460530530003,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.023390769958496,
+  "peak_cuda_reserved_gib": 10.369140625
+}

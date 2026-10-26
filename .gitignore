@@ -1,0 +1,18 @@
+# Local credentials and bulky experiment artifacts
+.DS_Store
+._*
+__pycache__/
+*.pyc
+.env
+.env.*
+.ssh/
+*.pem
+id_rsa*
+id_ed25519*
+*.wav
+*.mp3
+*.flac
+*.pt
+*.pth
+*.ckpt
+*.safetensors

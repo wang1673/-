@@ -4,3 +4,7 @@
 
 - [论文精读目录](papers/README.md)
 
+## 模型复现
+
+- [各模型复现记录总目录](model-reproductions/README.md)
+- [Polyphonia 复现记录与文件](model-reproductions/polyphonia/README.md)

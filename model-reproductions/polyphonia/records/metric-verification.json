@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "LPAPS_reference_commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8",
+  "reference_value": 6.016057968139648,
+  "adapted_value": 6.016057968139648,
+  "checks": [
+    "LPAPS adaptation matches the referenced upstream reduction on real Swin features with a nonzero perturbation",
+    "LPAPS identity=0",
+    "CQT1-PCC identity=1",
+    "CLAP embedding self cosine=1"
+  ],
+  "scope": "Checks formula implementation and a real-audio pilot, not equivalence to unpublished author evaluation code"
+}

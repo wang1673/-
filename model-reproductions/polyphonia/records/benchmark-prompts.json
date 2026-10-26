@@ -1,0 +1,326 @@
+{
+  "musdb18_test": {
+    "tracks": 50,
+    "tasks": 750,
+    "entries": [
+      {
+        "track": "AM Contra - Heart Peripheral",
+        "tasks": 15
+      },
+      {
+        "track": "Al James - Schoolboy Facination",
+        "tasks": 15
+      },
+      {
+        "track": "Angels In Amplifiers - I'm Alright",
+        "tasks": 15
+      },
+      {
+        "track": "Arise - Run Run Run",
+        "tasks": 15
+      },
+      {
+        "track": "BKS - Bulldozer",
+        "tasks": 15
+      },
+      {
+        "track": "BKS - Too Much",
+        "tasks": 15
+      },
+      {
+        "track": "Ben Carrigan - We'll Talk About It All Tonight",
+        "tasks": 15
+      },
+      {
+        "track": "Bobby Nobody - Stitch Up",
+        "tasks": 15
+      },
+      {
+        "track": "Buitraker - Revo X",
+        "tasks": 15
+      },
+      {
+        "track": "Carlos Gonzalez - A Place For Us",
+        "tasks": 15
+      },
+      {
+        "track": "Cristina Vane - So Easy",
+        "tasks": 15
+      },
+      {
+        "track": "Detsky Sad - Walkie Talkie",
+        "tasks": 15
+      },
+      {
+        "track": "Enda Reilly - Cur An Long Ag Seol",
+        "tasks": 15
+      },
+      {
+        "track": "Forkupines - Semantics",
+        "tasks": 15
+      },
+      {
+        "track": "Georgia Wonder - Siren",
+        "tasks": 15
+      },
+      {
+        "track": "Girls Under Glass - We Feel Alright",
+        "tasks": 15
+      },
+      {
+        "track": "Hollow Ground - Ill Fate",
+        "tasks": 15
+      },
+      {
+        "track": "James Elder & Mark M Thompson - The English Actor",
+        "tasks": 15
+      },
+      {
+        "track": "Juliet's Rescue - Heartbeats",
+        "tasks": 15
+      },
+      {
+        "track": "Little Chicago's Finest - My Own",
+        "tasks": 15
+      },
+      {
+        "track": "Louis Cressy Band - Good Time",
+        "tasks": 15
+      },
+      {
+        "track": "Lyndsey Ollard - Catching Up",
+        "tasks": 15
+      },
+      {
+        "track": "M.E.R.C. Music - Knockout",
+        "tasks": 15
+      },
+      {
+        "track": "Moosmusic - Big Dummy Shake",
+        "tasks": 15
+      },
+      {
+        "track": "Motor Tapes - Shore",
+        "tasks": 15
+      },
+      {
+        "track": "Mu - Too Bright",
+        "tasks": 15
+      },
+      {
+        "track": "Nerve 9 - Pray For The Rain",
+        "tasks": 15
+      },
+      {
+        "track": "PR - Happy Daze",
+        "tasks": 15
+      },
+      {
+        "track": "PR - Oh No",
+        "tasks": 15
+      },
+      {
+        "track": "Punkdisco - Oral Hygiene",
+        "tasks": 15
+      },
+      {
+        "track": "Raft Monk - Tiring",
+        "tasks": 15
+      },
+      {
+        "track": "Sambasevam Shanmugam - Kaathaadi",
+        "tasks": 15
+      },
+      {
+        "track": "Secretariat - Borderline",
+        "tasks": 15
+      },
+      {
+        "track": "Secretariat - Over The Top",
+        "tasks": 15
+      },
+      {
+        "track": "Side Effects Project - Sing With Me",
+        "tasks": 15
+      },
+      {
+        "track": "Signe Jakobsen - What Have You Done To Me",
+        "tasks": 15
+      },
+      {
+        "track": "Skelpolu - Resurrection",
+        "tasks": 15
+      },
+      {
+        "track": "Speak Softly - Broken Man",
+        "tasks": 15
+      },
+      {
+        "track": "Speak Softly - Like Horses",
+        "tasks": 15
+      },
+      {
+        "track": "The Doppler Shift - Atrophy",
+        "tasks": 15
+      },
+      {
+        "track": "The Easton Ellises (Baumi) - SDRNR",
+        "tasks": 15
+      },
+      {
+        "track": "The Easton Ellises - Falcon 69",
+        "tasks": 15
+      },
+      {
+        "track": "The Long Wait - Dark Horses",
+        "tasks": 15
+      },
+      {
+        "track": "The Mountaineering Club - Mallory",
+        "tasks": 15
+      },
+      {
+        "track": "The Sunshine Garcia Band - For I Am The Moon",
+        "tasks": 15
+      },
+      {
+        "track": "Timboz - Pony",
+        "tasks": 15
+      },
+      {
+        "track": "Tom McKenzie - Directions",
+        "tasks": 15
+      },
+      {
+        "track": "Triviul feat. The Fiend - Widow",
+        "tasks": 15
+      },
+      {
+        "track": "We Fell From The Sky - Not You",
+        "tasks": 15
+      },
+      {
+        "track": "Zeno - Signs",
+        "tasks": 15
+      }
+    ]
+  },
+  "musicdelta": {
+    "tracks": 28,
+    "tasks": 420,
+    "entries": [
+      {
+        "track": "MusicDelta_80sRock",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Beatles",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_BebopJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Beethoven",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Britpop",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_ChineseXinJing",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_CoolJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Country1",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Country2",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Disco",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_FreeJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_FunkJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_FusionJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Gospel",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_GriegTrolltog",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Grunge",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Hendrix",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_LatinJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_ModalJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Punk",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Reggae",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Rock",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Rockabilly",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Shadows",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_SpeedMetal",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_SwingJazz",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Vivaldi",
+        "tasks": 15
+      },
+      {
+        "track": "MusicDelta_Zeppelin",
+        "tasks": 15
+      }
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "state": "running",
+  "protocol": "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/protocol.json",
+  "tracks": [
+    {
+      "index": 0,
+      "track": "AM Contra - Heart Peripheral",
+      "state": "completed",
+      "validated_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 443.1460530530003,
+      "peak_cuda_allocated_gib": 10.023390769958496
+    },
+    {
+      "index": 1,
+      "track": "Al James - Schoolboy Facination",
+      "state": "completed",
+      "validated_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 419.3471880819998,
+      "peak_cuda_allocated_gib": 10.023024559020996
+    },
+    {
+      "index": 2,
+      "track": "Angels In Amplifiers - I'm Alright",
+      "state": "editing",
+      "validated_tasks": 10,
+      "separating_exit": 0
+    }
+  ],
+  "total_tasks": 750,
+  "started_utc": "2026-10-26T12:48:41.329293+00:00",
+  "elapsed_seconds": 1237.6831161569999,
+  "validated_tasks": 40
+}

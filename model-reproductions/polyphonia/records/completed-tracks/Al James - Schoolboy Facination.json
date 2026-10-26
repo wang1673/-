@@ -1,0 +1,131 @@
+{
+  "track": "Al James - Schoolboy Facination",
+  "state": "completed",
+  "files": {
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10928273519061896,
+      "peak": 0.623046875,
+      "sha256": "80cd2f5b0c789e1645b5016fb1c65a44fd36083d19c0ff7f17a8def6f38d4d5c"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11858780209056478,
+      "peak": 0.63232421875,
+      "sha256": "f27bd684b94e6c1269c8b4055b533da441078dbf907cd8b48a47956938172f2e"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10411207243306275,
+      "peak": 0.681640625,
+      "sha256": "8b903d0121ec1a714c9ac83b6749ea50c526d7c1ccd8c1bb264031bdbd80d464"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10586363654102594,
+      "peak": 0.705078125,
+      "sha256": "e861ea78532e15fc2199bca8de7e9f37a50b96ecbbe8ce9bedf3952ff0294d60"
+    },
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10941966195241863,
+      "peak": 0.52001953125,
+      "sha256": "10990c27b3130f44ef864fa327021c4d901add7d9107b6ee8b440d3ee7c4cac6"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11254415641851179,
+      "peak": 0.6875,
+      "sha256": "4fb01cdb13ddfbb5df741562a92fe0eda9668035efc2655dcef3fefb925166ce"
+    },
+    "vocals2trombone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11752357451397649,
+      "peak": 0.64306640625,
+      "sha256": "0261f92f19e7f8771831908e2fc5a5a39815d813d5d53ea1f0344076396a50e9"
+    },
+    "guitar2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11147550211595744,
+      "peak": 0.69384765625,
+      "sha256": "820f0c4ce265c5f063fc8ef5875081ec87fc782d19a986e03272fe5a6997b8f6"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1153699493909202,
+      "peak": 0.71044921875,
+      "sha256": "ed0b3fa1fb4c2d7e47bcd60e7a2a5e6878d4a08aef9c583d058f207c8cf703da"
+    },
+    "guitar2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10654975460001395,
+      "peak": 0.8056640625,
+      "sha256": "ef5b30ac457f7817445a284b0df6701e7420f54fa15b24b46748cf52400f7ec9"
+    },
+    "guitar2banjo": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11053469680101702,
+      "peak": 0.83251953125,
+      "sha256": "bb135a75c22fb54d2fa3faea99bc20f48826b569898b79e091c4e26aaf5d05f5"
+    },
+    "guitar2organ": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11195321828619553,
+      "peak": 0.673828125,
+      "sha256": "fbfeb45d628ca41e840f3ad8b76a1bd6418fe181bc16024453d034f0cf877c11"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12553006175228645,
+      "peak": 0.669921875,
+      "sha256": "4b60f33d0eb10537ebe5e374f6dca4f87ef87d262cc639643ecb565ff1c84c82"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1198729157854255,
+      "peak": 0.7099609375,
+      "sha256": "5e1c9e9ebef42729c3dfd4b7521d938e29bc469a03af4c4bd348256817a60c50"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11551784175059099,
+      "peak": 0.71533203125,
+      "sha256": "602e0436bc2470758936bb967185994c6ddf51eb63f0a2bf7f3e060f9bdc4412"
+    }
+  },
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Al James - Schoolboy Facination",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Al James - Schoolboy Facination",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 419.3471880819998,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.023024559020996,
+  "peak_cuda_reserved_gib": 10.36328125
+}

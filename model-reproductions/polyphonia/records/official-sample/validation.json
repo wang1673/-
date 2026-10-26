@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "command_argv": [
+    "/home/featurize/work/polyphonia_repro/polyphonia/run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/work/polyphonia_repro/polyphonia/sample",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/smoke_official_01",
+    "--task_key",
+    "vocals2violin",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy",
+    "--visualize"
+  ],
+  "sample_rate": 16000,
+  "frames": 160000,
+  "duration_seconds": 10.0,
+  "peak": 0.58642578125,
+  "rms": 0.09800602203622569,
+  "elapsed_seconds": 70.70311774999982,
+  "peak_cuda_allocated_gib": 10.023634910583496,
+  "peak_cuda_reserved_gib": 10.357421875
+}

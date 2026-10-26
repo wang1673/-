@@ -1,0 +1,10 @@
+{
+  "generated_sha256": "eb366531dc0f4c737cd7304ccfe47c48d4bde7eb3a4d7dedc29555a78d174db9",
+  "reference_sha256": "d699522dff12eac7259c5340af05ed6f55d9cf182d8ed62f22f6ed9c0db7d5cd",
+  "generated_frames": 160000,
+  "reference_frames": 160000,
+  "generated_sr": 16000,
+  "reference_sr": 16000,
+  "rmse_against_shipped_output": 0.002703317366543241,
+  "correlation_against_shipped_output": 0.9996198435127442
+}
