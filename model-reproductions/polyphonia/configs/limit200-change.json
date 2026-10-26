@@ -1,0 +1,16 @@
+{
+  "updated_at_utc": "2026-10-26T13:30:25.971384+00:00",
+  "user_requested_limit": 200,
+  "remaining_paused": 550,
+  "selection": "13 complete tracks x 15 tasks + first 5 tasks of track 14",
+  "preexisting_validated_outputs_preserved": 70,
+  "handoff_note": "Active process interrupted before its next save during tmux controller handoff; missing tasks resumed; uninterrupted-run bitwise equivalence is not asserted",
+  "new_rng_checkpointing": "per-success Python/NumPy/torch CPU/CUDA state saved in data runtime; conditional restore before first missing task",
+  "script_sha256": {
+    "benchmark_controller.py": "0aee266669aee96482b67ccff301db564aaf176d7d76abc3c6307cf5b8e42829",
+    "benchmark_worker.py": "f2aaf6984577e64b3b3f12bce48a38ac19632ff5ef448c8a411617cd5aca826b",
+    "run_evaluation_after_generation.py": "2c876a6c63b58f6d0e95ace2018f2c1df15d31446fe235909615bd9669c5e9e5",
+    "export_stage_review.py": "3e1399015a0276a2e5eda3ee4e00d503b697c81562486d8c69eed7b637661426",
+    "status_benchmark.py": "dd4bae6ac036953b7afcb9ac66bf174185fd9889f5814579f84c6386033cf1d1"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "track": "Arise - Run Run Run",
+  "state": "completed",
+  "files": {
+    "vocals2trombone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11327359202360116,
+      "peak": 0.84375,
+      "sha256": "31d0f6095fa92a252f80f2b2c76e642608f65a57cb6b3f113efe7e2f3e79b2cd"
+    },
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10247816923638882,
+      "peak": 0.7021484375,
+      "sha256": "fd8cdaf56d2f089e65a23cd6ad35f33494c355e3520d94b0ee713e625e1c84a9"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11195438477363041,
+      "peak": 0.8466796875,
+      "sha256": "3d39284dc87a11778ebfe4f6d891bb717dfc9e7b556ebe139b873f6a05b2dc7b"
+    },
+    "vocals2doublebass": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09930945370910046,
+      "peak": 0.7197265625,
+      "sha256": "8b15d3858dac4b6a13d1fab22a61d2d2d44cc719694c995af640a709504e1e72"
+    },
+    "vocals2piccolo": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10508629068335472,
+      "peak": 0.8544921875,
+      "sha256": "514641fb861d423ad94180e73a325abef3afbb0288d48196e0d1aa6cb06bb8ec"
+    },
+    "vocals2electricguitar": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15282964088462353,
+      "peak": 0.9814453125,
+      "sha256": "6b0804d8999e3eeecdca3425232377618551c4595754f3fcf337f94d9181635f"
+    },
+    "vocals2accordion": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09600068585464598,
+      "peak": 0.6171875,
+      "sha256": "94b28a45053e3334a2f047dd6b76426d6646f42791ee406d8516b353ee17e055"
+    },
+    "guitar2organ": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1301008043460318,
+      "peak": 0.908203125,
+      "sha256": "012d5a4090c83bf5e5116ee4f803401f582aa46d0e0094e56770582a686b20bf"
+    },
+    "guitar2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1186687465221892,
+      "peak": 0.8828125,
+      "sha256": "f6aeb4cc9bb17eca5fafda448e4ade14d8a0336f5357a072508a7ae6b96a644a"
+    },
+    "guitar2synth": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13094355204457117,
+      "peak": 0.93798828125,
+      "sha256": "548418d51160ea4b3f73e6e20d216074934effa9b3073a4a0658edb0ebd78182"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11385316892515339,
+      "peak": 0.83447265625,
+      "sha256": "82ae12164a8d488bc08d99de7f4b1c70907bfc0baf78794022d7a11e0cd4ecc8"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12140621365578433,
+      "peak": 0.8017578125,
+      "sha256": "18180a9c75ec490b64d073e2f8ac7c6192fbcaf29dd7a39fc680581d45f8f552"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11405844504991366,
+      "peak": 0.94140625,
+      "sha256": "e57ca9b86710cda47df8a481bd8735c3b35c48987125167c9dbf2fd55d359a54"
+    },
+    "drums2acoustic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11066260985316007,
+      "peak": 0.7900390625,
+      "sha256": "4ba57c0cdb406c4613ff72006947a1c26048422e86125beb5c6bcd4062ab67d1"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12598789976126265,
+      "peak": 0.93115234375,
+      "sha256": "6627d62a22bce2e9f01d27e4616fde348e7f1a151f2431cf1a90144e363719e4"
+    }
+  },
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Arise - Run Run Run",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Arise - Run Run Run",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 401.74604734199966,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.024611473083496,
+  "peak_cuda_reserved_gib": 10.369140625
+}

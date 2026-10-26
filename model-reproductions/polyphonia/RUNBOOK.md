@@ -24,7 +24,7 @@ python "$POLYPHONIA_ROOT/scripts/status_benchmark.py"
 tmux list-sessions
 ```
 
-当前后台会话：`polyphonia-benchmark`（分轨与生成），`polyphonia-evaluation`（等待全部生成完成后评测）。状态快照上传 GitHub 后不会自动更新。
+本阶段后台作业已经退出，生成200个任务后正常暂停，阶段评测已完成。没有正在运行的后550任务。历史会话名为 polyphonia-benchmark 和 polyphonia-evaluation。
 
 ## 官方样例
 
@@ -50,7 +50,7 @@ bash "$POLYPHONIA_ROOT/scripts/run_benchmark.sh"
 
 ## 评测
 
-已完成 15 任务的 CPU 预检，并对 LPAPS 归约、恒等特征检查通过。首次完整评测会在 750 个任务生成后自动执行。独立运行必须确认 GPU 无生成作业：
+已完成 15 任务的 CPU 预检，并对 LPAPS 归约、恒等特征检查通过。前200任务的阶段评测已自动完成。下面不带上限的命令面向未来全750任务，当前只有200个输出时不得执行。独立运行必须确认 GPU 无生成作业：
 
 ```bash
 source /home/featurize/work/polyphonia_repro/scripts/env.sh
@@ -72,3 +72,11 @@ FAD 与多项式 MMD² 按显式实现约定补充计算，尚未对齐作者未
 ## 更新归档
 
 `export_github_snapshot.py` 会在 work 下重新导出允许上传的记录。它不会推送 GitHub，也不会读取 SSH 或令牌文件。后续更新需重新检查快照状态并提交。
+
+## 当前200任务上限与后续恢复
+
+`control.json` 的 max_tasks 仍为200。生成在 paused_at_task_limit 正常退出；阶段评测状态为 stage_completed_remaining_paused。200任务的记录为 `metrics/summary.first200.json`、`metrics/per_task.first200.csv` 和 `RESULTS_first200_zh.md`，8组试听在 `review_first200/`。
+
+剩余550任务仅在用户之后明确要求继续时恢复。恢复前需检查当前状态、控制参数、文件哈希和随机状态检查点，防止误启动或重复生成。本阶段使用不同文件名保存阶段结果，不能与未来全量 summary.json 混淆。
+
+控制器交接时曾有一次未保存生成中断；70个有效文件保留，其余缺失任务续跑。这次切换前未保存随机流，不能保证续跑与不中断运行逐字节相同；新worker会在每个成功输出后保存随机状态，在匹配的断点尝试恢复。详见 configs/limit200-change.json 与 records/history/before-limit200/。

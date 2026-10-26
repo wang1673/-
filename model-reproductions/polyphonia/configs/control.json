@@ -1,0 +1,7 @@
+{
+  "max_tasks": 200,
+  "reason": "User requested first 200 of 750, remaining tasks later",
+  "updated_at_utc": "2026-10-26T13:23:37.595577+00:00",
+  "finish_active_track_before_controller_handoff": true,
+  "handoff_completed_utc": "2026-10-26T13:27:49.802625+00:00"
+}

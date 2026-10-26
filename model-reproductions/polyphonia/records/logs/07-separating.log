@@ -1,0 +1,24 @@
+
+  "track": "Bobby Nobody - Stitch Up",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Bobby Nobody - Stitch Up/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 4658062,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 10.106264099998953,
+  "sha256": {
+    "drums.wav": "91047554f99c17bb17704c8acf40edc342039e7e3af32baabb9a041cdd17f5fe",
+    "vocals.wav": "01cb52602412da25652136b4ff31367c140daae4ac8b475b5cab51a95ab702c4",
+    "other.wav": "9cb1a3e92393d67bbefc6d017b5989af6a54de19aa2667e0081bb41b927b3be7",
+    "mixture.wav": "a2c2511974feb6ce2f5dd975b10b5a2716232bc74ca1793fb8024a78cd1d87f1",
+    "prompt_multi.json": "30dc0b816a307475c435fe2f2a2b448c14b54d6a5deee80461336e582cc28194",
+    "bass.wav": "b3162b4046a0c8df09f7033c28f73a713ab217a2e10567c7a432d9121e9f6325"
+  }
+}
+

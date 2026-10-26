@@ -1,0 +1,149 @@
+{
+  "track": "Buitraker - Revo X",
+  "state": "completed",
+  "files": {
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12121471076034461,
+      "peak": 0.5947265625,
+      "sha256": "f38ab4e558fd526ba44067f5d313f3e783ea477e4ad30e62c3b9401107e4f3d9"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11940498572823613,
+      "peak": 0.67431640625,
+      "sha256": "4e52afb27a6c929518d4db5d37bf0c5c64978c8971a862a095ff3fbb33972a8f"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10938980451772355,
+      "peak": 0.607421875,
+      "sha256": "eca3a4b33bb7769b1987b3b4fbfd3f7c354e3b4858827541da7a0dbb0d7fecf1"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12618428026252318,
+      "peak": 0.68212890625,
+      "sha256": "821275e8a9b6ad35d4783667503647e6c61b71882106dd186ba1090e01ea5b60"
+    },
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1309014228968369,
+      "peak": 0.6904296875,
+      "sha256": "697399fe02f520d80e21ae2dd186a5c17449cc7d226ca1dfedeae3a989d12c0b"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12921147220581006,
+      "peak": 0.70458984375,
+      "sha256": "d735f716121d186501dc734e8e7fc83fab852db526a6fffd19b0f4d9cb122e36"
+    },
+    "vocals2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10621253111270441,
+      "peak": 0.60498046875,
+      "sha256": "ecfe3e41e0827548f7056c81add1cbb4a6ce50d10764e32771f636dfc22f1656"
+    },
+    "synth_lead2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15678326041139135,
+      "peak": 0.92138671875,
+      "sha256": "e2bdbcf30f6306572035fa6240519925a9bf8cfc0c2e0711bc0881d66bcc4984"
+    },
+    "synth_lead2guitar": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1532124161617761,
+      "peak": 0.87841796875,
+      "sha256": "a540f66210d977484d91cd74539ba6b2f9a61cf2cbc1d27c8e8e36892c2df111"
+    },
+    "synth_lead2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1291765237957037,
+      "peak": 0.68359375,
+      "sha256": "b4293cfb1c2aca2f41dbc97c7042930a3715747811d0714c4970b962a25da9ae"
+    },
+    "synth_lead2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15197584240025688,
+      "peak": 0.87548828125,
+      "sha256": "6b0bfaa9db50a1deac25b7fd530ba5f7071b40c20b1d691204c52530e72398e6"
+    },
+    "synth_lead2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.14920091976949476,
+      "peak": 0.70166015625,
+      "sha256": "dea481f6fbaaf3bd46dde1a26ee8231b7080e681b122e65946ec77cb085d32a8"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15987038402043374,
+      "peak": 0.8544921875,
+      "sha256": "6322b633c566d3823cdfee7ec2a382dc1014e161615abe3aee430575827147b9"
+    },
+    "drums2acoustic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12066550963334173,
+      "peak": 0.69384765625,
+      "sha256": "9979d12870a088b7d6ba1b7764021fa27f2caf5f0b96a9bd6ee6ef2462bbeda6"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13130624014333617,
+      "peak": 0.70849609375,
+      "sha256": "a2dcf3d17428c793ce20810f689fa7b9bf29d47aaf8461f7f1d2a4d0579e1ce5"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "vocals2violin",
+    "vocals2cello",
+    "vocals2flute",
+    "vocals2trumpet",
+    "vocals2choir",
+    "vocals2saxophone",
+    "vocals2harp",
+    "synth_lead2piano",
+    "synth_lead2guitar",
+    "synth_lead2marimba",
+    "synth_lead2flute",
+    "synth_lead2choir",
+    "bass2upright",
+    "drums2acoustic",
+    "drums2jazz"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Buitraker - Revo X",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Buitraker - Revo X",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 420.4338658339984,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.025343894958496,
+  "peak_cuda_reserved_gib": 10.36328125
+}

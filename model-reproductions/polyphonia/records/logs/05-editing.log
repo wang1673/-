@@ -1,0 +1,109 @@
+[2026-10-26 13:31:06][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:31:06][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Too Much
+[2026-10-26 13:31:06][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Too Much
+[2026-10-26 13:31:06][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:31:06][INFO] 随机种子: 928
+[2026-10-26 13:31:06][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:00<00:00, 12.35it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:00<00:01,  4.23it/s]
+Loading pipeline components...:  45%|████▌     | 5/11 [00:00<00:01,  5.08it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:01<00:01,  4.31it/s]
+Loading pipeline components...:  64%|██████▎   | 7/11 [00:02<00:01,  2.61it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  3.12it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:03<00:00,  2.59it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.55it/s][2026-10-26 13:31:10][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2cello', 'guitar2flute', 'guitar2trumpet', 'guitar2choir', 'guitar2saxophone', 'guitar2harp', 'guitar2oboe', 'guitar2trombone', 'drums2electronic', 'drums2jazz', 'drums2tribal', 'drums2orchestral', 'bass2upright', 'bass2synth']
+[2026-10-26 13:31:11][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:31:39][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 13:32:05][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 13:32:29][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 13:32:52][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 13:33:15][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 13:33:38][INFO] --> 执行任务: guitar2saxophone
+
+
+[2026-10-26 13:34:01][INFO] --> 执行任务: guitar2harp
+
+
+[2026-10-26 13:34:23][INFO] --> 执行任务: guitar2oboe
+
+
+[2026-10-26 13:34:46][INFO] --> 执行任务: guitar2trombone
+
+
+[2026-10-26 13:35:09][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:35:32][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:35:56][INFO] --> 执行任务: drums2tribal
+
+
+[2026-10-26 13:36:19][INFO] --> 执行任务: drums2orchestral
+
+
+[2026-10-26 13:36:42][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 13:37:06][INFO] --> 执行任务: bass2synth
+
+
+[2026-10-26 13:37:34][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:37:34][INFO] 成功: 15 | 失败: 0
+{
+  "track": "BKS - Too Much",
+  "state": "completed",
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2choir",
+    "guitar2saxophone",
+    "guitar2harp",
+    "guitar2oboe",
+    "guitar2trombone",
+    "drums2electronic",
+    "drums2jazz",
+    "drums2tribal",
+    "drums2orchestral",
+    "bass2upright",
+    "bass2synth"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Too Much",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Too Much",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 392.67538409400095,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.021803855895996,
+  "peak_cuda_reserved_gib": 10.3671875
+}
+

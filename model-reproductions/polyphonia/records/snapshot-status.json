@@ -1,5 +1,5 @@
 {
-  "state": "running",
+  "state": "paused_at_task_limit",
   "protocol": "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/protocol.json",
   "tracks": [
     {
@@ -7,8 +7,8 @@
       "track": "AM Contra - Heart Peripheral",
       "state": "completed",
       "validated_tasks": 15,
-      "separating_exit": 0,
-      "editing_exit": 0,
+      "selected_tasks": 15,
+      "reused_verified_outputs": true,
       "elapsed_seconds": 443.1460530530003,
       "peak_cuda_allocated_gib": 10.023390769958496
     },
@@ -17,21 +17,148 @@
       "track": "Al James - Schoolboy Facination",
       "state": "completed",
       "validated_tasks": 15,
-      "separating_exit": 0,
-      "editing_exit": 0,
+      "selected_tasks": 15,
+      "reused_verified_outputs": true,
       "elapsed_seconds": 419.3471880819998,
       "peak_cuda_allocated_gib": 10.023024559020996
     },
     {
       "index": 2,
       "track": "Angels In Amplifiers - I'm Alright",
-      "state": "editing",
-      "validated_tasks": 10,
-      "separating_exit": 0
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "reused_verified_outputs": true,
+      "elapsed_seconds": 383.92387914999927,
+      "peak_cuda_allocated_gib": 10.028636932373047
+    },
+    {
+      "index": 3,
+      "track": "Arise - Run Run Run",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "reused_verified_outputs": true,
+      "elapsed_seconds": 401.74604734199966,
+      "peak_cuda_allocated_gib": 10.024611473083496
+    },
+    {
+      "index": 4,
+      "track": "BKS - Bulldozer",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 151.4346148550003,
+      "peak_cuda_allocated_gib": 10.022047996520996
+    },
+    {
+      "index": 5,
+      "track": "BKS - Too Much",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 392.67538409400095,
+      "peak_cuda_allocated_gib": 10.021803855895996
+    },
+    {
+      "index": 6,
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 380.491964791001,
+      "peak_cuda_allocated_gib": 10.02387809753418
+    },
+    {
+      "index": 7,
+      "track": "Bobby Nobody - Stitch Up",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 437.6163722679994,
+      "peak_cuda_allocated_gib": 10.022536277770996
+    },
+    {
+      "index": 8,
+      "track": "Buitraker - Revo X",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 420.4338658339984,
+      "peak_cuda_allocated_gib": 10.025343894958496
+    },
+    {
+      "index": 9,
+      "track": "Carlos Gonzalez - A Place For Us",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 430.60112192199995,
+      "peak_cuda_allocated_gib": 10.022536277770996
+    },
+    {
+      "index": 10,
+      "track": "Cristina Vane - So Easy",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 427.15703838099944,
+      "peak_cuda_allocated_gib": 10.020888328552246
+    },
+    {
+      "index": 11,
+      "track": "Detsky Sad - Walkie Talkie",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 458.6041280270001,
+      "peak_cuda_allocated_gib": 10.026500701904297
+    },
+    {
+      "index": 12,
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "state": "completed",
+      "validated_tasks": 15,
+      "selected_tasks": 15,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 382.4897313659985,
+      "peak_cuda_allocated_gib": 10.022658348083496
+    },
+    {
+      "index": 13,
+      "track": "Forkupines - Semantics",
+      "state": "completed_subset",
+      "validated_tasks": 5,
+      "selected_tasks": 5,
+      "separating_exit": 0,
+      "editing_exit": 0,
+      "elapsed_seconds": 185.39520239100057,
+      "peak_cuda_allocated_gib": 10.023512840270996
     }
   ],
   "total_tasks": 750,
   "started_utc": "2026-10-26T12:48:41.329293+00:00",
-  "elapsed_seconds": 1237.6831161569999,
-  "validated_tasks": 40
+  "resumed_at_utc": "2026-10-26T13:27:49.801342+00:00",
+  "previous_elapsed_seconds": 2095.61772801,
+  "validated_tasks": 200,
+  "elapsed_seconds": 6340.270602,
+  "task_limit": 200,
+  "pause_reason": "User requested first 200 tasks; remaining tasks require a later resume"
 }

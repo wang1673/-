@@ -1,9 +1,14 @@
 {
-  "captured_at_utc": "2026-10-26T13:09:21.810606+00:00",
-  "experiment_state": "running",
-  "validated_tasks_at_capture": 40,
+  "captured_at_utc": "2026-10-26T14:48:38.979751+00:00",
+  "experiment_state": "paused_at_task_limit",
+  "validated_tasks_at_capture": 200,
   "total_tasks": 750,
-  "completed_tracks_at_capture": 2,
+  "stage_task_limit": 200,
+  "evaluated_tasks": 200,
+  "remaining_tasks_paused": 550,
+  "pipeline_state": "stage_completed_remaining_paused",
+  "completed_tracks_at_capture": 13,
+  "partial_tracks_at_capture": 1,
   "snapshot_notice": "Point-in-time record. Files do not automatically update on GitHub as server jobs continue.",
   "excluded": [
     "SSH keys and login material",

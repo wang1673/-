@@ -1,0 +1,149 @@
+{
+  "track": "BKS - Too Much",
+  "state": "completed",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11583301460643433,
+      "peak": 0.80908203125,
+      "sha256": "489132e48f77a8321e5fdf3bf7a3b565718b59666cea5a72a987bead5943eee9"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10410263041836214,
+      "peak": 0.837890625,
+      "sha256": "3af9050219c0923b44a86a2053bc374795b2f2d878fb0ed79d93b58079d5ce83"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10503918978482166,
+      "peak": 0.75830078125,
+      "sha256": "8319a6b86ee42a2442344f6aa7e0976cd565ca4eae29c2a1f4c43322d76b7b14"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10514022286218067,
+      "peak": 0.73046875,
+      "sha256": "89fb3144c987bc0d5aa5fed3356cb0a89406aaf1654d492307e1a5241ef5d95d"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10934361002297492,
+      "peak": 0.7158203125,
+      "sha256": "2339e487ada0e01ee2d70d2dac17b12524cdb5fb5768b5428dda4b64854f8623"
+    },
+    "guitar2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10533145128658895,
+      "peak": 0.72509765625,
+      "sha256": "65c371105a21343b6cd79a29099fd85a6d479db37d650db985c2b02e27b05f90"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09946221192633527,
+      "peak": 0.79150390625,
+      "sha256": "00b1ffc97be0af209e5fa8cde25bace87960da0036dcb48e24cff1b1270e81c5"
+    },
+    "guitar2oboe": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10372052214584103,
+      "peak": 0.77783203125,
+      "sha256": "e7dde372c524f781c04e0d8ee1576a4e28bd779c58c18ab5d4719f6208a05516"
+    },
+    "guitar2trombone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10328779943813397,
+      "peak": 0.73291015625,
+      "sha256": "969f1e719a0934420f3db0810c7f9c96c801dc492e9804ad131292fd23faeda0"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11435183055018042,
+      "peak": 0.59716796875,
+      "sha256": "5a8ae62bdd08423cf3bc46a19a53093a0139cf7fd137a9cad45054da14f2f2ee"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10858107728311474,
+      "peak": 0.72119140625,
+      "sha256": "e28f7c068550cc991375006704acb2f9f8078c37fc0f5521ac4f80f1fcfea7de"
+    },
+    "drums2tribal": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10838700163684838,
+      "peak": 0.74609375,
+      "sha256": "b857cf680839afd7c964c432f5a67c7600b9c2ce34e5eab567b3e4970aec3ad6"
+    },
+    "drums2orchestral": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11287207901635686,
+      "peak": 0.75,
+      "sha256": "a76d57198a19f8ffc8e7def880460689126f0c67c2822c593cb0161db8fd28f3"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11936697892912669,
+      "peak": 0.8056640625,
+      "sha256": "31b2693eb38c6a4c123f2fb9e3cef7953672740d88b3045dab2ce5054ba4b62c"
+    },
+    "bass2synth": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12466002038079546,
+      "peak": 0.77001953125,
+      "sha256": "05449f95814f85693f6ee49870bda15a0ebecbab3171b371c90deef6f20176a0"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2choir",
+    "guitar2saxophone",
+    "guitar2harp",
+    "guitar2oboe",
+    "guitar2trombone",
+    "drums2electronic",
+    "drums2jazz",
+    "drums2tribal",
+    "drums2orchestral",
+    "bass2upright",
+    "bass2synth"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Too Much",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Too Much",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 392.67538409400095,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.021803855895996,
+  "peak_cuda_reserved_gib": 10.3671875
+}

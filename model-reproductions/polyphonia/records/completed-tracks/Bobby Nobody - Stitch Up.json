@@ -1,0 +1,149 @@
+{
+  "track": "Bobby Nobody - Stitch Up",
+  "state": "completed",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10551536184737287,
+      "peak": 0.83154296875,
+      "sha256": "391352d00dbda6189a4d713c91986c8d803661b04e4cf1f1819b6cd7170e6c8a"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1014259862237157,
+      "peak": 0.9013671875,
+      "sha256": "94f43dddc9b4a2dc293ea22271834d6927405cddc05c7fdf21a765ee3516583e"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1054280719747534,
+      "peak": 0.69580078125,
+      "sha256": "085e0a01d10dc1e8d0655f164a088a7b92e4408213bdaff8733f5230e80e8a9b"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10123195206646923,
+      "peak": 0.93701171875,
+      "sha256": "8a97447b9ceaefdb7cbf98c97bbffa390131547988a68b21cf1621039605d659"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10190682487243531,
+      "peak": 0.88671875,
+      "sha256": "6708b1aaede041a5e901f46848d74bde01711991e7be156af678285612a5b624"
+    },
+    "guitar2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10528112193898344,
+      "peak": 0.8935546875,
+      "sha256": "b3ff21a4d32cf76fd30a2f6d79b4047f54e93d56baef709a5414e1344c872afb"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0933469975163959,
+      "peak": 0.658203125,
+      "sha256": "359af76fe05bea1d25836a289eaa697745f370d2a69e5c18cb5f02650b356dac"
+    },
+    "guitar2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09283063821281755,
+      "peak": 0.6123046875,
+      "sha256": "520a26937ac551c41552ee09553a6229bc642f0fdb908251bb691af0e11c6ad1"
+    },
+    "guitar2banjo": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09695338619361953,
+      "peak": 0.6962890625,
+      "sha256": "5f745f59b58d874a2f3842412b850d1abc1906b71d84cf92637c5678d1af9308"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09769611730908627,
+      "peak": 0.90625,
+      "sha256": "fc10cf30752ac85b6edb35181273baa7caecf4d2c7d266efbd2f113e713f9d48"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09911720446442969,
+      "peak": 0.84912109375,
+      "sha256": "5e404945a1d935047acd8b3691067bc6c0bfeb4ddf6fe2a9f69cf1c432825684"
+    },
+    "drums2tribal": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09108664826080665,
+      "peak": 0.88232421875,
+      "sha256": "fc73ddd1dd850537da7df3af7629b3a8420cb22a06b428de63624f326199cd33"
+    },
+    "drums2orchestral": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11743065433749737,
+      "peak": 0.634765625,
+      "sha256": "3f6b851cd80c7ea9f4f1a09173cb89014fd0555d035fbd41a47e7153c3c01660"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11340495666600359,
+      "peak": 0.91796875,
+      "sha256": "1544ed77fc6b099a1ff5fb6585746869262579ab57a3da33333adea8e7d79e3d"
+    },
+    "bass2synth": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1025542575185538,
+      "peak": 0.81201171875,
+      "sha256": "577486dbfa38dfc7836235da6a16968b7825fbc01a56077452792d3d38e27475"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2cello",
+    "guitar2trumpet",
+    "guitar2choir",
+    "guitar2saxophone",
+    "guitar2harp",
+    "guitar2marimba",
+    "guitar2banjo",
+    "drums2jazz",
+    "drums2electronic",
+    "drums2tribal",
+    "drums2orchestral",
+    "bass2upright",
+    "bass2synth"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Bobby Nobody - Stitch Up",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Bobby Nobody - Stitch Up",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 437.6163722679994,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022536277770996,
+  "peak_cuda_reserved_gib": 10.357421875
+}

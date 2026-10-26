@@ -1,0 +1,24 @@
+
+  "track": "BKS - Too Much",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/BKS - Too Much/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 4633256,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 11.222775743000057,
+  "sha256": {
+    "drums.wav": "05496ace78ddbc6570ebd44a530872729c62c57262f73ddcd3b936518800af22",
+    "vocals.wav": "fe75144df532d2188c07ec9c499d18c9f225b50a64a04689e9463c54742ada12",
+    "other.wav": "0e176e0d4ae155a9fdb69058a9c4870a70f639824f6ff14370abe23e8cf0d299",
+    "mixture.wav": "d0227cea82653e39500accdd5f449e7bed7c3bbb413e9c491a99b8a6a3651d10",
+    "prompt_multi.json": "6f2ffb58b5d2fbcc68046650e49876ab95bbe7c215219f49cf9205c292bb3962",
+    "bass.wav": "a201f25725513a7f8a680eb85c3c0c88567dad335cd67cb1d438d25b8d5796b7"
+  }
+}
+

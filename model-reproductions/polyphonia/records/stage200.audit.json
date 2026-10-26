@@ -1,0 +1,1028 @@
+{
+  "status": "passed",
+  "checked_at_utc": "2026-10-26T14:46:58.133042+00:00",
+  "generated_wav_count": 200,
+  "evaluated_rows": 200,
+  "full_tracks": 13,
+  "partial_tracks": 1,
+  "listening_pairs": 8,
+  "final_failed_tasks": 0,
+  "undefined_metrics": {
+    "CLAP": 0,
+    "LPAPS": 0,
+    "CQT1_PCC": 0
+  },
+  "remaining_tasks_paused": 550,
+  "no_outputs_beyond_task200": true,
+  "checks": [
+    "All 200 WAV hashes match validation and metric records",
+    "16k mono, 10 seconds, finite non-silent audio",
+    "CSV order exactly matches first 200 protocol tasks",
+    "CSV and JSON values match; means/std independently recomputed",
+    "All 8 listening pairs match source/edited hashes",
+    "Generation paused and evaluation completed with limit=200"
+  ],
+  "known_interruption": "One unsaved generation was interrupted during controller handoff. 70 valid outputs retained; missing tasks resumed. Random-stream difference documented in limit200-change.json.",
+  "files": [
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2violin",
+      "sha256": "fa2db1563fe6e0b4ec918b53f4637d9c2a386faac0c227c70088876633c6dc17"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2cello",
+      "sha256": "2d041fa14300103f701a0dc5c9543fdc7206cd25ad22ea487d227315cc65ca21"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2flute",
+      "sha256": "bc886a0b69a3e0e93dd4e27273fbdd720cde6fdc55de60dec9c23b2c30aac230"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2trumpet",
+      "sha256": "2063f4064b613a999e9700cec7cf2a3478bf34bad8068090f4301f1b1edbd593"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2choir",
+      "sha256": "bb706684af6b5ff264be637070e7988cad87d46434a20f8cc725281034d0cca1"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2saxophone",
+      "sha256": "ac799615588c94b2ea8446fcaa21458e3d6db443cb2611da7115184e45fc0cdb"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "vocals2trombone",
+      "sha256": "78583a3b99fa4456a682fd4b60a8d839046fcdfe5b24a170f437b6d9ecbfdcaf"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "guitar2piano",
+      "sha256": "52f9c2dbd504f1e1a1aef4bde64f93df66e88fa0fab6c7228655c3a8ef92c6ab"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "guitar2harp",
+      "sha256": "892ac5c82be224a37844318479af1fc7a849f267918ac95d1f2daa9fdd05120c"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "guitar2marimba",
+      "sha256": "53f5b9c3e6034b5579c323d64a848ed94a5508e613119e2a61db71965c9802ef"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "guitar2banjo",
+      "sha256": "4b31e3785ee8879326caf1a2e8368322848d627a6642a442e1a632fb3ebda73c"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "guitar2organ",
+      "sha256": "3c85be19ae7b701a5c1c729738cf33dd769a8f1741df4fa04796df0f319cb4e3"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "drums2electronic",
+      "sha256": "74ac0289d3dd937634aba794f52c2f3670d0b405ef8f04d64d3cd08613774833"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "drums2jazz",
+      "sha256": "c1edf055ab5d2ac36bf544d9653c8bea8c991e6667e40c23865d4a6280366e87"
+    },
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "task": "bass2upright",
+      "sha256": "da5c1750ec286089eba70243c15132f09977b9bfa0ad53c40176b80c581d3fc9"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2violin",
+      "sha256": "80cd2f5b0c789e1645b5016fb1c65a44fd36083d19c0ff7f17a8def6f38d4d5c"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2cello",
+      "sha256": "f27bd684b94e6c1269c8b4055b533da441078dbf907cd8b48a47956938172f2e"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2flute",
+      "sha256": "8b903d0121ec1a714c9ac83b6749ea50c526d7c1ccd8c1bb264031bdbd80d464"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2trumpet",
+      "sha256": "e861ea78532e15fc2199bca8de7e9f37a50b96ecbbe8ce9bedf3952ff0294d60"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2choir",
+      "sha256": "10990c27b3130f44ef864fa327021c4d901add7d9107b6ee8b440d3ee7c4cac6"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2saxophone",
+      "sha256": "4fb01cdb13ddfbb5df741562a92fe0eda9668035efc2655dcef3fefb925166ce"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "vocals2trombone",
+      "sha256": "0261f92f19e7f8771831908e2fc5a5a39815d813d5d53ea1f0344076396a50e9"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "guitar2piano",
+      "sha256": "820f0c4ce265c5f063fc8ef5875081ec87fc782d19a986e03272fe5a6997b8f6"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "guitar2harp",
+      "sha256": "ed0b3fa1fb4c2d7e47bcd60e7a2a5e6878d4a08aef9c583d058f207c8cf703da"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "guitar2marimba",
+      "sha256": "ef5b30ac457f7817445a284b0df6701e7420f54fa15b24b46748cf52400f7ec9"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "guitar2banjo",
+      "sha256": "bb135a75c22fb54d2fa3faea99bc20f48826b569898b79e091c4e26aaf5d05f5"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "guitar2organ",
+      "sha256": "fbfeb45d628ca41e840f3ad8b76a1bd6418fe181bc16024453d034f0cf877c11"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "drums2electronic",
+      "sha256": "4b60f33d0eb10537ebe5e374f6dca4f87ef87d262cc639643ecb565ff1c84c82"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "drums2jazz",
+      "sha256": "5e1c9e9ebef42729c3dfd4b7521d938e29bc469a03af4c4bd348256817a60c50"
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "task": "bass2upright",
+      "sha256": "602e0436bc2470758936bb967185994c6ddf51eb63f0a2bf7f3e060f9bdc4412"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "guitar2violin",
+      "sha256": "25eef2080f6eb2c891c952b6cc6e2ecb1211dc0b6568723e9ae4eec34c6f62b0"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "guitar2flute",
+      "sha256": "9181fbf55960f1a8ea945646245e35d2fc43ba911565d07de80e21b0045e2dfb"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "guitar2choir",
+      "sha256": "a30a3befdfe2ba4a8066cc39d7d38b2fd86e91b257d10f6ae045efc9b9b822d2"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "guitar2cello",
+      "sha256": "2da2679b85edfbd2a7d11646fd2c18f37b750aa5256ae4c5935c3c3f6741c022"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "guitar2trumpet",
+      "sha256": "099f9f9e5a29aa7fbcf28018b5347c66ced960872940108b91b7c9e588fbad03"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2viola",
+      "sha256": "14b8047dab7fed5fc5688939eab1ac819ec5c0a0981253a403cda508bf61b2c7"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2clarinet",
+      "sha256": "bc8d8a9eb375adfffb6e1c92dc25f4cf3fc19949d06b2e956304a3e4e4ca2f81"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2flute",
+      "sha256": "57e4c7d2af51c3e9b15ae078be69ae5b69aaf43e7998a7c885edad78f910398a"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2oboe",
+      "sha256": "5108d7e9e02183ffbe8e5715e06d6c5662987fe7626f1178e8c1e948e1474e36"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2saxophone",
+      "sha256": "9418c01f3bad60c9adcea74563f27138c2361edba74ff76c51b34408a0ef0b68"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2englishhorn",
+      "sha256": "5ad9cc885f794c40bd2be0e71e3bb5d4a6eb6af6a4722070d957f9474ef80e23"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "vocals2frenchhorn",
+      "sha256": "ff93b41e3b30110ad6a93e5ccd5243e6af9e47f42ad2262cde45557bb8592a07"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "drums2jazz",
+      "sha256": "b7202c327c9785110a1f9ae3a0c28e06fddeba642ee0e022aed2ba1671cde4d8"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "drums2electronic",
+      "sha256": "92f4ae47af6969372d1208d20703a74e1fe5ba8b1f6dd2f2b5b14b40be91d4d8"
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "task": "bass2upright",
+      "sha256": "cb0a79a1b1846f180d16f95bce63ded6d3df57d7fddf6bf19c3db2245b7feb4a"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2trombone",
+      "sha256": "31d0f6095fa92a252f80f2b2c76e642608f65a57cb6b3f113efe7e2f3e79b2cd"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2violin",
+      "sha256": "fd8cdaf56d2f089e65a23cd6ad35f33494c355e3520d94b0ee713e625e1c84a9"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2cello",
+      "sha256": "3d39284dc87a11778ebfe4f6d891bb717dfc9e7b556ebe139b873f6a05b2dc7b"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2doublebass",
+      "sha256": "8b15d3858dac4b6a13d1fab22a61d2d2d44cc719694c995af640a709504e1e72"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2piccolo",
+      "sha256": "514641fb861d423ad94180e73a325abef3afbb0288d48196e0d1aa6cb06bb8ec"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2electricguitar",
+      "sha256": "6b0804d8999e3eeecdca3425232377618551c4595754f3fcf337f94d9181635f"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "vocals2accordion",
+      "sha256": "94b28a45053e3334a2f047dd6b76426d6646f42791ee406d8516b353ee17e055"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "guitar2organ",
+      "sha256": "012d5a4090c83bf5e5116ee4f803401f582aa46d0e0094e56770582a686b20bf"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "guitar2piano",
+      "sha256": "f6aeb4cc9bb17eca5fafda448e4ade14d8a0336f5357a072508a7ae6b96a644a"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "guitar2synth",
+      "sha256": "548418d51160ea4b3f73e6e20d216074934effa9b3073a4a0658edb0ebd78182"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "guitar2harp",
+      "sha256": "82ae12164a8d488bc08d99de7f4b1c70907bfc0baf78794022d7a11e0cd4ecc8"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "guitar2choir",
+      "sha256": "18180a9c75ec490b64d073e2f8ac7c6192fbcaf29dd7a39fc680581d45f8f552"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "drums2electronic",
+      "sha256": "e57ca9b86710cda47df8a481bd8735c3b35c48987125167c9dbf2fd55d359a54"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "drums2acoustic",
+      "sha256": "4ba57c0cdb406c4613ff72006947a1c26048422e86125beb5c6bcd4062ab67d1"
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "task": "bass2upright",
+      "sha256": "6627d62a22bce2e9f01d27e4616fde348e7f1a151f2431cf1a90144e363719e4"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2violin",
+      "sha256": "14eda86e8cbc1c37ef8b437ccbc70cd0df0dc4eb4cfc99fd7275f1f63d597bc5"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2flute",
+      "sha256": "ad119289f7cff3107d0b8b4d5df3fb6af1699a94204ad2f3b4907a47e0f0829b"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2trumpet",
+      "sha256": "58e314b9baef391ce2a0f18fd26552755ff8b41bf7c3ea0bc0bd57479f25d950"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2cello",
+      "sha256": "6763711392aa74284bc4dce03dd4efa1b08d3652f43c151653f0314102445721"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2choir",
+      "sha256": "6b0721418b2952ad0274a976d31514bd01d621fe1ea8634deb88a4af555127f2"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2sitar",
+      "sha256": "07d085565e27fd9e2fdf9a32a2e2f8768d42914d26f94c63803098e2b1b29670"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2marimba",
+      "sha256": "2eb7ee7cd46b971eaa1c7b6fe7b9746d22fb7808b9d2fa3e19a615615ddc7319"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2synthlead",
+      "sha256": "8b06cefe3b0a7ccecae2387e8e119359dc08d69709fe6e41b7570bf0949a7145"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "guitar2harp",
+      "sha256": "afb5eb3c51cf41417bcb8dc9d63d31baf9538fa0cd44d8c831627511d83c1cff"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "bass2upright",
+      "sha256": "e23674214106268e4bbd6c55682d29156579c80fd44a711af8f02e752d7f9dc8"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "bass2synth",
+      "sha256": "75c5874db16d6dc7609b30936d7ef5f81e14402934638cdc235f19ff2b480bd1"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "drums2jazz",
+      "sha256": "968fb9e51711633797bc100c14ce18c01324f3b3155e700349562cd1c239696f"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "drums2tribal",
+      "sha256": "d5e8e59bfd1ca3ad5acd9ee8d5cf34934fc569fbf3cc3ed1242d3af8edc354d9"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "drums2electronic",
+      "sha256": "5d37bd7a583c75bbb91d3b0e856daa185404f93875f45850f3c88d9a0ecdf6a7"
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "task": "drums2orchestral",
+      "sha256": "905c7a89ab0d40397cb43f929249ab22c530a59b23be22cee985721618cc6dc2"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2violin",
+      "sha256": "489132e48f77a8321e5fdf3bf7a3b565718b59666cea5a72a987bead5943eee9"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2cello",
+      "sha256": "3af9050219c0923b44a86a2053bc374795b2f2d878fb0ed79d93b58079d5ce83"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2flute",
+      "sha256": "8319a6b86ee42a2442344f6aa7e0976cd565ca4eae29c2a1f4c43322d76b7b14"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2trumpet",
+      "sha256": "89fb3144c987bc0d5aa5fed3356cb0a89406aaf1654d492307e1a5241ef5d95d"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2choir",
+      "sha256": "2339e487ada0e01ee2d70d2dac17b12524cdb5fb5768b5428dda4b64854f8623"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2saxophone",
+      "sha256": "65c371105a21343b6cd79a29099fd85a6d479db37d650db985c2b02e27b05f90"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2harp",
+      "sha256": "00b1ffc97be0af209e5fa8cde25bace87960da0036dcb48e24cff1b1270e81c5"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2oboe",
+      "sha256": "e7dde372c524f781c04e0d8ee1576a4e28bd779c58c18ab5d4719f6208a05516"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "guitar2trombone",
+      "sha256": "969f1e719a0934420f3db0810c7f9c96c801dc492e9804ad131292fd23faeda0"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "drums2electronic",
+      "sha256": "5a8ae62bdd08423cf3bc46a19a53093a0139cf7fd137a9cad45054da14f2f2ee"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "drums2jazz",
+      "sha256": "e28f7c068550cc991375006704acb2f9f8078c37fc0f5521ac4f80f1fcfea7de"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "drums2tribal",
+      "sha256": "b857cf680839afd7c964c432f5a67c7600b9c2ce34e5eab567b3e4970aec3ad6"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "drums2orchestral",
+      "sha256": "a76d57198a19f8ffc8e7def880460689126f0c67c2822c593cb0161db8fd28f3"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "bass2upright",
+      "sha256": "31b2693eb38c6a4c123f2fb9e3cef7953672740d88b3045dab2ce5054ba4b62c"
+    },
+    {
+      "track": "BKS - Too Much",
+      "task": "bass2synth",
+      "sha256": "05449f95814f85693f6ee49870bda15a0ebecbab3171b371c90deef6f20176a0"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2vibraphone",
+      "sha256": "10d61fd4c803a63b29da2ce469d88ae42d4faa4b56e400cac49d8bc4b57ba668"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2cello",
+      "sha256": "fad388f6670c87c64f9ab334ed2bcb7f2866e946de98a27acf4233bc73c8e4e5"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2flute",
+      "sha256": "557fb8f55bde8528f51edf1bf0055b1614ee919cd981bddbcd2720ad06dbcdb2"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2trumpet",
+      "sha256": "9f7667ecd3c288440a8fa4bd8949ea121876c0fb9ddd43f6e344aff6f71284d1"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2choir",
+      "sha256": "dc145ed441c1871bf4a83f13e0b0774b3e684907b1c76030eab4c40c8cc21bab"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2violin",
+      "sha256": "38542272e97466b237d9f929a3c72a20694ed6ec17a27acdde42db6a0301f18a"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "piano2saxophone",
+      "sha256": "4f13a2d23b045191fe56f00848cbf5be1d96359be7ba45f46e6aa576cb44f669"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "harmonica2oboe",
+      "sha256": "17cc2da7c2150f632a088ed52b1a7c38381ef6d5fab809e9b93239fb98c7e75d"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "harmonica2clarinet",
+      "sha256": "bc9423c511489442790b4e4dc476a0e77a23cb33278bfbead9c8111e63dfc001"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "harmonica2trombone",
+      "sha256": "f8af4bea0e290b0263127077c7c6b381684706116ee1c9ef8dfa3e22d04f349c"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "acoustic_guitar2ukulele",
+      "sha256": "ac0fc4e8c2faf0e1109f52ef0deb8d14193004aacb93cd7be087288064535999"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "acoustic_guitar2banjo",
+      "sha256": "0d7a7b256396134c36cd14be8beff2a634baf6862d74ec16177921eda2e670e6"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "bass_guitar2upright",
+      "sha256": "a7775114218042bfdb750210b7374d70404c36a479595bfdfaa31d667cc12362"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "drums2jazz",
+      "sha256": "fd6d5099150c3db317cffb9e1bd61e3e8fe018a9c5b65b90ce0801efae59427a"
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "drums2electronic",
+      "sha256": "2a000c9c209289a2b429521bd7652a72d9929f52ecf15e452d78246785cddf4d"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2violin",
+      "sha256": "391352d00dbda6189a4d713c91986c8d803661b04e4cf1f1819b6cd7170e6c8a"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2flute",
+      "sha256": "94f43dddc9b4a2dc293ea22271834d6927405cddc05c7fdf21a765ee3516583e"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2cello",
+      "sha256": "085e0a01d10dc1e8d0655f164a088a7b92e4408213bdaff8733f5230e80e8a9b"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2trumpet",
+      "sha256": "8a97447b9ceaefdb7cbf98c97bbffa390131547988a68b21cf1621039605d659"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2choir",
+      "sha256": "6708b1aaede041a5e901f46848d74bde01711991e7be156af678285612a5b624"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2saxophone",
+      "sha256": "b3ff21a4d32cf76fd30a2f6d79b4047f54e93d56baef709a5414e1344c872afb"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2harp",
+      "sha256": "359af76fe05bea1d25836a289eaa697745f370d2a69e5c18cb5f02650b356dac"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2marimba",
+      "sha256": "520a26937ac551c41552ee09553a6229bc642f0fdb908251bb691af0e11c6ad1"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "guitar2banjo",
+      "sha256": "5f745f59b58d874a2f3842412b850d1abc1906b71d84cf92637c5678d1af9308"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "drums2jazz",
+      "sha256": "fc10cf30752ac85b6edb35181273baa7caecf4d2c7d266efbd2f113e713f9d48"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "drums2electronic",
+      "sha256": "5e404945a1d935047acd8b3691067bc6c0bfeb4ddf6fe2a9f69cf1c432825684"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "drums2tribal",
+      "sha256": "fc73ddd1dd850537da7df3af7629b3a8420cb22a06b428de63624f326199cd33"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "drums2orchestral",
+      "sha256": "3f6b851cd80c7ea9f4f1a09173cb89014fd0555d035fbd41a47e7153c3c01660"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "bass2upright",
+      "sha256": "1544ed77fc6b099a1ff5fb6585746869262579ab57a3da33333adea8e7d79e3d"
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "task": "bass2synth",
+      "sha256": "577486dbfa38dfc7836235da6a16968b7825fbc01a56077452792d3d38e27475"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2violin",
+      "sha256": "f38ab4e558fd526ba44067f5d313f3e783ea477e4ad30e62c3b9401107e4f3d9"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2cello",
+      "sha256": "4e52afb27a6c929518d4db5d37bf0c5c64978c8971a862a095ff3fbb33972a8f"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2flute",
+      "sha256": "eca3a4b33bb7769b1987b3b4fbfd3f7c354e3b4858827541da7a0dbb0d7fecf1"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2trumpet",
+      "sha256": "821275e8a9b6ad35d4783667503647e6c61b71882106dd186ba1090e01ea5b60"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2choir",
+      "sha256": "697399fe02f520d80e21ae2dd186a5c17449cc7d226ca1dfedeae3a989d12c0b"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2saxophone",
+      "sha256": "d735f716121d186501dc734e8e7fc83fab852db526a6fffd19b0f4d9cb122e36"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "vocals2harp",
+      "sha256": "ecfe3e41e0827548f7056c81add1cbb4a6ce50d10764e32771f636dfc22f1656"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "synth_lead2piano",
+      "sha256": "e2bdbcf30f6306572035fa6240519925a9bf8cfc0c2e0711bc0881d66bcc4984"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "synth_lead2guitar",
+      "sha256": "a540f66210d977484d91cd74539ba6b2f9a61cf2cbc1d27c8e8e36892c2df111"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "synth_lead2marimba",
+      "sha256": "b4293cfb1c2aca2f41dbc97c7042930a3715747811d0714c4970b962a25da9ae"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "synth_lead2flute",
+      "sha256": "6b0bfaa9db50a1deac25b7fd530ba5f7071b40c20b1d691204c52530e72398e6"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "synth_lead2choir",
+      "sha256": "dea481f6fbaaf3bd46dde1a26ee8231b7080e681b122e65946ec77cb085d32a8"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "bass2upright",
+      "sha256": "6322b633c566d3823cdfee7ec2a382dc1014e161615abe3aee430575827147b9"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "drums2acoustic",
+      "sha256": "9979d12870a088b7d6ba1b7764021fa27f2caf5f0b96a9bd6ee6ef2462bbeda6"
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "task": "drums2jazz",
+      "sha256": "a2dcf3d17428c793ce20810f689fa7b9bf29d47aaf8461f7f1d2a4d0579e1ce5"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2violin",
+      "sha256": "fbe199d87e880ff176ca817f9a8bc63d0bf553a6c24ffa4b04a23265400e4f45"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2cello",
+      "sha256": "255299ef44ac31fd0d3d64bc68c6f9c2391ddd2effa51d5a9282af023c3954f3"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2flute",
+      "sha256": "a94749b9a3d880058d634c744787fb859303fa4368f3dd7911a0acf747dae72b"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2choir",
+      "sha256": "31ec4819d9eaae88e22597b10fa7ecb2b52bd5a2c06fcd5e3e5e84f25cb6ee52"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2trumpet",
+      "sha256": "60df918c2f0ba8641ddc2f5abecc0fd1cafab44e1c25fad7c33f5491ff8b16e0"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2clarinet",
+      "sha256": "b1ec9fcdab4bf917eba156dc534df368c10f844abecbb372e646e8d456543657"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "vocals2saxophone",
+      "sha256": "3ebd012df66cb68ce7eecaca7fce27134d0eabc25cec2d1190ac7b52915c0075"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "piano2guitar",
+      "sha256": "1e05137705d7b6b7ed4ac01a8aec8888e9facb7d051e9029d9aeda4a530ec7c8"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "piano2harp",
+      "sha256": "05df27892131db797c3248f261a71a051f444d40056cdda060794deec5733684"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "piano2vibraphone",
+      "sha256": "dc39ebf2ddd14758a8badf42b808e364c23700b256285ad027849ff9c13cdd5f"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "piano2organ",
+      "sha256": "1942d02f6af4351f1c1adec2e35c4b326074e45b3b835a9b96a88145ee34c32d"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "piano2marimba",
+      "sha256": "08a14b615c85b3c1aef97295cb53e4f42ebc0a01c0c003320d20ba8de5204a58"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "bass2upright",
+      "sha256": "6be303aaf051abd20f15d95d2c1f126c5da90753a205275b5ee10d901ba4b7f4"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "synthpad2strings",
+      "sha256": "3995e69a93e747f4b2bfd2b78d4c425414ab200494824def1695a7a3204f3bec"
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "task": "synthpad2choir",
+      "sha256": "67babde346afa81dcf8412ce83a1a2aba87fe27862a0b40b1bea68d6d8ca6d0b"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2piano",
+      "sha256": "8b245a314edb4889ae3bd69763c52aedf9a6c47d41732031f0be619467da0a66"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2cello",
+      "sha256": "6c027b718098ae209c6ef2b982868b49454d98b3aeb2bb6cfe6f12840642602e"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2flute",
+      "sha256": "f4ba876599aef8449abc316eead266a834250efab7193454c53587b548a66bee"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2trumpet",
+      "sha256": "e6aaf7d9577727007b8ba79d9c08120af6bb557df5039017bd7c9c8fe8709a38"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2violin",
+      "sha256": "54b209c8275ba68d056cc7e09e89d51b5c341bdd5556936029f4973a9e106431"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2choir",
+      "sha256": "fac11d02e51e294554b3852c26f82a71d78f83c7cb247675d7e93f139db8a654"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "vocals2saxophone",
+      "sha256": "2cc48b9ad3d4281abe5e83733f1834dae06464b3b09f64148b9e11ffad90a6ba"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "guitar2piano",
+      "sha256": "44ae016ab5a8b61ec790238ae8cbfae22e578dbbc915e186881ac57d9d1de848"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "guitar2flute",
+      "sha256": "6654b66278c789304f8053e19ca0d19e3921ab24e78ecc9e1c8697f06cd89ec0"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "guitar2choir",
+      "sha256": "b3bdd0da31c9c79dfc2d95ddcded58ac07df972e4edab2a60bf0395cbd351d74"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "guitar2saxophone",
+      "sha256": "f1c291a3439b8ca423ab6c628008b9e4a81045688989550b3a42a370edf6affa"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "guitar2trumpet",
+      "sha256": "0c09dd2f7f06ff61ca65eac99a334559935a0be5b7b22221e94e000c724265fd"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "drums2electronic",
+      "sha256": "c5880af2b6b1c73afba5ace596f948ac94959af6b6882b5bb826daee59d352a4"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "drums2jazz",
+      "sha256": "52637539faa5d566581d192afae058761c0323adad0a052bddb25c90cea45495"
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "task": "bass2upright",
+      "sha256": "df2bfd61584ac9d7749eeb021eb58688534017b38d1fd7ff7cbec8dcbabd5efc"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2choir",
+      "sha256": "7336bd9674921dac436b883da63c13d9e8e979db7b1f904839e0c7956d854838"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2synthpad",
+      "sha256": "3abb345b6e75dd16e8736b9d5b9fa435be592154ce8739bc3728f38218c4a0fd"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2flute",
+      "sha256": "d9e7fa4d98908be4f929a79e2a700e7f66609e85935bff18a48a80c2ad4f6064"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2cello",
+      "sha256": "cd8b6f04276f6a29d062ed676025ccf46472f3185469e8eafad4c73d7477a878"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2trumpet",
+      "sha256": "c07753a6ae754e1acc13f73fabb7f144f8c1ebe4b54c9eb8fc7bc73c7593c6d9"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2bassoon",
+      "sha256": "4025f4053c038a524f037920bdc573c26ea6b9689c5795faa8ff3dc628b068fa"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "vocals2marimba",
+      "sha256": "3751bd0dd4404aa80eec0efaa0820d713da9ec6963e93bdcacc8066a770cfdeb"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "guitar2acoustic",
+      "sha256": "d4da78b9afeb8cd5c225f899523bb3040273f352227b5d9ddf7d1be4eaf70894"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "guitar2piano",
+      "sha256": "402d059f1cb2eccce90b4cf665ef93fa133a2988969baf4e3bcf19a948da6e12"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "guitar2violin",
+      "sha256": "1c66a4c03dc1d73685894e10214013075f810c7f5a76d55ad050bb80d7658248"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "guitar2flute",
+      "sha256": "7ff80ea772c723e326f9a10932fd1bf6be6ff761b53e9944a461b643d78db7bc"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "guitar2choir",
+      "sha256": "3ad4c5af7cdb91c8ef1a234620df06dcdd69bf04a103678dfc755605fef1a2be"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "drums2electronic",
+      "sha256": "635758a4c421a3477c1cd6d73fc2b9b3c7abb9a172dd66db65fa9ad699b3c477"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "drums2organic",
+      "sha256": "d15db0a2c36582f2fe18ad741a37193bec6b1295be85e18b1dd7e4a63ad02c8c"
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "task": "bass2upright",
+      "sha256": "0be2ab9884b7bf62d692f31696dae18f41e3b838662144b1bc3f0e7a199a0517"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2violin",
+      "sha256": "bcbc2561f5980c2833cdd8d36d859d5af443676228cb238e58a39adc3c68b5d1"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2cello",
+      "sha256": "85695aebc69d3552b7f80adb3f11c8be446aaec0b8b055f7057a32ad70562f82"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2flute",
+      "sha256": "75cc0a6d8df588c851533c608ae742a96cbb10e5cf4e60d45551bb59c97e6e20"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2harp",
+      "sha256": "b0e432591e9c28b91c0f53771c08e41f20e152a782caeab8f0ef0deabb7bc77f"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2choir",
+      "sha256": "bc33fdd5f06f2beb16709c40be66098239ead2164f8703d07c78a760cfa370b6"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2clarinet",
+      "sha256": "eb96c42db3879fbe6dfe0e6127178cabf9727820997dbb8291e0d8593a76b680"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2trumpet",
+      "sha256": "f325b3c773d1bbccb081d18a869059cfec8ea0bcc02d260c8ad3773442921503"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2accordion",
+      "sha256": "f0f05f35bb11867dddf77dba7cde65d98d98f0c41e847e389245476d692c05d3"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "guitar2sitar",
+      "sha256": "39b2ef5e6c2a650da965b9a3674010968d84ee8bf1389e8f589a1bd7911e38d4"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "bass2upright",
+      "sha256": "a11f0eadd9cb12a2a3fb9b5574990cec1a5e108881d09cdf4332ac9bc01d4bc5"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "bass2synth",
+      "sha256": "7f328fbc279623a7d177f3227817c72d263503270524348536cebcfc6f37f313"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "drums2electronic",
+      "sha256": "ca41be0027411fd8d80d56f1d1269e3939fca427ef1cd9793fd5d2b2ddbc4da6"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "drums2orchestral",
+      "sha256": "bc8e98d683d9fd2d8155732259deae4fb165cb845a64d275e19a91a29a794857"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "drums2jazz",
+      "sha256": "cd3af1af5102adba9bccad13adcd93d0deb111c861f1ec67dedea1f4c29fb168"
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "task": "drums2taiko",
+      "sha256": "80d8c662fff3fe9c1f72df67acd2289b29e5a026ebe56467206b8c47d33d97d9"
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "task": "guitar2violin",
+      "sha256": "516b9beac9769d39f8b4cd8f5bb1ee3dba76d4e145fcc686453fd7d2d16466a9"
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "task": "guitar2cello",
+      "sha256": "30b835cb5ee00e2ca8cfec4d35ffb52a1e24e33991e9e8ea5f122416df279e4f"
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "task": "guitar2flute",
+      "sha256": "7c1cc0732f41c205f015dd12d82424e04077336e0cf028832ff5aa445d999581"
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "task": "guitar2trumpet",
+      "sha256": "f3f289d2d19a417877f1bac9c399bb203831a0649c944f3f7bf06a34a385f308"
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "task": "guitar2choir",
+      "sha256": "5db4eeddddad5a8bb0d5e9b70a3f7074cedeca60dfc7ede9a26efb9946f5344c"
+    }
+  ]
+}

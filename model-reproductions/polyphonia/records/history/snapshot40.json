@@ -1,0 +1,24 @@
+{
+  "captured_at_utc": "2026-10-26T13:09:21.810606+00:00",
+  "experiment_state": "running",
+  "validated_tasks_at_capture": 40,
+  "total_tasks": 750,
+  "completed_tracks_at_capture": 2,
+  "snapshot_notice": "Point-in-time record. Files do not automatically update on GitHub as server jobs continue.",
+  "excluded": [
+    "SSH keys and login material",
+    "tokens and credentials",
+    "audio datasets and derived WAVs",
+    "model checkpoints",
+    "runtime environment binaries and caches",
+    "incomplete download archives"
+  ],
+  "upstream": {
+    "url": "https://github.com/Ltx-Leif/polyphonia",
+    "commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc"
+  },
+  "LPAPS_reference": {
+    "url": "https://github.com/HilaManor/AudioEditingCode",
+    "commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8"
+  }
+}

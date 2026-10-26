@@ -1,0 +1,149 @@
+{
+  "track": "Ben Carrigan - We'll Talk About It All Tonight",
+  "state": "completed",
+  "files": {
+    "piano2vibraphone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11729286296074569,
+      "peak": 0.849609375,
+      "sha256": "10d61fd4c803a63b29da2ce469d88ae42d4faa4b56e400cac49d8bc4b57ba668"
+    },
+    "piano2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12083003268903506,
+      "peak": 0.6962890625,
+      "sha256": "fad388f6670c87c64f9ab334ed2bcb7f2866e946de98a27acf4233bc73c8e4e5"
+    },
+    "piano2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1149055451129198,
+      "peak": 0.74267578125,
+      "sha256": "557fb8f55bde8528f51edf1bf0055b1614ee919cd981bddbcd2720ad06dbcdb2"
+    },
+    "piano2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11835756056633841,
+      "peak": 0.88134765625,
+      "sha256": "9f7667ecd3c288440a8fa4bd8949ea121876c0fb9ddd43f6e344aff6f71284d1"
+    },
+    "piano2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12483461637464914,
+      "peak": 0.70166015625,
+      "sha256": "dc145ed441c1871bf4a83f13e0b0774b3e684907b1c76030eab4c40c8cc21bab"
+    },
+    "piano2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12088018961143748,
+      "peak": 0.814453125,
+      "sha256": "38542272e97466b237d9f929a3c72a20694ed6ec17a27acdde42db6a0301f18a"
+    },
+    "piano2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11909939196232286,
+      "peak": 0.796875,
+      "sha256": "4f13a2d23b045191fe56f00848cbf5be1d96359be7ba45f46e6aa576cb44f669"
+    },
+    "harmonica2oboe": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12765598633352937,
+      "peak": 0.68212890625,
+      "sha256": "17cc2da7c2150f632a088ed52b1a7c38381ef6d5fab809e9b93239fb98c7e75d"
+    },
+    "harmonica2clarinet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13997671946818763,
+      "peak": 0.77001953125,
+      "sha256": "bc9423c511489442790b4e4dc476a0e77a23cb33278bfbead9c8111e63dfc001"
+    },
+    "harmonica2trombone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1302354899414728,
+      "peak": 0.74951171875,
+      "sha256": "f8af4bea0e290b0263127077c7c6b381684706116ee1c9ef8dfa3e22d04f349c"
+    },
+    "acoustic_guitar2ukulele": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1184593980768499,
+      "peak": 0.77783203125,
+      "sha256": "ac0fc4e8c2faf0e1109f52ef0deb8d14193004aacb93cd7be087288064535999"
+    },
+    "acoustic_guitar2banjo": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11903114317832957,
+      "peak": 0.7998046875,
+      "sha256": "0d7a7b256396134c36cd14be8beff2a634baf6862d74ec16177921eda2e670e6"
+    },
+    "bass_guitar2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.116297571001993,
+      "peak": 0.7509765625,
+      "sha256": "a7775114218042bfdb750210b7374d70404c36a479595bfdfaa31d667cc12362"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11007105582627473,
+      "peak": 0.6591796875,
+      "sha256": "fd6d5099150c3db317cffb9e1bd61e3e8fe018a9c5b65b90ce0801efae59427a"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11218075806296052,
+      "peak": 0.66748046875,
+      "sha256": "2a000c9c209289a2b429521bd7652a72d9929f52ecf15e452d78246785cddf4d"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "piano2vibraphone",
+    "piano2cello",
+    "piano2flute",
+    "piano2trumpet",
+    "piano2choir",
+    "piano2violin",
+    "piano2saxophone",
+    "harmonica2oboe",
+    "harmonica2clarinet",
+    "harmonica2trombone",
+    "acoustic_guitar2ukulele",
+    "acoustic_guitar2banjo",
+    "bass_guitar2upright",
+    "drums2jazz",
+    "drums2electronic"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Ben Carrigan - We'll Talk About It All Tonight",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Ben Carrigan - We'll Talk About It All Tonight",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 380.491964791001,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.02387809753418,
+  "peak_cuda_reserved_gib": 10.357421875
+}

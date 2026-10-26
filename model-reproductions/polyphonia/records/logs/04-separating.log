@@ -1,0 +1,25 @@
+
+  "track": "BKS - Bulldozer",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/BKS - Bulldozer/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 7211236,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 13.70996913899944,
+  "sha256": {
+    "drums.wav": "6e9e50a64da81ad21ba6470b2305c15225cb38c58421e857dacd4666df3a52bb",
+    "vocals.wav": "2d052f6660e096e997ba29a3803213b7b065911df017cb6736543d9bc2d4b31e",
+    "other.wav": "fd69725288beb72d5a7642891a2242430451fdb4cddb62b5b005e9e9913dea9b",
+    "mixture.wav": "ec08b55026572a51b80bb866da10290c59804e0baa12c548f205bd154d8f02a7",
+    "prompt_multi.json": "2a936818146173be2ad8e49b90066c12ced7be28e874726ea3ff57d7b5ec3207",
+    "bass.wav": "94db44e84cd0be778e60413fcdb252c71e74e1f1404795de4beda671adc0dd17"
+  }
+}
+
+Verified prepared track: BKS - Bulldozer

@@ -1,0 +1,24 @@
+
+  "track": "Carlos Gonzalez - A Place For Us",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Carlos Gonzalez - A Place For Us/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 5296823,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 11.001840110999183,
+  "sha256": {
+    "drums.wav": "1b0e6b543e9a240a8eb71e7a05d082e69a5254a414f15f2ad8c9adc3ac2cf9da",
+    "vocals.wav": "67de6f307afe7d4c650dc3c42ecd0729bcc51f0da379723e88f1b748d61676ce",
+    "other.wav": "c11fef2240d55d79f8c52eeda2ceb974a058f00335829b3a175ca6fd603dd477",
+    "mixture.wav": "3ee5c484b252cff16568c86611a476f31767bf001e6c4e4e9e3c2fe6fa1e454f",
+    "prompt_multi.json": "a03b0585cd64c14c498412843db2be9a171def620a2cb0e41f67d293b1a166be",
+    "bass.wav": "9505df372c86e7e17af25f7a12450962a9b31622a746f0a39e84fa94121e2985"
+  }
+}
+

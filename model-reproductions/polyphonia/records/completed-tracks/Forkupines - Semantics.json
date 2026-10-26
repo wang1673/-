@@ -1,0 +1,69 @@
+{
+  "track": "Forkupines - Semantics",
+  "state": "completed_subset",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0916654429444041,
+      "peak": 0.79052734375,
+      "sha256": "516b9beac9769d39f8b4cd8f5bb1ee3dba76d4e145fcc686453fd7d2d16466a9"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.07619226764439793,
+      "peak": 0.71923828125,
+      "sha256": "30b835cb5ee00e2ca8cfec4d35ffb52a1e24e33991e9e8ea5f122416df279e4f"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.07325749856712194,
+      "peak": 0.60498046875,
+      "sha256": "7c1cc0732f41c205f015dd12d82424e04077336e0cf028832ff5aa445d999581"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0993949024926612,
+      "peak": 0.76123046875,
+      "sha256": "f3f289d2d19a417877f1bac9c399bb203831a0649c944f3f7bf06a34a385f308"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13704734460651188,
+      "peak": 0.88671875,
+      "sha256": "5db4eeddddad5a8bb0d5e9b70a3f7074cedeca60dfc7ede9a26efb9946f5344c"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2choir"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Forkupines - Semantics",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Forkupines - Semantics",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 185.39520239100057,
+  "validated_tasks": 5,
+  "peak_cuda_allocated_gib": 10.023512840270996,
+  "peak_cuda_reserved_gib": 10.361328125
+}

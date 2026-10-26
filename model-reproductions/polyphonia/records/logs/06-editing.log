@@ -1,0 +1,109 @@
+[2026-10-26 13:38:05][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:38:05][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Ben Carrigan - We'll Talk About It All Tonight
+[2026-10-26 13:38:05][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Ben Carrigan - We'll Talk About It All Tonight
+[2026-10-26 13:38:05][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:38:05][INFO] 随机种子: 928
+[2026-10-26 13:38:05][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:  27%|██▋       | 3/11 [00:00<00:01,  5.92it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:02,  2.88it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:01<00:01,  4.35it/s]
+Loading pipeline components...:  64%|██████▎   | 7/11 [00:02<00:01,  3.12it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:00,  3.11it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  4.58it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:02<00:00,  3.91it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:02<00:00,  3.81it/s][2026-10-26 13:38:09][INFO] 发现 15 个编辑任务: ['piano2vibraphone', 'piano2cello', 'piano2flute', 'piano2trumpet', 'piano2choir', 'piano2violin', 'piano2saxophone', 'harmonica2oboe', 'harmonica2clarinet', 'harmonica2trombone', 'acoustic_guitar2ukulele', 'acoustic_guitar2banjo', 'bass_guitar2upright', 'drums2jazz', 'drums2electronic']
+[2026-10-26 13:38:10][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:38:37][INFO] --> 执行任务: piano2vibraphone
+
+
+[2026-10-26 13:39:07][INFO] --> 执行任务: piano2cello
+
+
+[2026-10-26 13:39:30][INFO] --> 执行任务: piano2flute
+
+
+[2026-10-26 13:39:55][INFO] --> 执行任务: piano2trumpet
+
+
+[2026-10-26 13:40:18][INFO] --> 执行任务: piano2choir
+
+
+[2026-10-26 13:40:41][INFO] --> 执行任务: piano2violin
+
+
+[2026-10-26 13:41:03][INFO] --> 执行任务: piano2saxophone
+
+
+[2026-10-26 13:41:26][INFO] --> 执行任务: harmonica2oboe
+
+
+[2026-10-26 13:41:48][INFO] --> 执行任务: harmonica2clarinet
+
+
+[2026-10-26 13:42:11][INFO] --> 执行任务: harmonica2trombone
+
+
+[2026-10-26 13:42:33][INFO] --> 执行任务: acoustic_guitar2ukulele
+
+
+[2026-10-26 13:42:55][INFO] --> 执行任务: acoustic_guitar2banjo
+
+
+[2026-10-26 13:43:17][INFO] --> 执行任务: bass_guitar2upright
+
+
+[2026-10-26 13:43:40][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:44:03][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:44:25][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:44:25][INFO] 成功: 15 | 失败: 0
+{
+  "track": "Ben Carrigan - We'll Talk About It All Tonight",
+  "state": "completed",
+  "seed": 928,
+  "selected_tasks": [
+    "piano2vibraphone",
+    "piano2cello",
+    "piano2flute",
+    "piano2trumpet",
+    "piano2choir",
+    "piano2violin",
+    "piano2saxophone",
+    "harmonica2oboe",
+    "harmonica2clarinet",
+    "harmonica2trombone",
+    "acoustic_guitar2ukulele",
+    "acoustic_guitar2banjo",
+    "bass_guitar2upright",
+    "drums2jazz",
+    "drums2electronic"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Ben Carrigan - We'll Talk About It All Tonight",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Ben Carrigan - We'll Talk About It All Tonight",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 380.491964791001,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.02387809753418,
+  "peak_cuda_reserved_gib": 10.357421875
+}
+

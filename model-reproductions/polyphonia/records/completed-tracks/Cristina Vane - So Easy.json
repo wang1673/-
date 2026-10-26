@@ -1,0 +1,149 @@
+{
+  "track": "Cristina Vane - So Easy",
+  "state": "completed",
+  "files": {
+    "vocals2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0980950549255507,
+      "peak": 0.72265625,
+      "sha256": "8b245a314edb4889ae3bd69763c52aedf9a6c47d41732031f0be619467da0a66"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1039380829232408,
+      "peak": 0.59375,
+      "sha256": "6c027b718098ae209c6ef2b982868b49454d98b3aeb2bb6cfe6f12840642602e"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09960092304715554,
+      "peak": 0.70751953125,
+      "sha256": "f4ba876599aef8449abc316eead266a834250efab7193454c53587b548a66bee"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.097301855468606,
+      "peak": 0.68310546875,
+      "sha256": "e6aaf7d9577727007b8ba79d9c08120af6bb557df5039017bd7c9c8fe8709a38"
+    },
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10071889721229664,
+      "peak": 0.63525390625,
+      "sha256": "54b209c8275ba68d056cc7e09e89d51b5c341bdd5556936029f4973a9e106431"
+    },
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10276356831642307,
+      "peak": 0.7021484375,
+      "sha256": "fac11d02e51e294554b3852c26f82a71d78f83c7cb247675d7e93f139db8a654"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10587048423657121,
+      "peak": 0.71435546875,
+      "sha256": "2cc48b9ad3d4281abe5e83733f1834dae06464b3b09f64148b9e11ffad90a6ba"
+    },
+    "guitar2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.08913730942585937,
+      "peak": 0.5966796875,
+      "sha256": "44ae016ab5a8b61ec790238ae8cbfae22e578dbbc915e186881ac57d9d1de848"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09028038275926656,
+      "peak": 0.58251953125,
+      "sha256": "6654b66278c789304f8053e19ca0d19e3921ab24e78ecc9e1c8697f06cd89ec0"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.08773483027264989,
+      "peak": 0.57763671875,
+      "sha256": "b3bdd0da31c9c79dfc2d95ddcded58ac07df972e4edab2a60bf0395cbd351d74"
+    },
+    "guitar2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09627681266382392,
+      "peak": 0.6533203125,
+      "sha256": "f1c291a3439b8ca423ab6c628008b9e4a81045688989550b3a42a370edf6affa"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09386983413829372,
+      "peak": 0.662109375,
+      "sha256": "0c09dd2f7f06ff61ca65eac99a334559935a0be5b7b22221e94e000c724265fd"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10837687344693836,
+      "peak": 0.74462890625,
+      "sha256": "c5880af2b6b1c73afba5ace596f948ac94959af6b6882b5bb826daee59d352a4"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09909117771617541,
+      "peak": 0.72119140625,
+      "sha256": "52637539faa5d566581d192afae058761c0323adad0a052bddb25c90cea45495"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1053816261454502,
+      "peak": 0.74169921875,
+      "sha256": "df2bfd61584ac9d7749eeb021eb58688534017b38d1fd7ff7cbec8dcbabd5efc"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "vocals2piano",
+    "vocals2cello",
+    "vocals2flute",
+    "vocals2trumpet",
+    "vocals2violin",
+    "vocals2choir",
+    "vocals2saxophone",
+    "guitar2piano",
+    "guitar2flute",
+    "guitar2choir",
+    "guitar2saxophone",
+    "guitar2trumpet",
+    "drums2electronic",
+    "drums2jazz",
+    "bass2upright"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Cristina Vane - So Easy",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Cristina Vane - So Easy",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 427.15703838099944,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.020888328552246,
+  "peak_cuda_reserved_gib": 10.365234375
+}

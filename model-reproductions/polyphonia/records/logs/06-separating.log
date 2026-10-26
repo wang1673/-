@@ -1,0 +1,24 @@
+
+  "track": "Ben Carrigan - We'll Talk About It All Tonight",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Ben Carrigan - We'll Talk About It All Tonight/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 5400281,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 11.164420352999514,
+  "sha256": {
+    "drums.wav": "8cec8e0e969c46cbe73b0824ab3c8168308fb04a88220585baf190e2adf11a90",
+    "vocals.wav": "53bbd288df66183c080b6e86417d508263355a1ad9b42eb1654cd11d58b4bebb",
+    "other.wav": "ed2945f61c8dd7ca6025f8fb0703af20cb58c90e2b86d752b2fda7e077d05758",
+    "mixture.wav": "731eac4e836546512bda84eb58842b6369fee5c3a1e05057c615f2a9158e5ab8",
+    "prompt_multi.json": "6bde661aa6df3134211ea5bb213cf5440e42f16af88ef55b7694c19fb49edb9e",
+    "bass.wav": "a94a0322ef27d16e863cdc60c60ff0e09335ed9a64f936842dba1c5e9249c2d8"
+  }
+}
+

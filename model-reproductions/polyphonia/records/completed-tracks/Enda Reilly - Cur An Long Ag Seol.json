@@ -1,0 +1,149 @@
+{
+  "track": "Enda Reilly - Cur An Long Ag Seol",
+  "state": "completed",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1125351106310279,
+      "peak": 0.6748046875,
+      "sha256": "bcbc2561f5980c2833cdd8d36d859d5af443676228cb238e58a39adc3c68b5d1"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1188371028959951,
+      "peak": 0.6611328125,
+      "sha256": "85695aebc69d3552b7f80adb3f11c8be446aaec0b8b055f7057a32ad70562f82"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12153874223518958,
+      "peak": 0.7138671875,
+      "sha256": "75cc0a6d8df588c851533c608ae742a96cbb10e5cf4e60d45551bb59c97e6e20"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11645490972421274,
+      "peak": 0.66748046875,
+      "sha256": "b0e432591e9c28b91c0f53771c08e41f20e152a782caeab8f0ef0deabb7bc77f"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11966915880439363,
+      "peak": 0.677734375,
+      "sha256": "bc33fdd5f06f2beb16709c40be66098239ead2164f8703d07c78a760cfa370b6"
+    },
+    "guitar2clarinet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11820201636544654,
+      "peak": 0.630859375,
+      "sha256": "eb96c42db3879fbe6dfe0e6127178cabf9727820997dbb8291e0d8593a76b680"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09755626557049268,
+      "peak": 0.59716796875,
+      "sha256": "f325b3c773d1bbccb081d18a869059cfec8ea0bcc02d260c8ad3773442921503"
+    },
+    "guitar2accordion": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11347661616801973,
+      "peak": 0.73828125,
+      "sha256": "f0f05f35bb11867dddf77dba7cde65d98d98f0c41e847e389245476d692c05d3"
+    },
+    "guitar2sitar": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12866124981788957,
+      "peak": 0.771484375,
+      "sha256": "39b2ef5e6c2a650da965b9a3674010968d84ee8bf1389e8f589a1bd7911e38d4"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12769427438250006,
+      "peak": 0.63671875,
+      "sha256": "a11f0eadd9cb12a2a3fb9b5574990cec1a5e108881d09cdf4332ac9bc01d4bc5"
+    },
+    "bass2synth": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12626906856357964,
+      "peak": 0.7431640625,
+      "sha256": "7f328fbc279623a7d177f3227817c72d263503270524348536cebcfc6f37f313"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10854395583009672,
+      "peak": 0.6240234375,
+      "sha256": "ca41be0027411fd8d80d56f1d1269e3939fca427ef1cd9793fd5d2b2ddbc4da6"
+    },
+    "drums2orchestral": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11982091674225243,
+      "peak": 0.638671875,
+      "sha256": "bc8e98d683d9fd2d8155732259deae4fb165cb845a64d275e19a91a29a794857"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11646768542642165,
+      "peak": 0.61083984375,
+      "sha256": "cd3af1af5102adba9bccad13adcd93d0deb111c861f1ec67dedea1f4c29fb168"
+    },
+    "drums2taiko": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.117298431228062,
+      "peak": 0.67529296875,
+      "sha256": "80d8c662fff3fe9c1f72df67acd2289b29e5a026ebe56467206b8c47d33d97d9"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2harp",
+    "guitar2choir",
+    "guitar2clarinet",
+    "guitar2trumpet",
+    "guitar2accordion",
+    "guitar2sitar",
+    "bass2upright",
+    "bass2synth",
+    "drums2electronic",
+    "drums2orchestral",
+    "drums2jazz",
+    "drums2taiko"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Enda Reilly - Cur An Long Ag Seol",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Enda Reilly - Cur An Long Ag Seol",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 382.4897313659985,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022658348083496,
+  "peak_cuda_reserved_gib": 10.36328125
+}

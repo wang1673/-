@@ -1,0 +1,149 @@
+{
+  "track": "Carlos Gonzalez - A Place For Us",
+  "state": "completed",
+  "files": {
+    "vocals2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12399116617122505,
+      "peak": 0.54833984375,
+      "sha256": "fbe199d87e880ff176ca817f9a8bc63d0bf553a6c24ffa4b04a23265400e4f45"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.14017386602700208,
+      "peak": 0.62646484375,
+      "sha256": "255299ef44ac31fd0d3d64bc68c6f9c2391ddd2effa51d5a9282af023c3954f3"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.16344278228818884,
+      "peak": 0.74560546875,
+      "sha256": "a94749b9a3d880058d634c744787fb859303fa4368f3dd7911a0acf747dae72b"
+    },
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1519262482577283,
+      "peak": 0.66552734375,
+      "sha256": "31ec4819d9eaae88e22597b10fa7ecb2b52bd5a2c06fcd5e3e5e84f25cb6ee52"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12602706356228677,
+      "peak": 0.66943359375,
+      "sha256": "60df918c2f0ba8641ddc2f5abecc0fd1cafab44e1c25fad7c33f5491ff8b16e0"
+    },
+    "vocals2clarinet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13929791271853695,
+      "peak": 0.6591796875,
+      "sha256": "b1ec9fcdab4bf917eba156dc534df368c10f844abecbb372e646e8d456543657"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1259909493157343,
+      "peak": 0.7216796875,
+      "sha256": "3ebd012df66cb68ce7eecaca7fce27134d0eabc25cec2d1190ac7b52915c0075"
+    },
+    "piano2guitar": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1282974576914982,
+      "peak": 0.62548828125,
+      "sha256": "1e05137705d7b6b7ed4ac01a8aec8888e9facb7d051e9029d9aeda4a530ec7c8"
+    },
+    "piano2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11987134844493036,
+      "peak": 0.62939453125,
+      "sha256": "05df27892131db797c3248f261a71a051f444d40056cdda060794deec5733684"
+    },
+    "piano2vibraphone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1193470251411149,
+      "peak": 0.6162109375,
+      "sha256": "dc39ebf2ddd14758a8badf42b808e364c23700b256285ad027849ff9c13cdd5f"
+    },
+    "piano2organ": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12791353268906214,
+      "peak": 0.65966796875,
+      "sha256": "1942d02f6af4351f1c1adec2e35c4b326074e45b3b835a9b96a88145ee34c32d"
+    },
+    "piano2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12470152978033859,
+      "peak": 0.701171875,
+      "sha256": "08a14b615c85b3c1aef97295cb53e4f42ebc0a01c0c003320d20ba8de5204a58"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12232930391564076,
+      "peak": 0.7060546875,
+      "sha256": "6be303aaf051abd20f15d95d2c1f126c5da90753a205275b5ee10d901ba4b7f4"
+    },
+    "synthpad2strings": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12238465517563524,
+      "peak": 0.57421875,
+      "sha256": "3995e69a93e747f4b2bfd2b78d4c425414ab200494824def1695a7a3204f3bec"
+    },
+    "synthpad2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12749408983125698,
+      "peak": 0.7021484375,
+      "sha256": "67babde346afa81dcf8412ce83a1a2aba87fe27862a0b40b1bea68d6d8ca6d0b"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "vocals2violin",
+    "vocals2cello",
+    "vocals2flute",
+    "vocals2choir",
+    "vocals2trumpet",
+    "vocals2clarinet",
+    "vocals2saxophone",
+    "piano2guitar",
+    "piano2harp",
+    "piano2vibraphone",
+    "piano2organ",
+    "piano2marimba",
+    "bass2upright",
+    "synthpad2strings",
+    "synthpad2choir"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Carlos Gonzalez - A Place For Us",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Carlos Gonzalez - A Place For Us",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 430.60112192199995,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022536277770996,
+  "peak_cuda_reserved_gib": 10.35546875
+}

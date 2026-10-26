@@ -1,0 +1,24 @@
+
+  "track": "Cristina Vane - So Easy",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Cristina Vane - So Easy/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 5383153,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 18.973746773999665,
+  "sha256": {
+    "drums.wav": "f6c97c2a4395074791c7818e0871bb5524ba29ab490acbf0da21561aa951b3a7",
+    "vocals.wav": "9d2c03f8445b96670d938e81e77b4a90b413fd8b49d6cc0bf18c02104881b92a",
+    "other.wav": "59d66ee8219878058e61001d1b5e03c91c52a6e456830666eaf9f2f579568270",
+    "mixture.wav": "f96caf868a839d63a00c008d014a8742c9180622a5c492e1dcc3455e332387f8",
+    "prompt_multi.json": "7a07953efefade4ef70b9d6706c83e9766bc89304f37dcb1dba90c5f436a6846",
+    "bass.wav": "f390b0d6b794b5ca4b7ac7a9260f7c25e5f7a2d7ef33d2e8a9e8f722d4bc9ee8"
+  }
+}
+

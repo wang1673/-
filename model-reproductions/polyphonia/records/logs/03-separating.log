@@ -1,0 +1,24 @@
+
+  "track": "Arise - Run Run Run",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Arise - Run Run Run/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 4617112,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 23.676421103999928,
+  "sha256": {
+    "drums.wav": "0ac055027b4a989271c3ac108a9f29386bf11df67e08d54c5e0cb27dfe40b604",
+    "vocals.wav": "476c94c6ed4ef62edc367fffe090b96fad32c8fb9025177553362a1eb130784e",
+    "other.wav": "861bfb580acf221ee4a7f96e1cb01af38823016d02bb0d0368ae6c4e8ac3eb1c",
+    "mixture.wav": "be852bf9c964d64ae2ef8df06add2fd97f30948a9d07442cc07443ce32facd52",
+    "prompt_multi.json": "01633e6ffe0e87444bf80a85c652bcecddd0bf5b16f15f6c7ac1aa0177644547",
+    "bass.wav": "b1340436e173329a0038b860f4c1e1b3e143b9d7a065c6c535bc60585a313b5d"
+  }
+}
+

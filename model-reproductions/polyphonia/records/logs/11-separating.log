@@ -1,0 +1,24 @@
+
+  "track": "Detsky Sad - Walkie Talkie",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Detsky Sad - Walkie Talkie/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 3979631,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 9.019366013000763,
+  "sha256": {
+    "drums.wav": "f9a244a6a3a3daa5da832c3422ecfd302bddc2d1d3ffb281cabdf6b01d954247",
+    "vocals.wav": "a463468b5f205ed5f783d06c2e4f8c14faa6cd435fb0abafc91cd3b5452e4cc6",
+    "other.wav": "dff55ce6f5c44af91e13e0d8667741d3de71237c107bedd5e3b0c112503d9c68",
+    "mixture.wav": "acab21c2e1672314d4bc5633354d8e89a22f8d4a5a803442b350d5bfd66c7cd5",
+    "prompt_multi.json": "cc0f88b150a2d7ec95ee52fdc8de0eb78a6525637489352fbe3d9a4a75a38ce3",
+    "bass.wav": "9756a33d84ff5f3a3bd96849c113c546a87bf9108c964c4b1bd313017b0c1a5e"
+  }
+}
+

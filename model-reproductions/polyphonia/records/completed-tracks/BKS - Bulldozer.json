@@ -1,0 +1,149 @@
+{
+  "track": "BKS - Bulldozer",
+  "state": "completed",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12504914451799376,
+      "peak": 0.85595703125,
+      "sha256": "14eda86e8cbc1c37ef8b437ccbc70cd0df0dc4eb4cfc99fd7275f1f63d597bc5"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1237911305947379,
+      "peak": 0.8916015625,
+      "sha256": "ad119289f7cff3107d0b8b4d5df3fb6af1699a94204ad2f3b4907a47e0f0829b"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12753313968460342,
+      "peak": 0.8486328125,
+      "sha256": "58e314b9baef391ce2a0f18fd26552755ff8b41bf7c3ea0bc0bd57479f25d950"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12165270605355209,
+      "peak": 0.8466796875,
+      "sha256": "6763711392aa74284bc4dce03dd4efa1b08d3652f43c151653f0314102445721"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11380012426563094,
+      "peak": 0.8037109375,
+      "sha256": "6b0721418b2952ad0274a976d31514bd01d621fe1ea8634deb88a4af555127f2"
+    },
+    "guitar2sitar": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10995836551007138,
+      "peak": 0.82666015625,
+      "sha256": "07d085565e27fd9e2fdf9a32a2e2f8768d42914d26f94c63803098e2b1b29670"
+    },
+    "guitar2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1138060268733143,
+      "peak": 0.8681640625,
+      "sha256": "2eb7ee7cd46b971eaa1c7b6fe7b9746d22fb7808b9d2fa3e19a615615ddc7319"
+    },
+    "guitar2synthlead": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12364331253666407,
+      "peak": 0.888671875,
+      "sha256": "8b06cefe3b0a7ccecae2387e8e119359dc08d69709fe6e41b7570bf0949a7145"
+    },
+    "guitar2harp": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11640322544671743,
+      "peak": 0.84326171875,
+      "sha256": "afb5eb3c51cf41417bcb8dc9d63d31baf9538fa0cd44d8c831627511d83c1cff"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.13034710366472985,
+      "peak": 0.8828125,
+      "sha256": "e23674214106268e4bbd6c55682d29156579c80fd44a711af8f02e752d7f9dc8"
+    },
+    "bass2synth": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11229174203733039,
+      "peak": 0.81396484375,
+      "sha256": "75c5874db16d6dc7609b30936d7ef5f81e14402934638cdc235f19ff2b480bd1"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11859338141083668,
+      "peak": 0.8974609375,
+      "sha256": "968fb9e51711633797bc100c14ce18c01324f3b3155e700349562cd1c239696f"
+    },
+    "drums2tribal": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12091802611683346,
+      "peak": 0.91748046875,
+      "sha256": "d5e8e59bfd1ca3ad5acd9ee8d5cf34934fc569fbf3cc3ed1242d3af8edc354d9"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.12537083585720207,
+      "peak": 0.88134765625,
+      "sha256": "5d37bd7a583c75bbb91d3b0e856daa185404f93875f45850f3c88d9a0ecdf6a7"
+    },
+    "drums2orchestral": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.11247248225337046,
+      "peak": 0.83056640625,
+      "sha256": "905c7a89ab0d40397cb43f929249ab22c530a59b23be22cee985721618cc6dc2"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2cello",
+    "guitar2choir",
+    "guitar2sitar",
+    "guitar2marimba",
+    "guitar2synthlead",
+    "guitar2harp",
+    "bass2upright",
+    "bass2synth",
+    "drums2jazz",
+    "drums2tribal",
+    "drums2electronic",
+    "drums2orchestral"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Bulldozer",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 151.4346148550003,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022047996520996,
+  "peak_cuda_reserved_gib": 10.3671875
+}

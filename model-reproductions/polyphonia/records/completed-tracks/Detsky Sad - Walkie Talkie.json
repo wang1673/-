@@ -1,0 +1,149 @@
+{
+  "track": "Detsky Sad - Walkie Talkie",
+  "state": "completed",
+  "files": {
+    "vocals2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.16540693231517947,
+      "peak": 0.83349609375,
+      "sha256": "7336bd9674921dac436b883da63c13d9e8e979db7b1f904839e0c7956d854838"
+    },
+    "vocals2synthpad": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15468017382728033,
+      "peak": 0.8427734375,
+      "sha256": "3abb345b6e75dd16e8736b9d5b9fa435be592154ce8739bc3728f38218c4a0fd"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.16813580917911713,
+      "peak": 0.884765625,
+      "sha256": "d9e7fa4d98908be4f929a79e2a700e7f66609e85935bff18a48a80c2ad4f6064"
+    },
+    "vocals2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1428368396032328,
+      "peak": 0.779296875,
+      "sha256": "cd8b6f04276f6a29d062ed676025ccf46472f3185469e8eafad4c73d7477a878"
+    },
+    "vocals2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.17237435640542995,
+      "peak": 0.87939453125,
+      "sha256": "c07753a6ae754e1acc13f73fabb7f144f8c1ebe4b54c9eb8fc7bc73c7593c6d9"
+    },
+    "vocals2bassoon": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.18531083399703444,
+      "peak": 0.896484375,
+      "sha256": "4025f4053c038a524f037920bdc573c26ea6b9689c5795faa8ff3dc628b068fa"
+    },
+    "vocals2marimba": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15685826140736708,
+      "peak": 0.91943359375,
+      "sha256": "3751bd0dd4404aa80eec0efaa0820d713da9ec6963e93bdcacc8066a770cfdeb"
+    },
+    "guitar2acoustic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.15531699450142347,
+      "peak": 0.86328125,
+      "sha256": "d4da78b9afeb8cd5c225f899523bb3040273f352227b5d9ddf7d1be4eaf70894"
+    },
+    "guitar2piano": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1748859500241601,
+      "peak": 0.90234375,
+      "sha256": "402d059f1cb2eccce90b4cf665ef93fa133a2988969baf4e3bcf19a948da6e12"
+    },
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.18207522149690217,
+      "peak": 0.90966796875,
+      "sha256": "1c66a4c03dc1d73685894e10214013075f810c7f5a76d55ad050bb80d7658248"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.18881803107072814,
+      "peak": 0.9091796875,
+      "sha256": "7ff80ea772c723e326f9a10932fd1bf6be6ff761b53e9944a461b643d78db7bc"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.16886590299685433,
+      "peak": 0.90673828125,
+      "sha256": "3ad4c5af7cdb91c8ef1a234620df06dcdd69bf04a103678dfc755605fef1a2be"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.18847258923644916,
+      "peak": 0.94287109375,
+      "sha256": "635758a4c421a3477c1cd6d73fc2b9b3c7abb9a172dd66db65fa9ad699b3c477"
+    },
+    "drums2organic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1769854020786443,
+      "peak": 0.91845703125,
+      "sha256": "d15db0a2c36582f2fe18ad741a37193bec6b1295be85e18b1dd7e4a63ad02c8c"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.17083902836481005,
+      "peak": 0.93017578125,
+      "sha256": "0be2ab9884b7bf62d692f31696dae18f41e3b838662144b1bc3f0e7a199a0517"
+    }
+  },
+  "seed": 928,
+  "selected_tasks": [
+    "vocals2choir",
+    "vocals2synthpad",
+    "vocals2flute",
+    "vocals2cello",
+    "vocals2trumpet",
+    "vocals2bassoon",
+    "vocals2marimba",
+    "guitar2acoustic",
+    "guitar2piano",
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2choir",
+    "drums2electronic",
+    "drums2organic",
+    "bass2upright"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Detsky Sad - Walkie Talkie",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Detsky Sad - Walkie Talkie",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 458.6041280270001,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.026500701904297,
+  "peak_cuda_reserved_gib": 10.359375
+}

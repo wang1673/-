@@ -1,0 +1,24 @@
+
+  "track": "Forkupines - Semantics",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Forkupines - Semantics/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 5812045,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 11.927558968000085,
+  "sha256": {
+    "drums.wav": "3ab67102f8d828be3b1e06d4539f9ed9e44b73b7096ad16a8d0c391fd264acdc",
+    "vocals.wav": "8cc1a21ebfaa9558d3d3aa5e948dca9ac47ee71fb30a70762ec8c1211c9ae014",
+    "other.wav": "78f41f389286518c5b003102af2fd4b9a392f8587b85267d8344b29bb6b36d78",
+    "mixture.wav": "014f77af7c0e0619b7de9f25f6d18230c292c68e21219f200d9eceece9733741",
+    "prompt_multi.json": "7648b80c6b2f3d9ca65647e4f2d144dfcbf3b9b4c6eb0be0216228f329b1ce09",
+    "bass.wav": "1756974acfd84272736cfadd97452c2f848ceab26a2c689fc0bacb13f7c46bf1"
+  }
+}
+

@@ -1,0 +1,131 @@
+{
+  "track": "Angels In Amplifiers - I'm Alright",
+  "state": "completed",
+  "files": {
+    "guitar2violin": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10059136948208884,
+      "peak": 0.6318359375,
+      "sha256": "25eef2080f6eb2c891c952b6cc6e2ecb1211dc0b6568723e9ae4eec34c6f62b0"
+    },
+    "guitar2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10002650108934757,
+      "peak": 0.681640625,
+      "sha256": "9181fbf55960f1a8ea945646245e35d2fc43ba911565d07de80e21b0045e2dfb"
+    },
+    "guitar2choir": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0979126454613779,
+      "peak": 0.57373046875,
+      "sha256": "a30a3befdfe2ba4a8066cc39d7d38b2fd86e91b257d10f6ae045efc9b9b822d2"
+    },
+    "guitar2cello": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09661388032810724,
+      "peak": 0.6787109375,
+      "sha256": "2da2679b85edfbd2a7d11646fd2c18f37b750aa5256ae4c5935c3c3f6741c022"
+    },
+    "guitar2trumpet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09994909588591767,
+      "peak": 0.7412109375,
+      "sha256": "099f9f9e5a29aa7fbcf28018b5347c66ced960872940108b91b7c9e588fbad03"
+    },
+    "vocals2viola": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09495137759132277,
+      "peak": 0.66162109375,
+      "sha256": "14b8047dab7fed5fc5688939eab1ac819ec5c0a0981253a403cda508bf61b2c7"
+    },
+    "vocals2clarinet": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09567345221324451,
+      "peak": 0.62109375,
+      "sha256": "bc8d8a9eb375adfffb6e1c92dc25f4cf3fc19949d06b2e956304a3e4e4ca2f81"
+    },
+    "vocals2flute": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09152854225544388,
+      "peak": 0.5947265625,
+      "sha256": "57e4c7d2af51c3e9b15ae078be69ae5b69aaf43e7998a7c885edad78f910398a"
+    },
+    "vocals2oboe": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09633581035358123,
+      "peak": 0.6513671875,
+      "sha256": "5108d7e9e02183ffbe8e5715e06d6c5662987fe7626f1178e8c1e948e1474e36"
+    },
+    "vocals2saxophone": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.10211213867774517,
+      "peak": 0.64208984375,
+      "sha256": "9418c01f3bad60c9adcea74563f27138c2361edba74ff76c51b34408a0ef0b68"
+    },
+    "vocals2englishhorn": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09078182174241792,
+      "peak": 0.5888671875,
+      "sha256": "5ad9cc885f794c40bd2be0e71e3bb5d4a6eb6af6a4722070d957f9474ef80e23"
+    },
+    "vocals2frenchhorn": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09608014243292201,
+      "peak": 0.52294921875,
+      "sha256": "ff93b41e3b30110ad6a93e5ccd5243e6af9e47f42ad2262cde45557bb8592a07"
+    },
+    "drums2jazz": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.0952615801743745,
+      "peak": 0.62255859375,
+      "sha256": "b7202c327c9785110a1f9ae3a0c28e06fddeba642ee0e022aed2ba1671cde4d8"
+    },
+    "drums2electronic": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.09119924326737691,
+      "peak": 0.609375,
+      "sha256": "92f4ae47af6969372d1208d20703a74e1fe5ba8b1f6dd2f2b5b14b40be91d4d8"
+    },
+    "bass2upright": {
+      "frames": 160000,
+      "sample_rate": 16000,
+      "rms": 0.1228202836293366,
+      "peak": 0.76708984375,
+      "sha256": "cb0a79a1b1846f180d16f95bce63ded6d3df57d7fddf6bf19c3db2245b7feb4a"
+    }
+  },
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Angels In Amplifiers - I'm Alright",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Angels In Amplifiers - I'm Alright",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 383.92387914999927,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.028636932373047,
+  "peak_cuda_reserved_gib": 10.359375
+}

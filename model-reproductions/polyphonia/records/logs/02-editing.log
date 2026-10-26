@@ -1,0 +1,92 @@
+[2026-10-26 13:04:30][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:04:30][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Angels In Amplifiers - I'm Alright
+[2026-10-26 13:04:30][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Angels In Amplifiers - I'm Alright
+[2026-10-26 13:04:30][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:04:30][INFO] 随机种子: 928
+[2026-10-26 13:04:30][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:   9%|▉         | 1/11 [00:00<00:03,  3.10it/s]
+Loading pipeline components...:  27%|██▋       | 3/11 [00:00<00:01,  4.96it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:02,  3.37it/s]
+Loading pipeline components...:  45%|████▌     | 5/11 [00:01<00:01,  4.07it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:01<00:01,  2.54it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:01,  2.92it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  4.46it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.89it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.65it/s][2026-10-26 13:04:34][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2flute', 'guitar2choir', 'guitar2cello', 'guitar2trumpet', 'vocals2viola', 'vocals2clarinet', 'vocals2flute', 'vocals2oboe', 'vocals2saxophone', 'vocals2englishhorn', 'vocals2frenchhorn', 'drums2jazz', 'drums2electronic', 'bass2upright']
+[2026-10-26 13:04:34][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:05:03][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 13:05:26][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 13:05:49][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 13:06:13][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 13:06:36][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 13:06:59][INFO] --> 执行任务: vocals2viola
+
+
+[2026-10-26 13:07:23][INFO] --> 执行任务: vocals2clarinet
+
+
+[2026-10-26 13:07:46][INFO] --> 执行任务: vocals2flute
+
+
+[2026-10-26 13:08:09][INFO] --> 执行任务: vocals2oboe
+
+
+[2026-10-26 13:08:33][INFO] --> 执行任务: vocals2saxophone
+
+
+[2026-10-26 13:08:56][INFO] --> 执行任务: vocals2englishhorn
+
+
+[2026-10-26 13:09:19][INFO] --> 执行任务: vocals2frenchhorn
+
+
+[2026-10-26 13:09:42][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:10:07][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:10:30][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 13:10:53][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:10:53][INFO] 成功: 15 | 失败: 0
+{
+  "track": "Angels In Amplifiers - I'm Alright",
+  "state": "completed",
+  "seed": 928,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Angels In Amplifiers - I'm Alright",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Angels In Amplifiers - I'm Alright",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 383.92387914999927,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.028636932373047,
+  "peak_cuda_reserved_gib": 10.359375
+}
+

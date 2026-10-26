@@ -1,0 +1,24 @@
+
+  "track": "Angels In Amplifiers - I'm Alright",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Angels In Amplifiers - I'm Alright/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 3739542,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 8.548264217999531,
+  "sha256": {
+    "drums.wav": "20709ee227ea16f45a8b1660db8b80e9f3f65a2533e8a746423308afe10634a6",
+    "vocals.wav": "ef092cdca6a4f254ced5989e7c9ccbce439cd967c9c590dda3be65cc3c595805",
+    "other.wav": "ebc36483c3772f2909b4d5e2586fb1f7c6fcb555fa40744c45d507b89c11edab",
+    "mixture.wav": "b25885205ceff26631cac11c1863a79ee50c8782d58fa9c7e09efa115fb47462",
+    "prompt_multi.json": "fc798687281beb7e7022b638cfacbefe2f70eed55e79556835e8a4fb1bf71413",
+    "bass.wav": "2f54963eb406d25d8bc6004defa29b20e259275120ab649078c82ea0b099baf4"
+  }
+}
+

@@ -1,0 +1,24 @@
+
+  "track": "Enda Reilly - Cur An Long Ag Seol",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Enda Reilly - Cur An Long Ag Seol/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 3902751,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 9.069745939999848,
+  "sha256": {
+    "drums.wav": "e935687d89656f97edf6fdd039efad3c5099e414cb1c0c1871829942405c016a",
+    "vocals.wav": "132b9e40049671e529e174e68041653a59f91914af4882df19a39248e175832f",
+    "other.wav": "2bfb1246fad3be14982c3877bd834e750dcaca358cebc3da1cf05f9b46e25892",
+    "mixture.wav": "7b26d65896f4d4c769c21eacdb8dad8e24b9d4e3432dd9f3b7f3cc75f6596c1e",
+    "prompt_multi.json": "723680974b0ce73020767389e9875d37cefc10a8f889818ca93086be194d9033",
+    "bass.wav": "5e3bc42695322c48387b9f567cec0c201c95ce5da6347174c5f95f515f2eefd4"
+  }
+}
+

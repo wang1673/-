@@ -1,0 +1,110 @@
+[2026-10-26 14:24:23][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 14:24:23][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Enda Reilly - Cur An Long Ag Seol
+[2026-10-26 14:24:23][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Enda Reilly - Cur An Long Ag Seol
+[2026-10-26 14:24:23][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 14:24:23][INFO] 随机种子: 928
+[2026-10-26 14:24:23][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:   9%|▉         | 1/11 [00:00<00:01,  5.82it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:01<00:05,  1.53it/s]
+Loading pipeline components...:  27%|██▋       | 3/11 [00:01<00:03,  2.48it/s]
+Loading pipeline components...:  45%|████▌     | 5/11 [00:01<00:02,  2.94it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:02<00:01,  2.88it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:00,  3.78it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  5.52it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.81it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.44it/s][2026-10-26 14:24:27][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2cello', 'guitar2flute', 'guitar2harp', 'guitar2choir', 'guitar2clarinet', 'guitar2trumpet', 'guitar2accordion', 'guitar2sitar', 'bass2upright', 'bass2synth', 'drums2electronic', 'drums2orchestral', 'drums2jazz', 'drums2taiko']
+[2026-10-26 14:24:28][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 14:24:56][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 14:25:19][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 14:25:42][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 14:26:11][INFO] --> 执行任务: guitar2harp
+
+
+[2026-10-26 14:26:34][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 14:26:56][INFO] --> 执行任务: guitar2clarinet
+
+
+[2026-10-26 14:27:22][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 14:27:44][INFO] --> 执行任务: guitar2accordion
+
+
+[2026-10-26 14:28:07][INFO] --> 执行任务: guitar2sitar
+
+
+[2026-10-26 14:28:29][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 14:28:52][INFO] --> 执行任务: bass2synth
+
+
+[2026-10-26 14:29:15][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 14:29:38][INFO] --> 执行任务: drums2orchestral
+
+
+[2026-10-26 14:30:00][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 14:30:23][INFO] --> 执行任务: drums2taiko
+
+
+[2026-10-26 14:30:45][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 14:30:45][INFO] 成功: 15 | 失败: 0
+{
+  "track": "Enda Reilly - Cur An Long Ag Seol",
+  "state": "completed",
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2harp",
+    "guitar2choir",
+    "guitar2clarinet",
+    "guitar2trumpet",
+    "guitar2accordion",
+    "guitar2sitar",
+    "bass2upright",
+    "bass2synth",
+    "drums2electronic",
+    "drums2orchestral",
+    "drums2jazz",
+    "drums2taiko"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Enda Reilly - Cur An Long Ag Seol",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Enda Reilly - Cur An Long Ag Seol",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 382.4897313659985,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022658348083496,
+  "peak_cuda_reserved_gib": 10.36328125
+}
+

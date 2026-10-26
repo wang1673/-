@@ -1,0 +1,149 @@
+[2026-10-26 13:19:06][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:19:06][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Bulldozer
+[2026-10-26 13:19:06][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer
+[2026-10-26 13:19:06][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:19:06][INFO] 随机种子: 928
+[2026-10-26 13:19:06][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:   9%|▉         | 1/11 [00:00<00:03,  3.07it/s]
+Loading pipeline components...:  27%|██▋       | 3/11 [00:01<00:02,  2.70it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:03,  2.19it/s]
+Loading pipeline components...:  64%|██████▎   | 7/11 [00:01<00:00,  4.60it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  4.01it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  3.57it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:02<00:00,  4.17it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:02<00:00,  3.67it/s][2026-10-26 13:19:10][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2flute', 'guitar2trumpet', 'guitar2cello', 'guitar2choir', 'guitar2sitar', 'guitar2marimba', 'guitar2synthlead', 'guitar2harp', 'bass2upright', 'bass2synth', 'drums2jazz', 'drums2tribal', 'drums2electronic', 'drums2orchestral']
+[2026-10-26 13:19:10][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:19:39][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 13:20:04][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 13:20:27][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 13:20:50][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 13:21:13][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 13:21:36][INFO] --> 执行任务: guitar2sitar
+
+
+[2026-10-26 13:21:59][INFO] --> 执行任务: guitar2marimba
+
+
+[2026-10-26 13:22:22][INFO] --> 执行任务: guitar2synthlead
+
+
+[2026-10-26 13:22:45][INFO] --> 执行任务: guitar2harp
+
+
+[2026-10-26 13:23:08][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 13:28:00][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:28:00][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Bulldozer
+[2026-10-26 13:28:00][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer
+[2026-10-26 13:28:00][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:28:00][INFO] 随机种子: 928
+[2026-10-26 13:28:00][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:   9%|▉         | 1/11 [00:00<00:03,  3.15it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:00<00:01,  5.15it/s]
+Loading pipeline components...:  27%|██▋       | 3/11 [00:00<00:02,  3.98it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:02,  3.35it/s]
+Loading pipeline components...:  64%|██████▎   | 7/11 [00:01<00:01,  3.74it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:01,  2.92it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  2.64it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.94it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.55it/s][2026-10-26 13:28:04][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2flute', 'guitar2trumpet', 'guitar2cello', 'guitar2choir', 'guitar2sitar', 'guitar2marimba', 'guitar2synthlead', 'guitar2harp', 'bass2upright', 'bass2synth', 'drums2jazz', 'drums2tribal', 'drums2electronic', 'drums2orchestral']
+[2026-10-26 13:28:04][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:28:33][INFO] --> 执行任务: guitar2violin
+[2026-10-26 13:28:33][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2violin.wav
+[2026-10-26 13:28:33][INFO] --> 执行任务: guitar2flute
+[2026-10-26 13:28:34][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2flute.wav
+[2026-10-26 13:28:34][INFO] --> 执行任务: guitar2trumpet
+[2026-10-26 13:28:35][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2trumpet.wav
+[2026-10-26 13:28:35][INFO] --> 执行任务: guitar2cello
+[2026-10-26 13:28:35][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2cello.wav
+[2026-10-26 13:28:35][INFO] --> 执行任务: guitar2choir
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2choir.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: guitar2sitar
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2sitar.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: guitar2marimba
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2marimba.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: guitar2synthlead
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2synthlead.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: guitar2harp
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/guitar2harp.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: bass2upright
+[2026-10-26 13:28:36][INFO] [跳过] 已存在: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer/bass2upright.wav
+[2026-10-26 13:28:36][INFO] --> 执行任务: bass2synth
+
+
+[2026-10-26 13:28:59][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:29:22][INFO] --> 执行任务: drums2tribal
+
+
+[2026-10-26 13:29:45][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:30:08][INFO] --> 执行任务: drums2orchestral
+
+
+[2026-10-26 13:30:31][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:30:31][INFO] 成功: 15 | 失败: 0
+{
+  "track": "BKS - Bulldozer",
+  "state": "completed",
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2cello",
+    "guitar2choir",
+    "guitar2sitar",
+    "guitar2marimba",
+    "guitar2synthlead",
+    "guitar2harp",
+    "bass2upright",
+    "bass2synth",
+    "drums2jazz",
+    "drums2tribal",
+    "drums2electronic",
+    "drums2orchestral"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/BKS - Bulldozer",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/BKS - Bulldozer",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 151.4346148550003,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022047996520996,
+  "peak_cuda_reserved_gib": 10.3671875
+}
+

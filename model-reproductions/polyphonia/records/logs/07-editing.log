@@ -1,0 +1,109 @@
+[2026-10-26 13:44:53][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 13:44:53][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Bobby Nobody - Stitch Up
+[2026-10-26 13:44:53][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Bobby Nobody - Stitch Up
+[2026-10-26 13:44:53][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 13:44:53][INFO] 随机种子: 928
+[2026-10-26 13:44:53][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:   9%|▉         | 1/11 [00:00<00:03,  3.13it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:01<00:05,  1.79it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:01,  3.90it/s]
+Loading pipeline components...:  45%|████▌     | 5/11 [00:01<00:01,  3.48it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:00,  4.21it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  3.46it/s]
+Loading pipeline components...:  91%|█████████ | 10/11 [00:02<00:00,  3.37it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:03<00:00,  3.60it/s][2026-10-26 13:44:57][INFO] 发现 15 个编辑任务: ['guitar2violin', 'guitar2flute', 'guitar2cello', 'guitar2trumpet', 'guitar2choir', 'guitar2saxophone', 'guitar2harp', 'guitar2marimba', 'guitar2banjo', 'drums2jazz', 'drums2electronic', 'drums2tribal', 'drums2orchestral', 'bass2upright', 'bass2synth']
+[2026-10-26 13:44:58][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 13:45:27][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 13:45:53][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 13:46:16][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 13:46:43][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 13:47:07][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 13:47:30][INFO] --> 执行任务: guitar2saxophone
+
+
+[2026-10-26 13:47:54][INFO] --> 执行任务: guitar2harp
+
+
+[2026-10-26 13:48:33][INFO] --> 执行任务: guitar2marimba
+
+
+[2026-10-26 13:49:25][INFO] --> 执行任务: guitar2banjo
+
+
+[2026-10-26 13:49:48][INFO] --> 执行任务: drums2jazz
+
+
+[2026-10-26 13:50:11][INFO] --> 执行任务: drums2electronic
+
+
+[2026-10-26 13:50:34][INFO] --> 执行任务: drums2tribal
+
+
+[2026-10-26 13:50:57][INFO] --> 执行任务: drums2orchestral
+
+
+[2026-10-26 13:51:21][INFO] --> 执行任务: bass2upright
+
+
+[2026-10-26 13:51:46][INFO] --> 执行任务: bass2synth
+
+
+[2026-10-26 13:52:11][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 13:52:11][INFO] 成功: 15 | 失败: 0
+{
+  "track": "Bobby Nobody - Stitch Up",
+  "state": "completed",
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2cello",
+    "guitar2trumpet",
+    "guitar2choir",
+    "guitar2saxophone",
+    "guitar2harp",
+    "guitar2marimba",
+    "guitar2banjo",
+    "drums2jazz",
+    "drums2electronic",
+    "drums2tribal",
+    "drums2orchestral",
+    "bass2upright",
+    "bass2synth"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Bobby Nobody - Stitch Up",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Bobby Nobody - Stitch Up",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 437.6163722679994,
+  "validated_tasks": 15,
+  "peak_cuda_allocated_gib": 10.022536277770996,
+  "peak_cuda_reserved_gib": 10.357421875
+}
+

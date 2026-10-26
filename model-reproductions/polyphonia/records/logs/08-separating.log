@@ -1,0 +1,24 @@
+
+  "track": "Buitraker - Revo X",
+  "model": "htdemucs",
+  "demucs_version": "4.0.1",
+  "input": "/home/featurize/data/polyphonia/musdb18hq/test/Buitraker - Revo X/mixture.wav",
+  "source": "estimated from full mixture; not dataset ground-truth stems",
+  "shifts": 1,
+  "overlap": 0.25,
+  "seed": 928,
+  "samplerate": 44100,
+  "start_frame": 5861461,
+  "frames": 441000,
+  "seconds": 10,
+  "elapsed_seconds": 25.206864131998373,
+  "sha256": {
+    "drums.wav": "532f13186d043f7f6d9e800312f65587291e14fc463f11706698775be25b6064",
+    "vocals.wav": "fc0841bde6f98db82548b053ce6c0efb661abcf07ee70d80d40ede66afb6cb5d",
+    "other.wav": "8073f1a476d0a88afc0f0b211dc8aa0ad7d3efe3121c84a7765231ba5ed8e7b9",
+    "mixture.wav": "6fef7519e94a56d0751390b54e86bed94de5a178e34e5b915bc3461dbcd46a89",
+    "prompt_multi.json": "3c88a424ead34de833a6f0541e4fe379a697b309efa6c524a3dc7e31705cf70e",
+    "bass.wav": "ada7cf1e056acb25e2bff376777800359a1884b3b7c46d55efb2a97dec7e3a04"
+  }
+}
+

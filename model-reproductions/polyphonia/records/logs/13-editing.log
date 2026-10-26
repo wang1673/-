@@ -1,0 +1,69 @@
+[2026-10-26 14:31:11][INFO] ========== 单样本音乐编辑启动 ==========
+[2026-10-26 14:31:11][INFO] 样本目录: /home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Forkupines - Semantics
+[2026-10-26 14:31:11][INFO] 输出目录: /home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Forkupines - Semantics
+[2026-10-26 14:31:11][INFO] 设备/精度: cuda / torch.float16
+[2026-10-26 14:31:11][INFO] 随机种子: 928
+[2026-10-26 14:31:11][INFO] 正在加载 AudioLDM2 模型...
+
+Loading pipeline components...:   0%|          | 0/11 [00:00<?, ?it/s]
+Loading pipeline components...:  18%|█▊        | 2/11 [00:00<00:00, 17.86it/s]
+Loading pipeline components...:  36%|███▋      | 4/11 [00:01<00:02,  3.15it/s]
+Loading pipeline components...:  45%|████▌     | 5/11 [00:01<00:02,  2.26it/s]
+Loading pipeline components...:  55%|█████▍    | 6/11 [00:02<00:02,  2.46it/s]
+Loading pipeline components...:  64%|██████▎   | 7/11 [00:02<00:01,  3.03it/s]
+Loading pipeline components...:  73%|███████▎  | 8/11 [00:02<00:01,  2.63it/s]
+Loading pipeline components...:  82%|████████▏ | 9/11 [00:02<00:00,  3.34it/s]
+Loading pipeline components...: 100%|██████████| 11/11 [00:02<00:00,  3.74it/s][2026-10-26 14:31:15][INFO] 发现 5 个编辑任务: ['guitar2violin', 'guitar2cello', 'guitar2flute', 'guitar2trumpet', 'guitar2choir']
+[2026-10-26 14:31:16][INFO] 软掩码已生成，包含分轨: ['vocals', 'bass', 'drums', 'other']
+
+
+[2026-10-26 14:31:44][INFO] --> 执行任务: guitar2violin
+
+
+[2026-10-26 14:32:08][INFO] --> 执行任务: guitar2cello
+
+
+[2026-10-26 14:32:31][INFO] --> 执行任务: guitar2flute
+
+
+[2026-10-26 14:32:54][INFO] --> 执行任务: guitar2trumpet
+
+
+[2026-10-26 14:33:27][INFO] --> 执行任务: guitar2choir
+
+
+[2026-10-26 14:34:16][INFO] ========== 单样本音乐编辑完成 ==========
+[2026-10-26 14:34:16][INFO] 成功: 5 | 失败: 0
+{
+  "track": "Forkupines - Semantics",
+  "state": "completed_subset",
+  "seed": 928,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2cello",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2choir"
+  ],
+  "track_total_tasks": 15,
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/home/featurize/data/polyphonia/prepared/center10_htdemucs_01/Forkupines - Semantics",
+    "--output_dir",
+    "/home/featurize/work/polyphonia_repro/results/musdb_center10_htdemucs_01/audio/Forkupines - Semantics",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "elapsed_seconds": 185.39520239100057,
+  "validated_tasks": 5,
+  "peak_cuda_allocated_gib": 10.023512840270996,
+  "peak_cuda_reserved_gib": 10.361328125
+}
+
