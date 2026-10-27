@@ -1,0 +1,241 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-AMX-v1",
+  "package_id": "ANALYSIS-20261027-AMX-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-AMX"
+  ],
+  "source_identity_and_version": {
+    "title": "AudioMorphix: Training-free audio editing with diffusion probabilistic models",
+    "short_name": "AudioMorphix",
+    "authors": "Jinhua Liang, Yuanzhe Chen, Yi Yuan, Dongya Jia, Xiaobin Zhuang, Zhuo Chen, Yuping Wang, Yuxuan Wang",
+    "affiliations": "Queen Mary University of London、University of Surrey、ByteDance",
+    "version": "arXiv:2505.16076v1，2025-05-21；本次采用该预印本，不混用匿名投稿版",
+    "pdf_url": "https://arxiv.org/pdf/2505.16076v1",
+    "pdf_page_count": 13,
+    "latex_source_url": "https://arxiv.org/src/2505.16076v1",
+    "code_repository": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix",
+    "code_commit": "08008095c5a3f417b0bcfc397f9b73042faf6eee",
+    "pdf_sha256": "f8931bb0937e6c1a5a2a24abd59f293ec5050d91de3c2d3c87cbfbc2dfe4cb92"
+  },
+  "research_question": "在混合声音中，如何按参考音频只修改指定的时频区域并保持其余内容？",
+  "study_type_and_context": {
+    "study_type": "计算实验与论文报告的听测/评价",
+    "focus": "音乐音频编辑；重点检查不更新预训练模型权重、零样本编辑与逐样本推理优化的区别",
+    "scope": "AudioSet-E 合成声音编辑基准：addition 1442、removal 1426、replacement 1870；比较DDIM、DDPM和AUDIT；AudioLDM/Tango 两种骨干。移位、拉伸、音高任务主要定性。"
+  },
+  "design_units_samples_or_materials": "AudioSet-E 合成声音编辑基准：addition 1442、removal 1426、replacement 1870；比较DDIM、DDPM和AUDIT；AudioLDM/Tango 两种骨干。移位、拉伸、音高任务主要定性。",
+  "intervention_input_or_procedure": "反演源与参考音频；addition 用SLERP；removal 对潜在扰动做SGD，论文100次、lr=1e-4；replacement串联去除与添加。采样时用特征一致/对比能量的梯度引导，缓存/替换自注意力KV。",
+  "measurements_and_analysis": {
+    "description": "FAD、KL；主观5维：fidelity、perceptual quality、consistency、region specificity、instruction adherence。Appendix C 每样本至少20名评分者，未给出这些均值的CI。Appendix B 定量比较对本法不提供mask。",
+    "pre_registration_or_prespecified_primary_outcome": "unknown：本次未核验预注册/预先指定唯一主要指标；按论文主要结果表整理",
+    "independent_execution": "not_run"
+  },
+  "results_with_uncertainty": [
+    {
+      "metric": "AudioLDM：Addition FAD / KL",
+      "ours": "5.58 / 0.83",
+      "baseline": "DDIM 5.61 / 1.72；DDPM 19.18 / 2.27；AUDIT 5.81 / 3.17",
+      "uncertainty": "Table1点估计；CI/多随机种子差异未知",
+      "e": "AMX-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "AudioLDM：Removal；Replacement FAD / KL",
+      "ours": "2.83 / 1.29；2.67 / 2.28",
+      "baseline": "DDIM 6.24 / 1.86；8.29 / 2.05",
+      "uncertainty": "replacement KL并非优于DDIM，不能概括成该配置所有指标最优",
+      "e": "AMX-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "Tango：Addition / Removal / Replacement KL",
+      "ours": "0.57 / 0.77 / 0.62",
+      "baseline": "相应FAD=6.62 / 6.29 / 7.27，均不如AudioLDM配置的FAD",
+      "uncertainty": "跨骨干优势不同；非音乐专项测试",
+      "e": "AMX-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "claim": "SC：training-free、zero-shot、局部区域编辑。",
+      "evidence": "AMX-E01 / E02 / E06",
+      "assessment": "不训练新模型与有梯度的推理编辑同时成立；定量局部控制主张需结合AMX-E04的无mask设置。"
+    },
+    {
+      "claim": "SC：全面优于比较方法。",
+      "evidence": "AMX-E03",
+      "assessment": "须按骨干和指标限定；AudioLDM配置的replacement KL=2.28不如DDIM2.05。"
+    },
+    {
+      "claim": "SC：consistency可超过ground truth。",
+      "evidence": "AMX-E03",
+      "assessment": "聚合Table2中并非如此；只有region specificity高于GT。分任务Fig8可能不同，不能混写。"
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "AI：AudioSet-E为合成事件混合，不等价于真实录音多乐器谐波重叠与编曲编辑（AMX-E04）。",
+      "DE：定量不提供mask，因此该实验不能独立量化mask条件下的局部保留能力（AMX-E04）。",
+      "AI：SLERP的几何合理性不自动保证声源可加性或可辨识分离；机制前提还需独立对照（AMX-E01）。",
+      "DE：Table3切空间投影对多个指标更差；不能把默认启用投影等同于已验证最佳配置。",
+      "UN：尚未跑通HF实现、取得同版权重、核对每个比较方法骨干/预算及逐运行数据。"
+    ],
+    "ethics": "涉及人类听测的审批/同意细节未独立核验；数据/模型许可证以原发布方为准；不上传论文全文、原音频或权重。"
+  },
+  "reproducibility_and_transferability": {
+    "assessment": "中（静态审阅）：作者项目链接的HF Space有源码，页面暂停不等于代码不可得；已读关键函数，但未跑模型/复算指标。",
+    "transfer_to_music": "AI：适合参考音频驱动的乐器/音色局部编辑研究；若要求完全无逐样本优化应单独列出。时频mask不能自动隔离重叠的多个乐器，移调精度与旋律保持需音乐数据验证。",
+    "training_free_audit": {
+      "backbone_training": "使用预训练 AudioLDM/Tango 系列，不代表从零无训练",
+      "editing_weight_updates": "论文不更新骨干；已审代码的优化目标是潜变量而非新模型参数",
+      "per_input_optimization": "有：removal的SGD潜变量优化，以及逐步能量梯度引导",
+      "inversion": "有：DDIM反演，亦用来缓存参考轨迹KV",
+      "zero_shot_scope": "无需任务特定训练数据来拟合新编辑器；仍依赖参考音频、掩码/条件和测试时计算"
+    },
+    "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。"
+  },
+  "candidate_P": [
+    {
+      "id": "AMX-P01",
+      "text": "无mask定量结果如何支持mask条件下的局部保留能力？",
+      "tag": "AI",
+      "e": [
+        "AMX-E04"
+      ],
+      "source_id": "S-AMX",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "AMX-P02",
+      "text": "潜在球面分解在同频重叠乐器中是否仍能分离目标且保持其他声部？",
+      "tag": "AI",
+      "e": [
+        "AMX-E01",
+        "AMX-E05"
+      ],
+      "source_id": "S-AMX",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "AMX-F01",
+      "text": "相同算法骨干切换时，FAD与KL优势并不集中在同一配置。",
+      "tag": "DE",
+      "e": [
+        "AMX-E03"
+      ],
+      "source_id": "S-AMX",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "AMX-F02",
+      "text": "论文与公开代码均明确包含潜变量优化；无新模型训练并非无优化。",
+      "tag": "DE",
+      "e": [
+        "AMX-E02",
+        "AMX-E06"
+      ],
+      "source_id": "S-AMX",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "AMX-E01",
+      "type": "DE",
+      "location": "PDF pp.4–6 §3–4；Fig.2–4；Eq.(8)–(14)",
+      "detail": "潜在空间一致性作为前提而非定理；SLERP与能量引导；透明重叠声音使时频格点不是单一声源。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1#page=4"
+    },
+    {
+      "id": "AMX-E02",
+      "type": "DE",
+      "location": "PDF p.5 §3.2；p.11 Appendix D Algorithm1",
+      "detail": "梯度优化100次、1e-4、SGD；training-free不排除测试时优化。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1#page=5"
+    },
+    {
+      "id": "AMX-E03",
+      "type": "DE",
+      "location": "PDF p.6 Tables1–2；p.7 Table3；LaTeX main.tex",
+      "detail": "AudioLDM较优FAD、Tango较优KL；主观consistency 56.73低于GT60.25，region specificity58.76高于GT56.57。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1#page=6"
+    },
+    {
+      "id": "AMX-E04",
+      "type": "DE",
+      "location": "PDF p.7 §5.1；p.11 Appendix A–C",
+      "detail": "数据规模、合成混合、参考样本来源；定量无mask；本法/DDIM50步 vs DDPM200步；每音频至少20位评分者。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1#page=7"
+    },
+    {
+      "id": "AMX-E05",
+      "type": "DE",
+      "location": "PDF p.7 Fig.5；pp.12–13 Figs.6–8",
+      "detail": "音高、时间平移与拉伸展示主要定性，不能作为多声部音乐精确控制的定量证明。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1#page=7"
+    },
+    {
+      "id": "AMX-E06",
+      "type": "DE",
+      "location": "src/utils/factory.py L357–413；src/audio_morphix.py L615–625；src/model/sampler.py L1278、L1380–1383",
+      "detail": "公开HF代码确认潜变量SGD与autograd梯度；removal调用显式enable_tangent_proj=True，需与论文ablation及运行配置对照。",
+      "source_id": "S-AMX",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1"
+    }
+  ],
+  "evidence_locations": [
+    {
+      "evidence_id": "AMX-E01",
+      "location": "PDF pp.4–6 §3–4；Fig.2–4；Eq.(8)–(14)"
+    },
+    {
+      "evidence_id": "AMX-E02",
+      "location": "PDF p.5 §3.2；p.11 Appendix D Algorithm1"
+    },
+    {
+      "evidence_id": "AMX-E03",
+      "location": "PDF p.6 Tables1–2；p.7 Table3；LaTeX main.tex"
+    },
+    {
+      "evidence_id": "AMX-E04",
+      "location": "PDF p.7 §5.1；p.11 Appendix A–C"
+    },
+    {
+      "evidence_id": "AMX-E05",
+      "location": "PDF p.7 Fig.5；pp.12–13 Figs.6–8"
+    },
+    {
+      "evidence_id": "AMX-E06",
+      "location": "src/utils/factory.py L357–413；src/audio_morphix.py L615–625；src/model/sampler.py L1278、L1380–1383"
+    }
+  ],
+  "unresolved_questions": [
+    "独立运行与听测",
+    "真实音乐、多声部、音符/半音级定量验证",
+    "各对照完整配置公平性和权重版本",
+    "掩码条件下局部误差、失败与不确定性"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "独立运行与听测",
+    "真实音乐、多声部、音符/半音级定量验证",
+    "各对照完整配置公平性和权重版本",
+    "掩码条件下局部误差、失败与不确定性"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+}

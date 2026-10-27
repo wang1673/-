@@ -1,0 +1,239 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-ZETA-v1",
+  "package_id": "ANALYSIS-20261027-ZETA-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-ZETA"
+  ],
+  "source_identity_and_version": {
+    "title": "Zero-Shot Unsupervised and Text-Based Audio Editing Using DDPM Inversion",
+    "short_name": "DDPM Inversion（ZETA；兼述ZEUS）",
+    "authors": "Hila Manor, Tomer Michaeli",
+    "affiliations": "Technion – Israel Institute of Technology",
+    "version": "ICML2024/PMLR235正式PDF，内部页1–27（卷页34603–34629）；LaTeX辅助源为arXiv:2402.10009v4",
+    "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf",
+    "pdf_page_count": 27,
+    "latex_source_url": "https://arxiv.org/src/2402.10009v4",
+    "code_repository": "HilaManor/AudioEditingCode",
+    "code_commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8",
+    "pdf_sha256": "f8716ee1c353e4da969043256b01406855b3cb7740b17f6238104e4bfef5da1f"
+  },
+  "research_question": "冻结预训练音频扩散模型，能否在保留音乐结构时进行文本编辑，或无监督发现旋律/配器变化方向？",
+  "study_type_and_context": {
+    "study_type": "计算实验与论文报告的听测/评价",
+    "focus": "音乐音频编辑；重点检查不更新预训练模型权重、零样本编辑与逐样本推理优化的区别",
+    "scope": "AudioLDM2（包括music与general检查点）；ZETA对照MusicGen-melody、DDIM、SDEdit；ZEUS对照源文本SDEdit。MusicDelta34首、107源提示、696目标提示，定量ZETA子采样324信号–文本对；有源和空源提示等设置。"
+  },
+  "design_units_samples_or_materials": "AudioLDM2（包括music与general检查点）；ZETA对照MusicGen-melody、DDIM、SDEdit；ZEUS对照源文本SDEdit。MusicDelta34首、107源提示、696目标提示，定量ZETA子采样324信号–文本对；有源和空源提示等设置。",
+  "intervention_input_or_procedure": "先构造源音频的加噪中间状态，再由反向均值解出每步噪声；以相同噪声在目标文本下反向采样。调Tstart和CFG控制编辑/保留。ZEUS额外做后验协方差主方向的子空间迭代，不等同于ZETA；用户mask可用轨迹回拉减少区域外影响。",
+  "measurements_and_analysis": {
+    "description": "CLAP目标相似；CLAP中间Swin特征构造LPAPS；CLAP特征FAD。长音频以重叠10秒窗口聚合。听测随机8秒片段，300人中277通过警觉题；图9给Wilson区间。",
+    "pre_registration_or_prespecified_primary_outcome": "unknown：本次未核验预注册/预先指定唯一主要指标；按论文主要结果表整理",
+    "independent_execution": "not_run"
+  },
+  "results_with_uncertainty": [
+    {
+      "metric": "图9：ZETA听测偏好率",
+      "ours": "相对DDIM70.05%；MusicGen60.31%；SDEdit64.97%",
+      "baseline": "随机配对方法，目标兼顾文本与原曲精髓",
+      "uncertainty": "图中Wilson区间；本次不从像素反推区间端点；277有效参与者",
+      "e": "ZETA-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "图6：相近CLAP≈0.34时的LPAPS",
+      "ours": "4.29",
+      "baseline": "SDEdit4.87；DDIM6.26；MusicGen5.74",
+      "uncertainty": "这是单示例比较，不是全数据集平均",
+      "e": "ZETA-E02",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "30秒示例开销",
+      "ours": "ZETA约37秒；噪声张量0.65GB，模型5.6GB",
+      "baseline": "MusicGen35.5秒；无源prompt,Tstart100,总200步设置",
+      "uncertainty": "论文环境点值；不是本机测量或硬件无关保证",
+      "e": "ZETA-E04",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "claim": "SC：无需测试时优化即可文本编辑。",
+      "evidence": "ZETA-E01 / E06",
+      "assessment": "ZETA方法与关键代码一致；ZEUS的PC迭代应另列计算成本。"
+    },
+    {
+      "claim": "SC：保留原曲结构并符合文本。",
+      "evidence": "ZETA-E02 / E03",
+      "assessment": "支持该基准下的指标曲线/偏好；不是精确音符和全部声部的保证。"
+    },
+    {
+      "claim": "SC：局部mask编辑。",
+      "evidence": "ZETA-E05",
+      "assessment": "作者直接展示了区域外影响及软修正；不能将mask存在等同于无外溢。"
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "DE：作者承认骨干语言能力限制ZETA；ZEUS主方向不可预先命名，用户未必得到所需方向（PDF p.9 §5）。",
+      "AI：324提示对来自34首，提示不是独立歌曲样本，统计汇总应考虑曲目聚类（ZETA-E02）。",
+      "DE：mask外采用软轨迹约束，非严格恒等；文中data leakage指空间/时间影响外溢，不是训练测试污染（ZETA-E05）。",
+      "AI：本文CLAP特征FAD/LPAPS不能直接和其他论文VGGish FAD或不同LPAPS作数值排行榜。",
+      "UN：完整歌曲实时交互、所有反演随机性、公开当前分支与paper_code逐文件差异未全面实测。"
+    ],
+    "ethics": "涉及人类听测的审批/同意细节未独立核验；数据/模型许可证以原发布方为准；不上传论文全文、原音频或权重。"
+  },
+  "reproducibility_and_transferability": {
+    "assessment": "中（静态审阅）：代码、提示集与评测实现可查；音乐数据需另取，paper_code与当前分支应分开固定；未跑实验。",
+    "transfer_to_music": "AI：是音乐zero-shot扩散编辑的核心基线，适合优先复现；局部轨迹约束和Tstart/CFG折中可借鉴。若需要确定的音符级操作，ZEUS的无监督主方向仍缺乏可指定语义保证。",
+    "training_free_audit": {
+      "backbone_training": "预训练AudioLDM2；并非无生成模型训练",
+      "editing_weight_updates": "ZETA/ZEUS均不训练编辑模型",
+      "per_input_optimization": "ZETA无逐样本梯度拟合；ZEUS有额外主方向迭代计算，不能视为零成本",
+      "inversion": "有：提取每步DDPM噪声序列",
+      "zero_shot_scope": "无编辑任务训练/个性化拟合；与未见过风格或无源音频条件不同"
+    },
+    "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。"
+  },
+  "candidate_P": [
+    {
+      "id": "ZETA-P01",
+      "text": "局部编辑为何影响mask外音乐事件，回拉是否影响目标修改？",
+      "tag": "DE",
+      "e": [
+        "ZETA-E05"
+      ],
+      "source_id": "S-ZETA",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "ZETA-P02",
+      "text": "无监督主方向如何对应用户指定的具体音乐语义？",
+      "tag": "SC",
+      "e": [
+        "ZETA-E01"
+      ],
+      "source_id": "S-ZETA",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "ZETA-F01",
+      "text": "Tstart/CFG改变源一致性与文本服从的折中。",
+      "tag": "DE",
+      "e": [
+        "ZETA-E02"
+      ],
+      "source_id": "S-ZETA",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "ZETA-F02",
+      "text": "在相同源和采样模型上，mask外轨迹回拉能缓解所展示例的编辑外溢。",
+      "tag": "DE",
+      "e": [
+        "ZETA-E05"
+      ],
+      "source_id": "S-ZETA",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "ZETA-E01",
+      "type": "DE",
+      "location": "PDF pp.3–5 §3.1–3.3，Eq.(1)–(5)，Fig.2",
+      "detail": "DDPM提取噪声并复用；ZETA换文本，ZEUS沿后验主方向扰动；两条方法不能混名。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf#page=3"
+    },
+    {
+      "id": "ZETA-E02",
+      "type": "DE",
+      "location": "PDF pp.6–8 §4.1–4.3，Figs.5–8",
+      "detail": "34首/324对及CLAP-LPAPS折中；Fig6的LPAPS数字只针对所展示例。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf#page=6"
+    },
+    {
+      "id": "ZETA-E03",
+      "type": "DE",
+      "location": "PDF p.8 Fig.9；p.21 Appendix H",
+      "detail": "随机顺序8秒片段、排除唱歌prompt以对齐MusicGen；300→277有效参与者；偏好率与Wilson区间。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf#page=8"
+    },
+    {
+      "id": "ZETA-E04",
+      "type": "DE",
+      "location": "PDF p.15 Appendix C；LaTeX App_InferenceMemoryCost.tex",
+      "detail": "ZETA有source prompt时NFE更多；(3+S)Tstart；ZEUS额外K=50次子空间迭代；30秒开销与噪声内存。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf#page=15"
+    },
+    {
+      "id": "ZETA-E05",
+      "type": "DE",
+      "location": "PDF p.17 Appendix D，Fig.14；LaTeX App_MaskFix.tex",
+      "detail": "模型结构会让局部编辑影响mask外；每步以δ=.025回拉mask外原轨迹，是软约束而非严格波形不变。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf#page=17"
+    },
+    {
+      "id": "ZETA-E06",
+      "type": "DE",
+      "location": "code/ddm_inversion/inversion_utils.py L8–146、L147–280；code/main_run.py；README Change Log",
+      "detail": "关键推理用no_grad并复用噪声；README明确paper_code分支为论文版本，当前固定commit为后续版本，不能宣称一比一论文复现。",
+      "source_id": "S-ZETA",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf"
+    }
+  ],
+  "evidence_locations": [
+    {
+      "evidence_id": "ZETA-E01",
+      "location": "PDF pp.3–5 §3.1–3.3，Eq.(1)–(5)，Fig.2"
+    },
+    {
+      "evidence_id": "ZETA-E02",
+      "location": "PDF pp.6–8 §4.1–4.3，Figs.5–8"
+    },
+    {
+      "evidence_id": "ZETA-E03",
+      "location": "PDF p.8 Fig.9；p.21 Appendix H"
+    },
+    {
+      "evidence_id": "ZETA-E04",
+      "location": "PDF p.15 Appendix C；LaTeX App_InferenceMemoryCost.tex"
+    },
+    {
+      "evidence_id": "ZETA-E05",
+      "location": "PDF p.17 Appendix D，Fig.14；LaTeX App_MaskFix.tex"
+    },
+    {
+      "evidence_id": "ZETA-E06",
+      "location": "code/ddm_inversion/inversion_utils.py L8–146、L147–280；code/main_run.py；README Change Log"
+    }
+  ],
+  "unresolved_questions": [
+    "所有曲目逐样本输出与独立重算",
+    "当前commit与论文分支全部差异",
+    "音符/和弦/声部级严格保持",
+    "音乐域外泛化与精确听测区间端点"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "所有曲目逐样本输出与独立重算",
+    "当前commit与论文分支全部差异",
+    "音符/和弦/声部级严格保持",
+    "音乐域外泛化与精确听测区间端点"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+}

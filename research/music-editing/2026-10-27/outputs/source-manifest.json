@@ -1,0 +1,426 @@
+{
+  "created_at": "2026-10-27",
+  "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。",
+  "sources": {
+    "directaudioedit": {
+      "pdf_sha256": "5397365f100597cc193a4be398bcd6fce1926a82fea95788e304be829c025fce",
+      "bytes": 1719812,
+      "latex_files": [
+        {
+          "file": "ablation.tex",
+          "sha256": "9c1d6c387d08fe6ac1d53ae0e92dc808db1116bf8a97425c5aabf992e2aef162"
+        },
+        {
+          "file": "acl_latex.tex",
+          "sha256": "747b9cd3a03ca5840c95c9029d9e0f8c465483ecded4aeb53bbb2e1e8eba6c7a"
+        },
+        {
+          "file": "adacfg.tex",
+          "sha256": "89205e04f9d6f0dd99fa9bb26d277798c1ee1b5b4308ea22296667c43702cedc"
+        },
+        {
+          "file": "app_full_table.tex",
+          "sha256": "0e2cc622e1073f52820563a5c30c69b9472e997a84db9e560e5297f0f59e76a2"
+        },
+        {
+          "file": "app_sample.tex",
+          "sha256": "a153a1e9902c87f8dbb7494de1297c77161d5eab1c28f21f20284482d2b57cf7"
+        },
+        {
+          "file": "case.tex",
+          "sha256": "1755930b2a787f525b18e13652b0f05aff5ca0626b1437fff249597c59fa90e2"
+        },
+        {
+          "file": "cost.tex",
+          "sha256": "279136923e2634238124f68f0a5b787446c1b86529a08b43388965645c9fc06e"
+        },
+        {
+          "file": "main_results.tex",
+          "sha256": "85d748bb0a72e2463b86b6ee175703bc58fe2997230e444962f3c48e8db07830"
+        },
+        {
+          "file": "methodsmel.tex",
+          "sha256": "8b683b3e14e94ff759b1e4f3b437fae66b8fccbb9e9131db86db8436260b9c0c"
+        },
+        {
+          "file": "mos.tex",
+          "sha256": "1c2c6560f41193f37b6a16d1b7619ff26a3e30c964e96d71622749865c5a28f9"
+        },
+        {
+          "file": "motivation.tex",
+          "sha256": "782b6a836740f46b0c01a5e6e7cd66bfdc0c4737a37a41a5933f252cc6cc00cc"
+        },
+        {
+          "file": "overview.tex",
+          "sha256": "54f4e51289d514479b2c2924099196cac6855ffd4569da89f6aa97893f605208"
+        }
+      ],
+      "source_id": "S-DAE",
+      "title": "DirectAudioEdit: Inversion-Free Text-Guided Audio Editing via Diffusion Prediction Contrast",
+      "version": "arXiv:2606.07356v1，2026-06-05；预印本",
+      "pdf_url": "https://arxiv.org/pdf/2606.07356v1",
+      "latex_source_url": "https://arxiv.org/src/2606.07356v1",
+      "code_repository": "NiuTrans/DirectAudioEdit",
+      "code_commit": "0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1",
+      "accessed_on": "2026-10-27",
+      "code_files": [
+        {
+          "path": "code/main_run.py",
+          "git_blob_sha": "b54bc89399839eddcbf3d692a7c2ba1d63f90254",
+          "url": "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "code/ddm_inversion/inversion_utils.py",
+          "git_blob_sha": "cb982462cf8cfab8a291501a8123bc8aefe771f8",
+          "url": "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/ddm_inversion/inversion_utils.py",
+          "review": "static_read_only"
+        }
+      ],
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "audiomorphix": {
+      "pdf_sha256": "f8931bb0937e6c1a5a2a24abd59f293ec5050d91de3c2d3c87cbfbc2dfe4cb92",
+      "bytes": 4666935,
+      "latex_files": [
+        {
+          "file": "main.tex",
+          "sha256": "f79c902781a6cb09c461af59401704c04ab6a1b938d1a26f6fca041b3ac901b6"
+        }
+      ],
+      "code_files": [
+        {
+          "path": "src/audio_morphix.py",
+          "sha256": "ea06a28e16b49d532ef51fb6fd12e591ae9c1617da24bc487658dc88c2a38274",
+          "git_blob_sha": "f88680c6ce7ceab81179c1d782f78567d4adffc2",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/audio_morphix.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "src/model/sampler.py",
+          "sha256": "2542838de280b050e695f0e8a297a49141256f16506c341efb1c6d4559881eb6",
+          "git_blob_sha": "25c3173a503ce7985fa704c1e5349e899fac6331",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/model/sampler.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "src/model/pipeline.py",
+          "sha256": "9fb230694fdee0e3847d3571f7197742e0b258d548e0ecdcb3d020e7eae748a0",
+          "git_blob_sha": "d14c9109ba9c960095e629941fa546c7becae49a",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/model/pipeline.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "src/utils/factory.py",
+          "sha256": "b78b538b58738c3c88c90e421926a7240d2885641d222f872930cc06fd1b42ec",
+          "git_blob_sha": "ef16eb457fcc22d83434800cb5f690d79f11c99e",
+          "tree_blob_match": "not_checked",
+          "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/utils/factory.py",
+          "review": "static_read_only"
+        }
+      ],
+      "source_id": "S-AMX",
+      "title": "AudioMorphix: Training-free audio editing with diffusion probabilistic models",
+      "version": "arXiv:2505.16076v1，2025-05-21；本次采用该预印本，不混用匿名投稿版",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1",
+      "latex_source_url": "https://arxiv.org/src/2505.16076v1",
+      "code_repository": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix",
+      "code_commit": "08008095c5a3f417b0bcfc397f9b73042faf6eee",
+      "accessed_on": "2026-10-27",
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "melodyflow": {
+      "pdf_sha256": "82b223de60175afcbacd263c7eaa16c47bbd474c7310ca6070fc6d698f470c47",
+      "bytes": 895956,
+      "latex_files": [
+        {
+          "file": "0_abstract.tex",
+          "sha256": "a89c4ffb9a282b61b2300f6ccb398726a0c97d0379f88d012c28d5e622c1d495"
+        },
+        {
+          "file": "1_introduction.tex",
+          "sha256": "d3c47d4443e42b5ee7bcd0ce7672ca49051d82f8229eab84390df3bf0510f471"
+        },
+        {
+          "file": "2_approach.tex",
+          "sha256": "34b020d2db97261af764832763eee9c7243d80682bce5ac4138b0a976491952f"
+        },
+        {
+          "file": "3_experiments.tex",
+          "sha256": "1b4af8110cad09b7e2df5851c7663ca3e11658d0da358621adfc714d1fcd765e"
+        },
+        {
+          "file": "4_results.tex",
+          "sha256": "21a98553a9b36963b450b5cb63efa9e7236ff6ee739561f08a2d98efcdb4fe02"
+        },
+        {
+          "file": "5_related.tex",
+          "sha256": "55040f5c7aed6469e7760b0e3cfa303c4991cf91b9063786cfb1839ef5799d3e"
+        },
+        {
+          "file": "6_conclusion.tex",
+          "sha256": "6c0fc9bcb6bfd244862f9c5c785cffaadd2a7f30104da2187e9131c27ea99c8f"
+        },
+        {
+          "file": "7_appendix.tex",
+          "sha256": "eb7be9db10a45fb1ecbb86da23b78637bc74d176d66a3a869b65d92ef822047d"
+        },
+        {
+          "file": "math_commands.tex",
+          "sha256": "90473c4d0542070db244cea73ef962d6cddc5b2a746757e6a40ddf5fdfb90ba9"
+        },
+        {
+          "file": "neurips_2024.tex",
+          "sha256": "f6fd9b5e7a964c864e49cbaa27ce6b663216970cb6274e16dc6571c9e8f8a693"
+        }
+      ],
+      "code_files": [
+        {
+          "path": "audiocraft/models/melodyflow.py",
+          "sha256": "655c9d697b698b8c2dcdc560062dcbc32423b4468912bab3e5f4094b08071a43",
+          "git_blob_sha": "2704ec93b336776c7b6f9e9bb467be9744fde82f",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/models/melodyflow.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "audiocraft/models/flow.py",
+          "sha256": "10bfa541ae8a41f932b9a7a98d1ba3f094c846d9918501f758deeea4648c2248",
+          "git_blob_sha": "61c204a8e7e51466426504119ffe8642a62379d0",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/models/flow.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "audiocraft/utils/renoise.py",
+          "sha256": "71cd7c4d719cc24f89a245d57aff3ca716c5a199b6b921d24e7ba39eaf610c5c",
+          "git_blob_sha": "6177bb4d3eca1627aeb7cb60d651cd07eaeb5eae",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/utils/renoise.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "model_cards/MELODYFLOW_MODEL_CARD.md",
+          "sha256": "cac5553119b41b0f0d7c431b10d2fa9010b5d5bb8435ab1d20ae38f7b01e8335",
+          "git_blob_sha": "5ffe6ec6d8ea2594891d3844025b2a9d4d7377ce",
+          "tree_blob_match": true,
+          "url": "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/model_cards/MELODYFLOW_MODEL_CARD.md",
+          "review": "static_read_only"
+        }
+      ],
+      "source_id": "S-MF",
+      "title": "High Fidelity Text-Guided Music Editing via Single-Stage Flow Matching",
+      "version": "arXiv:2407.03648v2，2024-10-16；PDF自述Preprint/Under review；本次不将其视为正式会议最终版",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2",
+      "latex_source_url": "https://arxiv.org/src/2407.03648v2",
+      "code_repository": "https://huggingface.co/spaces/facebook/MelodyFlow",
+      "code_commit": "19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e",
+      "accessed_on": "2026-10-27",
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "audioeditor": {
+      "pdf_sha256": "89775f149fc8654d90971528b998f413362a717b14b2778418893b8d66271244",
+      "bytes": 681508,
+      "latex_files": [
+        {
+          "file": "IEEE-conference-template-062824.tex",
+          "sha256": "ac31dbf73ac859b6cdcbe797a2c96d0492b650872d927a9836c79f6c6598ea2e"
+        }
+      ],
+      "source_id": "S-AED",
+      "title": "AudioEditor: A Training-Free Diffusion-Based Audio Editing Framework",
+      "version": "arXiv:2409.12466v2，2024-09-29；另有ICASSP2025发表记录，本次页码以v2为准",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2",
+      "latex_source_url": "https://arxiv.org/src/2409.12466v2",
+      "code_repository": "NKU-HLT/AudioEditor",
+      "code_commit": "762d34d3adc8740aa95426f0496c4b7d0a1fd0da",
+      "accessed_on": "2026-10-27",
+      "code_files": [
+        {
+          "path": "main.py",
+          "git_blob_sha": "9c853b2fbda3c059fb30ea2225ef1344a7d676eb",
+          "url": "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/main.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "null_text_inversion/null_text_inversion.py",
+          "git_blob_sha": "16060ce328393388ad088629148ee349c634e8be",
+          "url": "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/null_text_inversion/null_text_inversion.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "suppresseot/wo_utils.py",
+          "git_blob_sha": "ffede25a3cbcc4dee67680e4ae0d8916c8634fe9",
+          "url": "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/wo_utils.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "suppresseot/attn_loss.py",
+          "git_blob_sha": "bb0898e4aa7cc7f8340a8167ec2ef74ada88cc1d",
+          "url": "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/attn_loss.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "suppresseot/run_and_display.py",
+          "git_blob_sha": "954a582401fa36cd4dff4aab5469bf01891c71cb",
+          "url": "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/run_and_display.py",
+          "review": "static_read_only"
+        }
+      ],
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "editts": {
+      "pdf_sha256": "60c0171e403d82e2de6d0426d897a772935e5139ab5ce219221ed9e3e6764d30",
+      "bytes": 353864,
+      "latex_files": [
+        {
+          "file": "main.tex",
+          "sha256": "a648004f497d92b4b0104665de910146ccd580f9c3c8b2c2c9b48470cd5656cb"
+        }
+      ],
+      "source_id": "S-ETTS",
+      "title": "EdiTTS: Score-based Editing for Controllable Text-to-Speech",
+      "version": "arXiv:2110.02584v3，2022-07-09；INTERSPEECH2022，会议页421–425；本次PDF页1–5",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3",
+      "latex_source_url": "https://arxiv.org/src/2110.02584v3",
+      "code_repository": "neosapience/editts",
+      "code_commit": "77255e5304f052abe54ac457a6da00a6e9319f87",
+      "accessed_on": "2026-10-27",
+      "code_files": [
+        {
+          "path": "model/diffusion.py",
+          "git_blob_sha": "3a309ca43171e21a6db0dda586d931dff9121e99",
+          "url": "https://github.com/neosapience/editts/blob/77255e5304f052abe54ac457a6da00a6e9319f87/model/diffusion.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "model/tts.py",
+          "git_blob_sha": "e6ee3ec9082e407d9c9a0414b693ed0d20ca8f3f",
+          "url": "https://github.com/neosapience/editts/blob/77255e5304f052abe54ac457a6da00a6e9319f87/model/tts.py",
+          "review": "static_read_only"
+        }
+      ],
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "zeta": {
+      "pdf_sha256": "f8716ee1c353e4da969043256b01406855b3cb7740b17f6238104e4bfef5da1f",
+      "bytes": 7847392,
+      "latex_files": [
+        {
+          "file": "0_PackagesMacros.tex",
+          "sha256": "f96d89fcce5f61d519af6adb250d1186cd0c83a67972523ebccf19a5eb70aa06"
+        },
+        {
+          "file": "0_math_commands.tex",
+          "sha256": "3914e4e48b997cabbee4bb6e8b9d7e03b0a8ac16b9cd33a47ad339e37a82a390"
+        },
+        {
+          "file": "1_Appendix.tex",
+          "sha256": "3488de55c1c5fb39fd8e779633b7ff16c983abbb730885ff525042c6fac60b62"
+        },
+        {
+          "file": "1_Manuscript.tex",
+          "sha256": "07d7b3dbc189f3a8d857f75f8afb0ae367505c578f19c34c530bd2381130af94"
+        },
+        {
+          "file": "Abstract.tex",
+          "sha256": "5ef8c35eb7a5a69220dc7e88acf06e54033580c9496d53272fa26939f2164018"
+        },
+        {
+          "file": "Acknowledgements.tex",
+          "sha256": "9412c28c6ea9e833638ec3ae4e59ee88027e14de05a169632b5e915351138dfe"
+        },
+        {
+          "file": "App_DDIMMidWay.tex",
+          "sha256": "734eae3cc9f2f472ca814102db4b2af8d4b32546ab371e8c92cd63939048a324"
+        },
+        {
+          "file": "App_ExperimentalDetail.tex",
+          "sha256": "1f2be8217524b1fe2e797c306b6c6a6d6d815594bcdb486db67a46312533ec20"
+        },
+        {
+          "file": "App_InferenceMemoryCost.tex",
+          "sha256": "4b5ecb29a4514b98fe3c852f6df78a0f35121e37535dadb9fec3298586a63404"
+        },
+        {
+          "file": "App_MaskFix.tex",
+          "sha256": "ab55889c289660140e6a29edfb9962e0c725f24bb9f462865618670757b05f43"
+        },
+        {
+          "file": "App_UserStudy.tex",
+          "sha256": "2278e9653c129fcf70fc979ab8833abde01c9a629bd4048726fb1244f5ce61b7"
+        },
+        {
+          "file": "App_algos.tex",
+          "sha256": "89619ee7cfbb43e3dd0015ffae1e795bbe3b146a4033c0e8ab5c424f8b1327b2"
+        },
+        {
+          "file": "App_images.tex",
+          "sha256": "d927b8383245cffaf4fb4898f7a65151e8b8821a1ad6870e759cb32a6b37fed0"
+        },
+        {
+          "file": "App_randVector.tex",
+          "sha256": "7c40976d0aa0932b6292f989fde6659960559c407556148e11fd519482aaab9b"
+        },
+        {
+          "file": "App_unsupEntropy.tex",
+          "sha256": "2ea9e2b676d2502b1901098791696ce1f9bd8cb16d52e67d5332d269c48d5baf"
+        },
+        {
+          "file": "App_unsupEqDetails.tex",
+          "sha256": "804ddb622af86692e9a1a27315bc265aab6c420a6a4ba683d45357851977acd7"
+        },
+        {
+          "file": "Conclusion.tex",
+          "sha256": "401f12e727fc4f70f4588869a8c893909819310ee799ba98fa400646b7d9fcf6"
+        },
+        {
+          "file": "Experiments.tex",
+          "sha256": "2674ba20c94ba61dd9ffde31d3c88b499aa304f6528373815a500554d1f35af7"
+        },
+        {
+          "file": "ImpactStatement.tex",
+          "sha256": "a1c4de6eb73483fac6b7f0489137b86211aa5df2e86ac69d9c29689d2b948454"
+        },
+        {
+          "file": "Introduction.tex",
+          "sha256": "dca78c7758dfb8d67f05030444c7366eff0d131253d0cc4a60b7ce26a9f10eca"
+        },
+        {
+          "file": "Method.tex",
+          "sha256": "6cd30c18577f98492d3a16e455298f0dd72369423c68a6c8da99dc37cc25226c"
+        },
+        {
+          "file": "RelatedWork.tex",
+          "sha256": "643472a4695f025bfc5aa907905a3d550ce1f8d09fdbae95982be004d58a1da2"
+        }
+      ],
+      "source_id": "S-ZETA",
+      "title": "Zero-Shot Unsupervised and Text-Based Audio Editing Using DDPM Inversion",
+      "version": "ICML2024/PMLR235正式PDF，内部页1–27（卷页34603–34629）；LaTeX辅助源为arXiv:2402.10009v4",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf",
+      "latex_source_url": "https://arxiv.org/src/2402.10009v4",
+      "code_repository": "HilaManor/AudioEditingCode",
+      "code_commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8",
+      "accessed_on": "2026-10-27",
+      "code_files": [
+        {
+          "path": "code/main_run.py",
+          "git_blob_sha": "77c2ad26b00ac031b48ac6f73e4a7d76820db0f7",
+          "url": "https://github.com/HilaManor/AudioEditingCode/blob/8dc937701a42f6fb53160912f8a96b42fe8261d8/code/main_run.py",
+          "review": "static_read_only"
+        },
+        {
+          "path": "code/ddm_inversion/inversion_utils.py",
+          "git_blob_sha": "1c5fb31a611846b7afc6562f25787cde89840382",
+          "url": "https://github.com/HilaManor/AudioEditingCode/blob/8dc937701a42f6fb53160912f8a96b42fe8261d8/code/ddm_inversion/inversion_utils.py",
+          "review": "static_read_only"
+        }
+      ],
+      "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    }
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-MF-v1",
+  "package_id": "ANALYSIS-20261027-MF-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-MF"
+  ],
+  "source_identity_and_version": {
+    "title": "High Fidelity Text-Guided Music Editing via Single-Stage Flow Matching",
+    "short_name": "MelodyFlow",
+    "authors": "Gael Le Lan, Bowen Shi, Zhaoheng Ni, Sidd Srinivasan, Anurag Kumar, Brian Ellis, David Kant, Varun Nagaraja, Ernie Chang, Wei-Ning Hsu, Yangyang Shi, Vikas Chandra",
+    "affiliations": "AI at Meta",
+    "version": "arXiv:2407.03648v2，2024-10-16；PDF自述Preprint/Under review；本次不将其视为正式会议最终版",
+    "pdf_url": "https://arxiv.org/pdf/2407.03648v2",
+    "pdf_page_count": 17,
+    "latex_source_url": "https://arxiv.org/src/2407.03648v2",
+    "code_repository": "https://huggingface.co/spaces/facebook/MelodyFlow",
+    "code_commit": "19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e",
+    "pdf_sha256": "82b223de60175afcbacd263c7eaa16c47bbd474c7310ca6070fc6d698f470c47"
+  },
+  "research_question": "高保真音乐FM模型能否通过无需编辑微调的测试时反演实现质量、文本服从和源一致性的折中？",
+  "study_type_and_context": {
+    "study_type": "计算实验与论文报告的听测/评价",
+    "focus": "音乐音频编辑；重点检查不更新预训练模型权重、零样本编辑与逐样本推理优化的区别",
+    "scope": "400M small/1B medium骨干；medium为48kHz立体声、25Hz codec、30秒。论文训练数据合计20k小时；客观编辑用8377首in-domain heldout tracks，主观编辑181个较高保真样本，LLM辅助genre变化提示人工复核。"
+  },
+  "design_units_samples_or_materials": "400M small/1B medium骨干；medium为48kHz立体声、25Hz codec、30秒。论文训练数据合计20k小时；客观编辑用8377首in-domain heldout tracks，主观编辑181个较高保真样本，LLM辅助genre变化提示人工复核。",
+  "intervention_input_or_procedure": "波形→连续VAE→从data向noise做FM反演到Tedit→以编辑文本正向积分。反演每步K=4固定点式估计，以人工加噪源样本的速度预测为参照，做patch KL梯度正则；不更新模型权重。",
+  "measurements_and_analysis": {
+    "description": "编辑CLAP、FADedit、LPAPS；主观OVL/REL/CON的1–5分，Table1列均值及±误差；该表未单独说明误差水平，Table2的生成听测才明确写CI95；自动指标先将立体声downmix mono。生成任务的FAD/latency与编辑结果必须分开。",
+    "pre_registration_or_prespecified_primary_outcome": "unknown：本次未核验预注册/预先指定唯一主要指标；按论文主要结果表整理",
+    "independent_execution": "not_run"
+  },
+  "results_with_uncertainty": [
+    {
+      "metric": "编辑MOS：OVL / REL / CON / AVG",
+      "ours": "2.72±0.08 / 2.72±0.07 / 2.61±0.10 / 2.68",
+      "baseline": "AudioLDM2-music DDPM：2.48±0.07 / 2.36±0.08 / 2.72±0.09 / 2.52",
+      "uncertainty": "Table1列±误差，未单独说明置信水平，不自动沿用Table2的CI95定义；一致性CON并非本法最高。跨骨干比较不能纯归因于反演方法",
+      "e": "MF-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "同骨干反演消融",
+      "ours": "Figure2：velocity正则在λKL约0.2附近取得较佳折中；Figure3：Tedit约0.06附近",
+      "baseline": "DDIM与ε-pred ReNoise变体",
+      "uncertainty": "曲线定性读取，不虚构精确点值和CI",
+      "e": "MF-E04",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "采样预算",
+      "ours": "论文S=25、K=4，描述100反演预测+25生成=125步",
+      "baseline": "DDIM 64反演+64生成=128",
+      "uncertainty": "包含额外正则参照预测、CFG batch及反传操作，不能把125直接当成所有配置完全相同计算量；需实测",
+      "e": "MF-E02",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "claim": "SC：zero-shot test-time音乐编辑，无finetuning。",
+      "evidence": "MF-E01 / E05",
+      "assessment": "编辑无需权重更新成立；不能描述为整套模型无需训练，或反演没有梯度优化。"
+    },
+    {
+      "claim": "SC：优于先前音乐编辑。",
+      "evidence": "MF-E03 / E04",
+      "assessment": "在报告的质量/文本指标上占优；CON不占优。跨骨干效应和同骨干算法消融需要分别解释。"
+    },
+    {
+      "claim": "SC：公开权重/源码足以对应论文。",
+      "evidence": "MF-E02 / E06",
+      "assessment": "可获取核心编辑实现；官方模型卡已确认公开模型的数据处理及指标与论文版本不同，不应宣称是完全相同checkpoint；时间调度也需核对。"
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "AI：跨骨干、codec、采样率的比较不隔离正则反演本身的因果贡献（MF-E03）。",
+      "DE：测试以in-domain、genre变化为主，不能等价推广到任意精细音符/声部指令（MF-E02/E03）。",
+      "AI：自动指标downmix为mono，不能单靠它证明立体声声像保持（MF-E03）。",
+      "DE：公开模型卡确认数据处理与论文版本不同，代码默认与论文也有差异，须固定版本并区分配置（MF-E06）。",
+      "UN：完整训练集/heldout可访问性、公开权重对应性、逐音符/多声部局部评估及独立运行未知。"
+    ],
+    "ethics": "涉及人类听测的审批/同意细节未独立核验；数据/模型许可证以原发布方为准；不上传论文全文、原音频或权重。"
+  },
+  "reproducibility_and_transferability": {
+    "assessment": "中（编辑静态复核）；论文训练数据含内部/授权集，不具备独立重建全部训练实验的充分公开条件；本次未运行。",
+    "transfer_to_music": "AI：对音乐最直接的FM参照骨干；可在现成checkpoint上研究零样本编辑。必须单独记账反演重复、KL正则和采样成本；若要求无测试时梯度优化，不能把完整regularized版本归入同一类。",
+    "training_free_audit": {
+      "backbone_training": "论文训练新FM与codec，不是整套系统从零无训练；使用已发布模型时无需重训",
+      "editing_weight_updates": "编辑时不微调模型权重",
+      "per_input_optimization": "有：速度预测的patch-KL梯度更新及重复反演迭代；不等于无梯度采样",
+      "inversion": "有：regularized flow inversion",
+      "zero_shot_scope": "无编辑任务特定微调；不能推为无生成模型训练或未见过目标风格"
+    },
+    "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。"
+  },
+  "candidate_P": [
+    {
+      "id": "MF-P01",
+      "text": "在相同骨干/codec下，正则反演如何权衡局部音乐结构保持与文本修改？",
+      "tag": "AI",
+      "e": [
+        "MF-E03",
+        "MF-E04"
+      ],
+      "source_id": "S-MF",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "MF-P02",
+      "text": "mono代理指标能否刻画立体声编辑后的声像保留？",
+      "tag": "AI",
+      "e": [
+        "MF-E03"
+      ],
+      "source_id": "S-MF",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "MF-F01",
+      "text": "主观OVL/REL提升时CON可降低，说明编辑服从与源一致性不是同一目标。",
+      "tag": "DE",
+      "e": [
+        "MF-E03"
+      ],
+      "source_id": "S-MF",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "MF-F02",
+      "text": "冻结FM权重仍使用patch-KL梯度正则；公开代码与论文的若干默认配置存在差异。",
+      "tag": "DE",
+      "e": [
+        "MF-E05",
+        "MF-E06"
+      ],
+      "source_id": "S-MF",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "MF-E01",
+      "type": "DE",
+      "location": "PDF pp.2–4 §2，Fig.1、Algorithm1",
+      "detail": "codec+FM+regularized inversion；算法直接对速度预测δ求KL梯度，更新δ而非模型参数。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2#page=2"
+    },
+    {
+      "id": "MF-E02",
+      "type": "DE",
+      "location": "PDF pp.5–6 §3；p.14 Appendix A.1",
+      "detail": "模型/训练数据/评测规模及S=25,K=4,λ=.2；论文20k小时，公开模型卡16k小时，二者不静默合并。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2#page=5"
+    },
+    {
+      "id": "MF-E03",
+      "type": "DE",
+      "location": "PDF p.6 Table1，§3.3–4.1",
+      "detail": "181样本主观编辑结果；OVL/REL更好而CON低于AudioLDM2；自动指标先下混为mono。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2#page=6"
+    },
+    {
+      "id": "MF-E04",
+      "type": "DE",
+      "location": "PDF pp.7–9 Figs.2–4；p.17 Appendix A.2.4",
+      "detail": "λKL/Tedit/预算均影响对齐与保留；有图表没有原始曲线CSV时不填精确曲线值。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2#page=7"
+    },
+    {
+      "id": "MF-E05",
+      "type": "DE",
+      "location": "HF audiocraft/models/melodyflow.py L99–128、L191–247；audiocraft/models/flow.py L331–334、L383–455；audiocraft/utils/renoise.py L9–42",
+      "detail": "默认编辑Euler25步,K4,λKL=.2；反演中cfg_coef=0；启用KL梯度，detach预测张量后求导，不反传训练DiT。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2"
+    },
+    {
+      "id": "MF-E06",
+      "type": "DE",
+      "location": "HF audiocraft/models/flow.py L305、L389–390；model_cards/MELODYFLOW_MODEL_CARD.md；PDF p.5,14",
+      "detail": "公开代码包含sway_coefficient=-0.8非均匀时间调度。模型卡明确公开版用HT-Demucs处理数据并解释其指标与论文模型不同；训练16k小时，论文20k小时。代码MIT，权重CC-BY-NC4.0。",
+      "source_id": "S-MF",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2#page=5"
+    }
+  ],
+  "evidence_locations": [
+    {
+      "evidence_id": "MF-E01",
+      "location": "PDF pp.2–4 §2，Fig.1、Algorithm1"
+    },
+    {
+      "evidence_id": "MF-E02",
+      "location": "PDF pp.5–6 §3；p.14 Appendix A.1"
+    },
+    {
+      "evidence_id": "MF-E03",
+      "location": "PDF p.6 Table1，§3.3–4.1"
+    },
+    {
+      "evidence_id": "MF-E04",
+      "location": "PDF pp.7–9 Figs.2–4；p.17 Appendix A.2.4"
+    },
+    {
+      "evidence_id": "MF-E05",
+      "location": "HF audiocraft/models/melodyflow.py L99–128、L191–247；audiocraft/models/flow.py L331–334、L383–455；audiocraft/utils/renoise.py L9–42"
+    },
+    {
+      "evidence_id": "MF-E06",
+      "location": "HF audiocraft/models/flow.py L305、L389–390；model_cards/MELODYFLOW_MODEL_CARD.md；PDF p.5,14"
+    }
+  ],
+  "unresolved_questions": [
+    "公开checkpoint与论文训练集/配置逐项对应",
+    "未实跑编辑与听测",
+    "独立重算NFE、显存、RTF",
+    "真实长曲及精细旋律/和弦/声部保持"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "公开checkpoint与论文训练集/配置逐项对应",
+    "未实跑编辑与听测",
+    "独立重算NFE、显存、RTF",
+    "真实长曲及精细旋律/和弦/声部保持"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+}

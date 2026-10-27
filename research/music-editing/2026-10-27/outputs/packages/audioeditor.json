@@ -1,0 +1,238 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-AED-v1",
+  "package_id": "ANALYSIS-20261027-AED-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-AED"
+  ],
+  "source_identity_and_version": {
+    "title": "AudioEditor: A Training-Free Diffusion-Based Audio Editing Framework",
+    "short_name": "AudioEditor",
+    "authors": "Yuhang Jia, Yang Chen, Jinghua Zhao, Shiwan Zhao, Wenjia Zeng, Yong Chen, Yong Qin",
+    "affiliations": "南开大学、灵犀（北京）科技",
+    "version": "arXiv:2409.12466v2，2024-09-29；另有ICASSP2025发表记录，本次页码以v2为准",
+    "pdf_url": "https://arxiv.org/pdf/2409.12466v2",
+    "pdf_page_count": 5,
+    "latex_source_url": "https://arxiv.org/src/2409.12466v2",
+    "code_repository": "NKU-HLT/AudioEditor",
+    "code_commit": "762d34d3adc8740aa95426f0496c4b7d0a1fd0da",
+    "pdf_sha256": "89775f149fc8654d90971528b998f413362a717b14b2778418893b8d66271244"
+  },
+  "research_question": "如何兼顾文本指定修改与保留原音频，避免单纯加噪重生成丢失内容？",
+  "study_type_and_context": {
+    "study_type": "计算实验与论文报告的听测/评价",
+    "focus": "音乐音频编辑；重点检查不更新预训练模型权重、零样本编辑与逐样本推理优化的区别",
+    "scope": "一般声音计算实验；从AudioCaps test手工选择适合编辑的300段，分addition/deletion/replacement；主要比较SDEdit、原音频和目标文本直接重生成。不是专门音乐编辑基准。"
+  },
+  "design_units_samples_or_materials": "一般声音计算实验；从AudioCaps test手工选择适合编辑的300段，分addition/deletion/replacement；主要比较SDEdit、原音频和目标文本直接重生成。不是专门音乐编辑基准。",
+  "intervention_input_or_procedure": "音频→mel→VAE；DDIM反演，w=1；再以w=7.5逐步优化null embedding，论文每步10次；对编辑词和EOT embedding做SVD重加权；采样期间用注意力损失进一步更新文本embedding。",
+  "measurements_and_analysis": {
+    "description": "CLAP、FD/FAD/KL、IS；MOS质量、文本相关性和忠实度。FAD用VGGish；FD/KL/IS用PANNs；“目标”参考包含模型按目标文本生成的音频，而不总是人工真值编辑。未见主结果CI、随机重复或完整听测人数说明。",
+    "pre_registration_or_prespecified_primary_outcome": "unknown：本次未核验预注册/预先指定唯一主要指标；按论文主要结果表整理",
+    "independent_execution": "not_run"
+  },
+  "results_with_uncertainty": [
+    {
+      "metric": "CLAP",
+      "ours": "57.6%",
+      "baseline": "SDEdit56.8%；原音48.2%；目标重生成59.2%",
+      "uncertainty": "无CI；0.8百分点差异不能据此声称统计显著",
+      "e": "AED-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "相对原音FAD / KL",
+      "ours": "4.95 / 1.93",
+      "baseline": "SDEdit5.68 / 1.79",
+      "uncertainty": "FAD更低但KL更高，方向存在权衡",
+      "e": "AED-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "MOS：质量/相关性/忠实度",
+      "ours": "4.13 / 3.88 / 3.82",
+      "baseline": "SDEdit4.11 / 3.14 / 3.77",
+      "uncertainty": "无CI或显著性检验；表中星号含义为次优，并非p值",
+      "e": "AED-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "claim": "SC：training-free，保留原音并精准编辑。",
+      "evidence": "AED-E01 / E04",
+      "assessment": "支持不微调模型；不支持“没有任何测试时优化”。"
+    },
+    {
+      "claim": "SC：显著改善编辑与保留。",
+      "evidence": "AED-E03",
+      "assessment": "表格能确认均值，不能代替未报告的统计显著性；不同指标并非一致提升。"
+    },
+    {
+      "claim": "SC：EOT抑制公式定义。",
+      "evidence": "AED-E05",
+      "assessment": "发现论文与实现指数符号差异，标为待确认，不静默修正原文。"
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "AI：300段手选事件声音的结论不能直接推广为多声部音乐编辑（AED-E02）。",
+      "AI：以骨干重生成音频作为目标分布可能偏向该骨干，不能等价评价真实编辑真值（AED-E02）。",
+      "DE：论文公式/代码指数符号、表格FD有不一致，复现需记录所选定义（AED-E03/E05）。",
+      "UN：未复算听测显著性、未核对版权数据去重与所有运行；缺少长曲、节拍、和弦、旋律保持专项证据。"
+    ],
+    "ethics": "涉及人类听测的审批/同意细节未独立核验；数据/模型许可证以原发布方为准；不上传论文全文、原音频或权重。"
+  },
+  "reproducibility_and_transferability": {
+    "assessment": "中（静态审阅）：官方核心实现可读；有公式与实现差异需澄清；依赖/权重/结果未实跑。",
+    "transfer_to_music": "AI：可借鉴文本embedding局部控制及保留损失；它是含测试时优化的对照路线。Auffusion/CLIP式文本接口的EOT结构不保证能原样迁移到音乐FM/T5模型。",
+    "training_free_audit": {
+      "backbone_training": "预训练Auffusion；它本身由图像生成模型经音频数据微调而来",
+      "editing_weight_updates": "编辑过程不更新骨干模型权重",
+      "per_input_optimization": "有：null-text embedding用Adam，注意力损失更新条件embedding",
+      "inversion": "有：DDIM反演与Null-text优化",
+      "zero_shot_scope": "不在特定编辑数据集上训练/微调模型；不等于无逐输入优化"
+    },
+    "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。"
+  },
+  "candidate_P": [
+    {
+      "id": "AED-P01",
+      "text": "不微调权重的事件编辑方法，迁移音乐后是否能保持节拍与其他声部？",
+      "tag": "AI",
+      "e": [
+        "AED-E02"
+      ],
+      "source_id": "S-AED",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "AED-P02",
+      "text": "论文SVD重加权指数符号与代码不一致，哪一设置生成了报告结果？",
+      "tag": "DE",
+      "e": [
+        "AED-E05"
+      ],
+      "source_id": "S-AED",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "AED-F01",
+      "text": "去除Null优化后FAD从4.95变5.33；去除EOT后CLAP从57.6降56.5%，体现不同组件的指标权衡。",
+      "tag": "DE",
+      "e": [
+        "AED-E03"
+      ],
+      "source_id": "S-AED",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "AED-F02",
+      "text": "冻结骨干也可以通过两种embedding梯度优化进行逐输入编辑。",
+      "tag": "DE",
+      "e": [
+        "AED-E04"
+      ],
+      "source_id": "S-AED",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "AED-E01",
+      "type": "DE",
+      "location": "PDF pp.1–3 §II，Fig.1，Eq.(1)–(6)",
+      "detail": "Auffusion骨干、两种embedding优化、SVD EOT重加权；无模型权重更新与推理优化同时成立。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2#page=1"
+    },
+    {
+      "id": "AED-E02",
+      "type": "DE",
+      "location": "PDF p.3 §III-A–C",
+      "detail": "300个手选AudioCaps测试样本；3类事件编辑；评价指标及模型生成参考设置。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2#page=3"
+    },
+    {
+      "id": "AED-E03",
+      "type": "DE",
+      "location": "PDF p.4 Tables I–V",
+      "detail": "CLAP与MOS点值，FAD/KL权衡；TableV与TableIII的完整法FD分别43.38和43.48，存在印刷数值不一致。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2#page=4"
+    },
+    {
+      "id": "AED-E04",
+      "type": "DE",
+      "location": "null_text_inversion/null_text_inversion.py L129–161；suppresseot/run_and_display.py L14–25、L110–132",
+      "detail": "Adam只针对uncond_embeddings；注意力梯度针对条件embedding，不是训练骨干。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2"
+    },
+    {
+      "id": "AED-E05",
+      "type": "DE",
+      "location": "PDF p.3 Eq.(5)；LaTeX IEEE-conference-template-062824.tex；suppresseot/wo_utils.py L23–35",
+      "detail": "论文打印exp(ασ)且给删除α=1，与公开代码exp(-αs)符号不同；不能自行假定二者完全等价。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2#page=3"
+    },
+    {
+      "id": "AED-E06",
+      "type": "DE",
+      "location": "main.py L114–147；null_text_inversion/null_text_inversion.py L163–179",
+      "detail": "入口把--inversion传给实现，实际支持NT/NPI；复现论文Null-text路径应确认NT，不能混用NPI。",
+      "source_id": "S-AED",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2"
+    }
+  ],
+  "evidence_locations": [
+    {
+      "evidence_id": "AED-E01",
+      "location": "PDF pp.1–3 §II，Fig.1，Eq.(1)–(6)"
+    },
+    {
+      "evidence_id": "AED-E02",
+      "location": "PDF p.3 §III-A–C"
+    },
+    {
+      "evidence_id": "AED-E03",
+      "location": "PDF p.4 Tables I–V"
+    },
+    {
+      "evidence_id": "AED-E04",
+      "location": "null_text_inversion/null_text_inversion.py L129–161；suppresseot/run_and_display.py L14–25、L110–132"
+    },
+    {
+      "evidence_id": "AED-E05",
+      "location": "PDF p.3 Eq.(5)；LaTeX IEEE-conference-template-062824.tex；suppresseot/wo_utils.py L23–35"
+    },
+    {
+      "evidence_id": "AED-E06",
+      "location": "main.py L114–147；null_text_inversion/null_text_inversion.py L163–179"
+    }
+  ],
+  "unresolved_questions": [
+    "论文结果对应精确参数、种子和环境",
+    "Eq5符号的作者解释",
+    "音乐任务定量验证",
+    "听测规模与CI、逐运行原始结果"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "论文结果对应精确参数、种子和环境",
+    "Eq5符号的作者解释",
+    "音乐任务定量验证",
+    "听测规模与CI、逐运行原始结果"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+}

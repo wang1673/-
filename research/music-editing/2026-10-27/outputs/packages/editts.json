@@ -1,0 +1,220 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-ETTS-v1",
+  "package_id": "ANALYSIS-20261027-ETTS-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-ETTS"
+  ],
+  "source_identity_and_version": {
+    "title": "EdiTTS: Score-based Editing for Controllable Text-to-Speech",
+    "short_name": "EdiTTS",
+    "authors": "Jaesung Tae, Hyeongju Kim, Taesu Kim",
+    "affiliations": "Yale University、Supertone、Neosapience",
+    "version": "arXiv:2110.02584v3，2022-07-09；INTERSPEECH2022，会议页421–425；本次PDF页1–5",
+    "pdf_url": "https://arxiv.org/pdf/2110.02584v3",
+    "pdf_page_count": 5,
+    "latex_source_url": "https://arxiv.org/src/2110.02584v3",
+    "code_repository": "neosapience/editts",
+    "code_commit": "77255e5304f052abe54ac457a6da00a6e9319f87",
+    "pdf_sha256": "60c0171e403d82e2de6d0426d897a772935e5139ab5ce219221ed9e3e6764d30"
+  },
+  "research_question": "已有score-based TTS能否通过先验扰动实现局部音高和词内容编辑，而不训练新模块？",
+  "study_type_and_context": {
+    "study_type": "计算实验与论文报告的听测/评价",
+    "focus": "音乐音频编辑；重点检查不更新预训练模型权重、零样本编辑与逐样本推理优化的区别",
+    "scope": "单说话人LJ Speech；预训练Grad-TTS+HiFi-GAN；音高测试15句话、18名AMT参与者；内容替换80句，每句随机词换同义词，人工核验文本，Google STT测WER/CER。全部是语音，不是音乐实验。"
+  },
+  "design_units_samples_or_materials": "单说话人LJ Speech；预训练Grad-TTS+HiFi-GAN；音高测试15句话、18名AMT参与者；内容替换80句，每句随机词换同义词，人工核验文本，Google STT测WER/CER。全部是语音，不是音乐实验。",
+  "intervention_input_or_procedure": "文本编码+时长/对齐产生均值先验；mask区域做频轴卷积或先验片段拼接，原/编辑分支共享高斯噪声；1000反向步中按软mask混合更新，平滑边界；不拟合权重或embedding。",
+  "measurements_and_analysis": {
+    "description": "音高听测MOS与95%CI、CREPE F0分布/实例轨迹；内容以WER/CER。听测同时让参与者考虑自然度与音高变化可辨识度，不是纯质量单轴。",
+    "pre_registration_or_prespecified_primary_outcome": "unknown：本次未核验预注册/预先指定唯一主要指标；按论文主要结果表整理",
+    "independent_execution": "not_run"
+  },
+  "results_with_uncertainty": [
+    {
+      "metric": "音高总体MOS，95%CI",
+      "ours": "3.95±0.07",
+      "baseline": "FastPitch3.78±0.07；Mel shift3.73±0.07；WORLD2.88±0.09",
+      "uncertainty": "15句、18位评分者；不能迁移为音乐音高编辑MOS",
+      "e": "ETTS-E03",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    },
+    {
+      "metric": "内容WER / CER (%)",
+      "ours": "9.1129 / 3.2187",
+      "baseline": "Mel concat11.6129 / 4.4241；Grad-TTS8.2258 / 2.8215",
+      "uncertainty": "80句；无报告的该误差率CI；仍差于直接Grad-TTS生成基线",
+      "e": "ETTS-E04",
+      "evidence_tag": "DE",
+      "provenance": "论文报告；本次核对数值而非独立复现实验"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "claim": "SC：无额外训练、无任务特定优化。",
+      "evidence": "ETTS-E01 / E05",
+      "assessment": "核心方法和已读代码支持；score计算不应误标成测试时参数优化。"
+    },
+    {
+      "claim": "SC：局部音高编辑。",
+      "evidence": "ETTS-E03 / E04",
+      "assessment": "语音F0与自然度有实验支撑；作者明确不能指定准确移调幅度。"
+    },
+    {
+      "claim": "AI：可直接用于音乐音符编辑。",
+      "evidence": "ETTS-E04 / E05",
+      "assessment": "目前不成立；音乐迁移是待验证推断，原系统依赖TTS先验与对齐。"
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "DE：作者明确不能直接指定精确音高变化量，不能称为半音或MIDI音高精确控制（ETTS-E04）。",
+      "DE：公开入口编辑文本条件合成语音；真实录音编辑的逆映射与音乐输入路径未在本次核对中建立（ETTS-E05）。",
+      "AI：语音单F0与音乐复音谐波/和弦/节拍约束不同，频轴偏移还可能改变音色，不能直接认定音乐移调保持音色。",
+      "DE：1000步与对齐误差是作者列出的限制（ETTS-E02/E04）。",
+      "UN：音乐、真实多声部、跨说话人推广、独立听测与当前环境运行状态未知。"
+    ],
+    "ethics": "涉及人类听测的审批/同意细节未独立核验；数据/模型许可证以原发布方为准；不上传论文全文、原音频或权重。"
+  },
+  "reproducibility_and_transferability": {
+    "assessment": "中（语音静态复核）：官方代码可查，README描述附带检查点；本次没有下载/验证权重可用性或执行；音乐可复现性为未知。",
+    "transfer_to_music": "AI：将其视为先验扰动、共享噪声和边界软约束的机制参考；对严格training-free定义有启发，但不是已验证的音乐编辑基线。迁移需要可用音乐先验和相应定位机制。",
+    "training_free_audit": {
+      "backbone_training": "需要已经训练的Grad-TTS与vocoder",
+      "editing_weight_updates": "无",
+      "per_input_optimization": "无任务特定梯度拟合；双轨score采样中的更新并非训练参数",
+      "inversion": "无ZETA式真实音频DDPM噪声反演；核心公开接口从文本先验产生原/编辑语音",
+      "zero_shot_scope": "无需额外训练完成特定语音编辑；未验证零样本多说话人或真实音乐编辑"
+    },
+    "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。"
+  },
+  "candidate_P": [
+    {
+      "id": "ETTS-P01",
+      "text": "粗频轴先验扰动如何转为精确音乐音高控制而不改变其他声部？",
+      "tag": "AI",
+      "e": [
+        "ETTS-E04",
+        "ETTS-E05"
+      ],
+      "source_id": "S-ETTS",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "ETTS-P02",
+      "text": "没有TTS文本对齐时如何定位真实音乐中的目标事件？",
+      "tag": "AI",
+      "e": [
+        "ETTS-E05"
+      ],
+      "source_id": "S-ETTS",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "ETTS-F01",
+      "text": "在语音评测中，先验扰动后的去噪比只做mel shift有更高MOS。",
+      "tag": "DE",
+      "e": [
+        "ETTS-E03"
+      ],
+      "source_id": "S-ETTS",
+      "status": "candidate_not_mode_C_verified"
+    },
+    {
+      "id": "ETTS-F02",
+      "text": "同一噪声加原/编辑先验配合软mask可实现所展示语音中的局部变化。",
+      "tag": "DE",
+      "e": [
+        "ETTS-E01",
+        "ETTS-E05"
+      ],
+      "source_id": "S-ETTS",
+      "status": "candidate_not_mode_C_verified"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "ETTS-E01",
+      "type": "DE",
+      "location": "PDF p.2 §3，Algorithm1；p.3 Algorithm2",
+      "detail": "文本Gaussian先验扰动、共享噪声与软mask；score field不是参数优化梯度。",
+      "source_id": "S-ETTS",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3#page=2"
+    },
+    {
+      "id": "ETTS-E02",
+      "type": "DE",
+      "location": "PDF p.3 §4.1–4.2；p.4 §4.3",
+      "detail": "LJ Speech、1000步、15句18听者、80句替换、CREPE和Google STT。",
+      "source_id": "S-ETTS",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3#page=3"
+    },
+    {
+      "id": "ETTS-E03",
+      "type": "DE",
+      "location": "PDF p.3 Table1、Fig.1；p.4 Figs.2–3",
+      "detail": "音高MOS与置信区间，局部F0轨迹；非多声部音乐实验。",
+      "source_id": "S-ETTS",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3#page=3"
+    },
+    {
+      "id": "ETTS-E04",
+      "type": "DE",
+      "location": "PDF p.4 Table2与§5 Limitations",
+      "detail": "WER/CER；明确不能指定精确移调量；速度慢、依赖文本对齐。",
+      "source_id": "S-ETTS",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3#page=4"
+    },
+    {
+      "id": "ETTS-E05",
+      "type": "DE",
+      "location": "model/tts.py L208–282、L284起；model/diffusion.py L286–336、L338–393",
+      "detail": "edit_pitch输入token而非任意音乐波形；共享eps；no_grad双轨更新与边界软化；不新增优化器。",
+      "source_id": "S-ETTS",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3"
+    }
+  ],
+  "evidence_locations": [
+    {
+      "evidence_id": "ETTS-E01",
+      "location": "PDF p.2 §3，Algorithm1；p.3 Algorithm2"
+    },
+    {
+      "evidence_id": "ETTS-E02",
+      "location": "PDF p.3 §4.1–4.2；p.4 §4.3"
+    },
+    {
+      "evidence_id": "ETTS-E03",
+      "location": "PDF p.3 Table1、Fig.1；p.4 Figs.2–3"
+    },
+    {
+      "evidence_id": "ETTS-E04",
+      "location": "PDF p.4 Table2与§5 Limitations"
+    },
+    {
+      "evidence_id": "ETTS-E05",
+      "location": "model/tts.py L208–282、L284起；model/diffusion.py L286–336、L338–393"
+    }
+  ],
+  "unresolved_questions": [
+    "音乐迁移的全部定量证据",
+    "真实音乐波形的先验逆映射",
+    "精确音高、和声和音色控制",
+    "当前权重可用性、独立运行与新听测"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "音乐迁移的全部定量证据",
+    "真实音乐波形的先验逆映射",
+    "精确音高、和声和音色控制",
+    "当前权重可用性、独立运行与新听测"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+}
