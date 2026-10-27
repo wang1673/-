@@ -1,0 +1,200 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-PPAE-v1",
+  "package_id": "ANALYSIS-20261027-PPAE-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-PPAE"
+  ],
+  "source_identity_and_version": {
+    "title": "Prompt-guided Precise Audio Editing with Diffusion Models",
+    "short_name": "PPAE",
+    "authors": "Manjie Xu, Chenxing Li, Duzhen Zhang, Dan Su, Wei Liang, Dong Yu",
+    "affiliations": "Beijing Institute of Technology; Tencent AI Lab",
+    "version": "ICML 2024/PMLR235正式PDF，18页，卷页55126–55143",
+    "venue": "ICML 2024",
+    "venue_evidence": "https://proceedings.mlr.press/v235/xu24p.html",
+    "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf",
+    "pdf_page_count": 18,
+    "pdf_sha256": "3e812bf4e897c87eeda6a195bb285c51cd2b4909b61f4a0fd6d57342f31385ea",
+    "code_repository": null,
+    "code_commit": null,
+    "code_availability": "官方论文/项目页可定位；本轮未找到可确认的完整官方编辑代码，不能写成已完整开源。"
+  },
+  "research_question": "冻结TTA扩散模型，用注意力融合和自适应引导实现事件级替换、修饰和重加权，能否减少非目标内容变化？",
+  "study_type_and_context": {
+    "study_type": "计算实验，含作者听测报告",
+    "focus": "无需新增训练的音乐音频编辑；区分权重训练/逐输入优化/显式反演",
+    "scope": "主要Tango骨干；cleaned FSD50K，每任务100个编辑测试；100 inference steps，cross-replace0.8/self-replace0/skip50，guidance候选n=5。14参与者，每任务30个编辑对听测。"
+  },
+  "design_units_samples_or_materials": "主要Tango骨干；cleaned FSD50K，每任务100个编辑测试；100 inference steps，cross-replace0.8/self-replace0/skip50，guidance候选n=5。14参与者，每任务30个编辑对听测。",
+  "intervention_input_or_procedure": "先反演源音频，再以Fuser在源/目标cross-attention间平滑过渡；跨样本使用不同CFG候选生成，用CLAP Filter挑选目标相关性最高的结果。反演模块依骨干可用DDIM/null-text等，附录明确null-text优化。",
+  "measurements_and_analysis": {
+    "description": "Replace：FAD/LSD/FD/KL；Refine部分参照为目标文本重生成，非严格同结构真值；Reweight用CLAP识别事件强弱。CLAP在文中部分设置经softmax，不能直接与其他论文原始cosine比。",
+    "preregistration": "UN：未核验",
+    "training_free_audit": {
+      "backbone": "预训练Tango等TTA扩散模型",
+      "edit_weight_update": false,
+      "per_input_gradient": "取决于反演模块；不能统称gradient-free",
+      "gradient_target": "null-text反演可优化unconditional embedding；核心attention fuser无新增权重训练",
+      "inversion": "有；Appendix B提供null-text/DDIM设置",
+      "zero_shot_scope": "无编辑配对训练；n=5候选筛选仍有额外推理成本"
+    }
+  },
+  "results_with_uncertainty": [
+    {
+      "outcome": "Replace：FAD / LSD / FD / KL / CLAP",
+      "reported_result": "2.15 / 1.51 / 27.53 / 1.30 / 0.62",
+      "comparator": "PTP 2.95 / 2.83 / 45.91 / 4.42 / 0.57",
+      "uncertainty_and_limits": "Table1未给CI；不是音乐专用测试",
+      "evidence_ids": [
+        "PPAE-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    },
+    {
+      "outcome": "Refine：FAD / KL / CLAP",
+      "reported_result": "6.86 / 1.92 / 0.63",
+      "comparator": "PTP 9.35 / 1.17 / 0.32",
+      "uncertainty_and_limits": "Table2 KL并未优于PTP；重生成参照与源结构混杂",
+      "evidence_ids": [
+        "PPAE-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "author_claim": "training-free精准局部编辑",
+      "claim_type": "SC",
+      "direct_evidence": "算法1、Fuser及guidance bootstrapping",
+      "assessment": "无新增权重训练；多候选、反演优化和数据域需单独标注",
+      "evidence_ids": [
+        "PPAE-E01"
+      ]
+    },
+    {
+      "author_claim": "能保持非目标事件",
+      "claim_type": "SC",
+      "direct_evidence": "Table3 unrelated分数、Figs3–6示例",
+      "assessment": "仅支持该事件任务代理测量；不证明音乐和弦/声部不变",
+      "evidence_ids": [
+        "PPAE-E03"
+      ]
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "一般事件证据为主，音乐refine有示例但没有系统多声部结构评价。",
+      "用CLAP选择输出又以CLAP衡量目标服从，可能放大同评估器优势；需独立指标/听测。",
+      "候选n=5改变预算；与单候选基线比较须记录NFE和端到端耗时。",
+      "Replace的未编辑音频FAD1.86低于PPAE2.15，但CLAP0.12；单看FAD会偏向不编辑。",
+      "正文引用null-text并非每个配置都必然使用该优化；代码未核验，不强行指定统一梯度结论。"
+    ],
+    "ethics": "音乐/模型/数据许可按发布方；不镜像音频或论文全文。听测审批与原始同意记录未独立核验。",
+    "inference_boundary": "作者结论与本分析推断分开；不从代理指标推出严格复调结构保持。"
+  },
+  "reproducibility_and_transferability": {
+    "reproducibility": "未知：关键编辑代码未确认/未公开",
+    "code_status": "官方论文/项目页可定位；本轮未找到可确认的完整官方编辑代码，不能写成已完整开源。",
+    "transferability": "适合作为一般音频注意力控制与CFG筛选参考，不应把FSD50K结果当音乐专项优胜。若严格排除输入优化，要明确选择的反演配置。"
+  },
+  "candidate_P": [
+    {
+      "id": "PPAE-P01",
+      "type": "AI",
+      "description": "音乐叠加声部在cross-attention控制下能否保持非目标音符与和弦？",
+      "evidence_ids": [
+        "PPAE-E01",
+        "PPAE-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "PPAE-P02",
+      "type": "AI",
+      "description": "CLAP候选筛选带来的收益有多少来自额外搜索预算及评估器耦合？",
+      "evidence_ids": [
+        "PPAE-E01",
+        "PPAE-E02",
+        "PPAE-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "PPAE-F01",
+      "type": "DE",
+      "description": "未编辑音频在Replace任务FAD更低，但目标CLAP远低，显示单指标与编辑成功可脱钩。",
+      "evidence_ids": [
+        "PPAE-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "PPAE-F02",
+      "type": "DE",
+      "description": "guidance候选数设为5，逐样本选择最高CLAP结果。",
+      "evidence_ids": [
+        "PPAE-E01",
+        "PPAE-E02"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "PPAE-E01",
+      "type": "DE",
+      "location": "PDF pp.4–5 §3.3–3.6，Eq.(5)，Algorithm1",
+      "detail": "Fuser平滑注意力注入，guidance候选生成及CLAP选择。",
+      "source_id": "S-PPAE",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf#page=4"
+    },
+    {
+      "id": "PPAE-E02",
+      "type": "DE",
+      "location": "PDF p.5 §4.2–4.4；p.15 Appendix B/Algorithm2",
+      "detail": "FSD50K每任务100；n=5；null-text反演含embedding优化，依骨干配置而异。",
+      "source_id": "S-PPAE",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf#page=5"
+    },
+    {
+      "id": "PPAE-E03",
+      "type": "DE",
+      "location": "PDF pp.6–8 Tables1–6；p.17 Tables7–8",
+      "detail": "替换/修饰/重加权结果、14人30对听测及误差条；主表和附录分开读。",
+      "source_id": "S-PPAE",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf#page=6"
+    },
+    {
+      "id": "PPAE-E04",
+      "type": "DE",
+      "location": "官方PMLR论文页及论文p.2脚注项目地址",
+      "detail": "正式ICML发表可确认；完整官方代码可得性本轮仍UN。",
+      "source_id": "S-PPAE",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf#page=2"
+    }
+  ],
+  "evidence_locations": [
+    "PDF pp.4–5 §3.3–3.6，Eq.(5)，Algorithm1",
+    "PDF p.5 §4.2–4.4；p.15 Appendix B/Algorithm2",
+    "PDF pp.6–8 Tables1–6；p.17 Tables7–8",
+    "官方PMLR论文页及论文p.2脚注项目地址"
+  ],
+  "unresolved_questions": [
+    "完整官方编辑代码与固定commit未确认",
+    "各骨干具体反演配置未独立运行",
+    "音乐专项和精确声部保持证据不足"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "完整官方编辑代码与固定commit未确认",
+    "各骨干具体反演配置未独立运行",
+    "音乐专项和精确声部保持证据不足"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "候选P/F需下游重验；不直接输出Idea或将机制假设当事实。"
+}

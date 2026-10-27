@@ -1,4 +1,52 @@
-# 六篇论文：音乐编辑中的 training-free 与 zero-shot
+# 十篇论文：无需新增训练的音乐编辑方法与证据边界
+
+2026-10-27 · analyze-paper修订版v2。6篇用户指定论文+4篇正式会议相关论文；不是穷尽系统综述或独立复现。
+
+## 先确定“无需训练”到底排除什么
+
+1. **无编辑权重训练**：不训练/微调编辑骨干；依赖已有生成模型。
+2. **无逐输入梯度优化**：不拟合latent、文本embedding或预测张量；比第1项更严格。
+3. **免显式反演**：不求源音频的生成噪声/路径；仍可能做加噪、迭代和latent优化。
+4. **zero-shot**：本文献常指无新增编辑配对训练；不是未见曲目/风格泛化已证明。
+
+## 方法与开源审计
+
+| 方法 | 发表身份 | 编辑训练/微调 | 逐输入优化 | 显式反演 | 音乐实证与公开实现 |
+|---|---|---|---|---|---|
+| DirectAudioEdit | arXiv 2026；正式录用UN | 无 | 核心路径无梯度拟合 | 无 | 音乐前10秒；代码可查 |
+| AudioMorphix | 本轮引用arXiv v1；匿名投稿不当录用 | 无 | latent优化+能量梯度 | 有 | 主定量一般事件；HF有实现 |
+| AudioEditor | ICASSP2025；页码取arXiv v2 | 无 | null/条件embedding优化 | 有 | 主定量300段AudioCaps；代码可查 |
+| MelodyFlow | 本轮引用arXiv v2；最终录用未完成一手核实 | 编辑阶段无；骨干/codec训练过 | 反演预测KL梯度+重复估计 | 有 | 音乐48kHz立体声；公开模型不同于论文版 |
+| ZETA / ZEUS | ICML2024 | 无 | ZETA无拟合；ZEUS额外PC迭代 | 有 | 核心音乐基线；注意paper_code分支 |
+| EdiTTS | INTERSPEECH2022 | 无 | 无任务特定拟合 | 非真实音乐反演管线 | 仅语音；代码可查，音乐适用UN |
+| MusicMagus | IJCAI2024，AI/Arts special track | 无 | 每步latent注意力梯度 | 真实音频有 | 音乐5秒；代码可查，外部API依赖 |
+| Melodia | AAAI2026 | 编辑无；probe训练另计 | 论文编辑算法无；代码UN | 部分DDIM | 音乐三基准；已见仓库仅数据/说明 |
+| PPAE | ICML2024 | 无 | 依反演模块；另有5候选筛选 | 有 | 主定量FSD50K；音乐示例；完整代码UN |
+| SteerMusic / + | AAAI2026 | 基础无；+依赖概念微调 | 基础400步latent优化 | 基础无 | 音乐ZoME/MusicDelta；代码可查 |
+
+发表身份与所读PDF版本分开；未确认正式录用不等于被拒稿。顶会主会/特别轨/领域会议不混称；开源程度以已访问文件为准，不看stars。
+
+## 对本课题的阅读优先级（AI）
+
+- **严格无逐输入优化**：先读ZETA与DirectAudioEdit；Melodia论文路线相关，但核心实现缺口影响直接复现。
+- **冻结骨干，允许优化**：加入MusicMagus、SteerMusic基础版；音乐FM用MelodyFlow。AudioEditor/AudioMorphix用于理解embedding/局部时频控制。
+- **声部局部编辑**：AudioMorphix、ZETA局部轨迹、PPAE注意力定位可作素材，尚不能据一般事件或时频mask宣称多声部严格隔离。
+- **个性化风格**：SteerMusic+单列训练依赖对照；EdiTTS仅为局部先验扰动/边界平滑的跨域参考。
+
+## 四篇补充论文的关键证据
+
+| 论文 | DE：直接可定位内容 | AI/UN：不能推过的边界 |
+|---|---|---|
+| [MusicMagus](notes/musicmagus.md) | IJCAI PDF p.6 Table3：加L2后Chroma0.69→0.76、CLAP0.34→0.33；p.4 Eq13及官方代码有latent梯度 | 不属于gradient-free；主实验质量筛选合成音乐，不等于真实长曲效果 |
+| [Melodia](notes/melodia.md) | AAAI PDF p.6 Table3：MelodiaEdit CLAP0.39/LPAPS3.11；MusicMagus Chroma0.73、FAD0.57优于Melodia0.68/0.65 | 不是所有指标全胜；ASB1.00不是成功率；低probe准确率不证明SA无语义 |
+| [PPAE](notes/ppae.md) | ICML PDF p.5：n=5候选；p.6 Table1：FAD2.15/LSD1.51，PTP2.95/2.83 | CLAP同时筛选/评价有耦合；一般事件结果不等于音乐保持 |
+| [SteerMusic](notes/steermusic.md) | 扩展版p.6 Table1：CQT1-PCC0.480/LPAPS3.772；官方代码SGD latent；p.14基础400步与+版微调 | 免反演不等于免优化；+版不属于完全无新增训练 |
+
+不直接做跨论文FAD排行榜：骨干、时长、目标分布、特征网络、采样预算与候选筛选不同。相同论文内也应看完整结果和CI；无CI不能仅凭均值称显著。
+
+## 原六篇的详细核验（保留）
+
+### 原六篇比较记录
 
 日期：2026-10-27。范围：来源分析，不是独立实验、系统综述或创新方案。
 
@@ -57,10 +105,17 @@
 
 ## 下一阶段的输入
 
-[合并ANALYSIS_PACKAGE](ANALYSIS_PACKAGES.json)含6个独立包，所有P/F均为候选，不是最终研究空白。
+[合并ANALYSIS_PACKAGE](ANALYSIS_PACKAGES.json)现已扩展为10个独立包，所有P/F均为候选，不是最终研究空白。
 
 可要求deep-read Mode C围绕以下已有问题组织证据，而不是立即生成新方案：
 
 - 哪些保留约束在多声部音乐中有直接证据，哪些只有图示或一般声音实验？
 - 哪些改进来自反演/采样控制，哪些与骨干或codec改变混杂？
 - 允许梯度优化与不允许梯度优化的路线，各自的质量—成本边界是什么？
+
+
+## 下游入口与旧Mode C状态
+
+当前[ANALYSIS_PACKAGES.json](ANALYSIS_PACKAGES.json)包含10个独立包。原六篇为v2，新增四篇为v1，ID/来源/缺口均保留。
+
+旁边的mode-c-v1是此前六篇v1的历史分析，尚未消费新增四篇和修订ID。不可将它称为本次十篇的Mode C结果。下一轮应按新包重核/增量合并，并显式保留旧矩阵。

@@ -1,8 +1,8 @@
 {
   "package_type": "ANALYSIS_PACKAGE",
   "package_version": "research-pipeline-contract v1.0",
-  "analysis_id": "ANALYSIS-20261027-AED-v1",
-  "package_id": "ANALYSIS-20261027-AED-v1",
+  "analysis_id": "ANALYSIS-20261027-AED-v2",
+  "package_id": "ANALYSIS-20261027-AED-v2",
   "created_at": "2026-10-27",
   "source_ids": [
     "S-AED"
@@ -18,7 +18,9 @@
     "latex_source_url": "https://arxiv.org/src/2409.12466v2",
     "code_repository": "NKU-HLT/AudioEditor",
     "code_commit": "762d34d3adc8740aa95426f0496c4b7d0a1fd0da",
-    "pdf_sha256": "89775f149fc8654d90971528b998f413362a717b14b2778418893b8d66271244"
+    "pdf_sha256": "89775f149fc8654d90971528b998f413362a717b14b2778418893b8d66271244",
+    "pdf_hash_rechecked_on": "2026-10-27",
+    "current_hash_match": true
   },
   "research_question": "如何兼顾文本指定修改与保留原音频，避免单纯加噪重生成丢失内容？",
   "study_type_and_context": {
@@ -234,5 +236,8 @@
     "听测规模与CI、逐运行原始结果"
   ],
   "next_skill": "deep-read Mode C",
-  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。",
+  "supersedes_analysis_id": "ANALYSIS-20261027-AED-v1",
+  "revision": "v2: 固定PDF哈希重核、关键代码再取校验、纳入十篇比较；历史细节不降级。",
+  "review_scope_current": "本轮核对固定版本PDF的相关方法、实验及限制，复核所列关键代码；已有六篇的历史LaTeX审计保留并标明来源。未运行编辑模型、下载权重、重算指标或试听评价。"
 }

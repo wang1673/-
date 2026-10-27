@@ -1,8 +1,8 @@
 {
   "package_type": "ANALYSIS_PACKAGE",
   "package_version": "research-pipeline-contract v1.0",
-  "analysis_id": "ANALYSIS-20261027-MF-v1",
-  "package_id": "ANALYSIS-20261027-MF-v1",
+  "analysis_id": "ANALYSIS-20261027-MF-v2",
+  "package_id": "ANALYSIS-20261027-MF-v2",
   "created_at": "2026-10-27",
   "source_ids": [
     "S-MF"
@@ -18,7 +18,9 @@
     "latex_source_url": "https://arxiv.org/src/2407.03648v2",
     "code_repository": "https://huggingface.co/spaces/facebook/MelodyFlow",
     "code_commit": "19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e",
-    "pdf_sha256": "82b223de60175afcbacd263c7eaa16c47bbd474c7310ca6070fc6d698f470c47"
+    "pdf_sha256": "82b223de60175afcbacd263c7eaa16c47bbd474c7310ca6070fc6d698f470c47",
+    "pdf_hash_rechecked_on": "2026-10-27",
+    "current_hash_match": true
   },
   "research_question": "高保真音乐FM模型能否通过无需编辑微调的测试时反演实现质量、文本服从和源一致性的折中？",
   "study_type_and_context": {
@@ -237,5 +239,8 @@
     "真实长曲及精细旋律/和弦/声部保持"
   ],
   "next_skill": "deep-read Mode C",
-  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。"
+  "handoff_boundary": "仅来源分析包和候选P/F；下游须重新核验并补M/E/边界，未创建MODE_C_PACKAGE或IDEA_PACKAGE。",
+  "supersedes_analysis_id": "ANALYSIS-20261027-MF-v1",
+  "revision": "v2: 固定PDF哈希重核、关键代码再取校验、纳入十篇比较；历史细节不降级。",
+  "review_scope_current": "本轮核对固定版本PDF的相关方法、实验及限制，复核所列关键代码；已有六篇的历史LaTeX审计保留并标明来源。未运行编辑模型、下载权重、重算指标或试听评价。"
 }

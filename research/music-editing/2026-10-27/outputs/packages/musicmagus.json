@@ -1,0 +1,198 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-MG-v1",
+  "package_id": "ANALYSIS-20261027-MG-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-MG"
+  ],
+  "source_identity_and_version": {
+    "title": "MusicMagus: Zero-Shot Text-to-Music Editing via Diffusion Models",
+    "short_name": "MusicMagus",
+    "authors": "Yixiao Zhang, Yukara Ikemiya, Gus Xia, Naoki Murata, Marco A. Martínez-Ramírez, Wei-Hsiang Liao, Yuki Mitsufuji, Simon Dixon",
+    "affiliations": "Queen Mary University of London; Sony AI; MBZUAI",
+    "version": "IJCAI 2024，AI, the Arts and Creativity special track，正式PDF 9页，卷页7805–7813",
+    "venue": "IJCAI 2024 · AI, the Arts and Creativity special track",
+    "venue_evidence": "https://www.ijcai.org/proceedings/2024/864",
+    "pdf_url": "https://www.ijcai.org/proceedings/2024/0864.pdf",
+    "pdf_page_count": 9,
+    "pdf_sha256": "1e9184dd0d6de34aa2feaf4b4ff2106501dd501416ee8de9cd02c411f2035e49",
+    "code_repository": "ldzhangyx/MusicMagus",
+    "code_commit": "ef69ef6955a963955015c05e3a021a6b31f80b16",
+    "code_availability": "编辑代码已公开，已静态核对；未运行。README使用外部captioning权重和API，不等于完整离线可复现。"
+  },
+  "research_question": "冻结AudioLDM2，能否通过文本语义方向和cross-attention约束修改音色/风格，同时保持源音乐？",
+  "study_type_and_context": {
+    "study_type": "计算实验，含作者听测报告",
+    "focus": "无需新增训练的音乐音频编辑；区分权重训练/逐输入优化/显式反演",
+    "scope": "AudioLDM2-base；5秒、16kHz、100 DDIM steps，A100。音色定量60段，风格50段，均从生成音乐筛选；听测分别8/5个样本，26份完整回答。真实音乐另用captioning+DDIM inversion讨论，不与合成主实验混同。"
+  },
+  "design_units_samples_or_materials": "AudioLDM2-base；5秒、16kHz、100 DDIM steps，A100。音色定量60段，风格50段，均从生成音乐筛选；听测分别8/5个样本，26份完整回答。真实音乐另用captioning+DDIM inversion讨论，不与合成主实验混同。",
+  "intervention_input_or_procedure": "对原/目标关键词生成多条文本描述，取FLAN-T5均值差Δ；T5条件用原embedding+Δ，GPT分支用新提示。缓存源cross-attention，对每步目标latent计算注意力L2梯度并更新，再去噪。真实音乐先反演；合成样本可复用生成噪声。",
+  "measurements_and_analysis": {
+    "description": "CLAP与原/编辑chromagram cosine；听测REL/OVL/CON为0–100。Chroma是代理指标，不等于逐音符、逐声部保持。",
+    "preregistration": "UN：未核验",
+    "training_free_audit": {
+      "backbone": "预训练AudioLDM2",
+      "edit_weight_update": false,
+      "per_input_gradient": true,
+      "gradient_target": "latent；真实音乐反演还有预测正则化",
+      "inversion": "真实音乐需要DDIM inversion；生成音乐可复用噪声",
+      "zero_shot_scope": "无新增编辑配对训练；不是无推理优化"
+    }
+  },
+  "results_with_uncertainty": [
+    {
+      "outcome": "音色转换：CLAP / Chroma",
+      "reported_result": "0.33 / 0.76",
+      "comparator": "AudioLDM2 0.16 / 0.72；去L2约束0.34 / 0.69",
+      "uncertainty_and_limits": "Table 3未给CI；小规模、质量筛选后的合成音乐",
+      "evidence_ids": [
+        "MG-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    },
+    {
+      "outcome": "音色听测REL / OVL / CON",
+      "reported_result": "76.2 / 62.1 / 66.6",
+      "comparator": "去L2：78.8 / 62.4 / 51.3",
+      "uncertainty_and_limits": "Table 1未给区间，不能据均值断言统计显著",
+      "evidence_ids": [
+        "MG-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "author_claim": "零样本无需训练",
+      "claim_type": "SC",
+      "direct_evidence": "方法固定骨干；Eq.(13)明确每步latent梯度更新",
+      "assessment": "支持无新增权重训练，不支持无梯度推理",
+      "evidence_ids": [
+        "MG-E01"
+      ]
+    },
+    {
+      "author_claim": "保持结构且完成语义修改",
+      "claim_type": "SC",
+      "direct_evidence": "Table 3音色Chroma改善，Table 4风格CLAP仅0.21",
+      "assessment": "效果依赖任务；不能解释成所有指标均最佳",
+      "evidence_ids": [
+        "MG-E03"
+      ]
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "主定量样本来自骨干生成且经过质量筛选；迁移到真实录音有分布与反演误差。",
+      "风格Table 4的CLAP低于MusicGen，Chroma低于AudioLDM2；不能按平均分抹去折中。",
+      "注意力一致性与音乐结构相关，并非已证实完整因果机制。",
+      "预注册、逐样本结果、曲目级区间及端到端运行仍未核验。"
+    ],
+    "ethics": "音乐/模型/数据许可按发布方；不镜像音频或论文全文。听测审批与原始同意记录未独立核验。",
+    "inference_boundary": "作者结论与本分析推断分开；不从代理指标推出严格复调结构保持。"
+  },
+  "reproducibility_and_transferability": {
+    "reproducibility": "中：有代码但未运行",
+    "code_status": "编辑代码已公开，已静态核对；未运行。README使用外部captioning权重和API，不等于完整离线可复现。",
+    "transferability": "适合作为允许测试时优化的音乐编辑基线。可借鉴语义方向/结构约束；不能直接当作无需反传的方法。真实音乐和长音乐需要另验。"
+  },
+  "candidate_P": [
+    {
+      "id": "MG-P01",
+      "type": "AI",
+      "description": "真实录音反演误差是否使合成音乐的结构保留优势失效？",
+      "evidence_ids": [
+        "MG-E02",
+        "MG-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "MG-P02",
+      "type": "AI",
+      "description": "外部captioning/API和语义方向采样对可重复性有多大影响？",
+      "evidence_ids": [
+        "MG-E01",
+        "MG-E04"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "MG-F01",
+      "type": "DE",
+      "description": "音色任务加入L2注意力约束后Chroma由0.69升至0.76，CLAP由0.34变0.33。",
+      "evidence_ids": [
+        "MG-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "MG-F02",
+      "type": "DE",
+      "description": "主方法冻结骨干但每个去噪步仍对latent做梯度更新。",
+      "evidence_ids": [
+        "MG-E01",
+        "MG-E04"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "MG-E01",
+      "type": "DE",
+      "location": "PDF pp.3–4 §4.1–4.2，Eqs.(8)–(14)，Figs.2–3",
+      "detail": "语义方向Δ、源cross-attention约束与对latent求梯度；真实音乐另有反演。",
+      "source_id": "S-MG",
+      "pdf_url": "https://www.ijcai.org/proceedings/2024/0864.pdf#page=3"
+    },
+    {
+      "id": "MG-E02",
+      "type": "DE",
+      "location": "PDF p.5 §5.3–5.4",
+      "detail": "60段音色、50段风格；5秒16kHz100步及A100；听测8/5样本。",
+      "source_id": "S-MG",
+      "pdf_url": "https://www.ijcai.org/proceedings/2024/0864.pdf#page=5"
+    },
+    {
+      "id": "MG-E03",
+      "type": "DE",
+      "location": "PDF p.6 Tables1–4；p.7 §6.1/Fig.4",
+      "detail": "音色/风格结果及真实音乐反演限制；数值已目视核对。",
+      "source_id": "S-MG",
+      "pdf_url": "https://www.ijcai.org/proceedings/2024/0864.pdf#page=6"
+    },
+    {
+      "id": "MG-E04",
+      "type": "DE",
+      "location": "官方代码 audioldm2/p2p_pipeline.py L1159–1205；README安装与运行",
+      "detail": "SGD([x_in])及attention loss.backward，实际逐输入latent更新；代码定位优先于本条PDF页提示。",
+      "source_id": "S-MG",
+      "code_repository_url": "https://github.com/ldzhangyx/MusicMagus/tree/ef69ef6955a963955015c05e3a021a6b31f80b16"
+    }
+  ],
+  "evidence_locations": [
+    "PDF pp.3–4 §4.1–4.2，Eqs.(8)–(14)，Figs.2–3",
+    "PDF p.5 §5.3–5.4",
+    "PDF p.6 Tables1–4；p.7 §6.1/Fig.4",
+    "官方代码 audioldm2/p2p_pipeline.py L1159–1205；README安装与运行"
+  ],
+  "unresolved_questions": [
+    "未运行官方notebook与API调用",
+    "未独立重建真实音乐实验和置信区间",
+    "未确认全部数据/依赖可长期获取"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "未运行官方notebook与API调用",
+    "未独立重建真实音乐实验和置信区间",
+    "未确认全部数据/依赖可长期获取"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "候选P/F需下游重验；不直接输出Idea或将机制假设当事实。"
+}

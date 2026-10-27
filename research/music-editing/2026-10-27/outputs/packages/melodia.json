@@ -1,0 +1,199 @@
+{
+  "package_type": "ANALYSIS_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0",
+  "analysis_id": "ANALYSIS-20261027-MLD-v1",
+  "package_id": "ANALYSIS-20261027-MLD-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-MLD"
+  ],
+  "source_identity_and_version": {
+    "title": "Melodia: Training-Free Music Editing Guided by Attention Probing in Diffusion Models",
+    "short_name": "Melodia",
+    "authors": "Yi Yang, Haowen Li, Tianxiang Li, Boyu Cao, Xiaohan Zhang, Liqun Chen, Qi Liu",
+    "affiliations": "South China University of Technology",
+    "version": "AAAI 2026正式PDF，9页，卷页2209–2217",
+    "venue": "AAAI 2026",
+    "venue_evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/37204",
+    "pdf_url": "https://ojs.aaai.org/index.php/AAAI/article/download/37204/41166",
+    "pdf_page_count": 9,
+    "pdf_sha256": "3a4e0939b873459482cbdd5f79b6280f58067cc37c43abe4421e13790774c107",
+    "code_repository": "YiYang-SCUT/Melodia",
+    "code_commit": "3ff1ab915261b61cc9763e690753f27aebe69fc5",
+    "code_availability": "固定commit完整目录树仅见数据、说明和图示，未找到核心编辑/评价实现。仓库存在不能等同于方法完整开源。"
+  },
+  "research_question": "不提供源音乐文本描述，能否通过选择性self-attention结构保留实现音乐属性编辑？",
+  "study_type_and_context": {
+    "study_type": "计算实验，含作者听测报告",
+    "focus": "无需新增训练的音乐音频编辑；区分权重训练/逐输入优化/显式反演",
+    "scope": "AudioLDM2，200 inference steps，目标CFG5.5；MusicDelta、ZoME-Bench及MelodiaEdit。后者2015对：1090合成、925源自真实数据的重建样本。听测100招募、77有效，每数据集10测试样本。"
+  },
+  "design_units_samples_or_materials": "AudioLDM2，200 inference steps，目标CFG5.5；MusicDelta、ZoME-Bench及MelodiaEdit。后者2015对：1090合成、925源自真实数据的重建样本。听测100招募、77有效，每数据集10测试样本。",
+  "intervention_input_or_procedure": "部分DDIM反演时缓存源self-attention的Q/K；目标去噪时在AudioLDM2层8–14用源Q/K形成的注意力图乘目标V。无额外编辑微调；论文编辑算法未列逐输入梯度优化。属性probe分类器训练属于研究诊断，不是部署编辑器训练。",
+  "measurements_and_analysis": {
+    "description": "CLAP、LPAPS、Chroma、源/编辑FAD；ASB/AMB把比较方法内归一化分数取调和均值；听测REL/CON/MEB。",
+    "preregistration": "UN：未核验",
+    "training_free_audit": {
+      "backbone": "预训练AudioLDM2；另报告Stable Audio Open迁移",
+      "edit_weight_update": false,
+      "per_input_gradient": "论文算法不需要；核心代码未公开核验",
+      "gradient_target": "无论文指定的逐输入梯度拟合；probe实验训练分类器另计",
+      "inversion": "部分DDIM反演并缓存Q/K",
+      "zero_shot_scope": "无额外编辑微调；source-prompt-free；不是免反演"
+    }
+  },
+  "results_with_uncertainty": [
+    {
+      "outcome": "MelodiaEdit：CLAP / LPAPS / Chroma / FAD",
+      "reported_result": "0.39 / 3.11 / 0.68 / 0.65",
+      "comparator": "DDPM-Friendly 0.34 / 4.06 / 0.70 / 0.67；MusicMagus 0.27 / 3.32 / 0.73 / 0.57",
+      "uncertainty_and_limits": "Table3未给CI；CLAP/LPAPS领先，不是所有结构指标第一",
+      "evidence_ids": [
+        "MLD-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    },
+    {
+      "outcome": "MelodiaEdit听测REL / CON / MEB",
+      "reported_result": "3.38 / 3.65 / 3.81",
+      "comparator": "DDPM-Friendly 2.58 / 2.92 / 2.78",
+      "uncertainty_and_limits": "Table4未报CI；77有效回答，试题/曲目不是独立参与者",
+      "evidence_ids": [
+        "MLD-E03"
+      ],
+      "evidence_label": "DE: paper-reported, not independently reproduced"
+    }
+  ],
+  "claim_evidence_implementation_map": [
+    {
+      "author_claim": "SA保留结构、CA编码属性",
+      "claim_type": "SC",
+      "direct_evidence": "probe分类准确率差异及Fig2换层实验",
+      "assessment": "支持该骨干/探针下的操作证据；低probe准确率不能证明SA不含语义",
+      "evidence_ids": [
+        "MLD-E01"
+      ]
+    },
+    {
+      "author_claim": "无需源描述、无需额外训练",
+      "claim_type": "SC",
+      "direct_evidence": "反演+Q/K repository+目标V的ASR公式",
+      "assessment": "论文算法支持；代码缺失使实现与资源开销仍为UN",
+      "evidence_ids": [
+        "MLD-E02"
+      ]
+    }
+  ],
+  "limitations_biases_and_ethics": {
+    "limitations": [
+      "对CA与SA的功能分工不能从单一probe/层替换推广到所有音乐模型。",
+      "2015提示对不是2015首独立歌曲；合成与真实来源重建部分应分层看。",
+      "ASB/AMB相对于所比较方法归一化；1.00不是100%成功率，加入方法可能改变归一化。",
+      "层8–14是AudioLDM2经验设置；不能直接照搬到DiT/其他采样率。",
+      "核心实现未找到，未独立复现指标和Stable Audio Open迁移。"
+    ],
+    "ethics": "音乐/模型/数据许可按发布方；不镜像音频或论文全文。听测审批与原始同意记录未独立核验。",
+    "inference_boundary": "作者结论与本分析推断分开；不从代理指标推出严格复调结构保持。"
+  },
+  "reproducibility_and_transferability": {
+    "reproducibility": "未知：关键编辑代码未确认/未公开",
+    "code_status": "固定commit完整目录树仅见数据、说明和图示，未找到核心编辑/评价实现。仓库存在不能等同于方法完整开源。",
+    "transferability": "与音乐结构保留和严格无输入梯度路线高度相关，但当前更适合作为机制与基准参考。先复核Q/K缓存的时序、层选择及代码可得性。"
+  },
+  "candidate_P": [
+    {
+      "id": "MLD-P01",
+      "type": "AI",
+      "description": "在其他骨干或复杂多声部中，Q/K替换是否仍保持结构而不锁死目标属性？",
+      "evidence_ids": [
+        "MLD-E01",
+        "MLD-E02",
+        "MLD-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "MLD-P02",
+      "type": "AI",
+      "description": "相对归一化综合分数是否掩盖目标服从与音乐结构的真实折中？",
+      "evidence_ids": [
+        "MLD-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "candidate_F": [
+    {
+      "id": "MLD-F01",
+      "type": "DE",
+      "description": "扩大SA替换至全部层会残留源音色，选择层8–14能改善编辑与结构折中。",
+      "evidence_ids": [
+        "MLD-E01",
+        "MLD-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    },
+    {
+      "id": "MLD-F02",
+      "type": "DE",
+      "description": "MelodiaEdit上CLAP/LPAPS改善，但Chroma和FAD并未全胜MusicMagus。",
+      "evidence_ids": [
+        "MLD-E03"
+      ],
+      "status": "candidate; requires Mode C recheck"
+    }
+  ],
+  "evidence_index": [
+    {
+      "id": "MLD-E01",
+      "type": "DE",
+      "location": "PDF pp.3–4 Tables1–2，Fig.2",
+      "detail": "CA/SA probe与注意力替换；是经验性诊断，不是结构语义完全解耦证明。",
+      "source_id": "S-MLD",
+      "pdf_url": "https://ojs.aaai.org/index.php/AAAI/article/download/37204/41166#page=3"
+    },
+    {
+      "id": "MLD-E02",
+      "type": "DE",
+      "location": "PDF pp.4–5 Fig.3，Eqs.(8)–(10)",
+      "detail": "部分DDIM inversion，源Q/K、目标V，层8–14，source-prompt-free。",
+      "source_id": "S-MLD",
+      "pdf_url": "https://ojs.aaai.org/index.php/AAAI/article/download/37204/41166#page=4"
+    },
+    {
+      "id": "MLD-E03",
+      "type": "DE",
+      "location": "PDF p.6 Tables3–4，Eqs.(11)–(12)；p.7听测与Tables5–6",
+      "detail": "三数据集比较、相对归一化ASB/AMB、77有效听测和层选择/跨模型实验。",
+      "source_id": "S-MLD",
+      "pdf_url": "https://ojs.aaai.org/index.php/AAAI/article/download/37204/41166#page=6"
+    },
+    {
+      "id": "MLD-E04",
+      "type": "DE",
+      "location": "官方仓库固定commit递归目录树及README",
+      "detail": "检查了全部文件类型：未见核心.py或.ipynb编辑器；公开内容主要为MelodiaEdit数据。",
+      "source_id": "S-MLD",
+      "code_repository_url": "https://github.com/YiYang-SCUT/Melodia/tree/3ff1ab915261b61cc9763e690753f27aebe69fc5"
+    }
+  ],
+  "evidence_locations": [
+    "PDF pp.3–4 Tables1–2，Fig.2",
+    "PDF pp.4–5 Fig.3，Eqs.(8)–(10)",
+    "PDF p.6 Tables3–4，Eqs.(11)–(12)；p.7听测与Tables5–6",
+    "官方仓库固定commit递归目录树及README"
+  ],
+  "unresolved_questions": [
+    "核心编辑和评价代码未找到",
+    "未访问所有原始运行/听测评分",
+    "探针训练与骨干、采样步、缓存成本未完整复现"
+  ],
+  "evidence_status": "partial",
+  "missing_evidence": [
+    "核心编辑和评价代码未找到",
+    "未访问所有原始运行/听测评分",
+    "探针训练与骨干、采样步、缓存成本未完整复现"
+  ],
+  "next_skill": "deep-read Mode C",
+  "handoff_boundary": "候选P/F需下游重验；不直接输出Idea或将机制假设当事实。"
+}

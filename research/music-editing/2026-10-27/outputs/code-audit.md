@@ -31,3 +31,15 @@ LaTeX用于消除PDF抽取时的表格错列，并核对公式、图的原始坐
 - 未重建所有数据、原始运行、听测样本及统计检验。
 - 未完成全部代码路径、全部消融参数与硬件成本审计。
 - 未对EdiTTS做音乐迁移实验，也未把这种迁移写成实证结论。
+
+
+## 本轮新增代码审计与再取校验
+
+- MusicMagus：固定commit `ef69ef6955a963955015c05e3a021a6b31f80b16`，`audioldm2/p2p_pipeline.py` L1159–1205使用SGD和attention loss更新latent。README需要captioning权重与外部API；本轮未运行API。
+- SteerMusic：固定commit `9d2008b8515f9c8a83c956ddb23ab83b55e19709`，`SteerMusic_edit.py` L55–118冻结骨干，以SGD更新latent。README明确+版依赖DreamSound微调checkpoint。
+- Melodia：固定commit `3ff1ab915261b61cc9763e690753f27aebe69fc5`，完整目录树无核心.py/.ipynb编辑实现；只确认数据与说明公开。MIT标识不等于方法代码已发布。
+- PPAE：本轮未确认完整官方编辑实现；Appendix B null-text优化仅为论文证据，不能声称代码已经核验。
+- 原六篇代码清单中19个文件，本轮17个成功再取并与旧blob一致，AudioMorphix的`src/audio_morphix.py`及`src/utils/factory.py`遇到传输错误，沿用历史记录且明确未本轮重取成功；不把访问失败写成文件不存在。
+- 全部6份固定PDF重新下载，SHA-256与旧分析一致。旧LaTeX审计保留为历史证据，本轮不冒充重新完成。
+
+完整再取结果及新增文件哈希见source-manifest.json。未执行模型、第三方代码或训练。

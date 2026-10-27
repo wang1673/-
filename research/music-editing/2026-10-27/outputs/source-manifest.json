@@ -1,6 +1,6 @@
 {
   "created_at": "2026-10-27",
-  "execution_scope": "全文与相关附录阅读、LaTeX 对照、关键推理代码静态核对；没有下载模型权重、运行音频生成、独立重算指标或完成听测。",
+  "execution_scope": "本轮核对固定版本PDF的相关方法、实验及限制，复核所列关键代码；已有六篇的历史LaTeX审计保留并标明来源。未运行编辑模型、下载权重、重算指标或试听评价。",
   "sources": {
     "directaudioedit": {
       "pdf_sha256": "5397365f100597cc193a4be398bcd6fce1926a82fea95788e304be829c025fce",
@@ -421,6 +421,268 @@
         }
       ],
       "latex_scope": "源码包的相关正文/算法/实验/附录与PDF交叉检查；哈希按原文件basename记录，未重新编译LaTeX。ZETA辅助LaTeX为arXiv v4，主引用PDF为PMLR版，未断言逐字一致。"
+    },
+    "musicmagus": {
+      "source_id": "S-MG",
+      "title": "MusicMagus: Zero-Shot Text-to-Music Editing via Diffusion Models",
+      "short_name": "MusicMagus",
+      "authors": "Yixiao Zhang, Yukara Ikemiya, Gus Xia, Naoki Murata, Marco A. Martínez-Ramírez, Wei-Hsiang Liao, Yuki Mitsufuji, Simon Dixon",
+      "affiliations": "Queen Mary University of London; Sony AI; MBZUAI",
+      "version": "IJCAI 2024，AI, the Arts and Creativity special track，正式PDF 9页，卷页7805–7813",
+      "venue": "IJCAI 2024 · AI, the Arts and Creativity special track",
+      "venue_evidence": "https://www.ijcai.org/proceedings/2024/864",
+      "pdf_url": "https://www.ijcai.org/proceedings/2024/0864.pdf",
+      "pdf_page_count": 9,
+      "pdf_sha256": "1e9184dd0d6de34aa2feaf4b4ff2106501dd501416ee8de9cd02c411f2035e49",
+      "code_repository": "ldzhangyx/MusicMagus",
+      "code_commit": "ef69ef6955a963955015c05e3a021a6b31f80b16",
+      "code_availability": "编辑代码已公开，已静态核对；未运行。README使用外部captioning权重和API，不等于完整离线可复现。",
+      "accessed_on": "2026-10-27"
+    },
+    "melodia": {
+      "source_id": "S-MLD",
+      "title": "Melodia: Training-Free Music Editing Guided by Attention Probing in Diffusion Models",
+      "short_name": "Melodia",
+      "authors": "Yi Yang, Haowen Li, Tianxiang Li, Boyu Cao, Xiaohan Zhang, Liqun Chen, Qi Liu",
+      "affiliations": "South China University of Technology",
+      "version": "AAAI 2026正式PDF，9页，卷页2209–2217",
+      "venue": "AAAI 2026",
+      "venue_evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/37204",
+      "pdf_url": "https://ojs.aaai.org/index.php/AAAI/article/download/37204/41166",
+      "pdf_page_count": 9,
+      "pdf_sha256": "3a4e0939b873459482cbdd5f79b6280f58067cc37c43abe4421e13790774c107",
+      "code_repository": "YiYang-SCUT/Melodia",
+      "code_commit": "3ff1ab915261b61cc9763e690753f27aebe69fc5",
+      "code_availability": "固定commit完整目录树仅见数据、说明和图示，未找到核心编辑/评价实现。仓库存在不能等同于方法完整开源。",
+      "accessed_on": "2026-10-27"
+    },
+    "ppae": {
+      "source_id": "S-PPAE",
+      "title": "Prompt-guided Precise Audio Editing with Diffusion Models",
+      "short_name": "PPAE",
+      "authors": "Manjie Xu, Chenxing Li, Duzhen Zhang, Dan Su, Wei Liang, Dong Yu",
+      "affiliations": "Beijing Institute of Technology; Tencent AI Lab",
+      "version": "ICML 2024/PMLR235正式PDF，18页，卷页55126–55143",
+      "venue": "ICML 2024",
+      "venue_evidence": "https://proceedings.mlr.press/v235/xu24p.html",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/xu24p/xu24p.pdf",
+      "pdf_page_count": 18,
+      "pdf_sha256": "3e812bf4e897c87eeda6a195bb285c51cd2b4909b61f4a0fd6d57342f31385ea",
+      "code_repository": null,
+      "code_commit": null,
+      "code_availability": "官方论文/项目页可定位；本轮未找到可确认的完整官方编辑代码，不能写成已完整开源。",
+      "accessed_on": "2026-10-27"
+    },
+    "steermusic": {
+      "source_id": "S-STM",
+      "title": "SteerMusic: Enhanced Musical Consistency for Zero-shot Text-Guided and Personalized Music Editing",
+      "short_name": "SteerMusic / SteerMusic+",
+      "authors": "Xinlei Niu, Kin Wai Cheuk, Jing Zhang, Naoki Murata, Chieh-Hsin Lai, Michele Mancusi, Woosung Choi, Giorgio Fabbro, Wei-Hsiang Liao, Charles Patrick Martin, Yuki Mitsufuji",
+      "affiliations": "作者与机构以PDF首页为准；Sony及合作机构",
+      "version": "AAAI 2026正式发表，卷页2000–2010；本轮分析使用arXiv:2504.10826v3扩展版，25页，2025-12-06；页码不与正式版混用",
+      "venue": "AAAI 2026",
+      "venue_evidence": "https://ojs.aaai.org/index.php/AAAI/article/view/37181",
+      "pdf_url": "https://arxiv.org/pdf/2504.10826v3",
+      "pdf_page_count": 25,
+      "pdf_sha256": "d29d84b095a0755aff1d70c6f3de664a06ec6dc30cdf7a58964520e3687722fd",
+      "code_repository": "sony/steermusic",
+      "code_commit": "9d2008b8515f9c8a83c956ddb23ab83b55e19709",
+      "code_availability": "基础编辑、个性化编辑及部分评价代码已公开并静态阅读；个性化还依赖DreamSound微调模型。",
+      "accessed_on": "2026-10-27"
     }
-  }
+  },
+  "revision": "v2：6篇修订+4篇补充；历史LaTeX哈希继承自旧记录，未声称本轮重新下载。",
+  "code_recheck": [
+    {
+      "name": "directaudioedit",
+      "path": "code/main_run.py",
+      "url": "https://raw.githubusercontent.com/NiuTrans/DirectAudioEdit/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py",
+      "blob_sha": "b54bc89399839eddcbf3d692a7c2ba1d63f90254",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "directaudioedit",
+      "path": "code/ddm_inversion/inversion_utils.py",
+      "url": "https://raw.githubusercontent.com/NiuTrans/DirectAudioEdit/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/ddm_inversion/inversion_utils.py",
+      "blob_sha": "cb982462cf8cfab8a291501a8123bc8aefe771f8",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audiomorphix",
+      "path": "src/audio_morphix.py",
+      "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+    },
+    {
+      "name": "audiomorphix",
+      "path": "src/model/sampler.py",
+      "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/resolve/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/model/sampler.py",
+      "blob_sha": "25c3173a503ce7985fa704c1e5349e899fac6331",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audiomorphix",
+      "path": "src/model/pipeline.py",
+      "url": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/resolve/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/model/pipeline.py",
+      "blob_sha": "d14c9109ba9c960095e629941fa546c7becae49a",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audiomorphix",
+      "path": "src/utils/factory.py",
+      "error": "<urlopen error EOF occurred in violation of protocol (_ssl.c:1129)>"
+    },
+    {
+      "name": "melodyflow",
+      "path": "audiocraft/models/melodyflow.py",
+      "url": "https://huggingface.co/spaces/facebook/MelodyFlow/resolve/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/models/melodyflow.py",
+      "blob_sha": "2704ec93b336776c7b6f9e9bb467be9744fde82f",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "melodyflow",
+      "path": "audiocraft/models/flow.py",
+      "url": "https://huggingface.co/spaces/facebook/MelodyFlow/resolve/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/models/flow.py",
+      "blob_sha": "61c204a8e7e51466426504119ffe8642a62379d0",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "melodyflow",
+      "path": "audiocraft/utils/renoise.py",
+      "url": "https://huggingface.co/spaces/facebook/MelodyFlow/resolve/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/utils/renoise.py",
+      "blob_sha": "6177bb4d3eca1627aeb7cb60d651cd07eaeb5eae",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "melodyflow",
+      "path": "model_cards/MELODYFLOW_MODEL_CARD.md",
+      "url": "https://huggingface.co/spaces/facebook/MelodyFlow/resolve/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/model_cards/MELODYFLOW_MODEL_CARD.md",
+      "blob_sha": "5ffe6ec6d8ea2594891d3844025b2a9d4d7377ce",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audioeditor",
+      "path": "main.py",
+      "url": "https://raw.githubusercontent.com/NKU-HLT/AudioEditor/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/main.py",
+      "blob_sha": "9c853b2fbda3c059fb30ea2225ef1344a7d676eb",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audioeditor",
+      "path": "null_text_inversion/null_text_inversion.py",
+      "url": "https://raw.githubusercontent.com/NKU-HLT/AudioEditor/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/null_text_inversion/null_text_inversion.py",
+      "blob_sha": "16060ce328393388ad088629148ee349c634e8be",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audioeditor",
+      "path": "suppresseot/wo_utils.py",
+      "url": "https://raw.githubusercontent.com/NKU-HLT/AudioEditor/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/wo_utils.py",
+      "blob_sha": "ffede25a3cbcc4dee67680e4ae0d8916c8634fe9",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audioeditor",
+      "path": "suppresseot/attn_loss.py",
+      "url": "https://raw.githubusercontent.com/NKU-HLT/AudioEditor/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/attn_loss.py",
+      "blob_sha": "bb0898e4aa7cc7f8340a8167ec2ef74ada88cc1d",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "audioeditor",
+      "path": "suppresseot/run_and_display.py",
+      "url": "https://raw.githubusercontent.com/NKU-HLT/AudioEditor/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/run_and_display.py",
+      "blob_sha": "954a582401fa36cd4dff4aab5469bf01891c71cb",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "editts",
+      "path": "model/diffusion.py",
+      "url": "https://raw.githubusercontent.com/neosapience/editts/77255e5304f052abe54ac457a6da00a6e9319f87/model/diffusion.py",
+      "blob_sha": "3a309ca43171e21a6db0dda586d931dff9121e99",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "editts",
+      "path": "model/tts.py",
+      "url": "https://raw.githubusercontent.com/neosapience/editts/77255e5304f052abe54ac457a6da00a6e9319f87/model/tts.py",
+      "blob_sha": "e6ee3ec9082e407d9c9a0414b693ed0d20ca8f3f",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "zeta",
+      "path": "code/main_run.py",
+      "url": "https://raw.githubusercontent.com/HilaManor/AudioEditingCode/8dc937701a42f6fb53160912f8a96b42fe8261d8/code/main_run.py",
+      "blob_sha": "77c2ad26b00ac031b48ac6f73e4a7d76820db0f7",
+      "matches_existing_manifest": true
+    },
+    {
+      "name": "zeta",
+      "path": "code/ddm_inversion/inversion_utils.py",
+      "url": "https://raw.githubusercontent.com/HilaManor/AudioEditingCode/8dc937701a42f6fb53160912f8a96b42fe8261d8/code/ddm_inversion/inversion_utils.py",
+      "blob_sha": "1c5fb31a611846b7afc6562f25787cde89840382",
+      "matches_existing_manifest": true
+    }
+  ],
+  "new_code_files": [
+    {
+      "name": "musicmagus",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/ldzhangyx/MusicMagus/ef69ef6955a963955015c05e3a021a6b31f80b16/README.md",
+      "sha256": "a16fd2ce9661f7e7086319b64fead8653bd062f4e3cd71382784f11a0260cdd8"
+    },
+    {
+      "name": "musicmagus",
+      "path": "audioldm2/p2p_pipeline.py",
+      "url": "https://raw.githubusercontent.com/ldzhangyx/MusicMagus/ef69ef6955a963955015c05e3a021a6b31f80b16/audioldm2/p2p_pipeline.py",
+      "sha256": "5b75a1da9e85a580872b30c7964acf1a39055a0cf2b4f96f9946e4381f0423cc"
+    },
+    {
+      "name": "musicmagus",
+      "path": "app.py",
+      "url": "https://raw.githubusercontent.com/ldzhangyx/MusicMagus/ef69ef6955a963955015c05e3a021a6b31f80b16/app.py",
+      "sha256": "c7d0a6c9d2e4954b3f96b564844c81ff5c615bd04874599522363686e8f07ad8"
+    },
+    {
+      "name": "musicmagus",
+      "path": "audioldm2/embedding_calculator.py",
+      "url": "https://raw.githubusercontent.com/ldzhangyx/MusicMagus/ef69ef6955a963955015c05e3a021a6b31f80b16/audioldm2/embedding_calculator.py",
+      "sha256": "eb76e1bd360bcc8f0fe780a2e42c60a243ec3afb59d438b8dd8c9f8b111c8102"
+    },
+    {
+      "name": "melodia",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/YiYang-SCUT/Melodia/3ff1ab915261b61cc9763e690753f27aebe69fc5/README.md",
+      "sha256": "1448d723aa873d35d23babcdb75275dc4686dabd2fdf5188bd111a54cc1f7c1e"
+    },
+    {
+      "name": "melodia",
+      "path": "MelodiaEdit/MelodiaEdit/README.md",
+      "url": "https://raw.githubusercontent.com/YiYang-SCUT/Melodia/3ff1ab915261b61cc9763e690753f27aebe69fc5/MelodiaEdit/MelodiaEdit/README.md",
+      "sha256": "bf870b8bff23705a1a4e9646377078be4635b6677a48008a78e2648f7ec1b60a"
+    },
+    {
+      "name": "steermusic",
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/sony/steermusic/9d2008b8515f9c8a83c956ddb23ab83b55e19709/README.md",
+      "sha256": "b175529d95e722b688114c1a6f31e33179adba1d162d7002088399dff151f8d5"
+    },
+    {
+      "name": "steermusic",
+      "path": "SteerMusic_edit.py",
+      "url": "https://raw.githubusercontent.com/sony/steermusic/9d2008b8515f9c8a83c956ddb23ab83b55e19709/SteerMusic_edit.py",
+      "sha256": "933ccffe199f68029b1c19c8eedfbc42e0942a93932234a1a14aae46bd4a1138"
+    },
+    {
+      "name": "steermusic",
+      "path": "SteerMusic_personalized.py",
+      "url": "https://raw.githubusercontent.com/sony/steermusic/9d2008b8515f9c8a83c956ddb23ab83b55e19709/SteerMusic_personalized.py",
+      "sha256": "f4dd130379b2d673807679ff39e50d7326489b61eb6e7d4ec6c2b850610efdf4"
+    },
+    {
+      "name": "steermusic",
+      "path": "steermusic_utils.py",
+      "url": "https://raw.githubusercontent.com/sony/steermusic/9d2008b8515f9c8a83c956ddb23ab83b55e19709/steermusic_utils.py",
+      "sha256": "511d1b0608405de873722b4a5947a092c07dccb322cae407ac7202f4c94e7829"
+    }
+  ]
 }

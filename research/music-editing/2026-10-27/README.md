@@ -1,43 +1,40 @@
-# 音乐编辑科研工作流：六篇论文分析
+# 音乐编辑科研工作流：十篇论文分析
 
-2026-10-27 · analyze-paper · research-pipeline-contract v1.0
+2026-10-27 · analyze-paper · research-pipeline-contract v1.0 · 修订版v2
 
-研究方向：音乐音频编辑，重点关注training-free、zero-shot及无新增编辑训练的方法。
+研究方向：无需新增训练的音乐音频编辑。区分冻结权重、逐输入优化、免显式反演与zero-shot。
 
-本目录是一次新的、版本固定的来源分析。仓库原有papers/directaudioedit、papers/melodyflow等材料保留，不覆盖，也不把旧笔记当作新的直接证据。
+## 阅读入口
 
-## 从这里开始
+- [方法比较、正式发表/开源状态与研究边界](outputs/comparison.md)
+- [10个ANALYSIS_PACKAGE合并包](outputs/ANALYSIS_PACKAGES.json)
+- [关键代码核对](outputs/code-audit.md)
+- [来源版本与哈希](outputs/source-manifest.json)
+- [本轮核验记录](outputs/validation.md)
 
-- [六篇方法的定义、比较与证据边界](outputs/comparison.md)
-- [6个ANALYSIS_PACKAGE合并包](outputs/ANALYSIS_PACKAGES.json)
-- [代码与论文核对说明](outputs/code-audit.md)
-- [来源、版本、哈希清单](outputs/source-manifest.json)
-- [交付核验记录](outputs/validation.md)
-
-## 各篇分析
+## 各篇笔记与交接包
 
 | 论文 | 分析笔记 | ANALYSIS_PACKAGE |
 |---|---|---|
-| DirectAudioEdit | [阅读](outputs/notes/directaudioedit.md) | [JSON](outputs/packages/directaudioedit.json) |
-| AudioMorphix | [阅读](outputs/notes/audiomorphix.md) | [JSON](outputs/packages/audiomorphix.json) |
 | AudioEditor | [阅读](outputs/notes/audioeditor.md) | [JSON](outputs/packages/audioeditor.json) |
-| MelodyFlow | [阅读](outputs/notes/melodyflow.md) | [JSON](outputs/packages/melodyflow.json) |
-| DDPM Inversion（ZETA；兼述ZEUS） | [阅读](outputs/notes/zeta.md) | [JSON](outputs/packages/zeta.json) |
+| AudioMorphix | [阅读](outputs/notes/audiomorphix.md) | [JSON](outputs/packages/audiomorphix.json) |
+| DirectAudioEdit | [阅读](outputs/notes/directaudioedit.md) | [JSON](outputs/packages/directaudioedit.json) |
 | EdiTTS | [阅读](outputs/notes/editts.md) | [JSON](outputs/packages/editts.json) |
+| Melodia | [阅读](outputs/notes/melodia.md) | [JSON](outputs/packages/melodia.json) |
+| MelodyFlow | [阅读](outputs/notes/melodyflow.md) | [JSON](outputs/packages/melodyflow.json) |
+| MusicMagus | [阅读](outputs/notes/musicmagus.md) | [JSON](outputs/packages/musicmagus.json) |
+| PPAE | [阅读](outputs/notes/ppae.md) | [JSON](outputs/packages/ppae.json) |
+| SteerMusic / SteerMusic+ | [阅读](outputs/notes/steermusic.md) | [JSON](outputs/packages/steermusic.json) |
+| DDPM Inversion（ZETA；兼述ZEUS） | [阅读](outputs/notes/zeta.md) | [JSON](outputs/packages/zeta.json) |
 
-## 证据标签
+## 使用边界与下一步
 
-SC=作者主张；DE=本次直接核对的论文表格/算法/代码内容，不代表本次复现实验；AI=分析推断；UN=尚未核验。所有实验数字均为论文报告。PDF 页码从首页起算。
+SC=作者主张；DE=所读论文/代码的直接内容；AI=分析推断；UN=未核验。DE不代表本轮独立复现效果；全部分析包为partial。
 
-- SC不能自动视为DE；AI必须保留推断属性；UN既不等于否定也不等于已验证。
-- 当前包的evidence_status均为partial：方法/表格/关键代码有定位，但未独立运行模型或重算结果。
-- 所有页码以每篇固定PDF第一页为1；ZETA用PMLR PDF的内部页，不用卷页。
-- 本次阅读全文、相关附录及LaTeX，并静态核对列出的核心代码；没有声称完成全部代码审计。
-- “training-free”重点分成不更新模型权重、无逐输入梯度拟合与免反演三个维度。
-- 这里只形成来源分析包与候选P/F；没有跳过deep-read生成研究方案。
+下一阶段请deep-read Mode C读取当前outputs/ANALYSIS_PACKAGES.json，构建/增量更新P/F/M/E和连接点；本次没有直接设计创新方法。
 
-## 如何继续
+**历史矩阵提示：** [mode-c-v1](mode-c-v1/README.md)基于此前六篇v1，尚未消费本次四篇新增及v2修订；保留作历史记录，不把它当作最新十篇矩阵。
 
-下一轮读取outputs/ANALYSIS_PACKAGES.json与各笔记，调用deep-read Mode C，围绕“无需新增训练的音乐编辑如何兼顾目标修改与非目标音乐结构保持”构建P/F/M/E及交叉矩阵。先核验来源和边界，再筛选C连接点。
+本次按用户要求更新本目录中的已有研究记录；旧内容通过Git提交历史保留。其他papers目录中的独立阅读笔记保持原有用途。
 
-最终记录以GitHub为准。仓库不镜像论文全文、LaTeX全文、第三方源码、音频、数据集或模型权重；用原始链接、固定版本和哈希支持追溯。临时下载仅供本轮核对。
+最终记录以GitHub为主，不镜像论文全文、第三方代码、音频或权重。核对用的临时下载在发布验证后清理。
