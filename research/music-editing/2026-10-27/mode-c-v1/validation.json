@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-27",
+  "matrix_id": "MODEC-20261027-MUSIC-PRESERVATION-v1",
+  "validation_scope": "结构、定位、ID关系和交付内容一致性；不是模型实验验证",
+  "required_fields_checked": 20,
+  "counts": {
+    "sources": 6,
+    "P": 6,
+    "F": 10,
+    "M": 7,
+    "E": 19,
+    "matrix_rows": 10,
+    "matrix_columns": 6,
+    "cells": 60,
+    "C": 3
+  },
+  "matrix_status_counts": {
+    "supported": 8,
+    "plausible": 19,
+    "diagnostic-needed": 21,
+    "unsupported": 12
+  },
+  "checks": {
+    "unique_IDs": true,
+    "all_matrix_cells_present": true,
+    "all_cross_references_resolve": true,
+    "upstream_evidence_references_resolve": true,
+    "scores_sum_correctly": true,
+    "diagnostics_marked_not_executed": true,
+    "input_commit_and_blob_verified": true,
+    "local_deliverable_files_written": 0,
+    "existing_records_to_be_preserved": true
+  },
+  "issues": [],
+  "remote_verification_protocol": "提交后用GitHub连接按固定commit回读本目录全部5个文件，逐字比较；完成情况在聊天中报告，不把拟议核验伪装为已发生。"
+}

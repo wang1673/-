@@ -1,0 +1,3380 @@
+{
+  "package_type": "MODE_C_PACKAGE",
+  "package_version": "research-pipeline-contract v1.0 / Mode C+ v1.0",
+  "matrix_id": "MODEC-20261027-MUSIC-PRESERVATION-v1",
+  "package_id": "MODEC-20261027-MUSIC-PRESERVATION-v1",
+  "created_at": "2026-10-27",
+  "source_ids": [
+    "S-DAE",
+    "S-AMX",
+    "S-AED",
+    "S-MF",
+    "S-ZETA",
+    "S-ETTS"
+  ],
+  "upstream_analysis_ids": [
+    "ANALYSIS-20261027-DAE-v1",
+    "ANALYSIS-20261027-AMX-v1",
+    "ANALYSIS-20261027-AED-v1",
+    "ANALYSIS-20261027-MF-v1",
+    "ANALYSIS-20261027-ZETA-v1",
+    "ANALYSIS-20261027-ETTS-v1"
+  ],
+  "input_snapshot": {
+    "repository": "wang1673/-",
+    "path": "research/music-editing/2026-10-27/outputs/ANALYSIS_PACKAGES.json",
+    "commit": "64f8c5728df46c66e31d57434b754b233062de1f",
+    "git_blob_sha": "3fbb049fde81879fc7bc56436ff391b44016d8ce",
+    "package_count": 6
+  },
+  "scope_and_inclusion_rules": {
+    "mode": "C",
+    "field": "音乐音频编辑/冻结生成先验",
+    "theme": "无需新增训练的音乐编辑：修改指定乐器或音色，同时保持旋律、节奏与非目标声部",
+    "matrix_goals": [
+      "区分时间/时频局部性与复音声部/目标旋律节奏保持，并审计支持证据。",
+      "比较A/B两类冻结权重路线，分开算法、信息条件、成本与评测。",
+      "筛选最多3个有定位依据、可做低成本诊断的连接点，暂不设计完整新方法。"
+    ],
+    "inclusion": "仅以用户指定六个ANALYSIS_PACKAGE为主体；针对候选联系重读对应原论文HTML/固定GitHub代码。未扩展为全部音乐编辑文献检索。",
+    "exclusion": "不将EdiTTS语音结果当音乐结果；不将一般事件编辑当多声部实证；不混用同名指标数值、不同checkpoint/硬件；不生成IDEA_PACKAGE或完整方案。",
+    "time_and_version": "2026-10-27分析快照；原论文/代码版本按来源地图和上游固定，不宣称覆盖截至当日所有工作。",
+    "available_raw_evidence": "有上游定位与本轮相关原文/部分核心源码；没有原始音频输出、逐运行日志、同预算多方法复现或新听测。",
+    "existing_matrix": "所检查研究目录此前只有README与outputs；新建mode-c-v1，不覆盖历史。",
+    "novelty_search": "未做扩展新颖性检索；仅六篇及其针对性原文核对。评分不可被解读为尚无同类研究。"
+  },
+  "source_map": [
+    {
+      "source_id": "S-DAE",
+      "analysis_id": "ANALYSIS-20261027-DAE-v1",
+      "title": "DirectAudioEdit: Inversion-Free Text-Guided Audio Editing via Diffusion Prediction Contrast",
+      "version": "arXiv:2606.07356v1，2026-06-05；预印本",
+      "pdf_url": "https://arxiv.org/pdf/2606.07356v1",
+      "code_repository": "NiuTrans/DirectAudioEdit",
+      "code_commit": "0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "计算实验；AudioLDM2 与 Tango2，同骨干内比较 SDEdit、DDIM inversion、DDPM inversion；音乐用 MedleyMDPrompts 的前 10 秒，事件任务为 3×363=1089 对。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/directaudioedit.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "本轮重读上游固定commit的相关核心代码",
+      "missing": [
+        "未运行模型与指标复算",
+        "音乐样本级结果、失败分布与预训练重叠",
+        "音乐结构专用指标与长曲外部验证",
+        "论文完整评测命令与环境的端到端重建"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E06",
+        "E07",
+        "E12",
+        "E17",
+        "E19"
+      ]
+    },
+    {
+      "source_id": "S-AMX",
+      "analysis_id": "ANALYSIS-20261027-AMX-v1",
+      "title": "AudioMorphix: Training-free audio editing with diffusion probabilistic models",
+      "version": "arXiv:2505.16076v1，2025-05-21；本次采用该预印本，不混用匿名投稿版",
+      "pdf_url": "https://arxiv.org/pdf/2505.16076v1",
+      "code_repository": "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix",
+      "code_commit": "08008095c5a3f417b0bcfc397f9b73042faf6eee",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "AudioSet-E 合成声音编辑基准：addition 1442、removal 1426、replacement 1870；比较DDIM、DDPM和AUDIT；AudioLDM/Tango 两种骨干。移位、拉伸、音高任务主要定性。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/audiomorphix.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "关键代码核对继承上游包；本轮HF固定commit链接未成功重新访问，方法分类另用原文算法核对",
+      "missing": [
+        "独立运行与听测",
+        "真实音乐、多声部、音符/半音级定量验证",
+        "各对照完整配置公平性和权重版本",
+        "掩码条件下局部误差、失败与不确定性"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E02",
+        "E03",
+        "E09"
+      ]
+    },
+    {
+      "source_id": "S-AED",
+      "analysis_id": "ANALYSIS-20261027-AED-v1",
+      "title": "AudioEditor: A Training-Free Diffusion-Based Audio Editing Framework",
+      "version": "arXiv:2409.12466v2，2024-09-29；另有ICASSP2025发表记录，本次页码以v2为准",
+      "pdf_url": "https://arxiv.org/pdf/2409.12466v2",
+      "code_repository": "NKU-HLT/AudioEditor",
+      "code_commit": "762d34d3adc8740aa95426f0496c4b7d0a1fd0da",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "一般声音计算实验；从AudioCaps test手工选择适合编辑的300段，分addition/deletion/replacement；主要比较SDEdit、原音频和目标文本直接重生成。不是专门音乐编辑基准。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/audioeditor.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "本轮重读上游固定commit的相关核心代码",
+      "missing": [
+        "论文结果对应精确参数、种子和环境",
+        "Eq5符号的作者解释",
+        "音乐任务定量验证",
+        "听测规模与CI、逐运行原始结果"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E08",
+        "E11",
+        "E17",
+        "E19"
+      ]
+    },
+    {
+      "source_id": "S-MF",
+      "analysis_id": "ANALYSIS-20261027-MF-v1",
+      "title": "High Fidelity Text-Guided Music Editing via Single-Stage Flow Matching",
+      "version": "arXiv:2407.03648v2，2024-10-16；PDF自述Preprint/Under review；本次不将其视为正式会议最终版",
+      "pdf_url": "https://arxiv.org/pdf/2407.03648v2",
+      "code_repository": "https://huggingface.co/spaces/facebook/MelodyFlow",
+      "code_commit": "19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "400M small/1B medium骨干；medium为48kHz立体声、25Hz codec、30秒。论文训练数据合计20k小时；客观编辑用8377首in-domain heldout tracks，主观编辑181个较高保真样本，LLM辅助genre变化提示人工复核。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/melodyflow.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "关键代码核对继承上游包；本轮HF固定commit链接未成功重新访问，方法分类另用原文算法核对",
+      "missing": [
+        "公开checkpoint与论文训练集/配置逐项对应",
+        "未实跑编辑与听测",
+        "独立重算NFE、显存、RTF",
+        "真实长曲及精细旋律/和弦/声部保持"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E04",
+        "E05",
+        "E10",
+        "E14",
+        "E15",
+        "E17",
+        "E19"
+      ]
+    },
+    {
+      "source_id": "S-ZETA",
+      "analysis_id": "ANALYSIS-20261027-ZETA-v1",
+      "title": "Zero-Shot Unsupervised and Text-Based Audio Editing Using DDPM Inversion",
+      "version": "ICML2024/PMLR235正式PDF，内部页1–27（卷页34603–34629）；LaTeX辅助源为arXiv:2402.10009v4",
+      "pdf_url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/manor24a/manor24a.pdf",
+      "code_repository": "HilaManor/AudioEditingCode",
+      "code_commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "AudioLDM2（包括music与general检查点）；ZETA对照MusicGen-melody、DDIM、SDEdit；ZEUS对照源文本SDEdit。MusicDelta34首、107源提示、696目标提示，定量ZETA子采样324信号–文本对；有源和空源提示等设置。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/zeta.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "关键代码核对继承上游包；本轮HF固定commit链接未成功重新访问，方法分类另用原文算法核对",
+      "missing": [
+        "所有曲目逐样本输出与独立重算",
+        "当前commit与论文分支全部差异",
+        "音符/和弦/声部级严格保持",
+        "音乐域外泛化与精确听测区间端点"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E01",
+        "E05",
+        "E13",
+        "E15",
+        "E18",
+        "E19"
+      ]
+    },
+    {
+      "source_id": "S-ETTS",
+      "analysis_id": "ANALYSIS-20261027-ETTS-v1",
+      "title": "EdiTTS: Score-based Editing for Controllable Text-to-Speech",
+      "version": "arXiv:2110.02584v3，2022-07-09；INTERSPEECH2022，会议页421–425；本次PDF页1–5",
+      "pdf_url": "https://arxiv.org/pdf/2110.02584v3",
+      "code_repository": "neosapience/editts",
+      "code_commit": "77255e5304f052abe54ac457a6da00a6e9319f87",
+      "upstream_evidence_status": "partial",
+      "sample_and_design": "单说话人LJ Speech；预训练Grad-TTS+HiFi-GAN；音高测试15句话、18名AMT参与者；内容替换80句，每句随机词换同义词，人工核验文本，Google STT测WER/CER。全部是语音，不是音乐实验。",
+      "notes_url": "https://github.com/wang1673/-/blob/64f8c5728df46c66e31d57434b754b233062de1f/research/music-editing/2026-10-27/outputs/notes/editts.md",
+      "primary_text_recheck": "本轮重读官方arXiv HTML相关段落，原PDF页码沿用固定上游版本；未重新下载PDF",
+      "code_recheck": "本轮重读上游固定commit的相关核心代码",
+      "missing": [
+        "音乐迁移的全部定量证据",
+        "真实音乐波形的先验逆映射",
+        "精确音高、和声和音色控制",
+        "当前权重可用性、独立运行与新听测"
+      ],
+      "type": "research_paper_via_ANALYSIS_PACKAGE",
+      "directly_available_evidence": [
+        "E16"
+      ]
+    }
+  ],
+  "comparison_groups": [
+    {
+      "id": "A",
+      "definition": "编辑时不更新模型权重，且不通过逐样本损失对latent/embedding/prediction做梯度优化。普通ODE/DDPM采样状态更新、score输出和无监督子空间前向迭代不等同梯度拟合。",
+      "primary_methods": [
+        {
+          "method": "DirectAudioEdit原文核心路径",
+          "scope": "音乐直接相关",
+          "evidence_ids": [
+            "E06",
+            "E07"
+          ],
+          "caveats": "无反演但有双分支与CFG前向；无声部级硬不变保证。"
+        },
+        {
+          "method": "ZETA",
+          "scope": "音乐直接相关",
+          "evidence_ids": [
+            "E01",
+            "E05",
+            "E13"
+          ],
+          "caveats": "需要DDPM反演与每步噪声；局部mask与软回拉的演示不能推广到全部音乐任务。"
+        }
+      ],
+      "ancillary": [
+        {
+          "method": "ZEUS（同ZETA论文）",
+          "scope": "探索性音乐编辑，未必可指定乐器/音色",
+          "evidence_ids": [
+            "E01",
+            "E13"
+          ],
+          "caveats": "有额外PC迭代；不能与ZETA文本路径混算，当前未重新审完整PC代码。"
+        },
+        {
+          "method": "EdiTTS",
+          "scope": "A类机制参考，非已验证音乐基线",
+          "evidence_ids": [
+            "E16"
+          ],
+          "caveats": "依赖语音文本先验、对齐，不支持直接套用任意音乐波形。"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "definition": "编辑时不更新骨干权重，但通过逐样本损失优化latent、embedding或prediction。需要把优化对象、是否经过网络反传、迭代数与额外条件单独记录。",
+      "primary_methods": [
+        {
+          "method": "AudioMorphix含能量引导/移除优化的配置",
+          "optimization_target": "latent扰动与能量梯度",
+          "evidence_ids": [
+            "E09",
+            "E03"
+          ],
+          "caveats": "100次SGD来自removal设置，不代表每个任务都相同；源/参考音频与mask条件需要公平处理。"
+        },
+        {
+          "method": "AudioEditor完整路径",
+          "optimization_target": "null与条件text embedding",
+          "evidence_ids": [
+            "E08",
+            "E11"
+          ],
+          "caveats": "AudioCaps事件证据；不能由training-free标题推成无测试时优化。"
+        },
+        {
+          "method": "MelodyFlow正则化反演",
+          "optimization_target": "速度预测δ的patch-KL修正，伴随反演迭代",
+          "evidence_ids": [
+            "E10",
+            "E14"
+          ],
+          "caveats": "模型与编辑算法须分开；普通反演消融不等于完整regularized版本。"
+        }
+      ],
+      "ancillary": []
+    }
+  ],
+  "evidence_policy": {
+    "SC": "作者/报告明确声称，不自动升级DE",
+    "DE": "直接核对文档表格、公式、算法或代码内容；并非本轮独立复现实测",
+    "AI": "基于证据的分析推断；机制链和可区分解释保留",
+    "UN": "缺失证据或未知；不等于阴性结果",
+    "status_vs_label": "标签描述结论来源，supported/plausible等描述矩阵联系成熟度；supported只支持单元限定的关系，不代表新方法有效。",
+    "new_computation": "本轮无模型实验、训练、指标计算或听测；只做文献/代码审计与结构校验。"
+  },
+  "P": [
+    {
+      "id": "P01",
+      "text": "局部时间编辑如何避免改变编辑区间外的音乐事件？",
+      "conditions": "指定时间区间；现有直接例子来自ZEUS鼓声编辑，向文本乐器编辑迁移仍未知。",
+      "tag": "DE",
+      "strength": "中：有定位的实例，不是大样本普遍率",
+      "evidence_ids": [
+        "E01"
+      ],
+      "origin_candidates": [
+        "ZETA-P01"
+      ],
+      "unknown": "目标乐器文本编辑的发生率、严重程度、跨骨干与跨曲复验。"
+    },
+    {
+      "id": "P02",
+      "text": "替换目标乐器音色时，如何保留其旋律/节奏及同时发声的非目标声部？",
+      "conditions": "复音混合；目标音色允许变化，目标音符/时序和非目标声部通常不希望变化。",
+      "tag": "AI",
+      "strength": "低至中：问题明确但没有联合声部级验证",
+      "evidence_ids": [
+        "E02",
+        "E03",
+        "E04",
+        "E06"
+      ],
+      "origin_candidates": [
+        "AMX-P02",
+        "MF-P01",
+        "AED-P01",
+        "ETTS-P01"
+      ],
+      "unknown": "同一时间/频段内非目标声部误改和目标音符变化的直接测量。"
+    },
+    {
+      "id": "P03",
+      "text": "评价能否区分编辑未完成、允许的音色改变和不允许的旋律/节奏/声部改变？",
+      "conditions": "必须同时评估目标修改成功与多种保持要求；整体相似不能单独当成功标准。",
+      "tag": "AI",
+      "strength": "中：有指标和听测权衡，特定目标有效性仍需诊断",
+      "evidence_ids": [
+        "E04",
+        "E05",
+        "E06",
+        "E11",
+        "E15",
+        "E18"
+      ],
+      "origin_candidates": [
+        "MF-P01",
+        "DAE-P01",
+        "MF-P02"
+      ],
+      "unknown": "指标对受控音色/音符/时间/声部变化的灵敏性与人类判断一致性。"
+    },
+    {
+      "id": "P04",
+      "text": "允许逐输入梯度优化的收益，在同信息条件和可比计算预算下是否仍成立？",
+      "conditions": "尽量同骨干、codec、输入、提示、随机种子；参考音频/mask属于额外信息，不仅是额外计算。",
+      "tag": "AI",
+      "strength": "中：优化对象和成本结构可定位；统一收益曲线缺失",
+      "evidence_ids": [
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "origin_candidates": [
+        "AMX-F02",
+        "AED-F02",
+        "MF-F02"
+      ],
+      "unknown": "相同硬件完整wall-time、峰值显存、失败率、编辑质量联合曲线。"
+    },
+    {
+      "id": "P05",
+      "text": "现有短片段/事件/语音/mono评价的结论，在长音乐和立体声局部编辑中适用到哪里？",
+      "conditions": "时长、领域、声道、重叠密度需分别界定；不能一并假定可迁移。",
+      "tag": "AI",
+      "strength": "中：已有范围限制明确，迁移结果未知",
+      "evidence_ids": [
+        "E03",
+        "E15",
+        "E16",
+        "E19"
+      ],
+      "origin_candidates": [
+        "DAE-P01",
+        "MF-P02",
+        "ETTS-P02"
+      ],
+      "unknown": "长程拍位/段落、立体声声像和真实多声部音乐的受控复验。"
+    },
+    {
+      "id": "P06",
+      "text": "不同默认参数、公开checkpoint与论文版本是否被误当成同一方法配置？",
+      "conditions": "复现或消融前应分别固定代码、权重、scheduler、CFG、token/文本、codec与采样定义。",
+      "tag": "DE",
+      "strength": "高：配置差异可定位；性能影响未知",
+      "evidence_ids": [
+        "E17"
+      ],
+      "origin_candidates": [
+        "DAE-P02",
+        "AED-P02",
+        "MF-F02"
+      ],
+      "unknown": "差异各自对结果的影响和论文确切运行配置。"
+    }
+  ],
+  "F": [
+    {
+      "id": "F01",
+      "text": "局部PC编辑会影响mask外鼓声；论文示例中每步软回拉减轻该影响。",
+      "conditions": "ZETA论文的ZEUS例子，δ=.025；非所有任务的实证结论。",
+      "tag": "DE",
+      "strength": "中：单实例+公式",
+      "evidence_ids": [
+        "E01"
+      ],
+      "origin_candidates": [
+        "ZETA-F02"
+      ]
+    },
+    {
+      "id": "F02",
+      "text": "音乐编辑听测中，质量/文本相关性较高的模型并不同时具有最高源一致性。",
+      "conditions": "MF Table1跨骨干比较，181样本；CON2.61对2.72，不能归因为算法单因素。",
+      "tag": "DE",
+      "strength": "中：报告均值，跨模型混杂",
+      "evidence_ids": [
+        "E04"
+      ],
+      "origin_candidates": [
+        "MF-F01"
+      ]
+    },
+    {
+      "id": "F03",
+      "text": "同一方法的Tstart/CFG或反演正则强度变化，会改变文本对齐与源相似的报告曲线。",
+      "conditions": "ZETA和MF各自的内部设置，曲线与指标定义分开保留。",
+      "tag": "DE",
+      "strength": "中：有曲线；未读原始逐运行数据",
+      "evidence_ids": [
+        "E05"
+      ],
+      "origin_candidates": [
+        "ZETA-F01"
+      ]
+    },
+    {
+      "id": "F04",
+      "text": "免显式反演的共享噪声直接更新，在DAE音乐基准上有较好的FAD/KL/SSIM报告均值。",
+      "conditions": "两骨干前10秒、5 seeds；AudioLDM2音乐FAD对DDPM未显著；不是声部级保持证据。",
+      "tag": "DE",
+      "strength": "中：多seed代理指标",
+      "evidence_ids": [
+        "E06",
+        "E07",
+        "E19"
+      ],
+      "origin_candidates": [
+        "DAE-F01"
+      ]
+    },
+    {
+      "id": "F05",
+      "text": "三种不更新骨干权重的编辑路径仍分别优化embedding、latent或速度预测。",
+      "conditions": "AED、AMX-removal、MF regularized版本；优化对象/反传范围不同。",
+      "tag": "DE",
+      "strength": "高：代码或原文算法定义",
+      "evidence_ids": [
+        "E08",
+        "E09",
+        "E10"
+      ],
+      "origin_candidates": [
+        "AMX-F02",
+        "AED-F02",
+        "MF-F02"
+      ]
+    },
+    {
+      "id": "F06",
+      "text": "AudioEditor消融中，Null优化和EOT处理对CLAP与FAD的变化方向不同。",
+      "conditions": "AudioCaps事件，非音乐；无差异CI；没有等成本消融。",
+      "tag": "DE",
+      "strength": "中：单表格代理量",
+      "evidence_ids": [
+        "E11"
+      ],
+      "origin_candidates": [
+        "AED-F01"
+      ]
+    },
+    {
+      "id": "F07",
+      "text": "反演、CFG分支、PC迭代及正则参照会增加不同类型计算；“编辑步数”不是统一预算。",
+      "conditions": "DAE/ZETA/MF各论文计数与硬件环境；不跨论文比较绝对速度。",
+      "tag": "DE",
+      "strength": "高于成本结构；性能收益为未知",
+      "evidence_ids": [
+        "E07",
+        "E12",
+        "E13",
+        "E14"
+      ],
+      "origin_candidates": [
+        "DAE-F02"
+      ]
+    },
+    {
+      "id": "F08",
+      "text": "六篇证据覆盖不同领域、时长、声道和指标，且DAE与ZETA复用同一音乐基准来源。",
+      "conditions": "MF有音乐/立体声骨干，自动评价下混；AMX/AED主要事件，EdiTTS语音。",
+      "tag": "DE",
+      "strength": "高于研究范围事实；跨域有效性未知",
+      "evidence_ids": [
+        "E03",
+        "E15",
+        "E16",
+        "E19"
+      ],
+      "origin_candidates": [
+        "ETTS-F01",
+        "ETTS-F02"
+      ]
+    },
+    {
+      "id": "F09",
+      "text": "部分公开实现的默认参数或模型版本，与论文实验定义不一致。",
+      "conditions": "DAE CFG、MF发布版数据处理、AED指数符号；不同问题分别记录。",
+      "tag": "DE",
+      "strength": "高于差异存在；影响未知",
+      "evidence_ids": [
+        "E17"
+      ],
+      "origin_candidates": [
+        "DAE-P02",
+        "AED-P02",
+        "MF-F02"
+      ]
+    },
+    {
+      "id": "F10",
+      "text": "ZETA作者指出LPAPS对小的全局时序偏移与短旋律变化可能给出不符合音乐意义的变化量。",
+      "conditions": "§4.4讨论ZEUS评价；尚无本轮受控标定，不称为已独立验证规律。",
+      "tag": "SC",
+      "strength": "低至中：作者解释，需诊断",
+      "evidence_ids": [
+        "E18"
+      ],
+      "origin_candidates": []
+    }
+  ],
+  "M": [
+    {
+      "id": "M01",
+      "related_P": [
+        "P01"
+      ],
+      "related_F": [
+        "F01"
+      ],
+      "chain": "局部更新→模型的时空交互可能影响其他位置→mask外回拉使当前步相对原轨迹的差值乘(1−δ)→所示例外溢减弱。",
+      "edges": [
+        {
+          "edge": "网络交互造成外溢",
+          "tag": "SC",
+          "evidence_ids": [
+            "E01"
+          ]
+        },
+        {
+          "edge": "回拉减少当前步mask外差值",
+          "tag": "AI",
+          "type": "由公式直接推导，后续采样/解码仍可能传播"
+        },
+        {
+          "edge": "示例结果外溢缓解",
+          "tag": "DE",
+          "evidence_ids": [
+            "E01"
+          ]
+        }
+      ],
+      "conditions": [
+        "相同原轨迹、时间步对齐、mask含义一致",
+        "δ=.025是原设定，不是最优证明"
+      ],
+      "alternatives": [
+        "prompt本身要求全局变化",
+        "VAE/vocoder或边界接缝而非注意力主导",
+        "变化被抑制也可能是目标编辑变弱"
+      ],
+      "status": "部分支持：操作与示例支持，组件归因和跨设置未知",
+      "evidence_ids": [
+        "E01"
+      ]
+    },
+    {
+      "id": "M02",
+      "related_P": [
+        "P02"
+      ],
+      "related_F": [
+        "F01",
+        "F08"
+      ],
+      "chain": "多个乐器的能量/谐波共享时频与latent支持→位置mask不是声源身份→mask外保留不约束mask内非目标乐器→声部选择性仍需单独核验。",
+      "edges": [
+        {
+          "edge": "音频透明重叠与latent空间一致性前提",
+          "tag": "SC",
+          "evidence_ids": [
+            "E02"
+          ]
+        },
+        {
+          "edge": "位置保持不足以推出声部保持",
+          "tag": "AI"
+        },
+        {
+          "edge": "真实音乐重叠程度决定误改量",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "复音且目标与非目标同时发声",
+        "有可靠声部参照才可测归因"
+      ],
+      "alternatives": [
+        "模型可能已学到有效声源解耦",
+        "错误来自参考音频不匹配/文本歧义",
+        "分离器估计伪影可伪装成声部破坏"
+      ],
+      "status": "待检验：合理推断，未被六篇联合声部级数据确认",
+      "evidence_ids": [
+        "E02",
+        "E03",
+        "E01"
+      ]
+    },
+    {
+      "id": "M03",
+      "related_P": [
+        "P02",
+        "P03"
+      ],
+      "related_F": [
+        "F02",
+        "F04",
+        "F06",
+        "F10"
+      ],
+      "chain": "目标音色改变会改变谱/感知特征，而复制输入通常提高源相似→整体距离同时混合允许与不允许的变化→高相似不必然等于成功编辑，低相似不必然等于旋律破坏。",
+      "edges": [
+        {
+          "edge": "对齐/一致性报告排名不同",
+          "tag": "DE",
+          "evidence_ids": [
+            "E04",
+            "E11"
+          ]
+        },
+        {
+          "edge": "允许音色变化与错误结构变化被同一距离混合",
+          "tag": "AI"
+        },
+        {
+          "edge": "具体指标对音乐要素的灵敏度",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "任务先定义允许改变的音色/力度/演奏属性",
+        "不可要求合法音色替换后的全部波形逐点不变",
+        "需控制编解码重建误差"
+      ],
+      "alternatives": [
+        "高一致性确实保留了有用结构",
+        "低距离源于目标编辑没发生",
+        "特征模型/时间对齐偏差主导"
+      ],
+      "status": "部分支持：指标和排名事实支持问题；具体音乐测量机制待标定",
+      "evidence_ids": [
+        "E04",
+        "E06",
+        "E11",
+        "E15",
+        "E18"
+      ]
+    },
+    {
+      "id": "M04",
+      "related_P": [
+        "P01",
+        "P02",
+        "P03"
+      ],
+      "related_F": [
+        "F03",
+        "F04"
+      ],
+      "chain": "调整CFG/Tstart或正则→改变修改强度与轨迹约束→目标服从和源相似发生不同变化→局部性评估必须排除“编辑更弱”这一替代解释。",
+      "edges": [
+        {
+          "edge": "控制量改变指标曲线",
+          "tag": "DE",
+          "evidence_ids": [
+            "E05"
+          ]
+        },
+        {
+          "edge": "更弱编辑可能产生更高保持分",
+          "tag": "AI"
+        },
+        {
+          "edge": "调度单独决定非目标声部稳定性",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "同骨干/输入/seed/提示",
+        "先固定编辑是否成功，再解释保持差异"
+      ],
+      "alternatives": [
+        "调度仅改善数值稳定性",
+        "codec本底或CFG文本能力限制",
+        "source prompt信息变化"
+      ],
+      "status": "部分支持：代理曲线可定位，声部级效应未知",
+      "evidence_ids": [
+        "E05",
+        "E06",
+        "E07"
+      ]
+    },
+    {
+      "id": "M05",
+      "related_P": [
+        "P04"
+      ],
+      "related_F": [
+        "F05",
+        "F06",
+        "F07"
+      ],
+      "chain": "不同优化对象→不同前向/反传/缓存成本与条件信息→相同步数不等于相同预算→不能仅按training-free或步数归因质量收益。",
+      "edges": [
+        {
+          "edge": "路径及计数差异",
+          "tag": "DE",
+          "evidence_ids": [
+            "E08",
+            "E09",
+            "E10",
+            "E12",
+            "E13",
+            "E14"
+          ]
+        },
+        {
+          "edge": "统一预算会改变性能排名",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "wall-time包含编码、反演、优化、解码与必要预处理",
+        "记录CFG有效batch与网络反传范围",
+        "同计算与同条件信息是两个维度"
+      ],
+      "alternatives": [
+        "优化确有额外机制收益",
+        "额外参考音频提供更多目标信息",
+        "显卡吞吐/缓存并行掩盖逻辑操作差异"
+      ],
+      "status": "成本结构已支持；性能优势是否保留待检验",
+      "evidence_ids": [
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14"
+      ]
+    },
+    {
+      "id": "M06",
+      "related_P": [
+        "P03",
+        "P05"
+      ],
+      "related_F": [
+        "F08",
+        "F10"
+      ],
+      "chain": "领域、时长、声道与特征空间改变→评价所能观测的结构不同→事件/语音或mono分数不能独自支持真实多声部/长曲/立体声结论。",
+      "edges": [
+        {
+          "edge": "范围和指标定义不同",
+          "tag": "DE",
+          "evidence_ids": [
+            "E03",
+            "E15",
+            "E16",
+            "E19"
+          ]
+        },
+        {
+          "edge": "迁移后的误差大小",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "先在原测试范围内保留有效结论",
+        "不把尚无验证写成方法无效",
+        "外部曲目与提示共享要单独标记"
+      ],
+      "alternatives": [
+        "短片段结果可在相似域推广",
+        "长曲问题可能是模型窗口限制而非编辑机制",
+        "声像变化可能不是该任务要求保持的属性"
+      ],
+      "status": "外推限制有直接依据；外部有效性未知",
+      "evidence_ids": [
+        "E03",
+        "E15",
+        "E16",
+        "E19"
+      ]
+    },
+    {
+      "id": "M07",
+      "related_P": [
+        "P04",
+        "P06"
+      ],
+      "related_F": [
+        "F09"
+      ],
+      "chain": "默认CFG/权重/时间调度/公式版本不一致→实际运行对象改变→差异可能伪装为方法或优化效果。",
+      "edges": [
+        {
+          "edge": "版本/默认差异",
+          "tag": "DE",
+          "evidence_ids": [
+            "E17"
+          ]
+        },
+        {
+          "edge": "引起具体性能差异",
+          "tag": "UN"
+        }
+      ],
+      "conditions": [
+        "分别记录paper配置和released配置",
+        "不擅自修正文中符号"
+      ],
+      "alternatives": [
+        "差异不影响实质结果",
+        "新版修正了旧问题",
+        "不同任务原就采用不同设置"
+      ],
+      "status": "差异存在已支持，影响需要诊断",
+      "evidence_ids": [
+        "E17"
+      ]
+    }
+  ],
+  "E": [
+    {
+      "id": "E01",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "upstream_evidence_ids": [
+        "ZETA-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "论文给出mask外轨迹软回拉，δ=.025；Fig14展示其缓解某个鼓声编辑外溢的例子。",
+      "locations": [
+        "PMLR PDF p.17 AppendixD，Eq6，Fig14"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ],
+      "verification": "本轮重读原文公式及图注；页码由上游固定PDF定位",
+      "boundary": "仅为所展示编辑；网络结构导致外溢的归因是SC，尚非对注意力/卷积各自贡献的因果分解。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E02",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "upstream_evidence_ids": [
+        "AMX-E01"
+      ],
+      "evidence_tag": "SC",
+      "statement": "作者指出声音在时频表示中重叠，并把latent空间一致性作为方法前提；时频位置不等同于单一声源标签。",
+      "locations": [
+        "PDF pp.4–6 §3–4，Eq8及13–14"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1"
+      ],
+      "verification": "本轮重读相关正文和能量式",
+      "boundary": "这是作者的建模动机/前提，不能当作该模型在真实音乐中成功声源解耦的证明。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E03",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "upstream_evidence_ids": [
+        "AMX-E04",
+        "AMX-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "AudioSet-E为合成事件混合；定量比较未给本法mask；音高/时间操作主要图示。",
+      "locations": [
+        "PDF p.7 §5.1，Fig5；p.11 AppendicesA–B"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1"
+      ],
+      "verification": "本轮重读AppendixB与上游数据范围",
+      "boundary": "不能由该定量实验确认mask条件下多声部音乐的非目标声部保持，也不能据此断言该能力失败。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E04",
+      "source_ids": [
+        "S-MF"
+      ],
+      "upstream_evidence_ids": [
+        "MF-E03"
+      ],
+      "evidence_tag": "DE",
+      "statement": "181样本编辑听测中，MelodyFlow的OVL/REL=2.72/2.72，而AudioLDM2-music为2.48/2.36；CON则2.61对2.72。",
+      "locations": [
+        "PDF p.6 Table1，§3.3–4.1"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2"
+      ],
+      "verification": "本轮核对原表",
+      "boundary": "跨骨干/codec比较，不证明反演方法单独造成权衡；±误差不自行解释为该表明确的CI95，亦不直接推出差异显著。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E05",
+      "source_ids": [
+        "S-ZETA",
+        "S-MF"
+      ],
+      "upstream_evidence_ids": [
+        "ZETA-E02",
+        "MF-E04"
+      ],
+      "evidence_tag": "DE",
+      "statement": "ZETA的Tstart/CFG曲线与MelodyFlow的λKL/Tedit曲线表明报告指标随控制量改变，文本对齐与源相似需要联合看。",
+      "locations": [
+        "ZETA PDF pp.7–8 Figs5,8；AppendixB Figs12–13；MelodyFlow PDF pp.7–9 Figs2–4"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4",
+        "https://arxiv.org/html/2407.03648v2"
+      ],
+      "verification": "本轮重读ZETA相关曲线说明及MelodyFlow算法/实验；精确曲线点值未重新提取",
+      "boundary": "不是节拍/音符不变的直接测量；ZETA与MelodyFlow的LPAPS定义不假定一致。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E06",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "upstream_evidence_ids": [
+        "DAE-E03"
+      ],
+      "evidence_tag": "DE",
+      "statement": "音乐基准中DAE相对DDPM：AudioLDM2 FAD 1.929 vs2.252、SSIM .788 vs.770；Tango2 FAD3.919 vs6.158、SSIM .757 vs.729。",
+      "locations": [
+        "PDF p.6 Table1；p.12 Tables5–6"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1"
+      ],
+      "verification": "本轮重读Table1；均值SD与显著性按上游Table5–6保留",
+      "boundary": "5 seeds；AudioLDM2音乐FAD对DDPM未显著。代理量均值更好不能证明音符/非目标声部严格保持。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E07",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "upstream_evidence_ids": [
+        "DAE-E01",
+        "DAE-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "直接编辑实现采用no_grad，共享源/目标加噪噪声，比较一步反向位移后更新干净编辑状态；无需显式反演。",
+      "locations": [
+        "PDF pp.3–4 Algorithm1；main_run.py L271–310"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1",
+        "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py#L271"
+      ],
+      "verification": "本轮重读固定commit核心函数",
+      "boundary": "它仍有源/目标、条件/无条件分支；免反演不等于单次前向，也没有给出声部级硬不变约束。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E08",
+      "source_ids": [
+        "S-AED"
+      ],
+      "upstream_evidence_ids": [
+        "AED-E04"
+      ],
+      "evidence_tag": "DE",
+      "statement": "AudioEditor以Adam优化null embedding，又以attention loss梯度更新条件embedding，骨干权重不作为优化目标。",
+      "locations": [
+        "null_text_inversion.py L129–161；run_and_display.py L110–132；PDF pp.2–3"
+      ],
+      "urls": [
+        "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/null_text_inversion/null_text_inversion.py#L129",
+        "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/run_and_display.py#L110"
+      ],
+      "verification": "本轮重读两个固定commit代码段",
+      "boundary": "不更新模型不等于不反传网络；实测成本和收益未知。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E09",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "upstream_evidence_ids": [
+        "AMX-E02",
+        "AMX-E06"
+      ],
+      "evidence_tag": "DE",
+      "statement": "AudioMorphix removal算法对潜变量扰动执行SGD；论文设100次、lr1e-4，采样还带能量梯度。",
+      "locations": [
+        "PDF p.5 §3.2；p.11 AppendixD Algorithm1；factory.py L357–413"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1",
+        "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/utils/factory.py#L357"
+      ],
+      "verification": "本轮重新核对论文优化算法，代码细节继承上游静态核对",
+      "boundary": "不同任务优化路径不同；不把removal的100次成本强加到所有任务。HF链接本轮重访失败不等于代码不存在。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E10",
+      "source_ids": [
+        "S-MF"
+      ],
+      "upstream_evidence_ids": [
+        "MF-E01",
+        "MF-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "MelodyFlow Algorithm1对速度预测δ做patch KL梯度修正并迭代反演；不是模型权重微调。",
+      "locations": [
+        "PDF p.4 Algorithm1；renoise.py L9–42；flow.py L383–455"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/utils/renoise.py#L9"
+      ],
+      "verification": "本轮重读论文Algorithm1；detach预测张量求导的实现继承上游",
+      "boundary": "不把其prediction梯度成本等同于AudioMorphix的网络特征梯度或AudioEditor的embedding优化；代码cfg_coef=0不单凭数字推断条件被移除。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E11",
+      "source_ids": [
+        "S-AED"
+      ],
+      "upstream_evidence_ids": [
+        "AED-E03"
+      ],
+      "evidence_tag": "DE",
+      "statement": "去除null优化时FAD从4.95到5.33；去除EOT时CLAP57.6%到56.5%，但FAD变4.91。",
+      "locations": [
+        "PDF p.4 TableV"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2409.12466v2"
+      ],
+      "verification": "本轮核对原表",
+      "boundary": "事件声音而非音乐；无该差异CI；组件消融不等同等总计算预算对照。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E12",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "upstream_evidence_ids": [
+        "DAE-E04",
+        "DAE-E02"
+      ],
+      "evidence_tag": "DE",
+      "statement": "论文RTX3090上DAE RTF .7071/1.5212，DDPM1.9918/2.5984；两骨干分别报告，反演额外步数不同。",
+      "locations": [
+        "PDF p.7 Fig3；pp.10–11 AppendixA；上游LaTeX fig/cost.tex"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1"
+      ],
+      "verification": "本轮重读计算设置；精确图坐标继承上游LaTeX核对",
+      "boundary": "只用于本论文相同环境内解释；不得与ZETA旧环境37秒直接比快慢；不宣称公平性已被否定。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E13",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "upstream_evidence_ids": [
+        "ZETA-E04"
+      ],
+      "evidence_tag": "DE",
+      "statement": "ZETA的论文NFE=(3+S)Tstart，使用source prompt增成本；ZEUS另有K=50子空间迭代。",
+      "locations": [
+        "PDF p.15 AppendixC"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ],
+      "verification": "本轮重读复杂度段落",
+      "boundary": "这是论文的计数约定；实际batch、显存和硬件耗时仍要测，不把ZEUS当成ZETA。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E14",
+      "source_ids": [
+        "S-MF"
+      ],
+      "upstream_evidence_ids": [
+        "MF-E02"
+      ],
+      "evidence_tag": "DE",
+      "statement": "论文将反演25步×4次与生成25步记作125，与DDIM128比较；算法还预测正则参考速度并做梯度修正。",
+      "locations": [
+        "PDF p.5 §3.2；p.4 Algorithm1"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2407.03648v2"
+      ],
+      "verification": "本轮重读实验设置及算法",
+      "boundary": "逻辑步数/NFE定义、附加参考batch、CFG与梯度须记账，不据125直接判所有方法等成本。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E15",
+      "source_ids": [
+        "S-MF",
+        "S-ZETA"
+      ],
+      "upstream_evidence_ids": [
+        "MF-E03",
+        "ZETA-E02"
+      ],
+      "evidence_tag": "DE",
+      "statement": "MelodyFlow自动评价下混mono并用VGGish FAD；ZETA使用CLAP特征FAD和中间Swin特征LPAPS。",
+      "locations": [
+        "MelodyFlow PDF p.6 §3.4；ZETA PDF p.7 §4.2"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2402.10009v4"
+      ],
+      "verification": "本轮重读指标定义",
+      "boundary": "同名FAD/LPAPS不保证同尺度；mono结果不能单独证明立体声声像保持。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E16",
+      "source_ids": [
+        "S-ETTS"
+      ],
+      "upstream_evidence_ids": [
+        "ETTS-E01",
+        "ETTS-E04",
+        "ETTS-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "EdiTTS的软mask双轨先验编辑有语音实验；公开核心no_grad；作者明确不能指定准确移调量，依赖TTS对齐。",
+      "locations": [
+        "PDF pp.2–4 Algorithms1–2，§5；diffusion.py L286–336"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2110.02584v3",
+        "https://github.com/neosapience/editts/blob/77255e5304f052abe54ac457a6da00a6e9319f87/model/diffusion.py#L286"
+      ],
+      "verification": "本轮重读限制与固定commit双轨函数",
+      "boundary": "只能作跨域机制线索，不纳入已验证音乐编辑性能证据，也不等于任意真实录音输入。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E17",
+      "source_ids": [
+        "S-DAE",
+        "S-MF",
+        "S-AED"
+      ],
+      "upstream_evidence_ids": [
+        "DAE-E05",
+        "MF-E06",
+        "AED-E05"
+      ],
+      "evidence_tag": "DE",
+      "statement": "公开默认与论文配置/版本有差异：DAE cfg_tar=[8]；MF公开模型卡指数据处理不同；AED打印指数与代码符号不同。",
+      "locations": [
+        "DAE main_run.py L448–475、PDF pp.10–11；MF模型卡；AED PDF p.3 Eq5与wo_utils.py L23–35"
+      ],
+      "urls": [
+        "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py#L448"
+      ],
+      "verification": "本轮重读DAE默认；MF模型卡及AED公式代码差异继承上游，未重新运行验证影响",
+      "boundary": "已确认差异存在；差异造成多大性能变化为UN，不自行替作者修正定义。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E18",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "upstream_evidence_ids": [],
+      "evidence_tag": "SC",
+      "statement": "作者指出LPAPS可能对小的全局节奏偏移反应很大，而短旋律改变的LPAPS较小却影响情绪；该段讨论ZEUS评价局限。",
+      "locations": [
+        "PMLR PDF p.9 §4.4"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ],
+      "verification": "本轮补读原文，作为新增证据条目；未见对应受控量化误差表",
+      "boundary": "这是作者的指标解释，不是本轮测出的相关性或普遍定律；不能挪用为ZETA所有编辑的定量结论。",
+      "empirical_reproduction": "not_run"
+    },
+    {
+      "id": "E19",
+      "source_ids": [
+        "S-DAE",
+        "S-MF",
+        "S-ZETA",
+        "S-AED"
+      ],
+      "upstream_evidence_ids": [
+        "DAE-E02",
+        "MF-E02",
+        "ZETA-E02",
+        "AED-E02"
+      ],
+      "evidence_tag": "DE",
+      "statement": "DAE音乐用前10秒且复用MedleyMDPrompts；ZETA来自MusicDelta34首；MF主要in-domain且有30秒骨干；AED为AudioCaps手选事件。",
+      "locations": [
+        "DAE PDF p.5 §4.1；ZETA pp.6–7 §4.1；MF pp.5–6 §3；AED p.3 §III-A"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1",
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2402.10009v4",
+        "https://arxiv.org/html/2409.12466v2"
+      ],
+      "verification": "本轮重新核对范围，原样保留上游样本来源",
+      "boundary": "DAE和ZETA不是独立歌曲集复验；多个prompt不等同独立歌曲样本；这些范围限制不证明长曲一定失败。",
+      "empirical_reproduction": "not_run"
+    }
+  ],
+  "P_by_F_matrix": {
+    "row_type": "F",
+    "column_type": "P",
+    "row_ids": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08",
+      "F09",
+      "F10"
+    ],
+    "column_ids": [
+      "P01",
+      "P02",
+      "P03",
+      "P04",
+      "P05",
+      "P06"
+    ],
+    "cells": [
+      {
+        "id": "F01xP01",
+        "F_id": "F01",
+        "P_id": "P01",
+        "status": "supported",
+        "reason": "软回拉与mask外变化在论文实例中形成直接联系；只支持该例。",
+        "mechanism_ids": [
+          "M01"
+        ],
+        "evidence_ids": [
+          "E01"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M01",
+            "conditions": [
+              "相同原轨迹、时间步对齐、mask含义一致",
+              "δ=.025是原设定，不是最优证明"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F01xP02",
+        "F_id": "F01",
+        "P_id": "P02",
+        "status": "plausible",
+        "reason": "时间局部性不推出同时间声部隔离；重叠身份仍未观测。",
+        "mechanism_ids": [
+          "M01",
+          "M02"
+        ],
+        "evidence_ids": [
+          "E01",
+          "E02",
+          "E03"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M01",
+            "conditions": [
+              "相同原轨迹、时间步对齐、mask含义一致",
+              "δ=.025是原设定，不是最优证明"
+            ]
+          },
+          {
+            "mechanism_id": "M02",
+            "conditions": [
+              "复音且目标与非目标同时发声",
+              "有可靠声部参照才可测归因"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F01xP03",
+        "F_id": "F01",
+        "P_id": "P03",
+        "status": "diagnostic-needed",
+        "reason": "回拉后保持分提高可能只是编辑变弱，需先看目标是否改成。",
+        "mechanism_ids": [
+          "M03",
+          "M04"
+        ],
+        "evidence_ids": [
+          "E01",
+          "E05"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          },
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F01xP04",
+        "F_id": "F01",
+        "P_id": "P04",
+        "status": "diagnostic-needed",
+        "reason": "回拉操作已有定义，但质量收益相对完整开销未知。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E01",
+          "E13"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F01xP05",
+        "F_id": "F01",
+        "P_id": "P05",
+        "status": "diagnostic-needed",
+        "reason": "局部示例不能给出长曲/立体声外溢率。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E01",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F01xP06",
+        "F_id": "F01",
+        "P_id": "P06",
+        "status": "unsupported",
+        "reason": "该示例不能解释公开参数或checkpoint差异。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E01",
+          "E17"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F02xP01",
+        "F_id": "F02",
+        "P_id": "P01",
+        "status": "diagnostic-needed",
+        "reason": "全曲CON差异不能定位为编辑时间外的外溢。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E04"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F02xP02",
+        "F_id": "F02",
+        "P_id": "P02",
+        "status": "plausible",
+        "reason": "质量/文本相关与一致性分离，提示保持需单独检查，但非声部证据。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E04"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F02xP03",
+        "F_id": "F02",
+        "P_id": "P03",
+        "status": "plausible",
+        "reason": "指标排名不一致支持联合评价，仍缺对允许/禁止改变的受控标定。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E04",
+          "E18"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F02xP04",
+        "F_id": "F02",
+        "P_id": "P04",
+        "status": "diagnostic-needed",
+        "reason": "跨骨干听测不能分离优化收益与基础模型能力。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E04",
+          "E10"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F02xP05",
+        "F_id": "F02",
+        "P_id": "P05",
+        "status": "plausible",
+        "reason": "音乐域有听测；其in-domain和提示范围限制迁移。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E04",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F02xP06",
+        "F_id": "F02",
+        "P_id": "P06",
+        "status": "unsupported",
+        "reason": "跨模型听测排名本身不核实公开版与论文版是否一致。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E04",
+          "E17"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F03xP01",
+        "F_id": "F03",
+        "P_id": "P01",
+        "status": "plausible",
+        "reason": "更强/更早编辑可能扩大变化，但现有曲线没有空间外溢定位。",
+        "mechanism_ids": [
+          "M04"
+        ],
+        "evidence_ids": [
+          "E05",
+          "E01"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F03xP02",
+        "F_id": "F03",
+        "P_id": "P02",
+        "status": "plausible",
+        "reason": "编辑强度影响整体保留，声部及音符层面仍需拆分。",
+        "mechanism_ids": [
+          "M04",
+          "M02"
+        ],
+        "evidence_ids": [
+          "E05",
+          "E02"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          },
+          {
+            "mechanism_id": "M02",
+            "conditions": [
+              "复音且目标与非目标同时发声",
+              "有可靠声部参照才可测归因"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F03xP03",
+        "F_id": "F03",
+        "P_id": "P03",
+        "status": "supported",
+        "reason": "同方法控制量改变两类报告分数，单指标不足描述该折中。",
+        "mechanism_ids": [
+          "M04"
+        ],
+        "evidence_ids": [
+          "E05"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F03xP04",
+        "F_id": "F03",
+        "P_id": "P04",
+        "status": "plausible",
+        "reason": "不同Tstart/正则还改变计算；评分比较须记录预算。",
+        "mechanism_ids": [
+          "M04",
+          "M05"
+        ],
+        "evidence_ids": [
+          "E05",
+          "E13",
+          "E14"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          },
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F03xP05",
+        "F_id": "F03",
+        "P_id": "P05",
+        "status": "diagnostic-needed",
+        "reason": "既有曲线能否跨长度/声道保形未知。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E05",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F03xP06",
+        "F_id": "F03",
+        "P_id": "P06",
+        "status": "plausible",
+        "reason": "调参定义不同可能移到不同曲线位置；实际影响尚未量化。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E05",
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP01",
+        "F_id": "F04",
+        "P_id": "P01",
+        "status": "diagnostic-needed",
+        "reason": "更高SSIM没有逐位置标记，不能推出mask外更稳。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E06"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP02",
+        "F_id": "F04",
+        "P_id": "P02",
+        "status": "diagnostic-needed",
+        "reason": "平均谱与分布质量改善不说明非目标乐器或目标音符不变。",
+        "mechanism_ids": [
+          "M02",
+          "M03"
+        ],
+        "evidence_ids": [
+          "E06",
+          "E02"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M02",
+            "conditions": [
+              "复音且目标与非目标同时发声",
+              "有可靠声部参照才可测归因"
+            ]
+          },
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP03",
+        "F_id": "F04",
+        "P_id": "P03",
+        "status": "plausible",
+        "reason": "对齐与保留联合指标较好，但仍需排除少编辑偏好。",
+        "mechanism_ids": [
+          "M03",
+          "M04"
+        ],
+        "evidence_ids": [
+          "E06",
+          "E07"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          },
+          {
+            "mechanism_id": "M04",
+            "conditions": [
+              "同骨干/输入/seed/提示",
+              "先固定编辑是否成功，再解释保持差异"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP04",
+        "F_id": "F04",
+        "P_id": "P04",
+        "status": "plausible",
+        "reason": "免反演减少一类阶段，但仍有多分支，须同环境计费。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E07",
+          "E12"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP05",
+        "F_id": "F04",
+        "P_id": "P05",
+        "status": "diagnostic-needed",
+        "reason": "10秒与既有音乐集限制长程/外部分布推断。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E19",
+          "E06"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F04xP06",
+        "F_id": "F04",
+        "P_id": "P06",
+        "status": "diagnostic-needed",
+        "reason": "只有确认动态CFG等配置对应，才可归因主表结果。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E06",
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F05xP01",
+        "F_id": "F05",
+        "P_id": "P01",
+        "status": "unsupported",
+        "reason": "知道优化对象不提供发生时间外溢的实证。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E08",
+          "E09",
+          "E10"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F05xP02",
+        "F_id": "F05",
+        "P_id": "P02",
+        "status": "diagnostic-needed",
+        "reason": "全局embedding/特征优化可能耦合声部，方向和程度无直接证据。",
+        "mechanism_ids": [
+          "M02"
+        ],
+        "evidence_ids": [
+          "E08",
+          "E09",
+          "E10",
+          "E02"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M02",
+            "conditions": [
+              "复音且目标与非目标同时发声",
+              "有可靠声部参照才可测归因"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F05xP03",
+        "F_id": "F05",
+        "P_id": "P03",
+        "status": "plausible",
+        "reason": "优化损失与最终任务目标不同，不能默认优化越多编辑越准。",
+        "mechanism_ids": [
+          "M03",
+          "M05"
+        ],
+        "evidence_ids": [
+          "E08",
+          "E10",
+          "E11"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          },
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F05xP04",
+        "F_id": "F05",
+        "P_id": "P04",
+        "status": "supported",
+        "reason": "优化对象和迭代可定位，直接支持分开计算各阶段成本。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E08",
+          "E09",
+          "E10"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F05xP05",
+        "F_id": "F05",
+        "P_id": "P05",
+        "status": "unsupported",
+        "reason": "优化对象分类本身不能证明领域或长曲泛化。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E08",
+          "E09",
+          "E10"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F05xP06",
+        "F_id": "F05",
+        "P_id": "P06",
+        "status": "plausible",
+        "reason": "只按论文名称分类会混淆实际优化开关和版本。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E08",
+          "E10",
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F06xP01",
+        "F_id": "F06",
+        "P_id": "P01",
+        "status": "unsupported",
+        "reason": "AudioCaps聚合消融没有时间外溢定位。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E11"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F06xP02",
+        "F_id": "F06",
+        "P_id": "P02",
+        "status": "diagnostic-needed",
+        "reason": "事件消融不能验证复音旋律与非目标声部保持。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E11",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F06xP03",
+        "F_id": "F06",
+        "P_id": "P03",
+        "status": "supported",
+        "reason": "CLAP与FAD在组件消融中方向不同，直接暴露评价目标不等价。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E11"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F06xP04",
+        "F_id": "F06",
+        "P_id": "P04",
+        "status": "plausible",
+        "reason": "去除优化也改变成本，现有消融不隔离等预算增益。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E08",
+          "E11"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F06xP05",
+        "F_id": "F06",
+        "P_id": "P05",
+        "status": "diagnostic-needed",
+        "reason": "事件结果能否迁移音乐仍未知，不能作为已经迁移的证据。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E11",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F06xP06",
+        "F_id": "F06",
+        "P_id": "P06",
+        "status": "plausible",
+        "reason": "精确复现消融依赖Null/EOT定义及符号选择。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E11",
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F07xP01",
+        "F_id": "F07",
+        "P_id": "P01",
+        "status": "unsupported",
+        "reason": "总操作数不能解释外溢位置或直接证明外溢减少。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E12",
+          "E13",
+          "E14"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F07xP02",
+        "F_id": "F07",
+        "P_id": "P02",
+        "status": "unsupported",
+        "reason": "计算结构不是声部/音符保持证据。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E07",
+          "E13",
+          "E14"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F07xP03",
+        "F_id": "F07",
+        "P_id": "P03",
+        "status": "unsupported",
+        "reason": "没有共同输出时不能由NFE判断指标是否误判。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E13",
+          "E14"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F07xP04",
+        "F_id": "F07",
+        "P_id": "P04",
+        "status": "supported",
+        "reason": "明确的分支、反演、迭代差异说明相同步数不是等成本。",
+        "mechanism_ids": [
+          "M05"
+        ],
+        "evidence_ids": [
+          "E07",
+          "E12",
+          "E13",
+          "E14"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F07xP05",
+        "F_id": "F07",
+        "P_id": "P05",
+        "status": "diagnostic-needed",
+        "reason": "长度/声道变化可能改变耗时和显存，缺统一实测。",
+        "mechanism_ids": [
+          "M05",
+          "M06"
+        ],
+        "evidence_ids": [
+          "E13",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          },
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F07xP06",
+        "F_id": "F07",
+        "P_id": "P06",
+        "status": "plausible",
+        "reason": "未固定算法路径/计数定义，会把计算变体当同配置。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E13",
+          "E14",
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP01",
+        "F_id": "F08",
+        "P_id": "P01",
+        "status": "diagnostic-needed",
+        "reason": "事件/语音/短片段局部性证据不能代替目标音乐外溢复验。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E03",
+          "E16",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP02",
+        "F_id": "F08",
+        "P_id": "P02",
+        "status": "diagnostic-needed",
+        "reason": "缺联合分轨音乐指标，不能把领域覆盖当作声部保持。",
+        "mechanism_ids": [
+          "M02",
+          "M06"
+        ],
+        "evidence_ids": [
+          "E02",
+          "E03",
+          "E16",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M02",
+            "conditions": [
+              "复音且目标与非目标同时发声",
+              "有可靠声部参照才可测归因"
+            ]
+          },
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP03",
+        "F_id": "F08",
+        "P_id": "P03",
+        "status": "supported",
+        "reason": "特征模型、目标分布和声道处理不同，跨论文原始分数不可直接排序。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E15",
+          "E19"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP04",
+        "F_id": "F08",
+        "P_id": "P04",
+        "status": "diagnostic-needed",
+        "reason": "骨干、分辨率、输入信息不同，需先建立可比子集。",
+        "mechanism_ids": [
+          "M05",
+          "M06"
+        ],
+        "evidence_ids": [
+          "E03",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          },
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP05",
+        "F_id": "F08",
+        "P_id": "P05",
+        "status": "supported",
+        "reason": "已报告范围直接限制能外推的时长/领域/声道结论，未证明外推必失败。",
+        "mechanism_ids": [
+          "M06"
+        ],
+        "evidence_ids": [
+          "E03",
+          "E15",
+          "E16",
+          "E19"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F08xP06",
+        "F_id": "F08",
+        "P_id": "P06",
+        "status": "plausible",
+        "reason": "数据/模型范围属于配置身份，忽略会制造虚假的复验关系。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E17",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F09xP01",
+        "F_id": "F09",
+        "P_id": "P01",
+        "status": "unsupported",
+        "reason": "默认或版本差异存在不说明外溢一定增加或减少。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E17"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F09xP02",
+        "F_id": "F09",
+        "P_id": "P02",
+        "status": "diagnostic-needed",
+        "reason": "结构保持结果必须先确认配置身份，影响量仍未知。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E17",
+          "E06"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F09xP03",
+        "F_id": "F09",
+        "P_id": "P03",
+        "status": "diagnostic-needed",
+        "reason": "尚未看到同输出同配置的重算，不能由版本差异推断指标偏差大小。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F09xP04",
+        "F_id": "F09",
+        "P_id": "P04",
+        "status": "plausible",
+        "reason": "默认优化/调度差异可能改变计算和性能，需先固定。",
+        "mechanism_ids": [
+          "M05",
+          "M07"
+        ],
+        "evidence_ids": [
+          "E17"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M05",
+            "conditions": [
+              "wall-time包含编码、反演、优化、解码与必要预处理",
+              "记录CFG有效batch与网络反传范围",
+              "同计算与同条件信息是两个维度"
+            ]
+          },
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F09xP05",
+        "F_id": "F09",
+        "P_id": "P05",
+        "status": "unsupported",
+        "reason": "版本差异本身不能证明长曲或立体声泛化。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E17"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F09xP06",
+        "F_id": "F09",
+        "P_id": "P06",
+        "status": "supported",
+        "reason": "多个可定位的不一致直接支持配置身份必须分开。",
+        "mechanism_ids": [
+          "M07"
+        ],
+        "evidence_ids": [
+          "E17"
+        ],
+        "evidence_scope": "支持本单元明确限定的关系/定义，不代表完整方法在目标音乐任务有效",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M07",
+            "conditions": [
+              "分别记录paper配置和released配置",
+              "不擅自修正文中符号"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F10xP01",
+        "F_id": "F10",
+        "P_id": "P01",
+        "status": "diagnostic-needed",
+        "reason": "时间偏移可能被相似度放大，但作者讨论没有定位为外溢。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E18"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F10xP02",
+        "F_id": "F10",
+        "P_id": "P02",
+        "status": "plausible",
+        "reason": "音乐含义与距离可能不对齐，仍需目标音色/音符受控例子。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E18"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F10xP03",
+        "F_id": "F10",
+        "P_id": "P03",
+        "status": "diagnostic-needed",
+        "reason": "作者解释提供诊断入口，尚无本轮定量标定可升级为已验证规律。",
+        "mechanism_ids": [
+          "M03"
+        ],
+        "evidence_ids": [
+          "E18",
+          "E15"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F10xP04",
+        "F_id": "F10",
+        "P_id": "P04",
+        "status": "unsupported",
+        "reason": "作者的LPAPS讨论不比较计算预算。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E18"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      },
+      {
+        "id": "F10xP05",
+        "F_id": "F10",
+        "P_id": "P05",
+        "status": "plausible",
+        "reason": "全局时序变化与短旋律变化可能在不同长度下被聚合掩盖。",
+        "mechanism_ids": [
+          "M03",
+          "M06"
+        ],
+        "evidence_ids": [
+          "E18",
+          "E19"
+        ],
+        "evidence_scope": "跨设置或机制链未闭合，保留推断/待诊断状态",
+        "hidden_conditions": [
+          {
+            "mechanism_id": "M03",
+            "conditions": [
+              "任务先定义允许改变的音色/力度/演奏属性",
+              "不可要求合法音色替换后的全部波形逐点不变",
+              "需控制编解码重建误差"
+            ]
+          },
+          {
+            "mechanism_id": "M06",
+            "conditions": [
+              "先在原测试范围内保留有效结论",
+              "不把尚无验证写成方法无效",
+              "外部曲目与提示共享要单独标记"
+            ]
+          }
+        ],
+        "new_conflict": "解释前需排除编辑变弱、代理量偏差、版本/资源差异或领域外推；见关联M与C审计"
+      },
+      {
+        "id": "F10xP06",
+        "F_id": "F10",
+        "P_id": "P06",
+        "status": "unsupported",
+        "reason": "LPAPS音乐语义敏感性不核验代码/权重版本。",
+        "mechanism_ids": [],
+        "evidence_ids": [
+          "E18"
+        ],
+        "evidence_scope": "当前所列材料不能建立该联系，不是否定该研究方向",
+        "hidden_conditions": [],
+        "new_conflict": "不强行拼接，保留未形成联系的原因"
+      }
+    ]
+  },
+  "C": [
+    {
+      "id": "C01",
+      "rank": 1,
+      "title": "时间/时频局部性与复音声部选择性是否脱钩？",
+      "P_ids": [
+        "P01",
+        "P02"
+      ],
+      "F_ids": [
+        "F01",
+        "F08"
+      ],
+      "M_ids": [
+        "M01",
+        "M02",
+        "M06"
+      ],
+      "E_ids": [
+        "E01",
+        "E02",
+        "E03",
+        "E16",
+        "E19"
+      ],
+      "matrix_cells": [
+        "F01xP01",
+        "F01xP02",
+        "F08xP02"
+      ],
+      "status": "plausible",
+      "connection": "已知局部轨迹回拉能缓解某例mask外变化；同时，音频时频位置可能混合多个声源。因此“编辑区间外稳定”和“区间内非目标乐器稳定”需要作为不同命题核验，不能用前者代替后者。",
+      "why_nontrivial": "连接的对象从位置转向声部身份；不是把mask或KV缓存搬到另一模型。若二者脱钩，会直接改变局部音乐编辑的保留要求和证据解释。",
+      "mechanism_summary": "M01的时空传播/回拉与M02的位置—声源身份缺口；前者有公式/示例，后者在目标复音任务仍是AI/UN。",
+      "scores": {
+        "mechanism_completeness": 1,
+        "evidence_quality": 2,
+        "cross_setting_potential": 1,
+        "nontriviality": 2,
+        "novelty_status": 1,
+        "verifiability": 2,
+        "total": 9
+      },
+      "score_interpretation": "证据2指可定位的源内算法/示例，不表示目标音乐机制已证实；跨设置1和机制1保留缺口。新颖性1只表示需比较相近工作，绝非尚无人做。",
+      "alternatives": [
+        "回拉后看似更稳可能是目标乐器根本没被替换。",
+        "声部误改可能来自文本/参考不匹配或编解码，而非时频重叠本身。",
+        "源分离器的伪影可能制造“非目标声部变化”。",
+        "某些任务本就需要全局统一音色，所谓外溢未必是不允许变化。"
+      ],
+      "lowest_cost_check": {
+        "kind": "已有输出的可诊断性核查，不设计新生成方法",
+        "action": "优先检查一段已有授权、带独立分轨的短混音及已有基线编辑输出，是否能分别标记编辑区间外变化、区间内非目标声部变化，以及目标乐器旋律/节奏变化；同时人工确认目标音色确已改变。",
+        "controls": "把原音复制与编解码重建单独列出，避免把不编辑和重建底噪当成编辑效果；用真分轨作参照，只有估计分轨时注明分离误差。",
+        "interpretation": "若目标已成功改变但两类保留结果不一致，则有继续研究的诊断信号；若只有整体分数或没有可分离参照，只能记UN。单例不估计发生率。",
+        "resource_dependency": "需要合法可用分轨和已有输出；若没有，先记录缺口，不假造零成本验证。无需为第一轮材料审计训练模型。",
+        "not_executed": true
+      },
+      "four_audits": {
+        "within_source": "ZETA公式和Fig14可定位；AMX定量未用mask，不能把其主表当作此连接的确认性验证。",
+        "cross_setting": "ZEUS鼓声PC例→文本乐器替换、多声部音乐仍未复验；EdiTTS只作语音类比。",
+        "evidence_path": "F01→M01操作有直接依据；M02→P02未有声部级数据，是本连接主要断点。",
+        "independence": "ZETA与DAE复用MedleyMDPrompts，不能算独立歌曲集复制；AMX与EdiTTS提供边界/机制线索而非音乐重复证据。"
+      },
+      "unknowns": [
+        "复音重叠程度与声部误改之间的关系",
+        "软回拉对编辑成功的影响",
+        "真实分轨与估计分轨结论差异",
+        "是否已有同类联合局部性/声部保持研究"
+      ],
+      "recommended_innovation_pattern": "问题驱动或现象驱动；先确认现象，不先指定模块",
+      "must_not_claim": [
+        "mask天然等于声源分离",
+        "六篇已证明所有方法都破坏非目标声部",
+        "soft rollback或KV注入本身是新方法",
+        "EdiTTS已经验证音乐迁移"
+      ],
+      "handoff_readiness": "可进入单个连接的进一步核验；方法设计前需C02的指标有效性检查及扩展相近工作检索。"
+    },
+    {
+      "id": "C02",
+      "rank": 2,
+      "title": "源相似度能否识别“音色改对且结构保住”，而非少编辑？",
+      "P_ids": [
+        "P02",
+        "P03"
+      ],
+      "F_ids": [
+        "F02",
+        "F03",
+        "F04",
+        "F06",
+        "F10"
+      ],
+      "M_ids": [
+        "M03",
+        "M04",
+        "M06"
+      ],
+      "E_ids": [
+        "E04",
+        "E05",
+        "E06",
+        "E11",
+        "E15",
+        "E18"
+      ],
+      "matrix_cells": [
+        "F02xP03",
+        "F03xP03",
+        "F04xP02",
+        "F06xP03",
+        "F10xP03"
+      ],
+      "status": "diagnostic-needed",
+      "connection": "跨指标排名与作者对音乐感知距离的局限讨论提示：同一个整体相似度可能混合合法音色变化、非法时序/音符变化以及目标根本未改的情况。",
+      "why_nontrivial": "将“保持得好”改写为任务条件下应保持哪些属性，而非追求与源尽量相同；这会改变结果选择，但目前还不是新评价方法。",
+      "mechanism_summary": "M03的允许/禁止变化混合与M04的编辑强度混杂；已有分数权衡，不足以证明具体指标失效。",
+      "scores": {
+        "mechanism_completeness": 1,
+        "evidence_quality": 2,
+        "cross_setting_potential": 1,
+        "nontriviality": 2,
+        "novelty_status": 0,
+        "verifiability": 2,
+        "total": 8
+      },
+      "score_interpretation": "新颖性0：原文已讨论对齐/保持权衡和LPAPS局限；本连接优先级来自诊断价值，不能包装成新颖结论。",
+      "alternatives": [
+        "指标差异正确反映了真实质量差异。",
+        "低源相似度来自合法音色改变而非旋律损坏。",
+        "小时间错位、响度归一化或codec重建支配分数。",
+        "CLAP高也可能只增加目标乐器纹理而未真正替换原乐器。"
+      ],
+      "lowest_cost_check": {
+        "kind": "指标敏感性检查，不训练新指标",
+        "action": "从同一段合法短音乐材料出发，整理原音复制、单纯编解码重建、已知允许的音色变化、已知不允许的时序/音符或非目标声部变化等少量可解释对照；先核查手头指标能否区分这些情况。",
+        "controls": "每个对照只说明一个改变，统一长度、响度和对齐；目标修改是否发生由单独证据/人工标注确认，不与源距离混成一个分数。",
+        "interpretation": "若无编辑输入获得最优保持分，只说明该指标需要成功条件，不等于指标完全无用；若已知音乐错误未被发现，记录失败类型和测量范围。少量对照只能诊断，不能标定通用阈值。",
+        "resource_dependency": "可优先使用已有受控样本，不需要新增模型训练；若没有可靠的“只改音色”对照，就将该项标UN，不把近似DSP变换当作真值。",
+        "not_executed": true
+      },
+      "four_audits": {
+        "within_source": "MF Table1与AED TableV可直接核对排名分歧；ZETA §4.4关于LPAPS的例子是SC，不冒充新测量。",
+        "cross_setting": "事件消融、音乐听测和不同LPAPS实现不在同一量纲；拟议对照尚未跑。",
+        "evidence_path": "F02/F06→评价目标不一致有DE；M03→某特定音乐错误被误判需要标定，当前为AI/UN。",
+        "independence": "MF与ZETA方法/指标不同，可提供互补问题线索，但不对同一错误做了独立重复测量。"
+      },
+      "unknowns": [
+        "目标乐器存在/替换完成度如何可靠标注",
+        "各指标对合法音色变化和非法结构变化的响应",
+        "多声部F0/节拍估计偏差",
+        "目标任务的主观判断与自动指标一致性"
+      ],
+      "recommended_innovation_pattern": "假设挑战或任务/评价设置扩展；先诊断有效性",
+      "must_not_claim": [
+        "所有FAD/LPAPS/SSIM都无效",
+        "CON降低等于旋律已破坏",
+        "六篇的同名指标数值可直接排序",
+        "本连接已经形成新评价基准或新颖指标"
+      ],
+      "handoff_readiness": "是C01解释结果前的测量前置检查；当前不设计新指标、不设通用阈值。"
+    },
+    {
+      "id": "C03",
+      "rank": 3,
+      "title": "优化对象与额外条件不同，如何判断不更新权重路线的实际收益？",
+      "P_ids": [
+        "P04",
+        "P06"
+      ],
+      "F_ids": [
+        "F05",
+        "F06",
+        "F07",
+        "F09"
+      ],
+      "M_ids": [
+        "M05",
+        "M07"
+      ],
+      "E_ids": [
+        "E08",
+        "E09",
+        "E10",
+        "E11",
+        "E12",
+        "E13",
+        "E14",
+        "E17"
+      ],
+      "matrix_cells": [
+        "F05xP04",
+        "F06xP04",
+        "F07xP04",
+        "F09xP06"
+      ],
+      "status": "diagnostic-needed",
+      "connection": "training-free方法包含不同梯度对象和不同额外条件；只按编辑步数或冻结权重分类，无法回答优化在可比信息与成本下是否值得。",
+      "why_nontrivial": "把计算与可用条件信息同时作为解释约束；可避免将参考音频/mask或更强骨干的收益归给优化，主要是基线与复现诊断。",
+      "mechanism_summary": "M05的计算/信息混杂与M07的配置身份差异；成本结构明确，统一预算下的性能结论未知。",
+      "scores": {
+        "mechanism_completeness": 1,
+        "evidence_quality": 2,
+        "cross_setting_potential": 1,
+        "nontriviality": 1,
+        "novelty_status": 0,
+        "verifiability": 2,
+        "total": 7
+      },
+      "score_interpretation": "新颖性0：公平计算比较本身是已知要求；当前排序服务于可执行诊断，不是投稿创新排名。",
+      "alternatives": [
+        "优化在相同wall-time下确有更好结构保持。",
+        "优势来自参考音频、mask或source prompt带来的更多条件信息。",
+        "优势来自不同骨干/codec，或batch并行使逻辑NFE与耗时不同。",
+        "公开默认或权重变更造成表面复现差异。"
+      ],
+      "lowest_cost_check": {
+        "kind": "静态计算/条件信息账本",
+        "action": "先为一个实际可用配置逐项列出编码、反演、条件/无条件前向、正则参考前向、梯度所经对象、缓存、解码，以及文本/参考音频/mask信息；核查名义步数是否遗漏工作。",
+        "controls": "同骨干内部消融优先；A类与B类无共同骨干/条件时先分别报告，不强造因果比较。若已有环境，再做单片段完整阶段计时与峰值显存记录。",
+        "interpretation": "静态账本只能判断比较是否可解释，不能证明谁更快或更好；计时单例也不是跨曲基准，最终需质量与成本共同记录。",
+        "resource_dependency": "第一步只读代码和配置即可；具体时间/显存实测依赖现成硬件环境，当前未知。",
+        "not_executed": true
+      },
+      "four_audits": {
+        "within_source": "AED优化器/AMX/MF算法与各论文成本设置可定位；不是凭training-free标题推断。",
+        "cross_setting": "没有六方法统一硬件/输入/条件的实验；RTF只能在各自论文环境内解释。",
+        "evidence_path": "F05/F07→不同成本结构有DE；是否因此改变质量排名为UN。",
+        "independence": "逻辑成本来自不同实现的互补证据，但各论文绝对速度并非重复测试。"
+      },
+      "unknowns": [
+        "统一wall-time/显存预算下的编辑质量前沿",
+        "权重与论文设置一一对应",
+        "参考音频和mask提供信息量的独立贡献",
+        "优化停止规则和失败重试实际成本"
+      ],
+      "recommended_innovation_pattern": "系统审查；先固定基线身份和可比范围",
+      "must_not_claim": [
+        "所有有梯度方法都慢或都不适合training-free",
+        "相同NFE必然相同耗时",
+        "无反演一定优于所有反演方法",
+        "没完成公平对照就断言作者比较无效"
+      ],
+      "handoff_readiness": "作为C01/C02后续基线准备条件；不能只靠此账本声称方法创新。"
+    }
+  ],
+  "evidence_status": "partial",
+  "evidence_locations": [
+    {
+      "id": "E01",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "locations": [
+        "PMLR PDF p.17 AppendixD，Eq6，Fig14"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ]
+    },
+    {
+      "id": "E02",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "locations": [
+        "PDF pp.4–6 §3–4，Eq8及13–14"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1"
+      ]
+    },
+    {
+      "id": "E03",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "locations": [
+        "PDF p.7 §5.1，Fig5；p.11 AppendicesA–B"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1"
+      ]
+    },
+    {
+      "id": "E04",
+      "source_ids": [
+        "S-MF"
+      ],
+      "locations": [
+        "PDF p.6 Table1，§3.3–4.1"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2"
+      ]
+    },
+    {
+      "id": "E05",
+      "source_ids": [
+        "S-ZETA",
+        "S-MF"
+      ],
+      "locations": [
+        "ZETA PDF pp.7–8 Figs5,8；AppendixB Figs12–13；MelodyFlow PDF pp.7–9 Figs2–4"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4",
+        "https://arxiv.org/html/2407.03648v2"
+      ]
+    },
+    {
+      "id": "E06",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "locations": [
+        "PDF p.6 Table1；p.12 Tables5–6"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1"
+      ]
+    },
+    {
+      "id": "E07",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "locations": [
+        "PDF pp.3–4 Algorithm1；main_run.py L271–310"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1",
+        "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py#L271"
+      ]
+    },
+    {
+      "id": "E08",
+      "source_ids": [
+        "S-AED"
+      ],
+      "locations": [
+        "null_text_inversion.py L129–161；run_and_display.py L110–132；PDF pp.2–3"
+      ],
+      "urls": [
+        "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/null_text_inversion/null_text_inversion.py#L129",
+        "https://github.com/NKU-HLT/AudioEditor/blob/762d34d3adc8740aa95426f0496c4b7d0a1fd0da/suppresseot/run_and_display.py#L110"
+      ]
+    },
+    {
+      "id": "E09",
+      "source_ids": [
+        "S-AMX"
+      ],
+      "locations": [
+        "PDF p.5 §3.2；p.11 AppendixD Algorithm1；factory.py L357–413"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2505.16076v1",
+        "https://huggingface.co/spaces/JinhuaL1ANG/AudioMorphix/blob/08008095c5a3f417b0bcfc397f9b73042faf6eee/src/utils/factory.py#L357"
+      ]
+    },
+    {
+      "id": "E10",
+      "source_ids": [
+        "S-MF"
+      ],
+      "locations": [
+        "PDF p.4 Algorithm1；renoise.py L9–42；flow.py L383–455"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://huggingface.co/spaces/facebook/MelodyFlow/blob/19da0cf4e7a8a33cb2f59cbc2f3c946ee60dc04e/audiocraft/utils/renoise.py#L9"
+      ]
+    },
+    {
+      "id": "E11",
+      "source_ids": [
+        "S-AED"
+      ],
+      "locations": [
+        "PDF p.4 TableV"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2409.12466v2"
+      ]
+    },
+    {
+      "id": "E12",
+      "source_ids": [
+        "S-DAE"
+      ],
+      "locations": [
+        "PDF p.7 Fig3；pp.10–11 AppendixA；上游LaTeX fig/cost.tex"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1"
+      ]
+    },
+    {
+      "id": "E13",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "locations": [
+        "PDF p.15 AppendixC"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ]
+    },
+    {
+      "id": "E14",
+      "source_ids": [
+        "S-MF"
+      ],
+      "locations": [
+        "PDF p.5 §3.2；p.4 Algorithm1"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2407.03648v2"
+      ]
+    },
+    {
+      "id": "E15",
+      "source_ids": [
+        "S-MF",
+        "S-ZETA"
+      ],
+      "locations": [
+        "MelodyFlow PDF p.6 §3.4；ZETA PDF p.7 §4.2"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2402.10009v4"
+      ]
+    },
+    {
+      "id": "E16",
+      "source_ids": [
+        "S-ETTS"
+      ],
+      "locations": [
+        "PDF pp.2–4 Algorithms1–2，§5；diffusion.py L286–336"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2110.02584v3",
+        "https://github.com/neosapience/editts/blob/77255e5304f052abe54ac457a6da00a6e9319f87/model/diffusion.py#L286"
+      ]
+    },
+    {
+      "id": "E17",
+      "source_ids": [
+        "S-DAE",
+        "S-MF",
+        "S-AED"
+      ],
+      "locations": [
+        "DAE main_run.py L448–475、PDF pp.10–11；MF模型卡；AED PDF p.3 Eq5与wo_utils.py L23–35"
+      ],
+      "urls": [
+        "https://github.com/NiuTrans/DirectAudioEdit/blob/0e5a22feef0e6265d9b8bf7c9c070d0d265e7dc1/code/main_run.py#L448"
+      ]
+    },
+    {
+      "id": "E18",
+      "source_ids": [
+        "S-ZETA"
+      ],
+      "locations": [
+        "PMLR PDF p.9 §4.4"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2402.10009v4"
+      ]
+    },
+    {
+      "id": "E19",
+      "source_ids": [
+        "S-DAE",
+        "S-MF",
+        "S-ZETA",
+        "S-AED"
+      ],
+      "locations": [
+        "DAE PDF p.5 §4.1；ZETA pp.6–7 §4.1；MF pp.5–6 §3；AED p.3 §III-A"
+      ],
+      "urls": [
+        "https://arxiv.org/html/2606.07356v1",
+        "https://arxiv.org/html/2407.03648v2",
+        "https://arxiv.org/html/2402.10009v4",
+        "https://arxiv.org/html/2409.12466v2"
+      ]
+    }
+  ],
+  "recommended_C": "C01",
+  "recommended_C_ranking": [
+    "C01",
+    "C02",
+    "C03"
+  ],
+  "first_low_cost_check": {
+    "recommended_connection": "C01",
+    "measurement_prerequisite": "先做C02中已有指标的可解释对照核查，保证区分少编辑与结构保持；这不改变研究优先级。",
+    "action": {
+      "kind": "已有输出的可诊断性核查，不设计新生成方法",
+      "action": "优先检查一段已有授权、带独立分轨的短混音及已有基线编辑输出，是否能分别标记编辑区间外变化、区间内非目标声部变化，以及目标乐器旋律/节奏变化；同时人工确认目标音色确已改变。",
+      "controls": "把原音复制与编解码重建单独列出，避免把不编辑和重建底噪当成编辑效果；用真分轨作参照，只有估计分轨时注明分离误差。",
+      "interpretation": "若目标已成功改变但两类保留结果不一致，则有继续研究的诊断信号；若只有整体分数或没有可分离参照，只能记UN。单例不估计发生率。",
+      "resource_dependency": "需要合法可用分轨和已有输出；若没有，先记录缺口，不假造零成本验证。无需为第一轮材料审计训练模型。",
+      "not_executed": true
+    },
+    "execution_status": "proposed_not_run"
+  },
+  "must_keep_boundaries": [
+    "时间mask外不变≠mask内非目标声部不变≠目标旋律/节奏保持。",
+    "目标音色/乐器改变是允许变化；不把波形全面相同当作成功标准。",
+    "多种trial/prompt/seed不等同独立歌曲样本。",
+    "A/B比较必须固定或明确记录骨干、codec、提示、参考音频/mask和完整计算开销。",
+    "没有声部参照时保持判断需降低证据等级；估计分轨有额外测量误差。",
+    "DAE和ZETA共享音乐基准；EdiTTS只为跨域机制线索。",
+    "单例/图示、代理分数和原文作者解释不可升级成普遍机制。"
+  ],
+  "missing_evidence": [
+    "目标音乐任务联合声部/旋律/节奏/局部性标注与原始输出",
+    "相同骨干与条件信息下A/B方法等预算质量比较",
+    "新颖性扩展检索与相近工作核对",
+    "真实分轨或已知控制变化下的指标灵敏性诊断",
+    "长曲/立体声/域外曲目与失败案例",
+    "论文与公开checkpoint/配置的一致性及实际影响"
+  ],
+  "candidate_disposition": [
+    {
+      "candidate": "直接把EdiTTS软mask搬入音乐",
+      "route": "仅保留M01/M06跨域线索，未列前三新方法",
+      "reason": "依赖TTS先验/对齐，缺音乐迁移证据；简单移植不是非平凡创新。"
+    },
+    {
+      "candidate": "先扩展到完整长曲/立体声",
+      "route": "P05保留，暂缓作为首个连接",
+      "reason": "应先解决可观测性、基线身份与短片段目标保持；当前资源与直接证据不足。"
+    },
+    {
+      "candidate": "仅修正默认参数/公式差异",
+      "route": "P06与C03的必要前置审计",
+      "reason": "有实用复现价值，但不能把常规配置核对单独包装成方法创新。"
+    }
+  ],
+  "next_skill": "discover-innovation",
+  "handoff_instructions": "下游先读取元数据/来源与E，再选单个C；不得把本包的AI/SC或拟议诊断当成实测。选C01后需保留C02的测量前置与新颖性未知，不直接叠加多个模块。"
+}
