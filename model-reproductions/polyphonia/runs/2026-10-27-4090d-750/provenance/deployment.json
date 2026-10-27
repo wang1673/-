@@ -1,0 +1,9 @@
+{
+  "archive_commit": "5c179a266ff461b00c040410c4e0b8caf5675623",
+  "official_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+  "run_id": "musdb_center10_htdemucs_4090d_01",
+  "max_tasks": 750,
+  "prepared_audio": "Regenerated on new GPU because original server is unavailable; user authorized redeployment",
+  "old_generated_audio_reused": false,
+  "old_rng_reused": false
+}

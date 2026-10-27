@@ -1,0 +1,229 @@
+{
+  "_id": "621ffdc136468d709f17adb5",
+  "id": "facebook/bart-base",
+  "private": false,
+  "pipeline_tag": "feature-extraction",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "pytorch",
+    "tf",
+    "jax",
+    "safetensors",
+    "bart",
+    "feature-extraction",
+    "en",
+    "arxiv:1910.13461",
+    "license:apache-2.0",
+    "endpoints_compatible",
+    "deploy:azure",
+    "region:us"
+  ],
+  "downloads": 227220,
+  "likes": 215,
+  "modelId": "facebook/bart-base",
+  "author": "facebook",
+  "sha": "aadd2ab0ae0c8268c7c9693540e9904811f36177",
+  "lastModified": "2022-11-16T23:23:10.000Z",
+  "gated": false,
+  "disabled": false,
+  "mask_token": "<mask>",
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "BartModel"
+    ],
+    "model_type": "bart"
+  },
+  "cardData": {
+    "license": "apache-2.0",
+    "language": "en"
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModel",
+    "pipeline_tag": "feature-extraction",
+    "processor": "AutoTokenizer"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "602b71f15d40ed68c5f96330e3f3175a76a32126",
+      "size": 445
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "be4dfed9842f07141364914615f4a8238973fd4d",
+      "size": 2593
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "7c84a2e277097ae01ff7ecc03d977a930b713058",
+      "size": 1716
+    },
+    {
+      "rfilename": "flax_model.msgpack",
+      "blobId": "36271485314fd8da70f541d25aa53639ef0604a2",
+      "size": 557690804,
+      "lfs": {
+        "sha256": "53dd33667e5835469e2f7e32b51baf2356464ece3b80e3453a4febb83aa79752",
+        "size": 557690804,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "merges.txt",
+      "blobId": "226b0752cac7789c48f0cb3ec53eda48b7be36cc",
+      "size": 456318
+    },
+    {
+      "rfilename": "model.safetensors",
+      "blobId": "0e465993c0f379aeb7ff5f1f9a604a3178b30438",
+      "size": 557709915,
+      "lfs": {
+        "sha256": "1bd3ac8e5b3ac71c77cf18fbcd8b113e0bfceced94c5cfbbb9a2b4bb4781190b",
+        "size": 557709915,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "pytorch_model.bin",
+      "blobId": "be204c80111127a43e8e880ea1d9cef82215646c",
+      "size": 557771387,
+      "lfs": {
+        "sha256": "6e4fdb5e04114696ec4f7cc0cb5fc2a22a826f1c9eea234ca550b5390341a2fd",
+        "size": 557771387,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tf_model.h5",
+      "blobId": "c3beccd1d02fafe24e9a9fce475824f1ea82b3bc",
+      "size": 557950280,
+      "lfs": {
+        "sha256": "7ed6459d5365fb22f77ab71e7b27b1ff13fde4752d5600b449a1c1ad782bd286",
+        "size": 557950280,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "ad0bcbeb288f0d1373d88e0762e66357f55b8311",
+      "size": 1355863
+    },
+    {
+      "rfilename": "vocab.json",
+      "blobId": "5606f48548d99a9829d10a96cd364b816b02cd21",
+      "size": 898823
+    }
+  ],
+  "spaces": [
+    "kony1337/audioldm-text-to-audio-generation",
+    "dawood/audioldm-text-to-audio-generation",
+    "gunship999/SexyImages",
+    "hilamanor/audioEditing",
+    "Audio-AGI/AudioSep",
+    "jadechoghari/OpenMusic",
+    "multimodalart/mariogpt",
+    "seungheondoh/LP-Music-Caps-demo",
+    "declare-lab/mustango",
+    "llamameta/flux-pro-uncensored",
+    "Uthar/SexyReality",
+    "Nick088/Audio-SR",
+    "llamameta/fluxproV2",
+    "Yntec/ToyWorldXL",
+    "nvidia/audio-flamingo-2",
+    "amphion/PicoAudio",
+    "fffiloni/vta-ldm",
+    "AIGC-Audio/AudioLCM",
+    "llamameta/fast-sd3.5-large",
+    "Qilex/EnglishToMiddleEnglish",
+    "AIGC-Audio/Make_An_Audio",
+    "kgout/asr",
+    "flosstradamus/FluxMusicGUI",
+    "enclap-team/enclap",
+    "Yntec/Image-Models-Test-2024",
+    "Yntec/Image-Models-Test-April-2024",
+    "DemiPoto/TestDifs",
+    "Abinivesh/Multi-models-prompt-to-image-generation",
+    "NativeAngels/Compare-6",
+    "Suniilkumaar/AudioSep",
+    "dmolino/XGeM",
+    "MazCodes/fragmenta",
+    "AIGC-Audio/Make_An_Audio_inpaint",
+    "Chakshu123/image-colorization-with-hint",
+    "badayvedat/AudioSep",
+    "Yntec/MiniToyWorld",
+    "DemiPoto/testSortModels",
+    "Luminia/audiosep",
+    "JinhuaL1ANG/AudioMorphix",
+    "deeplearning/audioldm-text-to-audio-generation",
+    "SAITAN666/StableDiffusion35Large-Image-Models-Test-November-2024",
+    "Yntec/Image-Models-Test-December-2024",
+    "Hisotek/AudioSep",
+    "eubinecto/idiomify",
+    "dwawdwdd/Audio-SR",
+    "Uthar/BodyPaint",
+    "K00B404/SimpleBrothel",
+    "HighCWu/anime-colorization-with-hint",
+    "AIGC-Audio/Make_An_Audio_img",
+    "lv-vl/Audio-SR2",
+    "Dragunflie-420/OpenMusic",
+    "George870/AUDIOEDITIOM",
+    "Uthar/LewdExperiments",
+    "Uthar/HighFashion",
+    "Uthar/HRGiger",
+    "orionweller/parameter-count",
+    "JusperLee/Hive",
+    "MrVicente/RA-BART",
+    "flynster/FeinbergQuizNotes",
+    "Lajonbot/Chatbot-Share",
+    "jbilcke-hf/music-caption-server-1",
+    "TechAudio/audiosr",
+    "hakunamatata1997/audioEditing",
+    "szili2011/audioEditingunlimitedinput",
+    "LuizMercedes/audioEditing",
+    "BroDvd/AudioSep",
+    "Nymbo/Audio-SR",
+    "Uthar/Harvester",
+    "Yeeezus/SexyImages",
+    "John6666/MiniToyWorld",
+    "lshzhm/Video-to-Audio-and-Piano",
+    "Uthar/TestgroundPub",
+    "AlexWortega/transformer-xray",
+    "eliolio/yelp-reviews",
+    "awacke1/HEDIS.Dash.Component.Top.Clinical.Terminology.Vocabulary",
+    "ZeroTwo3/AudioSep",
+    "s3nh/Chatbot-Share",
+    "parson/audioEditing",
+    "gsspdev/audioEditing",
+    "cysjunkatschool/testspace",
+    "ksvmuralidhar/text_rewriter",
+    "1Meghana/AudioLDM",
+    "Odiong/ChatJourno",
+    "George870/audioEditingFULL",
+    "AwaisEjaz/AudioSep",
+    "Jerrymusicmix/AUDIOEDITIOM",
+    "paganghantasala/ai_paper_agent",
+    "MrRokot/GENFLUX",
+    "whackthejacker/DataHubHub",
+    "iisadia/transformer-visualizer",
+    "slayton22slayton/infnapitoggle",
+    "charliebaby2023/infnapitoggle",
+    "harshvardhini123/Healthcare_Answer_Summarization",
+    "prashlesh/ai-transcribe",
+    "Vaibhav7625/advanced-classroom-ai",
+    "ArthyP/enhanced-rag-demo",
+    "Iralion/Chatbot_Comique",
+    "Vishwas896/vish-ai-space",
+    "Dannyu2/AudioSep",
+    "ND06-25/Slash"
+  ],
+  "createdAt": "2022-03-02T23:29:05.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 139420416
+    },
+    "total": 139420416
+  },
+  "usedStorage": 3904712462
+}

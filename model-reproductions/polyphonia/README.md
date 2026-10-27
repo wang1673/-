@@ -2,35 +2,29 @@
 
 论文：[Polyphonia](https://arxiv.org/abs/2605.10203) · [官方代码](https://github.com/Ltx-Leif/polyphonia)
 
-固定官方 commit：`26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc`。
+固定官方commit：`26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc`。
 
-## 当前结果：前 200 个任务已完成
+## 当前结果：RTX 4090 D 全750任务完成
 
-MUSDB18-HQ test 的顺序前 **200/750** 个任务已生成并完成阶段评测：前 13 首各 15 个，加第 14 首的前 5 个任务。剩余 **550 个保持暂停**；没有第 201 个以后的生成输出。官方样例此前已成功。
+2026-10-27按原protocol的50首×15任务从头运行，750个生成音频、CLAP/LPAPS/CQT1-PCC和最终审计全部通过。
 
-| 指标 | 均值 | 总体标准差 | 有效 / 未定义 |
+| 指标 | 均值 | 总体标准差 | 有效/未定义 |
 | --- | ---: | ---: | ---: |
-| CLAP ↑ | 0.366880 | 0.079560 | 200 / 0 |
-| LPAPS ↓ | 4.785495 | 0.465056 | 200 / 0 |
-| CQT1-PCC ↑ | 0.312406 | 0.216796 | 200 / 0 |
+| CLAP | 0.350376 | 0.081902 | 750/0 |
+| LPAPS | 4.678991 | 0.489502 | 750/0 |
+| CQT1-PCC | 0.333473 | 0.230453 | 750/0 |
 
-200 个 WAV 的格式、长度、数值及 SHA-256 与记录匹配，逐任务 CSV 与 JSON 一致，均值/标准差独立重算通过。最终失败任务数 0；控制器切换时一次未保存生成被中断后已续跑，不能说所有尝试均未中断。详见 [独立校验](records/stage200.audit.json)。
+[全750任务目录](runs/2026-10-27-4090d-750/) · [完整实验记录](runs/2026-10-27-4090d-750/records/EXPERIMENT_RECORD.md) · [逐任务CSV](runs/2026-10-27-4090d-750/records/metrics/per_task.csv) · [精确汇总](runs/2026-10-27-4090d-750/records/metrics/summary.json) · [最终校验](runs/2026-10-27-4090d-750/records/full750.audit.json)
 
-每首取中间 10 秒，整首混音经 HT-Demucs 估计分轨，100 steps、CFG 3.5、mask bias 2.5、fp16、seed 928。这是明确假设的阶段性复现，不代表 750 个任务的最终表现，也不能宣称精确重现论文表 1。作者未公开准确裁剪清单，分离模型的确切权重、部分指标细节及官方掩码与论文公式差异均见记录。控制器切换时的随机流变化已保留说明；未做人工试听或 MOS。MusicDelta、其他基线、消融未运行。
+原服务器不可用，按用户授权重新部署；50首全长源混音SHA与旧实验一致，旧前200任务涉及的14首混音裁剪也一致，HT-Demucs估计分轨重新生成。旧轮另有中断续跑，不能把指标差异全部归因于GPU。每首中间10秒是本次约定，不能宣称精确复现论文表1。参数与原三项评测保持，未做人工试听或MOS；未运行MusicDelta、其他基线和消融。
 
-## 文件入口
+首次评测的导入缓存缺失已修复，完整失败与恢复记录保留在新轮目录。分轨与生成约2小时12分；首首15任务约比旧3060快3倍，仅为该批实测。
 
-- [阶段结果与8组试听索引](STAGE200_RESULTS.md)；音频保留在服务器和本机，公开仓库只含索引。
-- [完整复现记录](REPRODUCTION_LOG.md) · [运行与恢复说明](RUNBOOK.md)。
-- [200任务逐项CSV](records/metrics/per_task.first200.csv) · [精确汇总](records/metrics/summary.first200.json) · [评测约定](records/metrics/specification.json)。
-- [配置及全部750任务裁剪清单](configs/protocol.json) · [当前200任务上限](configs/control.json) · [交接记录](configs/limit200-change.json)。
-- [生成状态](records/snapshot-status.json) · [评测状态](records/snapshot-pipeline.json) · [归档信息](SNAPSHOT.json)。汇总JSON中的 `state: partial` 表示仅评测全部750任务中的200个；本阶段确已完成。
-- [数据审核](records/musdb18hq.audit.json) · [逐文件哈希](records/musdb18hq.manifest.json) · [依赖](records/environment.freeze.txt)。
-- [官方样例验证](records/official-sample/validation.json) · [参考输出比较](records/official-sample/reference_comparison.json) · [历史首首15任务评测](records/metrics/first-track.summary.json)。
-- [模型版本](records/model.snapshot.json) · [Demucs哈希](records/demucs-model.json) · [评测权重](records/evaluation-model.json) · [评测实现核验](records/metric-verification.json)。
+## 历史与复现入口
 
-`scripts/` 为辅助脚本，`upstream/polyphonia/` 为固定 commit 的官方源码。`configs/scripts.sha256.json` 为较早运行记录，当前辅助脚本哈希见 `records/scripts-at-stage200.sha256.json`。
+- [运行说明](RUNBOOK.md) · [追加复现日志](REPRODUCTION_LOG.md) · [当前归档信息](SNAPSHOT.json)。
+- [旧RTX3060前200任务](STAGE200_RESULTS.md) · [原200任务首页](records/history/README.stage200.md) · [原200归档元数据](records/history/snapshot200.json)。这些历史文件保留原值，不代表新750均值。
+- 顶层`configs/`、`scripts/`和原`records/`仍是旧Featurize阶段的历史版本；新轮权威配置、运行脚本和结果均位于`runs/2026-10-27-4090d-750/`。
+- [固定官方源码](upstream/polyphonia/) · [许可证与引用](third_party/AudioEditingCode/)。
 
-最初40任务时的快照见历史 commit `37c8a7677165f1a051076ccb0c2c1d44fd88056f` 与 [snapshot40.json](records/history/snapshot40.json)；这里的当前记录已更新为200任务阶段完成。
-
-数据集、音频、大型权重、二进制环境、缓存、SSH密钥和凭据不在本仓库。原始代码保留 [MIT许可证](upstream/polyphonia/LICENSE)；LPAPS引用及CLAP权重许可见 [third_party](third_party/AudioEditingCode/) 和 SNAPSHOT.json。
+仓库只保存文本来源、代码、配置、日志、哈希和统计，不包含音频、数据集、模型权重、环境缓存、RNG二进制、SSH连接材料或凭据。

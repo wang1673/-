@@ -4,7 +4,7 @@
 
 | 模型 | 任务 | 记录 | 状态 |
 | --- | --- | --- | --- |
-| Polyphonia | 复调音乐零样本音色迁移 | [复现目录](polyphonia/) · [前200任务总结](polyphonia/STAGE200_RESULTS.md) | 前200任务生成与评测完成；剩余550任务暂停 |
+| Polyphonia | 复调音乐零样本音色迁移 | [复现目录](polyphonia/) · [全750任务总结](polyphonia/runs/2026-10-27-4090d-750/) · [旧前200任务](polyphonia/STAGE200_RESULTS.md) | RTX4090 D 全750任务生成、三指标与最终校验完成 |
 
 新增模型时参照 [_template/README.md](_template/README.md)，创建独立子目录。必须区分阶段结果与全量实验，并记录裁剪及实现假设。
 

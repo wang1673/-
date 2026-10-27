@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/polyphonia_repro/scripts/run_evaluation_after_generation.py", line 33, in <module>
+    subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True)
+  File "/root/autodl-tmp/polyphonia/runtime/env/lib/python3.8/subprocess.py", line 516, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/root/autodl-tmp/polyphonia/runtime/env/bin/python', '/root/autodl-tmp/polyphonia_repro/scripts/evaluate_benchmark.py', '--device', 'cuda']' returned non-zero exit status 1.

@@ -1,0 +1,10 @@
+{
+  "polyphonia/LICENSE": "08adf6ae8bbe265d88562f4a2982b4dff88eb42456673b5dfee345297fbbbe3b",
+  "polyphonia/requirements.txt": "fe278841e5f479265d2f764b50d214e5217924f99bc6ff84e67734b5451e8f8b",
+  "polyphonia/edit.py": "836315096744bacb8c0c64c5a33462bbddce58c9220adcd0fde3994fef23a74e",
+  "polyphonia/README.md": "d03c12c23feb2c190aad7d8c9fbb8a819834ae015eb868aeba91e1ec25007e81",
+  "polyphonia/run_sample_exp.py": "1caf1c358c6beab4f1ccf45a722dab4ebfb522b13003e7e633cdc72039c3311e",
+  "polyphonia/audio_utils.py": "8c1ac2e667b46ad41d38ab726d5f3583a40bee04ebf2b30327e76c91d539b10c",
+  "polyphonia/utils.py": "35c5baff3f92adb20fb0d28985859c67b3c678b61f46e14253cba6121da8307a",
+  "polyphonia/my_audioldm2.py": "86a23725e0bd06deb7eaeb9ef00e42676b5abb57fb4e251a2421d4db1f49abba"
+}

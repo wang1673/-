@@ -1,0 +1,93 @@
+{
+  "checked_at": "2026-10-27T12:46:42.560562+00:00",
+  "state": "completed",
+  "generation": {
+    "state": "generation_completed",
+    "protocol": "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/protocol.json",
+    "total_tasks": 750,
+    "started_utc": "2026-10-27T10:13:13.873441+00:00",
+    "resumed_at_utc": "2026-10-27T10:13:13.873458+00:00",
+    "previous_elapsed_seconds": 0,
+    "validated_tasks": 750,
+    "elapsed_seconds": 7896.454762,
+    "task_limit": 750,
+    "pause_reason": "User requested first 750 tasks; remaining tasks require a later resume"
+  },
+  "pipeline": {
+    "state": "completed",
+    "elapsed_seconds": 30.241529773920774,
+    "generated_tasks": 750,
+    "evaluated_tasks": 750,
+    "summary": "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/summary.json"
+  },
+  "audit": {
+    "status": "passed",
+    "generated": 750,
+    "evaluated": 750,
+    "tracks": 50,
+    "output_format": "16 kHz mono 10 seconds",
+    "prepared_audio": "New HT-Demucs output on RTX 4090 D; original server unavailable"
+  },
+  "summary": {
+    "state": "completed",
+    "evaluated_tasks": 750,
+    "expected_tasks": 750,
+    "elapsed_seconds": 21.260226376354694,
+    "specification_sha256": "a330026f562f87efb3535b6011dd881b9bb3269bb1b29d6b4315b0d6feee2e30",
+    "paper_comparison": "Center-crop protocol differs from unpublished author crop manifest. Quantitative results are not exact Table 1 replication.",
+    "CLAP": {
+      "mean": 0.3503757368971904,
+      "std_population": 0.08190163749915376,
+      "valid": 750,
+      "undefined": 0
+    },
+    "LPAPS": {
+      "mean": 4.67899129152298,
+      "std_population": 0.48950218590868355,
+      "valid": 750,
+      "undefined": 0
+    },
+    "CQT1_PCC": {
+      "mean": 0.3334732335597876,
+      "std_population": 0.23045329872748305,
+      "valid": 750,
+      "undefined": 0
+    }
+  },
+  "environment": {
+    "python": "3.8.20 (default, Oct  3 2024, 15:24:27) \n[GCC 11.2.0]",
+    "versions": {
+      "torch": "2.4.1+cu124",
+      "torchaudio": "2.4.1+cu124",
+      "torchvision": "0.19.1+cu124",
+      "diffusers": "0.32.0",
+      "transformers": "4.46.3"
+    },
+    "gpu": "NVIDIA GeForce RTX 4090 D",
+    "cuda": "12.4",
+    "fp16_matrix_test": 256.0
+  },
+  "dependency_count": 107,
+  "source_mixtures": 50,
+  "crop_comparison": 14,
+  "repair": {
+    "reason": "CLAP import initializes BERT, Roberta, and BART tokenizers; BERT/BART caches were missing on fresh server",
+    "software_or_metric_changes": false,
+    "tokenizers": [
+      {
+        "repo": "bert-base-uncased",
+        "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+        "snapshot": "/root/autodl-tmp/polyphonia/runtime/huggingface/hub/models--bert-base-uncased/snapshots/86b5e0934494bd15c9632b12f734a8a67f723594",
+        "use": "Only import-time unused BERT/BART tokenizer caches; actual metric text branch remains pinned Roberta",
+        "old_revision": "not recorded in old experiment"
+      },
+      {
+        "repo": "facebook/bart-base",
+        "revision": "aadd2ab0ae0c8268c7c9693540e9904811f36177",
+        "snapshot": "/root/autodl-tmp/polyphonia/runtime/huggingface/hub/models--facebook--bart-base/snapshots/aadd2ab0ae0c8268c7c9693540e9904811f36177",
+        "use": "Only import-time unused BERT/BART tokenizer caches; actual metric text branch remains pinned Roberta",
+        "old_revision": "not recorded in old experiment"
+      }
+    ]
+  }
+}

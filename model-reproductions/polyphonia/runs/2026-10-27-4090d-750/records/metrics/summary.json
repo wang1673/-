@@ -1,0 +1,26 @@
+{
+  "state": "completed",
+  "evaluated_tasks": 750,
+  "expected_tasks": 750,
+  "elapsed_seconds": 21.260226376354694,
+  "specification_sha256": "a330026f562f87efb3535b6011dd881b9bb3269bb1b29d6b4315b0d6feee2e30",
+  "paper_comparison": "Center-crop protocol differs from unpublished author crop manifest. Quantitative results are not exact Table 1 replication.",
+  "CLAP": {
+    "mean": 0.3503757368971904,
+    "std_population": 0.08190163749915376,
+    "valid": 750,
+    "undefined": 0
+  },
+  "LPAPS": {
+    "mean": 4.67899129152298,
+    "std_population": 0.48950218590868355,
+    "valid": 750,
+    "undefined": 0
+  },
+  "CQT1_PCC": {
+    "mean": 0.3334732335597876,
+    "std_population": 0.23045329872748305,
+    "valid": 750,
+    "undefined": 0
+  }
+}

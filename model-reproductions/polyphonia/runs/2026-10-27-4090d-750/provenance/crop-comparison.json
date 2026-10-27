@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "matched_tracks": 14,
+  "records": [
+    {
+      "track": "AM Contra - Heart Peripheral",
+      "old_sha256": "657555d467e3ecf06bab373848a09c1f71c5972befc57ad4a1f7ffcec6af0c44",
+      "new_sha256": "657555d467e3ecf06bab373848a09c1f71c5972befc57ad4a1f7ffcec6af0c44",
+      "match": true
+    },
+    {
+      "track": "Al James - Schoolboy Facination",
+      "old_sha256": "897c38eefff37b428ad2397cd363362dece06e7a07bf58a9ff8c49b132fe0f73",
+      "new_sha256": "897c38eefff37b428ad2397cd363362dece06e7a07bf58a9ff8c49b132fe0f73",
+      "match": true
+    },
+    {
+      "track": "Angels In Amplifiers - I'm Alright",
+      "old_sha256": "b25885205ceff26631cac11c1863a79ee50c8782d58fa9c7e09efa115fb47462",
+      "new_sha256": "b25885205ceff26631cac11c1863a79ee50c8782d58fa9c7e09efa115fb47462",
+      "match": true
+    },
+    {
+      "track": "Arise - Run Run Run",
+      "old_sha256": "be852bf9c964d64ae2ef8df06add2fd97f30948a9d07442cc07443ce32facd52",
+      "new_sha256": "be852bf9c964d64ae2ef8df06add2fd97f30948a9d07442cc07443ce32facd52",
+      "match": true
+    },
+    {
+      "track": "BKS - Bulldozer",
+      "old_sha256": "ec08b55026572a51b80bb866da10290c59804e0baa12c548f205bd154d8f02a7",
+      "new_sha256": "ec08b55026572a51b80bb866da10290c59804e0baa12c548f205bd154d8f02a7",
+      "match": true
+    },
+    {
+      "track": "BKS - Too Much",
+      "old_sha256": "d0227cea82653e39500accdd5f449e7bed7c3bbb413e9c491a99b8a6a3651d10",
+      "new_sha256": "d0227cea82653e39500accdd5f449e7bed7c3bbb413e9c491a99b8a6a3651d10",
+      "match": true
+    },
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "old_sha256": "731eac4e836546512bda84eb58842b6369fee5c3a1e05057c615f2a9158e5ab8",
+      "new_sha256": "731eac4e836546512bda84eb58842b6369fee5c3a1e05057c615f2a9158e5ab8",
+      "match": true
+    },
+    {
+      "track": "Bobby Nobody - Stitch Up",
+      "old_sha256": "a2c2511974feb6ce2f5dd975b10b5a2716232bc74ca1793fb8024a78cd1d87f1",
+      "new_sha256": "a2c2511974feb6ce2f5dd975b10b5a2716232bc74ca1793fb8024a78cd1d87f1",
+      "match": true
+    },
+    {
+      "track": "Buitraker - Revo X",
+      "old_sha256": "6fef7519e94a56d0751390b54e86bed94de5a178e34e5b915bc3461dbcd46a89",
+      "new_sha256": "6fef7519e94a56d0751390b54e86bed94de5a178e34e5b915bc3461dbcd46a89",
+      "match": true
+    },
+    {
+      "track": "Carlos Gonzalez - A Place For Us",
+      "old_sha256": "3ee5c484b252cff16568c86611a476f31767bf001e6c4e4e9e3c2fe6fa1e454f",
+      "new_sha256": "3ee5c484b252cff16568c86611a476f31767bf001e6c4e4e9e3c2fe6fa1e454f",
+      "match": true
+    },
+    {
+      "track": "Cristina Vane - So Easy",
+      "old_sha256": "f96caf868a839d63a00c008d014a8742c9180622a5c492e1dcc3455e332387f8",
+      "new_sha256": "f96caf868a839d63a00c008d014a8742c9180622a5c492e1dcc3455e332387f8",
+      "match": true
+    },
+    {
+      "track": "Detsky Sad - Walkie Talkie",
+      "old_sha256": "acab21c2e1672314d4bc5633354d8e89a22f8d4a5a803442b350d5bfd66c7cd5",
+      "new_sha256": "acab21c2e1672314d4bc5633354d8e89a22f8d4a5a803442b350d5bfd66c7cd5",
+      "match": true
+    },
+    {
+      "track": "Enda Reilly - Cur An Long Ag Seol",
+      "old_sha256": "7b26d65896f4d4c769c21eacdb8dad8e24b9d4e3432dd9f3b7f3cc75f6596c1e",
+      "new_sha256": "7b26d65896f4d4c769c21eacdb8dad8e24b9d4e3432dd9f3b7f3cc75f6596c1e",
+      "match": true
+    },
+    {
+      "track": "Forkupines - Semantics",
+      "old_sha256": "014f77af7c0e0619b7de9f25f6d18230c292c68e21219f200d9eceece9733741",
+      "new_sha256": "014f77af7c0e0619b7de9f25f6d18230c292c68e21219f200d9eceece9733741",
+      "match": true
+    }
+  ],
+  "note": "Mixed-audio crops match old files; estimated Demucs stems were regenerated"
+}

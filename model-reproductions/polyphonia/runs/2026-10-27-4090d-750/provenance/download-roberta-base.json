@@ -1,0 +1,272 @@
+{
+  "_id": "621ffdc036468d709f174350",
+  "id": "FacebookAI/roberta-base",
+  "private": false,
+  "pipeline_tag": "fill-mask",
+  "library_name": "transformers",
+  "tags": [
+    "transformers",
+    "pytorch",
+    "tf",
+    "jax",
+    "rust",
+    "safetensors",
+    "roberta",
+    "fill-mask",
+    "exbert",
+    "en",
+    "dataset:bookcorpus",
+    "dataset:wikipedia",
+    "arxiv:1907.11692",
+    "arxiv:1806.02847",
+    "license:mit",
+    "endpoints_compatible",
+    "deploy:sagemaker",
+    "deploy:azure",
+    "region:us"
+  ],
+  "downloads": 6550900,
+  "likes": 700,
+  "modelId": "FacebookAI/roberta-base",
+  "author": "FacebookAI",
+  "sha": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+  "lastModified": "2024-02-19T12:39:28.000Z",
+  "gated": false,
+  "disabled": false,
+  "mask_token": "<mask>",
+  "widgetData": [
+    {
+      "text": "Paris is the <mask> of France."
+    },
+    {
+      "text": "The goal of life is <mask>."
+    }
+  ],
+  "model-index": null,
+  "config": {
+    "architectures": [
+      "RobertaForMaskedLM"
+    ],
+    "model_type": "roberta",
+    "tokenizer_config": {}
+  },
+  "cardData": {
+    "language": "en",
+    "tags": [
+      "exbert"
+    ],
+    "license": "mit",
+    "datasets": [
+      "bookcorpus",
+      "wikipedia"
+    ]
+  },
+  "transformersInfo": {
+    "auto_model": "AutoModelForMaskedLM",
+    "pipeline_tag": "fill-mask",
+    "processor": "AutoTokenizer"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "602b71f15d40ed68c5f96330e3f3175a76a32126",
+      "size": 445
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "a57bd1a36742d07c767fcbc6187d539fcf1774e4",
+      "size": 9079
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "8db5e7ac5bfc9ec8b613b776009300fe3685d957",
+      "size": 481
+    },
+    {
+      "rfilename": "dict.txt",
+      "blobId": "9b4d2de40fa2cbeb2c6128cfd031b9872ef4d054",
+      "size": 603290
+    },
+    {
+      "rfilename": "flax_model.msgpack",
+      "blobId": "d9b0f69d25209f871bd513268c016d40e795b491",
+      "size": 498796983,
+      "lfs": {
+        "sha256": "7647e7df15dfddb7d5c07fcbed7a21e3881ccfea085791cf09917aa05947bba3",
+        "size": 498796983,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "merges.txt",
+      "blobId": "226b0752cac7789c48f0cb3ec53eda48b7be36cc",
+      "size": 456318
+    },
+    {
+      "rfilename": "model.safetensors",
+      "blobId": "ef5b64ef432a25ec7b377679a208753ee7dbce48",
+      "size": 498818054,
+      "lfs": {
+        "sha256": "5bde1d28afb363d0103324efeb5afc8b2b397fe5e04beabb9b1ef355255ade81",
+        "size": 498818054,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "pytorch_model.bin",
+      "blobId": "7f444f8a051dc794fa685b9275064a0e29b4c966",
+      "size": 501200538,
+      "lfs": {
+        "sha256": "278b7a95739c4392fae9b818bb5343dde20be1b89318f37a6d939e1e1b9e461b",
+        "size": 501200538,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "rust_model.ot",
+      "blobId": "2fdc937b5daf1bd4f25ee945909c5728ff7f9189",
+      "size": 655617312,
+      "lfs": {
+        "sha256": "9eab94d556cd9151ba760802bc2151c7ac51675bb81e017b25de41c1ebd6c3a0",
+        "size": 655617312,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tf_model.h5",
+      "blobId": "67ebf09fb5c9ac9255289f89b5e5ea559c1ea2bf",
+      "size": 657434796,
+      "lfs": {
+        "sha256": "8ad49e51cdfa998f1d26f24d6966e1a00c3df44c6e334995fdb4d622ce1e4e10",
+        "size": 657434796,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "ad0bcbeb288f0d1373d88e0762e66357f55b8311",
+      "size": 1355863
+    },
+    {
+      "rfilename": "tokenizer_config.json",
+      "blobId": "34ddbd64a4cd3f2d9d8a9120d3662d0bf91baead",
+      "size": 25
+    },
+    {
+      "rfilename": "vocab.json",
+      "blobId": "5606f48548d99a9829d10a96cd364b816b02cd21",
+      "size": 898823
+    }
+  ],
+  "spaces": [
+    "embedl/hfviewer",
+    "facebook/MusicGen",
+    "BIGJUTT/model-pulse",
+    "SunilGopal/MusicLM",
+    "Prof-Reza/Audiocraft_Music-Audio_Generation",
+    "kony1337/audioldm-text-to-audio-generation",
+    "dawood/audioldm-text-to-audio-generation",
+    "fatine-boubrim/LLMs-jailbreak-prompt-filtering",
+    "teamup-tech/VoiceCraft",
+    "yizhangliu/Grounded-Segment-Anything",
+    "Surn/UnlimitedMusicGen",
+    "hilamanor/audioEditing",
+    "xinyu1205/recognize-anything",
+    "Audio-AGI/AudioSep",
+    "jadechoghari/OpenMusic",
+    "exbert-project/exbert",
+    "facebook/MelodyFlow",
+    "declare-lab/mustango",
+    "hallucinations-leaderboard/leaderboard",
+    "shikunl/prismer",
+    "nikigoli/countgd",
+    "merve/Grounding_DINO_demo",
+    "openai/openai-detector",
+    "IDEA-Research/Grounded-SAM",
+    "ShilongLiu/Grounding_DINO_demo",
+    "GrandaddyShmax/AudioCraft_Plus",
+    "Nick088/Audio-SR",
+    "sam-hq-team/sam-hq",
+    "haotiz/glip-zeroshot-demo",
+    "PirateXX/AI-Content-Detector",
+    "Pinwheel/GLIP-BLIP-Object-Detection-VQA",
+    "shi-labs/Matting-Anything",
+    "fffiloni/Video-Matting-Anything",
+    "burtenshaw/autotrain-mcp",
+    "linfanluntan/Grounded-SAM",
+    "nvidia/audio-flamingo-2",
+    "WensongSong/Insert-Anything",
+    "auto-cap/MoE-CAP-Dashboard",
+    "fffiloni/MusiConGen",
+    "sunnyujjawal/AI-Music-Generator",
+    "amphion/PicoAudio",
+    "fffiloni/vta-ldm",
+    "AIGC-Audio/AudioLCM",
+    "society-ethics/model-card-regulatory-check",
+    "ethanchern/Anole",
+    "unpairedelectron07/Text-to-Music-Generator",
+    "AIGC-Audio/Make_An_Audio",
+    "kgout/asr",
+    "codelion/Grounding_DINO_demo",
+    "flosstradamus/FluxMusicGUI",
+    "sasha/BiasDetection",
+    "Gen-Sim/Gen-Sim",
+    "SamSankar/hallucination-guard-env",
+    "zdou0830/desco",
+    "jonluca/MusicGen",
+    "ccolas/TastyPiano",
+    "emilylearning/llm_uncertainty",
+    "ucinlp/autoprompt",
+    "sasha/WinoBiasCheck",
+    "Make-A-Protagonist/Make-A-Protagonist-inference",
+    "Suniilkumaar/AudioSep",
+    "jiani-huang/LASER",
+    "hamacojr/CAT-Seg",
+    "hamacojr/SAM-CAT-Seg",
+    "Caoyunkang/Segment-Any-Anomaly",
+    "sashtech/huamnifierWithSimpleGrammer",
+    "annapurnapadmaprema-ji/Music_Generator",
+    "dmolino/XGeM",
+    "developer0hye/Grounding_DINO_Base_demo",
+    "DharavathSri/LLMFineTuningDeployment",
+    "MazCodes/fragmenta",
+    "mbahrami/Auto-Complete_Semantic",
+    "taka-yamakoshi/tokenizer-demo",
+    "AIGC-Audio/Make_An_Audio_inpaint",
+    "badayvedat/AudioSep",
+    "Luminia/audiosep",
+    "YJX-Xiaomi/controlfoley",
+    "Shredder/CONBERT-3",
+    "emilylearning/spurious_correlation_evaluation",
+    "PirateXX/ChatGPT-Content-Detector",
+    "xswu/HPSv2",
+    "brainblow/AudioCreator_Music-Audio_Generation",
+    "JinhuaL1ANG/AudioMorphix",
+    "anonymousauthorsanonymous/uncertainty",
+    "deeplearning/audioldm-text-to-audio-generation",
+    "YouLiXiya/Mobile-SAM",
+    "awqwqwq/MusicGen2",
+    "jbilcke-hf/ai-tube-model-musicgen-1",
+    "mawady-uni/Grounded-SAM",
+    "Hisotek/AudioSep",
+    "emanforhelp/model-pulse",
+    "BigSalmon/MASKK",
+    "ansfarooq7/l4-project",
+    "amsterdamNLP/attention-rollout",
+    "mdj1412/movie_review_score_discriminator",
+    "jesoteric/Grounded-SAM",
+    "Achyuth4/MusicGen",
+    "legolasyiu/MusicAI",
+    "xhk/ASAM",
+    "dwawdwdd/Audio-SR"
+  ],
+  "createdAt": "2022-03-02T23:29:04.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 124697433,
+      "I64": 514
+    },
+    "total": 124697947
+  },
+  "usedStorage": 3467440206
+}

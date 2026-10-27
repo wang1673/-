@@ -1,3 +1,21 @@
+# 当前运行说明：RTX 4090 D 全750任务
+
+当前750任务已全部完成，后台生成和评测均已退出，自动跟进已删除。结果、配置、依赖和实际执行脚本见[runs/2026-10-27-4090d-750](runs/2026-10-27-4090d-750/)。该目录的`scripts/`才是新服务器执行版本，顶层脚本继续作为旧轮历史保留。
+
+所有新服务器文件在`/root/autodl-tmp`。项目`/root/autodl-tmp/polyphonia_repro`；环境和模型`/root/autodl-tmp/polyphonia/runtime`；原始混音`/root/autodl-tmp/polyphonia/musdb18hq/test`；裁剪与估计分轨`/root/autodl-tmp/polyphonia/prepared/center10_htdemucs_01`；结果`/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01`。
+
+这是Python3.8.20的独立固定环境，不使用新服务器自带Torch。原107项依赖核对与CUDA检查已通过。权重按原revision与SHA固定，不使用latest冒充原配置。导入CLAP时还需要BERT/BART初始化分词器缓存；恢复脚本和固定revision见新轮记录。补缓存不改变实际RoBERTa分支或评测公式。
+
+不要对已有完整目录再执行并称为重跑。新一轮需独立输出、日志、指标缓存、随机状态和对应协议路径；保持任务顺序及参数。续跑前确认原进程退出，再使用既有输出哈希检查和匹配的RNG恢复；无匹配RNG时应记录随机流限制。不能并发启动多个控制器写同一目录。
+
+最终验收须同时满足：status为generation_completed且750，pipeline为completed且生成/评测750，full-pipeline.exit为0，full750.audit.json为passed。只计算CLAP、LPAPS、CQT1-PCC，不能把仅生成完成称作实验完成。当前这些条件全部通过。
+
+原始全长混音与旧哈希一致；估计分轨重新生成，所以不能将分数差异全部归因于换卡。音频及完整结果归档保存在服务器和本地最终交付文件，GitHub只含文本。
+
+---
+
+## 以下为旧Featurize/前200任务历史运行说明（保留原文）
+
 # 运行说明
 
 本目录归档的是已验证的 Featurize 服务器实验。脚本保留实际执行路径；移到其他机器时应调整路径并重建环境。

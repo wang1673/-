@@ -1,0 +1,132 @@
+{
+  "_id": "63fe0fd4a159ef722e8c8c4b",
+  "id": "lukewys/laion_clap",
+  "private": false,
+  "tags": [
+    "license:cc0-1.0",
+    "region:us"
+  ],
+  "downloads": 0,
+  "likes": 43,
+  "modelId": "lukewys/laion_clap",
+  "author": "lukewys",
+  "sha": "b3708341862f581175dba5c356a4ebf74a9b6651",
+  "lastModified": "2023-04-08T01:50:48.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {},
+  "cardData": {
+    "license": "cc0-1.0"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "c7d9f3332a950355d5a77d85000f05e6f45435ea",
+      "size": 1477
+    },
+    {
+      "rfilename": "630k-audioset-best.pt",
+      "blobId": "0347aed950a4c16172b425a7de3a99ab5902bc06",
+      "size": 1863587645,
+      "lfs": {
+        "sha256": "8053c9775516af2f4902e1e8281e356cc1bf7a85e8b761908170767b77c3f037",
+        "size": 1863587645,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "630k-audioset-fusion-best.pt",
+      "blobId": "62a107595c8103a4fbc3dd828d7e483bd9875491",
+      "size": 1863889051,
+      "lfs": {
+        "sha256": "fb171dd9b608aebdac3d89286cd7615c5100af4cc7dc37797c7fb8d3cc15e3a5",
+        "size": 1863889051,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "630k-best.pt",
+      "blobId": "94743e0fa9cf6cdebd5642cb28312c63c7945fc6",
+      "size": 1863587645,
+      "lfs": {
+        "sha256": "e02951eae3c9955db546c50086059e6457188ec39446858f2bddbcb4b56b1cb3",
+        "size": 1863587645,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "630k-fusion-best.pt",
+      "blobId": "788fd6cb3ebf76fe95e8ecfd672394c1a9ac70b4",
+      "size": 1863894120,
+      "lfs": {
+        "sha256": "28f414e007dd772a8cfb86899c8eb8e84ca0691cb68bd66fc5610a650a965600",
+        "size": 1863894120,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "3e9a1fca9d33c9ee98d2011884ef83fb2df905ce",
+      "size": 25
+    },
+    {
+      "rfilename": "music_audioset_epoch_15_esc_90.14.pt",
+      "blobId": "09274ba1b6f219de82e4265777848c7a41747e9e",
+      "size": 2352471003,
+      "lfs": {
+        "sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+        "size": 2352471003,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "music_speech_audioset_epoch_15_esc_89.98.pt",
+      "blobId": "026b327c66328dcdec4ff32c5d58fe26f8551e19",
+      "size": 2352471003,
+      "lfs": {
+        "sha256": "51c68f12f9d7ea25fdaaccf741ec7f81e93ee594455410f3bca4f47f88d8e006",
+        "size": 2352471003,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "music_speech_epoch_15_esc_89.25.pt",
+      "blobId": "c8a0830ead3896de30b9d0d0936b40081db42a1b",
+      "size": 2352471003,
+      "lfs": {
+        "sha256": "a27dfbd00d96781020d83044136f084343edab799d2657ef3cfe5c4f2222bb28",
+        "size": 2352471003,
+        "pointerSize": 135
+      }
+    }
+  ],
+  "spaces": [
+    "nvidia/audio-flamingo-2",
+    "AIGC-Audio/AudioLCM",
+    "MazCodes/fragmenta",
+    "ToddLLM/InspireMusic",
+    "Arrcttacsrks/SAM-Audio-Demo",
+    "aneela-pervez/DEEP-FAKE-DETECTOR",
+    "berkaygkv/curate-me-a-playlist",
+    "abhillubillu/AudioLCM",
+    "chenxie95/Language-Audio-Banquet",
+    "akhaliq/sam-audio-large",
+    "chippie1/SAM-Audio-Demo",
+    "dannytran/sam-audio-large",
+    "Jin6909/AudioLCM",
+    "SeaSky1027/AudioGAN",
+    "RVorita/InspireMusic",
+    "xscdvfaaqqq/InspireMusic",
+    "Ashtonp3644/sam-audio-large",
+    "patchy-planet/extractor",
+    "jguijarro/Music-IA-n",
+    "TuneJury/tune-jury",
+    "vanshc/MEGAMI",
+    "teamup-tech/MEGAMI",
+    "kalamishere/marathon-live",
+    "kalamishere/marathon-stage"
+  ],
+  "createdAt": "2023-02-28T14:29:40.000Z",
+  "usedStorage": 16864842473
+}

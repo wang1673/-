@@ -1,0 +1,5 @@
+{
+  "state": "failed",
+  "elapsed_seconds": 5.038079269230366,
+  "error": "CalledProcessError(1, ['/root/autodl-tmp/polyphonia/runtime/env/bin/python', '/root/autodl-tmp/polyphonia_repro/scripts/evaluate_benchmark.py', '--device', 'cuda'])"
+}

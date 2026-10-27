@@ -1,0 +1,38 @@
+{
+  "CLAP": {
+    "old_first200": {
+      "mean": 0.36688031040132046,
+      "std_population": 0.07956023791579939,
+      "valid": 200,
+      "undefined": 0
+    },
+    "new_first200": {
+      "mean": 0.3671052004210651,
+      "std_population": 0.07963956792152055
+    }
+  },
+  "LPAPS": {
+    "old_first200": {
+      "mean": 4.785494819879532,
+      "std_population": 0.46505584164764024,
+      "valid": 200,
+      "undefined": 0
+    },
+    "new_first200": {
+      "mean": 4.78699938327074,
+      "std_population": 0.4649342472279925
+    }
+  },
+  "CQT1_PCC": {
+    "old_first200": {
+      "mean": 0.31240597191674546,
+      "std_population": 0.21679595748620534,
+      "valid": 200,
+      "undefined": 0
+    },
+    "new_first200": {
+      "mean": 0.3129002830658467,
+      "std_population": 0.21636141302849507
+    }
+  }
+}

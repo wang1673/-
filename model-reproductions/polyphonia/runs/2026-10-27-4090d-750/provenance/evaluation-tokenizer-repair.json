@@ -1,0 +1,20 @@
+{
+  "reason": "CLAP import initializes BERT, Roberta, and BART tokenizers; BERT/BART caches were missing on fresh server",
+  "software_or_metric_changes": false,
+  "tokenizers": [
+    {
+      "repo": "bert-base-uncased",
+      "revision": "86b5e0934494bd15c9632b12f734a8a67f723594",
+      "snapshot": "/root/autodl-tmp/polyphonia/runtime/huggingface/hub/models--bert-base-uncased/snapshots/86b5e0934494bd15c9632b12f734a8a67f723594",
+      "use": "Only import-time unused BERT/BART tokenizer caches; actual metric text branch remains pinned Roberta",
+      "old_revision": "not recorded in old experiment"
+    },
+    {
+      "repo": "facebook/bart-base",
+      "revision": "aadd2ab0ae0c8268c7c9693540e9904811f36177",
+      "snapshot": "/root/autodl-tmp/polyphonia/runtime/huggingface/hub/models--facebook--bart-base/snapshots/aadd2ab0ae0c8268c7c9693540e9904811f36177",
+      "use": "Only import-time unused BERT/BART tokenizer caches; actual metric text branch remains pinned Roberta",
+      "old_revision": "not recorded in old experiment"
+    }
+  ]
+}

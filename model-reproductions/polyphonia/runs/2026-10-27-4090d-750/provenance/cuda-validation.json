@@ -1,0 +1,13 @@
+{
+  "python": "3.8.20 (default, Oct  3 2024, 15:24:27) \n[GCC 11.2.0]",
+  "versions": {
+    "torch": "2.4.1+cu124",
+    "torchaudio": "2.4.1+cu124",
+    "torchvision": "0.19.1+cu124",
+    "diffusers": "0.32.0",
+    "transformers": "4.46.3"
+  },
+  "gpu": "NVIDIA GeForce RTX 4090 D",
+  "cuda": "12.4",
+  "fp16_matrix_test": 256.0
+}

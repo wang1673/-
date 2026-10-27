@@ -1,0 +1,393 @@
+{
+  "_id": "64e343ccc21dd0c666ec6000",
+  "id": "cvssp/audioldm2",
+  "private": false,
+  "library_name": "diffusers",
+  "tags": [
+    "diffusers",
+    "safetensors",
+    "arxiv:2308.05734",
+    "license:cc-by-nc-sa-4.0",
+    "diffusers:AudioLDM2Pipeline",
+    "region:us"
+  ],
+  "downloads": 31601,
+  "likes": 72,
+  "modelId": "cvssp/audioldm2",
+  "author": "cvssp",
+  "sha": "c8e7e189d324425c05c4c2f81214041ef4107983",
+  "lastModified": "2024-04-16T10:02:08.000Z",
+  "gated": false,
+  "disabled": false,
+  "model-index": null,
+  "config": {
+    "diffusers": {
+      "_class_name": "AudioLDM2Pipeline"
+    }
+  },
+  "cardData": {
+    "license": "cc-by-nc-sa-4.0"
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "size": 1519
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "392eed319373c09ff1be4638fb455f9b305fa2a9",
+      "size": 5376
+    },
+    {
+      "rfilename": "feature_extractor/preprocessor_config.json",
+      "blobId": "e8636819eeb1b19f1e5b6f572eca1a101144062e",
+      "size": 541
+    },
+    {
+      "rfilename": "language_model/config.json",
+      "blobId": "dedacd30a30d652143f85902b7bdf611c51caa6a",
+      "size": 902
+    },
+    {
+      "rfilename": "language_model/model.safetensors",
+      "blobId": "c7c73f7ca8b96104243630c485ccedb3c10fd716",
+      "size": 497772432,
+      "lfs": {
+        "sha256": "925012ada53083b40604540406b53570066b6d218380af45dd426fa531b875fb",
+        "size": 497772432,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "language_model/pytorch_model.bin",
+      "blobId": "ed0e8a58e703afdec0dee52ab879a36c90afeada",
+      "size": 497803293,
+      "lfs": {
+        "sha256": "80896089a320949684e5150079143ee3061df687124216292da482e3b79ddc64",
+        "size": 497803293,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "model_index.json",
+      "blobId": "1bc34c3cb75ae6d13f531503ac3afbb97f0c00bb",
+      "size": 805
+    },
+    {
+      "rfilename": "projection_model/config.json",
+      "blobId": "7260bfe631daf8b43770467ce20eed681b33f75b",
+      "size": 173
+    },
+    {
+      "rfilename": "projection_model/diffusion_pytorch_model.bin",
+      "blobId": "b8303fcf24bf2be74d128d9a78a666d572752545",
+      "size": 4739951,
+      "lfs": {
+        "sha256": "cfb555ca6f1d76278436c48bafea78b5122b9496434694cb8866c096fb1c6ad0",
+        "size": 4739951,
+        "pointerSize": 132
+      }
+    },
+    {
+      "rfilename": "projection_model/diffusion_pytorch_model.safetensors",
+      "blobId": "dafcd9796acd72f02fba59eab46bda18fa6ae033",
+      "size": 4737688,
+      "lfs": {
+        "sha256": "8d4d8b1233e8193c784ac7c99aed9f76b66312a9ddfe8b1bbad68fe03dd71bde",
+        "size": 4737688,
+        "pointerSize": 132
+      }
+    },
+    {
+      "rfilename": "scheduler/scheduler_config.json",
+      "blobId": "596b8cbbb5c7048d1b5de93c3b3b08eb836f2ff3",
+      "size": 507
+    },
+    {
+      "rfilename": "text_encoder/config.json",
+      "blobId": "6361fa894466151a08ef1ade59fd3803f15971cc",
+      "size": 801
+    },
+    {
+      "rfilename": "text_encoder/model.safetensors",
+      "blobId": "9ca6c716ebd0571b994c5547f6b67f229a80d224",
+      "size": 776327432,
+      "lfs": {
+        "sha256": "a4a47b4a637dd58e9edb7b64a06acf37328b7cc3eafb0b8a85df895cc9e45d09",
+        "size": 776327432,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "text_encoder/pytorch_model.bin",
+      "blobId": "86757d05823fd40fa511e04df7684ce4d7cc8a1c",
+      "size": 776444665,
+      "lfs": {
+        "sha256": "637b3ff0f7b212cedafb00739521dc49d8f7953f12bfc1f76ff692f108a41ed0",
+        "size": 776444665,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "text_encoder_2/config.json",
+      "blobId": "698b64e6a18bf5332fdaafe72b0dfb3516fa4343",
+      "size": 766
+    },
+    {
+      "rfilename": "text_encoder_2/model.safetensors",
+      "blobId": "a16df005205fc8167e217fd1ec0d051dfd575567",
+      "size": 1364951064,
+      "lfs": {
+        "sha256": "c1d0c8f1c739db9343c12ea4b0e3f2c97a833b3c072c251e91d97b7326fefb4e",
+        "size": 1364951064,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "text_encoder_2/pytorch_model.bin",
+      "blobId": "7de42330517cec66fe2092995d81555c33dedd9f",
+      "size": 1364996921,
+      "lfs": {
+        "sha256": "8c4be8e23954ef72bd0d623206a46b7e1ab7fa23f530b7b9f691d40785273b27",
+        "size": 1364996921,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "tokenizer/merges.txt",
+      "blobId": "226b0752cac7789c48f0cb3ec53eda48b7be36cc",
+      "size": 456318
+    },
+    {
+      "rfilename": "tokenizer/special_tokens_map.json",
+      "blobId": "d5698132694f4f1bcff08fa7d937b1701812598e",
+      "size": 280
+    },
+    {
+      "rfilename": "tokenizer/tokenizer.json",
+      "blobId": "15cffb1a334cf27ccef68b0b6e2bc6f74f1be219",
+      "size": 2108774
+    },
+    {
+      "rfilename": "tokenizer/tokenizer_config.json",
+      "blobId": "6783de8a333aad004b438627b6eab17a6321518e",
+      "size": 494
+    },
+    {
+      "rfilename": "tokenizer/vocab.json",
+      "blobId": "4ebe4bb3f3114daf2e4cc349f24873a1175a35d7",
+      "size": 798293
+    },
+    {
+      "rfilename": "tokenizer_2/special_tokens_map.json",
+      "blobId": "2c19eb6e3b583f52d34b903b5978d3d30b6b7682",
+      "size": 2201
+    },
+    {
+      "rfilename": "tokenizer_2/spiece.model",
+      "blobId": "317a5ccbde45300f5d1d970d4d449af2108b147e",
+      "size": 791656,
+      "lfs": {
+        "sha256": "d60acb128cf7b7f2536e8f38a5b18a05535c9e14c7a355904270e15b0945ea86",
+        "size": 791656,
+        "pointerSize": 131
+      }
+    },
+    {
+      "rfilename": "tokenizer_2/tokenizer.json",
+      "blobId": "188313c03c392a12933ea908d0a8b73b043236aa",
+      "size": 2422164
+    },
+    {
+      "rfilename": "tokenizer_2/tokenizer_config.json",
+      "blobId": "1924b1231f8be939dc12e9b4d5368e786aaa4be9",
+      "size": 2349
+    },
+    {
+      "rfilename": "unet/config.json",
+      "blobId": "8e0b551cb436562bff701c1fa561c1600a891456",
+      "size": 1514
+    },
+    {
+      "rfilename": "unet/diffusion_pytorch_model.bin",
+      "blobId": "7efdabaa76e3fbbd4bd21382e3f2e7ae35c6163d",
+      "size": 1388420361,
+      "lfs": {
+        "sha256": "9d8d6f8f65e32c7a72aa6c9b7e87debe93e71e5a94669522f3c5ced98b238df9",
+        "size": 1388420361,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "unet/diffusion_pytorch_model.safetensors",
+      "blobId": "f9473399664149b8344b774a9f8dfbf64051f240",
+      "size": 1387964784,
+      "lfs": {
+        "sha256": "359a5ffb89a844beb2fcfac584aae2cd7cd6e87c3ab1ec4e892ef45d91db77c2",
+        "size": 1387964784,
+        "pointerSize": 135
+      }
+    },
+    {
+      "rfilename": "vae/config.json",
+      "blobId": "14eddeae8588cc8078c670e1a5224cd0eb2b035d",
+      "size": 559
+    },
+    {
+      "rfilename": "vae/diffusion_pytorch_model.bin",
+      "blobId": "f69308637137111b25298ba08e46e174870722bc",
+      "size": 221586761,
+      "lfs": {
+        "sha256": "b3494aadd9cf3e3f0cbb4e913f9b35a25da4a3cb709852e204b667ae5890f758",
+        "size": 221586761,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "vae/diffusion_pytorch_model.safetensors",
+      "blobId": "72538086b8e673d1e69b44adf236e979a6ba334b",
+      "size": 221530308,
+      "lfs": {
+        "sha256": "5f8ddddc5c45eddaab38a67a434e8a64486964540ba3fc248a0da7cbd599d4ad",
+        "size": 221530308,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "vocoder/config.json",
+      "blobId": "589a38a9c2b3a5cc93cdbe524e8f24bbe35ef735",
+      "size": 654
+    },
+    {
+      "rfilename": "vocoder/model.safetensors",
+      "blobId": "dff4ea8a53b021148d77d294872c3e71bbdb3bdb",
+      "size": 221079092,
+      "lfs": {
+        "sha256": "d9dc6513c30a5b86c2497712690c04fe74b4aa79fdab6d490b34fcb4e24c590c",
+        "size": 221079092,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "vocoder/pytorch_model.bin",
+      "blobId": "27974c3ee179f3a8a75197cd59f9f610e1e3f342",
+      "size": 221120349,
+      "lfs": {
+        "sha256": "f9fbefc2b31c85d1dabe98e53d09ac88039af411162a7e641040a9c2b5f62364",
+        "size": 221120349,
+        "pointerSize": 134
+      }
+    }
+  ],
+  "spaces": [
+    "hilamanor/audioEditing",
+    "haoheliu/audioldm2-text2audio-text2music",
+    "M2UGen/M2UGen-Demo",
+    "Bils/Generate-Sound-Effects-from-Image",
+    "flosstradamus/FluxMusicGUI",
+    "wsntxxn/MM-StoryAgent",
+    "build-small-hackathon/LoFinity",
+    "fffiloni/audioldm2-text2audio-text2music-API",
+    "Bils/AIPromoStudio",
+    "fffiloni/text2any-batch-hf-jobs-orchestration",
+    "George870/AUDIOEDITIOM",
+    "aliabid94/audioldm2",
+    "aquietlife/audioldm2_api",
+    "awacke1/MusicChatGenWithMuGen",
+    "hakunamatata1997/audioEditing",
+    "szili2011/audioEditingunlimitedinput",
+    "LuizMercedes/audioEditing",
+    "DennisHung/DiffmorpherXAp-adapter",
+    "pratik-250620/MultiModal-Coherence-AI",
+    "jordonpeter01/M2UGen-Super-30s",
+    "parson/audioEditing",
+    "gsspdev/audioEditing",
+    "George870/audioEditingFULL",
+    "Jerrymusicmix/AUDIOEDITIOM",
+    "MaxGab/Text-to-Audio",
+    "mihxjlo/soundsculpt",
+    "CAWAI/audioldm2-team-2",
+    "CAWAI/audioldm2-team-3",
+    "TechAudio/diffusers_HARP_test",
+    "VarunKumarGupta2003/MusicGen",
+    "aaronelevate/audioldm2-testbed",
+    "MakiAi/M2UGen-Demo",
+    "divyareddy/M2UGen-Demo",
+    "cocktailpeanut/audioEditing",
+    "deeplearning/audioEditing",
+    "BlueyModelosIAEspLat/audioEditing",
+    "fluorescenrgrey/audioEditing",
+    "sheikyerbouti/audioEditing",
+    "Suniilkumaar/audioEditing",
+    "Fadil369/audioEditing",
+    "qbikmuzik/audioEditing",
+    "1PGAlt/audioEditing",
+    "TobDeBer/M2UGen330-Demo",
+    "George870/EditordeAudio",
+    "JoPmt/FluxMusicGUI_tstng",
+    "Costersky/audioEditing1",
+    "Khunty/audioEditing",
+    "Doubleupai/Reupload",
+    "MF9000/audioEditing",
+    "jacky99887712345787979678987/audioEditing111",
+    "makululinux/Image-Sound",
+    "marko-mijalkovic/M2UGen-Demo",
+    "Zack23432/audioEditingd",
+    "Zack23432/audioEditing233",
+    "kyriacou2009/audioldm2-text2audio-text2music",
+    "josh11/audioEditing",
+    "szili2011/audioEditingUNLIMITED",
+    "voyagermissions/audioEditing",
+    "docteurmozz/audioldm2-perso",
+    "xjosematheus/audioEditing",
+    "haoheliu/M2UGen-Demo",
+    "MRNATURALINDO/Myown",
+    "SuperWangSS/testforaudio",
+    "Aonixhorizon/audioEditing12",
+    "devontasmitty9/audioEditing",
+    "Rickyric/audioEditing",
+    "lupingzhang/MM-StoryAgent-English",
+    "lupingzhang/MM-StoryAgent-students",
+    "aalishbaa/demo-App",
+    "kinwaicheuk/steermusic",
+    "Adam-512/audio-ldm2",
+    "rikitrini/audioldm2-text2audio-text2music",
+    "Evinerupt/Musics",
+    "Evinerupt/audioEditing",
+    "puravrathod/Codefile",
+    "zx680/audioldm2-text2audio-text2music",
+    "OnyxMunk/Stable-Audio-Open",
+    "Arrcttacsrks/Generate-Sound-Effects-from-Image",
+    "Sivasregal/audioEditing",
+    "mkhou00000/AI-Media-Studio",
+    "terastudio/audioEditing",
+    "DJShane/audioEditing",
+    "Ceras/audioldm2-text2audio-text2music",
+    "Daniel251/nature-sound-generator",
+    "Kudaxpress47/RemixRehear",
+    "karrrn/audioldm2-text2audio-text2music",
+    "Johnny301470/audioldm2-text2audio-text2music",
+    "laylwintguy/audioldm2-text2audio-text2music",
+    "andreeinwindir/musicgen-final",
+    "sonicase/ambientgen",
+    "Rs1771/audioldm2-text2audio-text2music",
+    "Alex207119/audioldm2-text2audio-text2music",
+    "fffiloni/audioldm2-batch-hf-jobs-exploration",
+    "mrtynjgrs/audioEditing",
+    "pmt33/audioEditing",
+    "wdevalk/audioldm2-text2audio-text2music",
+    "Pikatofly/audioEditing",
+    "Rob-Lobsta/Shining-Mythril",
+    "Rob-Bot/Shining-Mythril",
+    "Poshel-na-hui/My-video-generator"
+  ],
+  "createdAt": "2023-08-21T11:00:28.000Z",
+  "safetensors": {
+    "parameters": {
+      "F32": 346943496
+    },
+    "total": 346943496
+  },
+  "usedStorage": 8950266757
+}

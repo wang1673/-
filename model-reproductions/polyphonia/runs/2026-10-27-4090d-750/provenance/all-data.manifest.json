@@ -1,0 +1,257 @@
+{
+  "status": "verified",
+  "track_count": 50,
+  "files": [
+    {
+      "path": "test/BKS - Bulldozer/mixture.wav",
+      "sha256": "00ef8577951712e10a402a1eeda6a274449b30b479e28698742d5d8097a51682",
+      "bytes": 59453932
+    },
+    {
+      "path": "test/Angels In Amplifiers - I'm Alright/mixture.wav",
+      "sha256": "1126a4879c35744358724819e79bf2593ff505aa96349f43ac4e203b7da45cd5",
+      "bytes": 31680380
+    },
+    {
+      "path": "test/Secretariat - Borderline/mixture.wav",
+      "sha256": "808f6f3258c9ed9ad505f67b5f2492f192cefdbbed516a05d1914f075967d3c0",
+      "bytes": 50599612
+    },
+    {
+      "path": "test/Girls Under Glass - We Feel Alright/mixture.wav",
+      "sha256": "ee4365990bb21c36e3fa401d02b7e254a45e66f6012966518951f4859d74716a",
+      "bytes": 55968456
+    },
+    {
+      "path": "test/The Mountaineering Club - Mallory/mixture.wav",
+      "sha256": "a0e97316302362efb0869a94dc5bcb7a8cbdfe18a71308488fb6fd70e8dd517d",
+      "bytes": 43122756
+    },
+    {
+      "path": "test/Skelpolu - Resurrection/mixture.wav",
+      "sha256": "cc1e097be9d78aaf630f0663020fc48287fadb1e696975d77295b8eb14166ff9",
+      "bytes": 69794984
+    },
+    {
+      "path": "test/James Elder & Mark M Thompson - The English Actor/mixture.wav",
+      "sha256": "6a843be15e5f1c8fca85f343b50703ff0e0a2d614fcaf52f9a42e5a3071749df",
+      "bytes": 36245520
+    },
+    {
+      "path": "test/Motor Tapes - Shore/mixture.wav",
+      "sha256": "61e9c1e9902c76ac617c66761f24d9657e4eba939ca0ea491ac6c1b96b52fc59",
+      "bytes": 43522020
+    },
+    {
+      "path": "test/Al James - Schoolboy Facination/mixture.wav",
+      "sha256": "8eac63b82f0ed1acfed9d4f4eec6c51faa3b5d508aa7f4aca0e0cd0a5e0d7ad1",
+      "bytes": 35372968
+    },
+    {
+      "path": "test/Zeno - Signs/mixture.wav",
+      "sha256": "28272111962b03b8c01d895e76536331c4b72377779543a7f1e61a921dbe63e4",
+      "bytes": 41345368
+    },
+    {
+      "path": "test/Triviul feat. The Fiend - Widow/mixture.wav",
+      "sha256": "a64e654843e55efcb7863e65bce88fca2cb93f456ce4886bdf4c485912b2444f",
+      "bytes": 41473392
+    },
+    {
+      "path": "test/Georgia Wonder - Siren/mixture.wav",
+      "sha256": "8d71f08a8e1b87724982a0d447ce82c12ce2c006db5d1d013f0c785aaa1a0ac3",
+      "bytes": 75918196
+    },
+    {
+      "path": "test/Cristina Vane - So Easy/mixture.wav",
+      "sha256": "a3f7e4be7b79942b6552fba38ef77bf2b7e954c41b6e979c832d1ad1cabfcc2e",
+      "bytes": 44829268
+    },
+    {
+      "path": "test/BKS - Too Much/mixture.wav",
+      "sha256": "6cff57b76182fcce9c221d9892272afafc8c68f723c3971e1b43fe42ca1ddd6e",
+      "bytes": 38830092
+    },
+    {
+      "path": "test/Tom McKenzie - Directions/mixture.wav",
+      "sha256": "77f9e18708a523cf42abc910118fbd7cc46c7cc1f221a1a0344d22a5f2d149ec",
+      "bytes": 31020456
+    },
+    {
+      "path": "test/Signe Jakobsen - What Have You Done To Me/mixture.wav",
+      "sha256": "50cfe9a5b056bc6ba95f4e9416c2f3158350b854171a65403034e0b559279cf5",
+      "bytes": 31292932
+    },
+    {
+      "path": "test/The Easton Ellises (Baumi) - SDRNR/mixture.wav",
+      "sha256": "515de086b55032e247686f7c66a35b7ffacd36339fca4690a4e443e8a35aa3b8",
+      "bytes": 41398316
+    },
+    {
+      "path": "test/Moosmusic - Big Dummy Shake/mixture.wav",
+      "sha256": "3eb94886944c87eaf2f3e69cfd9f1fea15fc033903eb6c67a2979fb419e309bd",
+      "bytes": 35078444
+    },
+    {
+      "path": "test/Juliet's Rescue - Heartbeats/mixture.wav",
+      "sha256": "12bfe1edfcca5e9a6dfc34c75342f736fd8c54b63aab33271d425176a74150d5",
+      "bytes": 47213820
+    },
+    {
+      "path": "test/Arise - Run Run Run/mixture.wav",
+      "sha256": "9b2a529d07461e18dd346f2754a28b4cb4abe2579c98306d858e2a1c771855c5",
+      "bytes": 38700944
+    },
+    {
+      "path": "test/Little Chicago's Finest - My Own/mixture.wav",
+      "sha256": "ac00824544d7c84c1751727e7925baac4b7782ce3b3a17b2d0c8948158c32532",
+      "bytes": 49676332
+    },
+    {
+      "path": "test/AM Contra - Heart Peripheral/mixture.wav",
+      "sha256": "e0d5207f304fb466f8a93ce79011c8c52439476b64c34818c0944df65f4c9ede",
+      "bytes": 37062700
+    },
+    {
+      "path": "test/M.E.R.C. Music - Knockout/mixture.wav",
+      "sha256": "11c44a219a4740c397e68c0b1904704a1eca7feffbd14e9d55aba6fb577c426e",
+      "bytes": 47628044
+    },
+    {
+      "path": "test/The Doppler Shift - Atrophy/mixture.wav",
+      "sha256": "96528e34ddef71212397adb632f27e09ddf84e13713e26f1029b46fb74f4cd7d",
+      "bytes": 58466408
+    },
+    {
+      "path": "test/Forkupines - Semantics/mixture.wav",
+      "sha256": "602738a839bd904da8c46c19e1730a94a28b3fc808948f1920dd1a6159e03586",
+      "bytes": 48260408
+    },
+    {
+      "path": "test/Speak Softly - Like Horses/mixture.wav",
+      "sha256": "fb3f97407001dfb48266476ea9dcc4b8ed00fb244b8edc6c758ef37c4bb36668",
+      "bytes": 55154444
+    },
+    {
+      "path": "test/Nerve 9 - Pray For The Rain/mixture.wav",
+      "sha256": "3a2f1d2a85bc74a30589bc5d6af5cd90ff7b3ed4c85bb79a6c51efb3c552f1dd",
+      "bytes": 60631244
+    },
+    {
+      "path": "test/The Sunshine Garcia Band - For I Am The Moon/mixture.wav",
+      "sha256": "69f8d3536397436b230e19c0006565ae5559b09efbb1892abddf360914e17904",
+      "bytes": 56500376
+    },
+    {
+      "path": "test/PR - Oh No/mixture.wav",
+      "sha256": "2fdde4af052f91a0de57f0d7e8d665af4ca1e861e7c70416f93b36b8ab1e56be",
+      "bytes": 13440972
+    },
+    {
+      "path": "test/Speak Softly - Broken Man/mixture.wav",
+      "sha256": "dead16d822d950b39e659680df1570a0b2aa5f0e856edb504b1559b4e942d3de",
+      "bytes": 44657500
+    },
+    {
+      "path": "test/Hollow Ground - Ill Fate/mixture.wav",
+      "sha256": "1f0e425d0771a1c5f70daae96bfcdc424026c4519099ed7c974d7aac31c826ff",
+      "bytes": 24991356
+    },
+    {
+      "path": "test/Punkdisco - Oral Hygiene/mixture.wav",
+      "sha256": "733fa7f639be998916ae8481e70cd6b62581a9f65aa696e1373cdeba26603ea7",
+      "bytes": 39089968
+    },
+    {
+      "path": "test/Bobby Nobody - Stitch Up/mixture.wav",
+      "sha256": "92f86f571e8d31f0c3fb766dc5038d9da14cde12f117d4c5687f11c7552ad964",
+      "bytes": 39028544
+    },
+    {
+      "path": "test/Louis Cressy Band - Good Time/mixture.wav",
+      "sha256": "841f0ae493c0e3d9fbba9878dda54ed1901b997294ba3575cd101159a5619916",
+      "bytes": 51653744
+    },
+    {
+      "path": "test/Ben Carrigan - We'll Talk About It All Tonight/mixture.wav",
+      "sha256": "77b4e32bbd35b6130898d970dc38796017762ad093b7e6d286615642353014b2",
+      "bytes": 44966292
+    },
+    {
+      "path": "test/PR - Happy Daze/mixture.wav",
+      "sha256": "d1d91337c3add297854e74bd1c31309dea5cfe608fd79d563695aa9a9f5f165a",
+      "bytes": 28700938
+    },
+    {
+      "path": "test/Buitraker - Revo X/mixture.wav",
+      "sha256": "e2a0ce99f994519a1598908fb112520c94a3be63ecbf5a87c74953abc098b6c6",
+      "bytes": 48655732
+    },
+    {
+      "path": "test/Carlos Gonzalez - A Place For Us/mixture.wav",
+      "sha256": "4d5692701e9bfcdeffa144e34c0829f26ec815713882bbc7ca15c05a0d055963",
+      "bytes": 44138632
+    },
+    {
+      "path": "test/Raft Monk - Tiring/mixture.wav",
+      "sha256": "2d456e656ae01f50719513339ea27ea4ace5109cb30e8073b3601ed9c2f8e9d3",
+      "bytes": 37440156
+    },
+    {
+      "path": "test/Enda Reilly - Cur An Long Ag Seol/mixture.wav",
+      "sha256": "6e230726fcbfe9e0c5334ba62af17761d596df391be8dfafa8cfce2e42591000",
+      "bytes": 32986056
+    },
+    {
+      "path": "test/The Long Wait - Dark Horses/mixture.wav",
+      "sha256": "dc893a1c99dbb0b985fdb2594b4f42cf97b050e1a7ea135d970d80a31696087a",
+      "bytes": 53929216
+    },
+    {
+      "path": "test/Detsky Sad - Walkie Talkie/mixture.wav",
+      "sha256": "90b76c224cd7cc75aa7f98082c8ec6fc5556d77f17fd83dc63e43c0f09941442",
+      "bytes": 33601092
+    },
+    {
+      "path": "test/Timboz - Pony/mixture.wav",
+      "sha256": "b8848708156fc26a8cb7f772530df8838ec92704902baafdf77e6c8603772b5c",
+      "bytes": 44637840
+    },
+    {
+      "path": "test/Mu - Too Bright/mixture.wav",
+      "sha256": "fe0ba2601cd6068ea0fb26c7d40a0a6193d38763ce98bde889792ffa683cf2e8",
+      "bytes": 48009980
+    },
+    {
+      "path": "test/We Fell From The Sky - Not You/mixture.wav",
+      "sha256": "f27e821d148ca393a0711b39b70628b496263dc676ebdf1e62927d6389b118bb",
+      "bytes": 36673132
+    },
+    {
+      "path": "test/Secretariat - Over The Top/mixture.wav",
+      "sha256": "de684cfaa35abbf9795054eddf2ce5d4c62dddd5a53bf83b626f85a8d16f80db",
+      "bytes": 44293356
+    },
+    {
+      "path": "test/Side Effects Project - Sing With Me/mixture.wav",
+      "sha256": "edae7ebcff6b3ba3a3a01d71bb21d7a67833685b1fc749f275141709e736b3a2",
+      "bytes": 42985732
+    },
+    {
+      "path": "test/Sambasevam Shanmugam - Kaathaadi/mixture.wav",
+      "sha256": "a95b16d9618b62864b8efbd05d9daf97a3a1bef3a55e2092be91089a095f5385",
+      "bytes": 56073980
+    },
+    {
+      "path": "test/Lyndsey Ollard - Catching Up/mixture.wav",
+      "sha256": "34fff6aff1c019111a9c71029ed346081815f4381b10316756c1a82d89189645",
+      "bytes": 40118444
+    },
+    {
+      "path": "test/The Easton Ellises - Falcon 69/mixture.wav",
+      "sha256": "999ad32bd3cef63f320e750c70158693aa80bda240c9efa0f6b6f9e7d36a472c",
+      "bytes": 43569196
+    }
+  ],
+  "validation": "All original full-length mixture WAV SHA256 match the old experiment"
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "checkpoint_sha256": "fae3e9c087f2909c28a09dc31c8dfcdacbc42ba44c70e972b58c1bd1caf6dedd",
+  "CLAP": "cosine of HTSAT-base music_audioset_epoch_15_esc_90.14 embeddings; 48k mono, julius resampling, float input, max 77 text tokens",
+  "LPAPS": "four Swin layer outputs; normalize over token axis dim=1; squared difference, sum token axis, mean remaining axes, sum four layers; matches referenced DDPM LPAPS reduction",
+  "CQT1_PCC": {
+    "library": "nnAudio==0.3.3",
+    "class": "CQT2010",
+    "sr": 16000,
+    "n_bins": 128,
+    "bins_per_octave": 24,
+    "hop_length": 512,
+    "fmin": 32.7,
+    "definition": "Pearson correlation of argmax-frequency-bin trajectories; constant trajectories undefined"
+  },
+  "reference_audio": "the raw center crop, stereo averaged; no per-clip peak normalization",
+  "inference_source_note": "upstream wav_to_fbank reads first channel and normalizes; source evaluation downmix follows referenced evaluation code",
+  "crop_assumption": "User-approved reproduction assumption. Authors did not publish an exact crop manifest; not an exact replication of Table 1.",
+  "LPAPS_reference_commit": "8dc937701a42f6fb53160912f8a96b42fe8261d8",
+  "distributional_conventions": "CLAP 512-d normalized embeddings; source set 50 tracks, generated 750 tasks. FAD uses empirical Gaussian moments; polynomial MMD2 uses (dot/d+1)^3 and unbiased U-statistic. These details are supplementary assumptions, not published exact paper settings.",
+  "omitted": "ASB and AMB require all-method normalization; MOS requires human raters; neither is fabricated."
+}
