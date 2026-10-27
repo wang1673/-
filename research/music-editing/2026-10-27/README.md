@@ -31,10 +31,18 @@
 
 SC=作者主张；DE=所读论文/代码的直接内容；AI=分析推断；UN=未核验。DE不代表本轮独立复现效果；全部分析包为partial。
 
-下一阶段请deep-read Mode C读取当前outputs/ANALYSIS_PACKAGES.json，构建/增量更新P/F/M/E和连接点；本次没有直接设计创新方法。
+deep-read Mode C已完成本轮增量整合，见mode-c-v2。当前仍未设计创新方法；后续可选单个连接点继续核验。
 
-**历史矩阵提示：** [mode-c-v1](mode-c-v1/README.md)基于此前六篇v1，尚未消费本次四篇新增及v2修订；保留作历史记录，不把它当作最新十篇矩阵。
+**矩阵更新：** [mode-c-v2](mode-c-v2/README.md)已消费当前10篇分析包，形成9P/20F/11M/35E/6C及180格；[mode-c-v1](mode-c-v1/README.md)保留为历史。
 
 本次按用户要求更新本目录中的已有研究记录；旧内容通过Git提交历史保留。其他papers目录中的独立阅读笔记保持原有用途。
 
 最终记录以GitHub为主，不镜像论文全文、第三方代码、音频或权重。核对用的临时下载在发布验证后清理。
+
+## 最新 Mode C 入口
+
+- [十篇增量交叉矩阵](mode-c-v2/2026-10-27-mode-c-cross-matrix-music-editing.md)
+- [MODE_C_PACKAGE](mode-c-v2/MODE_C_PACKAGE.json)
+- [新增与保留理由](mode-c-v2/delta-from-v1.md)
+
+9个问题、20个现象、11条机制链、35条证据、6个连接点；总体partial。只完成证据整合，没有执行创新方案设计。

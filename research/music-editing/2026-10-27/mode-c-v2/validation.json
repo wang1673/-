@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "valid": true,
+  "matrix_cells": 180,
+  "expected_cells": 180,
+  "upstream_candidates": 40,
+  "source_count": 10,
+  "counts": {
+    "P": 9,
+    "F": 20,
+    "M": 11,
+    "E": 35,
+    "C": 6,
+    "matrix_cells": 180
+  },
+  "status_counts": {
+    "supported": 19,
+    "plausible": 49,
+    "diagnostic-needed": 85,
+    "unsupported": 27
+  },
+  "score_checks": true,
+  "internal_references_checked": true,
+  "upstream_evidence_references_checked": true,
+  "all_40_candidate_dispositions_checked": true,
+  "empirical_reproduction": "not_run",
+  "matrix_id": "MODEC-20261027-MUSIC-PRESERVATION-v2",
+  "created_at": "2026-10-27",
+  "input_commit": "b20076e135e9f9e7a09daa0e1ccbaf022cb055b9",
+  "verified_scope": "结构、ID、引用、候选去向、分数与矩阵覆盖；不是效果复现",
+  "no_IDEA_PACKAGE_generated": true,
+  "no_local_deliverable_saved": true
+}
