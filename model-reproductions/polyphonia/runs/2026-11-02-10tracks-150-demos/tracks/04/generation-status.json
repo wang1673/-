@@ -1,0 +1,196 @@
+{
+  "state": "completed",
+  "track": "BKS - Bulldozer",
+  "task_count": 15,
+  "track_index": 4,
+  "selected_tasks": [
+    "guitar2violin",
+    "guitar2flute",
+    "guitar2trumpet",
+    "guitar2cello",
+    "guitar2choir",
+    "guitar2sitar",
+    "guitar2marimba",
+    "guitar2synthlead",
+    "guitar2harp",
+    "bass2upright",
+    "bass2synth",
+    "drums2jazz",
+    "drums2tribal",
+    "drums2electronic",
+    "drums2orchestral"
+  ],
+  "original_protocol": "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/protocol.json",
+  "input_sha256": {
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/mixture.wav": "ec08b55026572a51b80bb866da10290c59804e0baa12c548f205bd154d8f02a7",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/vocals.wav": "a7b63488389bdbe1a2ba4f06f5114e3cc22a0d2bb9da962fbf0a3e68beecc89e",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/bass.wav": "d9440d9c80e086ea117ba9a2f88511e28a45175446491af67e5cca1c1424d052",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/drums.wav": "25e99a8d8e557e573b9bdee9c308ab39497d86c9358267e04c4a3f14ec653a89",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/other.wav": "7c95f4639cf21b93c7c2dc158bd64f24bca1750def042d5c9332e26ccd488393",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input/prompt_multi.json": "412add9b1b42e0c89e21355b639ea34bdd673621bf096303982a3a439f11724c"
+  },
+  "original_records_sha256": {
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/summary.json": "e50a70ad70ccc37f48aec5e84fcd2ed6e305b912201aa7298428bce996196f46",
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/per_task.csv": "4f17ad58ea5b87735c4980ecdf395995564635b028dcf76a1007cb28860b253f",
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/full750.audit.json": "6bd74f220dea627c1032d69ccc336515dd74ec2c7413561cb641223da0139609"
+  },
+  "configuration": {
+    "steps": 100,
+    "cfg": 3.5,
+    "mask_bias_strength": 2.5,
+    "seed": 928,
+    "precision": "fp16",
+    "mask_type": "energy",
+    "down_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "implementation": "Unmodified official run_sample_exp.py; output saving instrumented for validation",
+    "known_paper_code_difference": "Official energy mask divides target Mel energy by mixture Mel energy; paper Eq 9 divides by target+non-target energy. Code baseline retained."
+  },
+  "OPENBLAS_CORETYPE": "Haswell",
+  "OPENBLAS_NUM_THREADS": "1",
+  "note": "Fresh official inference on same dataset clip and all15published prompts. No old output/RNG reused; independent demo, not appended to750benchmark.",
+  "argv": [
+    "run_sample_exp.py",
+    "--sample_dir",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/input",
+    "--output_dir",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/tracks/04/output",
+    "--device",
+    "cuda",
+    "--precision",
+    "fp16",
+    "--seed",
+    "928",
+    "--mask_type",
+    "energy"
+  ],
+  "validated_tasks": 15,
+  "files": {
+    "guitar2violin": {
+      "sha256": "80a71f475eedc9f9f0d81f5e0ccce64e26eaab067cbb69f28ce3cc3d66452871",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.1251843950366765,
+      "peak": 0.8564453125
+    },
+    "guitar2flute": {
+      "sha256": "f5e51a8757e87791cc5116f56afb42a367eca4758c0794b394b9947e1d90f444",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.12376099487250947,
+      "peak": 0.8916015625
+    },
+    "guitar2trumpet": {
+      "sha256": "486fa270dbe122f4e8d7e1c1375c9954906db62d0c1561751e6cc0b52ea24dd7",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.12788097107141552,
+      "peak": 0.85498046875
+    },
+    "guitar2cello": {
+      "sha256": "16688b523fbf1abb354d9e81c9ced0d3766b24998e926b8d465e17dd78036f84",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.1216290875313094,
+      "peak": 0.84619140625
+    },
+    "guitar2choir": {
+      "sha256": "9fd6f5502d2d9e0e8a5b45284a6ad609ac1f4fd48b8f1c51cd2710f31777a31e",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11374049843227681,
+      "peak": 0.796875
+    },
+    "guitar2sitar": {
+      "sha256": "f1e47a30f1b509061331c73691328e8eb8314894e45e8ecf78a779e390520990",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.10982744185426657,
+      "peak": 0.83154296875
+    },
+    "guitar2marimba": {
+      "sha256": "39cf50bbc3e703daf38f128dc5e88a1f02458f189e0e7c9871bb12b8db3c3ea2",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11423898191171122,
+      "peak": 0.8701171875
+    },
+    "guitar2synthlead": {
+      "sha256": "49fd6453272c55fee9c570dc1628253924e86be75614abe702812d80b641a1b6",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.12400340595920267,
+      "peak": 0.880859375
+    },
+    "guitar2harp": {
+      "sha256": "da57d3687a9b8aa4b02e979d8a23971d8beedb6f295914a8d52b555b3edd3fe9",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11674564328650056,
+      "peak": 0.84423828125
+    },
+    "bass2upright": {
+      "sha256": "84b2bb7fd56a04130fb2b30bce27896ea3e8d095cde4852e4d7dfa65ff02b1bd",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.13066852199584517,
+      "peak": 0.88330078125
+    },
+    "bass2synth": {
+      "sha256": "0d3da4327a175144b60f1afe30138a94e47bd257b3c1f809932abc73358d928f",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11241166279971021,
+      "peak": 0.814453125
+    },
+    "drums2jazz": {
+      "sha256": "54a56421d966047c5b8a4842f2eb5f45f0abc5d3b6097985d3412c1eb4a51a18",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11876944352383476,
+      "peak": 0.896484375
+    },
+    "drums2tribal": {
+      "sha256": "90aa2dbdea89e4295607b7f38cdb4549350da94dfad43a819e22b1631efd6d8c",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.1214510691207339,
+      "peak": 0.91796875
+    },
+    "drums2electronic": {
+      "sha256": "a96bbb7b2457ee7f17f6397cdcdb10c5c60daa44caae9a88940d71dec29968a4",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.12578150028185256,
+      "peak": 0.88671875
+    },
+    "drums2orchestral": {
+      "sha256": "890a82ea435584646bcde5737d28cfb9d4a6a6af36cb5a7e1e9e9a6de09c668d",
+      "sample_rate": 16000,
+      "frames": 160000,
+      "rms": 0.11247572761065203,
+      "peak": 0.83447265625
+    }
+  },
+  "original_records_unchanged": true,
+  "elapsed_seconds": 132.22578917071223,
+  "peak_cuda_allocated_GiB": 10.022495746612549
+}

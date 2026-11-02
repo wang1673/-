@@ -1,0 +1,77 @@
+{
+  "state": "completed",
+  "tracks": [
+    {
+      "index": 0,
+      "track": "AM Contra - Heart Peripheral",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 1,
+      "track": "Al James - Schoolboy Facination",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 2,
+      "track": "Angels In Amplifiers - I'm Alright",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 3,
+      "track": "Arise - Run Run Run",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 4,
+      "track": "BKS - Bulldozer",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 5,
+      "track": "BKS - Too Much",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 6,
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 7,
+      "track": "Bobby Nobody - Stitch Up",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 8,
+      "track": "Buitraker - Revo X",
+      "tasks": 15,
+      "state": "completed"
+    },
+    {
+      "index": 9,
+      "track": "Carlos Gonzalez - A Place For Us",
+      "tasks": 15,
+      "state": "completed"
+    }
+  ],
+  "selection": "First10tracks in original protocol order, selected before running; same center10s clips; no quality selection",
+  "expected_tasks": 150,
+  "prior_demo_tasks": 15,
+  "new_tasks": 135,
+  "completed_tracks": 10,
+  "validated_tasks": 150,
+  "started_at": 1793594495.3542733,
+  "elapsed_seconds": 1280.2308502048254,
+  "current_index": 9,
+  "evaluated_tasks": 150,
+  "resume_note": "Generation/evaluation already complete. Original first demo had Jupyter auto-created .ipynb_checkpoints HTML snapshot without nearby audio. Aggregation now excludes checkpoint and AppleDouble metadata copies; no actual task audio or scores changed. Prior failure status/log retained under history.",
+  "completed_after_resume_at": 1793595830.8977094
+}

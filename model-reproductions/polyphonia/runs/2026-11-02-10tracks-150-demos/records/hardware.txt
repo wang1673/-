@@ -1,0 +1,2 @@
+name, memory.total [MiB], driver_version
+NVIDIA GeForce RTX 4090 D, 49140 MiB, 580.105.08

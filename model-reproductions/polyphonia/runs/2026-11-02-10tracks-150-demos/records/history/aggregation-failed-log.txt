@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/scripts/aggregate_ten_tracks.py", line 86, in <module>
+    c=Check(f.parent);c.feed(f.read_text());assert '{TRACK_NAME}' not in f.read_text()
+  File "/root/autodl-tmp/polyphonia/runtime/env/lib/python3.8/html/parser.py", line 111, in feed
+    self.goahead(0)
+  File "/root/autodl-tmp/polyphonia/runtime/env/lib/python3.8/html/parser.py", line 171, in goahead
+    k = self.parse_starttag(i)
+  File "/root/autodl-tmp/polyphonia/runtime/env/lib/python3.8/html/parser.py", line 345, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-ten-tracks/scripts/aggregate_ten_tracks.py", line 84, in handle_starttag
+    if tag=='audio':assert (self.base/a['src']).exists(),a['src']
+AssertionError: audio/original.wav

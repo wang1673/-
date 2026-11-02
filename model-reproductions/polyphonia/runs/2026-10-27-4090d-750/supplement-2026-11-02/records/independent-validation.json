@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "numpy": "1.23.5",
+  "scipy": "1.10.1",
+  "torch": "2.4.1+cu124",
+  "OPENBLAS_CORETYPE": "Haswell",
+  "OPENBLAS_NUM_THREADS": "1",
+  "numpy_eigen_residual": 2.11524856589112e-16,
+  "numpy_eigen_orthogonality_error": 3.719931685774498e-14,
+  "independent_torch_cuda_float64_fad": 0.779795913792402,
+  "independent_torch_cuda_float64_polynomial_kad": 0.00302463515457152,
+  "old_files_unchanged": true,
+  "runtime_anomaly": "Default OpenBLAS CPU dispatch produced invalid eigenvectors (orthogonality error3596.56), causing previous negative FAD and failed assertions. Haswell dispatch restored eigenvector checks without changing packages, source embeddings or main750data. Default-dispatch attempted values are invalid and excluded; original failure log retained. Applied only to new supplement and demo processes."
+}

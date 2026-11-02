@@ -1,0 +1,8 @@
+metric,value,std_population,valid_tasks,undefined_tasks,status
+CLAP,0.3503757368971904,0.08190163749915376,750,0,original750_task_metric
+LPAPS,4.67899129152298,0.48950218590868355,750,0,original750_task_metric
+CQT1_PCC,0.3334732335597876,0.23045329872748305,750,0,original750_task_metric
+FAD,0.7797958695704603,,,,empirical_distribution_distance_existing_CLAP_features
+KAD,0.003024635154570632,,,,polynomial_family_matches_paper_but_exact_author_parameters_unpublished
+ASB,0.8612305644328144,,,,paper_baseline_reference_approximation_user_authorized
+AMB,0.9302904541638237,,,,paper_baseline_reference_approximation_user_authorized

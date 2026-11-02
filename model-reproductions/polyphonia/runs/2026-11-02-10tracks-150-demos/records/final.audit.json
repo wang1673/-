@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "tracks": 10,
+  "generated": 150,
+  "evaluated": 150,
+  "all_output_hashes_verified": true,
+  "all150_audio_valid": true,
+  "main750_records_unchanged": true,
+  "all_html_audio_targets_exist": true,
+  "delivery_files": 535,
+  "task_mapping_notes": [
+    {
+      "track": "Ben Carrigan - We'll Talk About It All Tonight",
+      "task": "bass_guitar2upright",
+      "actual_stem": "other",
+      "note": "Official task name suggests bass_guitar but infer_edit_stem does not match bass2, defaults to other; retained unchanged."
+    }
+  ]
+}

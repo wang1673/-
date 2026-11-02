@@ -1,0 +1,62 @@
+{
+  "state": "completed_with_explicit_reproduction_limits",
+  "source_code_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+  "counts": {
+    "reference_clips": 50,
+    "generated_clips": 750,
+    "dimensions": 512
+  },
+  "feature_protocol": "Reuse this run hash-verified CLAP music checkpoint embeddings; one full10s embedding per clip; original preprocessing unchanged; float32 values promoted tofloat64; not latest fadtk default trailing-padding multiwindow or fp16-storage extraction",
+  "FAD": {
+    "value": 0.7797958695704603,
+    "implementation": "Unmodified calc_embd_statistics/calc_frechet_distance function bodies from microsoft/fadtk ec74b1f96d5576ec04e721985fa0f0d14d965d9b; standalone imports for original Python3.8 environment",
+    "independent_psd_check": 0.7797959201285523,
+    "infinite_sample_extrapolation": false,
+    "uncertainty": "Not estimated; not a per-task standard deviation"
+  },
+  "KAD": {
+    "status": "polynomial_family_matches_paper_but_exact_author_parameters_unpublished",
+    "value": 0.003024635154570632,
+    "variant": "unbiased polynomial MMD2; degree3; gamma1/512; coef0=1; scale1; normalized CLAP features; matches original declared evaluation convention",
+    "author_exact": false,
+    "sensitivity_gamma_1": 3.024498118719488,
+    "diagnostic_cited_kadtk_gaussian_x100": 27.11204964624454,
+    "diagnostic_bandwidth": 1.0517542362213135,
+    "warning": "Gaussian diagnostic is original kadtk convention, not paper-polynomial result; do not substitute one for the other or compare unverified scales to the paper table"
+  },
+  "ASB": {
+    "value": 0.8612305644328144,
+    "status": "paper_baseline_reference_approximation_user_authorized"
+  },
+  "AMB": {
+    "value": 0.9302904541638237,
+    "status": "paper_baseline_reference_approximation_user_authorized"
+  },
+  "composite_reference": {
+    "source": "https://arxiv.org/html/2605.10203v1#S5.T1",
+    "baseline_count": 7,
+    "cohort_count": 8,
+    "operation": "Replace published Polyphonia row by this reproduction; use7 published rounded baseline means; Zscore thenMinMax within each metric across8 methods; harmonic mean; CQT1_PCC forAMB",
+    "normalized_reproduction": {
+      "method": "Polyphonia_reproduction",
+      "CLAP_norm": 1.0,
+      "structure_norm": 0.7562817700703938,
+      "melody_norm": 0.8696664041047042,
+      "ASB": 0.8612305644328144,
+      "AMB": 0.9302904541638237
+    },
+    "paper_table_replay_max_abs_error": 0.0026358148510804424,
+    "replay_limitation": "Published rounded inputs and unpublished normalization details prevent exact table replay; not newly reproduced baseline runs or same-crop causal comparison"
+  },
+  "validation": {
+    "old_metrics_and_audit_unchanged": true,
+    "all750_audio_hashes_checked": true,
+    "all50_source_hashes_checked": true,
+    "fad_reference_vs_psd_abs_difference": 5.0558091935215543e-08
+  },
+  "old_file_hashes": {
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/summary.json": "e50a70ad70ccc37f48aec5e84fcd2ed6e305b912201aa7298428bce996196f46",
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/per_task.csv": "4f17ad58ea5b87735c4980ecdf395995564635b028dcf76a1007cb28860b253f",
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/full750.audit.json": "6bd74f220dea627c1032d69ccc336515dd74ec2c7413561cb641223da0139609"
+  }
+}

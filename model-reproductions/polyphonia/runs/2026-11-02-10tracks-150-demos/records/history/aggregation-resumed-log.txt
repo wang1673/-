@@ -1,0 +1,38 @@
+{
+  "state": "completed",
+  "tracks": 10,
+  "tasks": 150,
+  "files": 535,
+  "aggregates": {
+    "source_target_CLAP": {
+      "mean": 0.15798160533731181,
+      "std_population": 0.09463909244398412,
+      "valid": 150,
+      "undefined": 0
+    },
+    "edited_target_CLAP": {
+      "mean": 0.35330325938761237,
+      "std_population": 0.0816868688055172,
+      "valid": 150,
+      "undefined": 0
+    },
+    "CLAP_delta": {
+      "mean": 0.19532165405030052,
+      "std_population": 0.09102622529722838,
+      "valid": 150,
+      "undefined": 0
+    },
+    "LPAPS": {
+      "mean": 4.8247154223918916,
+      "std_population": 0.4903817294588218,
+      "valid": 150,
+      "undefined": 0
+    },
+    "CQT1_PCC": {
+      "mean": 0.30421909023033794,
+      "std_population": 0.22127444393441775,
+      "valid": 150,
+      "undefined": 0
+    }
+  }
+}

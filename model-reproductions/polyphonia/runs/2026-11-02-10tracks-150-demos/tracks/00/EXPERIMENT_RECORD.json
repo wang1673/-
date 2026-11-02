@@ -1,0 +1,265 @@
+{
+  "package_type": "EXPERIMENT_RECORD",
+  "experiment_id": "polyphonia-musdb-10s-full15-20261102",
+  "state": "completed",
+  "track": "AM Contra - Heart Peripheral",
+  "duration_per_inference_seconds": 10,
+  "tasks": 15,
+  "source": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02-full15/input/mixture.wav",
+  "scope": "One fixed center10second dataset clip ×15official prompts, new official inference; original-versus-edited comparison, no seven-method baseline rerun.",
+  "model_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+  "AudioLDM2_revision": "c8e7e189d324425c05c4c2f81214041ef4107983",
+  "configuration": {
+    "steps": 100,
+    "cfg": 3.5,
+    "mask_bias_strength": 2.5,
+    "seed": 928,
+    "precision": "fp16",
+    "mask_type": "energy",
+    "down_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "implementation": "Unmodified official run_sample_exp.py; output saving instrumented for validation",
+    "known_paper_code_difference": "Official energy mask divides target Mel energy by mixture Mel energy; paper Eq 9 divides by target+non-target energy. Code baseline retained."
+  },
+  "elapsed_inference_seconds": 130.82446943223476,
+  "peak_cuda_allocated_GiB": 10.023045063018799,
+  "features": "Same original music CLAP checkpoint, sample mean stereo downmix, Julius resampling, exact original LPAPS reduction and CQT2010 trajectory PCC. New example outputs evaluated; old750metrics untouched.",
+  "aggregates": {
+    "source_target_CLAP": {
+      "mean": 0.15182818472385406,
+      "std_population": 0.08314752595380857,
+      "valid": 15
+    },
+    "edited_target_CLAP": {
+      "mean": 0.32881587942441304,
+      "std_population": 0.06675072559972042,
+      "valid": 15
+    },
+    "CLAP_delta": {
+      "mean": 0.17698769470055897,
+      "std_population": 0.07183533112703652,
+      "valid": 15
+    },
+    "LPAPS": {
+      "mean": 4.840114545822144,
+      "std_population": 0.3864525673922213,
+      "valid": 15
+    },
+    "CQT1_PCC": {
+      "mean": 0.17766892445381202,
+      "std_population": 0.13212590695661391,
+      "valid": 15
+    }
+  },
+  "rows": [
+    {
+      "index": 1,
+      "task": "vocals2violin",
+      "label": "人声→小提琴",
+      "source_target_CLAP": 0.09981801360845566,
+      "edited_target_CLAP": 0.3306320011615753,
+      "CLAP_delta": 0.23081398755311966,
+      "LPAPS": 5.062440752983093,
+      "CQT1_PCC": 0.15944899740377547,
+      "target_prompt": "A recording of a smooth violin, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "3317f4f557f748d71a7ea9e15eeb7d49538b0141be444c73dda31f8e9c03ad9b"
+    },
+    {
+      "index": 2,
+      "task": "vocals2cello",
+      "label": "人声→大提琴",
+      "source_target_CLAP": 0.03369424492120743,
+      "edited_target_CLAP": 0.38110387325286865,
+      "CLAP_delta": 0.3474096283316612,
+      "LPAPS": 5.592856407165527,
+      "CQT1_PCC": 0.005725761964732025,
+      "target_prompt": "A recording of a warm cello, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "c3b1f40a75b2655c686446fff14760f5e55a9cb9a9b631369768adfdc89c95bd"
+    },
+    {
+      "index": 3,
+      "task": "vocals2flute",
+      "label": "人声→长笛",
+      "source_target_CLAP": 0.12846091389656067,
+      "edited_target_CLAP": 0.32488149404525757,
+      "CLAP_delta": 0.1964205801486969,
+      "LPAPS": 5.00231409072876,
+      "CQT1_PCC": 0.24310233485755262,
+      "target_prompt": "A recording of a bright flute, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "c7a01606432434f03134746a46a499f9d4dd5dbceac4dd438390747a95038ee0"
+    },
+    {
+      "index": 4,
+      "task": "vocals2trumpet",
+      "label": "人声→小号",
+      "source_target_CLAP": 0.1130053848028183,
+      "edited_target_CLAP": 0.21232199668884277,
+      "CLAP_delta": 0.09931661188602448,
+      "LPAPS": 4.9872065782547,
+      "CQT1_PCC": 0.16488673939846124,
+      "target_prompt": "A recording of a bold trumpet, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "5fbd254691832a907f414bb447420c3cdee7264c4f86ae736519d6391f881a0a"
+    },
+    {
+      "index": 5,
+      "task": "vocals2choir",
+      "label": "人声→合唱",
+      "source_target_CLAP": 0.159500852227211,
+      "edited_target_CLAP": 0.3644760549068451,
+      "CLAP_delta": 0.2049752026796341,
+      "LPAPS": 5.315370321273804,
+      "CQT1_PCC": 0.19466074421616036,
+      "target_prompt": "A recording of a lush choir, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "8e57827481dd5bb12ecc51b1c2202da11a1d82ba2580fc7e03f05121ab5d854c"
+    },
+    {
+      "index": 6,
+      "task": "vocals2saxophone",
+      "label": "人声→萨克斯",
+      "source_target_CLAP": -0.020800422877073288,
+      "edited_target_CLAP": 0.14873680472373962,
+      "CLAP_delta": 0.1695372276008129,
+      "LPAPS": 4.7124598026275635,
+      "CQT1_PCC": 0.3145128232949187,
+      "target_prompt": "A recording of a smooth saxophone, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "9b050c52066c3109bc678cf9508d568253e19c2ac147d1d6f4eb8d9e743740ec"
+    },
+    {
+      "index": 7,
+      "task": "vocals2trombone",
+      "label": "人声→长号",
+      "source_target_CLAP": 0.03001413866877556,
+      "edited_target_CLAP": 0.3227345943450928,
+      "CLAP_delta": 0.2927204556763172,
+      "LPAPS": 5.579321384429932,
+      "CQT1_PCC": 0.21161591219065806,
+      "target_prompt": "A recording of a rich trombone, deep bass, atmospheric synth and punchy drums.",
+      "sha256": "100b00baa0e6873123f09e25cf03f7df9cc344497088d0e69bf84dfad0de1fcd"
+    },
+    {
+      "index": 8,
+      "task": "guitar2piano",
+      "label": "其他旋律声部→钢琴",
+      "source_target_CLAP": 0.22554536163806915,
+      "edited_target_CLAP": 0.2974105477333069,
+      "CLAP_delta": 0.07186518609523773,
+      "LPAPS": 4.552137017250061,
+      "CQT1_PCC": -0.012978981560290686,
+      "target_prompt": "A recording of soulful female vocals, deep bass, a bright piano and punchy drums.",
+      "sha256": "319dc29722d5fc5bc1815071d4f67c5af71726bec4e09ad5e29530f343ca0a38"
+    },
+    {
+      "index": 9,
+      "task": "guitar2harp",
+      "label": "其他旋律声部→竖琴",
+      "source_target_CLAP": 0.24847319722175598,
+      "edited_target_CLAP": 0.40086621046066284,
+      "CLAP_delta": 0.15239301323890686,
+      "LPAPS": 4.400182008743286,
+      "CQT1_PCC": 0.2516140582086503,
+      "target_prompt": "A recording of soulful female vocals, deep bass, a delicate harp and punchy drums.",
+      "sha256": "431f6a890144e1f8e367deb69b79e91c8aedaf71296f9b5a25b7c70a180de2a7"
+    },
+    {
+      "index": 10,
+      "task": "guitar2marimba",
+      "label": "其他旋律声部→马林巴",
+      "source_target_CLAP": 0.1864893138408661,
+      "edited_target_CLAP": 0.395319402217865,
+      "CLAP_delta": 0.2088300883769989,
+      "LPAPS": 4.554006218910217,
+      "CQT1_PCC": 0.3277067556459464,
+      "target_prompt": "A recording of soulful female vocals, deep bass, a wooden marimba and punchy drums.",
+      "sha256": "0794bbfb96918e268e11490ac4a3da6a3862a8330dd10af24e63d5b8dd31d1d8"
+    },
+    {
+      "index": 11,
+      "task": "guitar2banjo",
+      "label": "其他旋律声部→班卓琴",
+      "source_target_CLAP": 0.24083393812179565,
+      "edited_target_CLAP": 0.33085179328918457,
+      "CLAP_delta": 0.09001785516738892,
+      "LPAPS": 4.599567890167236,
+      "CQT1_PCC": -0.05408859564028189,
+      "target_prompt": "A recording of soulful female vocals, deep bass, a twangy banjo and punchy drums.",
+      "sha256": "dac3495e8847d741965f3a0db2fd1140fb4fa28600520050fe2e5cd2feaf2f3d"
+    },
+    {
+      "index": 12,
+      "task": "guitar2organ",
+      "label": "其他旋律声部→管风琴",
+      "source_target_CLAP": 0.1937337964773178,
+      "edited_target_CLAP": 0.32295769453048706,
+      "CLAP_delta": 0.12922389805316925,
+      "LPAPS": 4.732546806335449,
+      "CQT1_PCC": -0.016657122416005546,
+      "target_prompt": "A recording of soulful female vocals, deep bass, a vintage organ and punchy drums.",
+      "sha256": "a7e6a0f000580a3403315189debce90e4d32af2c60c7a271cbd4eb4740cef9ed"
+    },
+    {
+      "index": 13,
+      "task": "drums2electronic",
+      "label": "鼓→电子鼓",
+      "source_target_CLAP": 0.2601444721221924,
+      "edited_target_CLAP": 0.39571499824523926,
+      "CLAP_delta": 0.13557052612304688,
+      "LPAPS": 4.580172538757324,
+      "CQT1_PCC": 0.2147339926588099,
+      "target_prompt": "A recording of soulful female vocals, deep bass, atmospheric synth and crisp electronic drums.",
+      "sha256": "c7688909bb39446aadd3147e4736676165800a8d85340c8ff3d63c08ea62856b"
+    },
+    {
+      "index": 14,
+      "task": "drums2jazz",
+      "label": "鼓→爵士鼓",
+      "source_target_CLAP": 0.1964198350906372,
+      "edited_target_CLAP": 0.36905938386917114,
+      "CLAP_delta": 0.17263954877853394,
+      "LPAPS": 4.542041301727295,
+      "CQT1_PCC": 0.2883165768230464,
+      "target_prompt": "A recording of soulful female vocals, deep bass, atmospheric synth and soft jazz drums.",
+      "sha256": "fc2ee0b4d646f256dc39310b9974ccccc7c457cc2df56fa02faf470d5452c115"
+    },
+    {
+      "index": 15,
+      "task": "bass2upright",
+      "label": "贝斯→低音提琴",
+      "source_target_CLAP": 0.18208973109722137,
+      "edited_target_CLAP": 0.33517134189605713,
+      "CLAP_delta": 0.15308161079883575,
+      "LPAPS": 4.389095067977905,
+      "CQT1_PCC": 0.3724338697610472,
+      "target_prompt": "A recording of soulful female vocals, an upright bass, atmospheric synth and punchy drums.",
+      "sha256": "e74de60ce2ca8f4772f73e8055be9c3d8da30e5159ad9da38ffe048801d0f188"
+    }
+  ],
+  "listening_note": "Listening copies targetRMS0.1 withpeak0.95 limit; raw output copies are byteidentical. Before-after concatenations are20.5s only for comparison; inference clips each10s.",
+  "limits": [
+    "Single-track demonstration, not a new750benchmark or cross-method test",
+    "Source targetCLAP is a no-edit semantic control; preserving original exactly would giveLPAPS0 andselfCQT1, but does not perform requested editing",
+    "No human subjective success ratings; metrics do not guarantee convincing instrument timbre",
+    "Author precise crop manifest unpublished; HTDemucs stems from existing reproduction, no oracle stems",
+    "FAD/KAD are set-level distances, not appropriate per-task sound-quality scores; ASB/AMB require methods cohort, not computed perexample"
+  ],
+  "original_records_unchanged": true,
+  "task_label_note": "官方5项任务键沿用guitar2...，但本曲原始提示词为atmospheric synth，因此试听标签使用其他旋律声部，保留官方任务键及原目标文本。",
+  "source_prompt": "A recording of soulful female vocals, deep bass, atmospheric synth and punchy drums."
+}

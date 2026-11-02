@@ -1,0 +1,245 @@
+{
+  "package_type": "EXPERIMENT_RECORD",
+  "package_version": "research-pipeline-contract v1.0",
+  "experiment_id": "polyphonia750-supplement-2026-11-02",
+  "source_idea_id": "none",
+  "plan_version": "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/protocol.json",
+  "execution_status": "completed_with_explicit_reproduction_limits",
+  "research_question": "Complete seven objective metric fields on unchanged750generated clips and create music/animal editing listening examples.",
+  "hypothesis": "No new inferential hypothesis; supplementary measurement and exploratory examples.",
+  "planned_vs_actual_design_and_controls": {
+    "original750_unchanged": true,
+    "ASB_AMB": "User approved published baseline reference approximation, no new baseline inference",
+    "animal_examples": "Out-of-domain exploratory; isolated cat signal used as target other stem; no background separation claim"
+  },
+  "actual_configuration": {
+    "official_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+    "steps": 100,
+    "cfg": 3.5,
+    "maskbias": 2.5,
+    "seed": 928,
+    "precision": "fp16",
+    "mask_type": "energy",
+    "OPENBLAS_CORETYPE": "Haswell",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "samples_materials_or_data_provenance": {
+    "benchmark": "50MUSDB18-HQtest tracks,15edits each, original protocol and hashes retained",
+    "distribution_reference": 50,
+    "distribution_generated": 750,
+    "feature_dimensions": 512,
+    "animal": {
+      "dataset": "ESC-50",
+      "filename": "1-47819-A-5.wav",
+      "category": "cat",
+      "source_url": "https://github.com/karolpiczak/ESC-50/blob/master/audio/1-47819-A-5.wav",
+      "download_url": "https://cdn.jsdelivr.net/gh/karolpiczak/ESC-50@master/audio/1-47819-A-5.wav",
+      "original_sha256": "2abe50ef7597a38f17d49076a3800690355a8f70ab2952298dd0277c9d4a6839",
+      "preparation": "Resample mono 44100Hz5s to16000Hz; repeat twice to10s, same waveform assigned to mixture and isolated other target stem; no Demucs separation for isolated animal event",
+      "scope": "Out-of-domain audio event editing example; not part of750MUSDBbenchmark",
+      "license": "ESC-50 CC BY-NC; retain source attribution"
+    }
+  },
+  "results_with_uncertainty": {
+    "main_metrics": {
+      "state": "completed",
+      "evaluated_tasks": 750,
+      "expected_tasks": 750,
+      "elapsed_seconds": 21.260226376354694,
+      "specification_sha256": "a330026f562f87efb3535b6011dd881b9bb3269bb1b29d6b4315b0d6feee2e30",
+      "paper_comparison": "Center-crop protocol differs from unpublished author crop manifest. Quantitative results are not exact Table 1 replication.",
+      "CLAP": {
+        "mean": 0.3503757368971904,
+        "std_population": 0.08190163749915376,
+        "valid": 750,
+        "undefined": 0
+      },
+      "LPAPS": {
+        "mean": 4.67899129152298,
+        "std_population": 0.48950218590868355,
+        "valid": 750,
+        "undefined": 0
+      },
+      "CQT1_PCC": {
+        "mean": 0.3334732335597876,
+        "std_population": 0.23045329872748305,
+        "valid": 750,
+        "undefined": 0
+      }
+    },
+    "supplement": {
+      "state": "completed_with_explicit_reproduction_limits",
+      "source_code_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+      "counts": {
+        "reference_clips": 50,
+        "generated_clips": 750,
+        "dimensions": 512
+      },
+      "feature_protocol": "Reuse this run hash-verified CLAP music checkpoint embeddings; one full10s embedding per clip; original preprocessing unchanged; float32 values promoted tofloat64; not latest fadtk default trailing-padding multiwindow or fp16-storage extraction",
+      "FAD": {
+        "value": 0.7797958695704603,
+        "implementation": "Unmodified calc_embd_statistics/calc_frechet_distance function bodies from microsoft/fadtk ec74b1f96d5576ec04e721985fa0f0d14d965d9b; standalone imports for original Python3.8 environment",
+        "independent_psd_check": 0.7797959201285523,
+        "infinite_sample_extrapolation": false,
+        "uncertainty": "Not estimated; not a per-task standard deviation"
+      },
+      "KAD": {
+        "status": "polynomial_family_matches_paper_but_exact_author_parameters_unpublished",
+        "value": 0.003024635154570632,
+        "variant": "unbiased polynomial MMD2; degree3; gamma1/512; coef0=1; scale1; normalized CLAP features; matches original declared evaluation convention",
+        "author_exact": false,
+        "sensitivity_gamma_1": 3.024498118719488,
+        "diagnostic_cited_kadtk_gaussian_x100": 27.11204964624454,
+        "diagnostic_bandwidth": 1.0517542362213135,
+        "warning": "Gaussian diagnostic is original kadtk convention, not paper-polynomial result; do not substitute one for the other or compare unverified scales to the paper table"
+      },
+      "ASB": {
+        "value": 0.8612305644328144,
+        "status": "paper_baseline_reference_approximation_user_authorized"
+      },
+      "AMB": {
+        "value": 0.9302904541638237,
+        "status": "paper_baseline_reference_approximation_user_authorized"
+      },
+      "composite_reference": {
+        "source": "https://arxiv.org/html/2605.10203v1#S5.T1",
+        "baseline_count": 7,
+        "cohort_count": 8,
+        "operation": "Replace published Polyphonia row by this reproduction; use7 published rounded baseline means; Zscore thenMinMax within each metric across8 methods; harmonic mean; CQT1_PCC forAMB",
+        "normalized_reproduction": {
+          "method": "Polyphonia_reproduction",
+          "CLAP_norm": 1.0,
+          "structure_norm": 0.7562817700703938,
+          "melody_norm": 0.8696664041047042,
+          "ASB": 0.8612305644328144,
+          "AMB": 0.9302904541638237
+        },
+        "paper_table_replay_max_abs_error": 0.0026358148510804424,
+        "replay_limitation": "Published rounded inputs and unpublished normalization details prevent exact table replay; not newly reproduced baseline runs or same-crop causal comparison"
+      },
+      "validation": {
+        "old_metrics_and_audit_unchanged": true,
+        "all750_audio_hashes_checked": true,
+        "all50_source_hashes_checked": true,
+        "fad_reference_vs_psd_abs_difference": 5.0558091935215543e-08
+      },
+      "old_file_hashes": {
+        "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/summary.json": "e50a70ad70ccc37f48aec5e84fcd2ed6e305b912201aa7298428bce996196f46",
+        "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics/per_task.csv": "4f17ad58ea5b87735c4980ecdf395995564635b028dcf76a1007cb28860b253f",
+        "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/full750.audit.json": "6bd74f220dea627c1032d69ccc336515dd74ec2c7413561cb641223da0139609"
+      }
+    },
+    "demo": {
+      "state": "completed",
+      "files": {
+        "music_original": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/music/input/mixture.wav",
+          "sha256": "657555d467e3ecf06bab373848a09c1f71c5972befc57ad4a1f7ffcec6af0c44",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.14545901586767795,
+          "peak": 0.6327084898948669
+        },
+        "music_violin": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/music/output/vocals2violin.wav",
+          "sha256": "3317f4f557f748d71a7ea9e15eeb7d49538b0141be444c73dda31f8e9c03ad9b",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.1487164325333709,
+          "peak": 0.6552734375
+        },
+        "music_saxophone": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/music/output/vocals2saxophone.wav",
+          "sha256": "9b050c52066c3109bc678cf9508d568253e19c2ac147d1d6f4eb8d9e743740ec",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.13433798425942306,
+          "peak": 0.63720703125
+        },
+        "cat_original": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/cat-to-dog/input/mixture.wav",
+          "sha256": "d096bfaad25dcebe08eb1f94497cb312845941055a1297718f275d6513c3776e",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.008301937974947755,
+          "peak": 0.08673095703125
+        },
+        "cat_to_dog": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/cat-to-dog/output/cat2dog.wav",
+          "sha256": "e13f1c18a55413647e50eb8402cc7d292b22ac093771d67b74688ede20c453b8",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.06009694802366047,
+          "peak": 0.72998046875
+        },
+        "cat_to_dog_deep": {
+          "path": "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02/cat-to-dog/output/cat2dog_deep.wav",
+          "sha256": "940ba50a2aab66badcaa9f651d9d4d5091108bb827976b3eacc168d9eb18ac5e",
+          "sample_rate_after_audition_resample": 16000,
+          "frames": 160000,
+          "rms": 0.06115219152695315,
+          "peak": 0.689453125
+        }
+      },
+      "cat_dog_CLAP_diagnostic": {
+        "cat_original": {
+          "cat_prompt_cosine": 0.4363240599632263,
+          "dog_prompt_cosine": 0.174899622797966,
+          "dog_minus_cat": -0.2614244222640991
+        },
+        "cat_to_dog": {
+          "cat_prompt_cosine": 0.13245046138763428,
+          "dog_prompt_cosine": 0.5056123733520508,
+          "dog_minus_cat": 0.3731619119644165
+        },
+        "cat_to_dog_deep": {
+          "cat_prompt_cosine": 0.09691570699214935,
+          "dog_prompt_cosine": 0.5096086263656616,
+          "dog_minus_cat": 0.4126929044723511
+        }
+      },
+      "diagnostic_note": "Two-prompt similarity is an auxiliary semantic check, not human listening or proof of convincing dog sound; no selection or exclusion of either prompt variant.",
+      "audition_note": "Separate listening copies only: mono mean, resample16k, targetRMS0.1 limited topeak0.95. Raw model outputs unchanged. Before-after files have10s source,0.5s silence,10s edited.",
+      "settings": {
+        "official_commit": "26a5fca9f3ee2465ff3ee9b59a3411bfe1f1b0dc",
+        "steps": 100,
+        "cfg": 3.5,
+        "maskbias": 2.5,
+        "seed": 928,
+        "precision": "fp16",
+        "mask_type": "energy",
+        "OPENBLAS_CORETYPE": "Haswell",
+        "OPENBLAS_NUM_THREADS": "1"
+      },
+      "failures_and_retries": "Initial deep prompt and fresh-process retry failed with CPU/CUDA attention mismatch. The softmask phrase a dog barking was absent from baseline a large dog barking, triggering official fallback. Kept failed-v1 prompt and both logs; changed only mask phrase to exact a large dog barking per official mirror rule, reran only deep task in fresh process with same code/parameters/seed928. No model code changes. Official exits0 on task failure; validated outputs independently."
+    },
+    "note": "Only original3metrics have per-task populationSD. FAD/KAD are set-level distances and ASB/AMB derived aggregate scores; no artificial per-taskSD or confidence interval. Original3 all750valid0undefined."
+  },
+  "all_runs_or_repetitions": {
+    "benchmark": "No repeated main generation or evaluation",
+    "music": "Two newly generated prompts one inversion seed928",
+    "cat": "Two generated prompts; retained two failed deep attempts and corrected-mirror retry; no cherry-picked exclusion"
+  },
+  "observations_and_deviations": [
+    "Default OpenBLAS CPU dispatch produced invalid eigenvectors (orthogonality error3596.56), causing previous negative FAD and failed assertions. Haswell dispatch restored eigenvector checks without changing packages, source embeddings or main750data. Default-dispatch attempted values are invalid and excluded; original failure log retained. Applied only to new supplement and demo processes.",
+    "Initial deep prompt and fresh-process retry failed with CPU/CUDA attention mismatch. The softmask phrase a dog barking was absent from baseline a large dog barking, triggering official fallback. Kept failed-v1 prompt and both logs; changed only mask phrase to exact a large dog barking per official mirror rule, reran only deep task in fresh process with same code/parameters/seed928. No model code changes. Official exits0 on task failure; validated outputs independently."
+  ],
+  "evidence_locations": [
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01",
+    "/root/autodl-tmp/polyphonia_repro/results/musdb_center10_htdemucs_4090d_01/metrics-supplement-v1",
+    "/root/autodl-tmp/polyphonia_repro/demos/2026-11-02",
+    "/root/autodl-tmp/polyphonia_repro/supplement-metrics-v1",
+    "/root/autodl-tmp/polyphonia_repro/logs/supplement-metrics-v1.log",
+    "/root/autodl-tmp/polyphonia_repro/logs/supplement-metrics-v1-resumed.log"
+  ],
+  "known_limits_and_missing_evidence": [
+    "Authors exact crop/CLAP preprocessing and polynomial kernel parameters unpublished; no claim of exact Table1 replication",
+    "ASB/AMB from rounded paper baseline means, not same-crop baseline reruns",
+    "No human TTA/CTI/GAC ratings; no claim of perceptual success based solely on CLAP",
+    "Old3060 resumption RNG and regenerated Demucs estimates limit GPU-only causal comparisons"
+  ],
+  "next_routes": [
+    "Human listening to supplied examples; author clarification needed for exactKAD"
+  ],
+  "next_skill": "squeeze-experiment"
+}
