@@ -1,5 +1,16 @@
 # 10首数据集音乐 × 15项编辑示例
 
+
+## 完整试听包下载
+
+[下载完整试听包（约170 MiB）](https://github.com/wang1673/-/releases/download/polyphonia-10tracks-150-demos-20261102/polyphonia-10tracks-150-listening-20261102.tar.gz) · [GitHub Release](https://github.com/wang1673/-/releases/tag/polyphonia-10tracks-150-demos-20261102)
+
+附件：`polyphonia-10tracks-150-listening-20261102.tar.gz`，178,738,249 bytes。
+
+SHA-256：`5601f16075bb4c972055de0f66d0b09c831cf469d90b5e667f584bc9082cfb60`（已与GitHub附件digest核对一致）。
+
+解压后打开 `Polyphonia_10首150项编辑对照/10首音乐试听对照.html`，保留整个目录和音频子目录。Release附件为完整音频包；下方代码/文本目录仍只保存记录、脚本和统计。
+
 2026-11-02完成MUSDB18-HQ test原protocol前10首，共150项。每首只运行原中间10秒，不是整首推理。首首15项保留本聊天前一次新示例，其余9首新跑135项；没有复用旧750生成音频。
 
 官方Polyphonia代码与固定AudioLDM2模型，原100steps/CFG3.5/maskbias2.5/fp16/seed928/energy/down层配置。150项音频、三指标和最终校验通过。
